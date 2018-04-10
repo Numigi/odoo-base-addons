@@ -3,16 +3,17 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Numitech',
+    'name': 'Numipack',
     'version': '1.0.0',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
-    'category': 'Extra Tools',
-    'summary': 'Quality tools we want in every instances.',
+    'category': 'Other',
+    'summary': 'Functional dependencies for all Odoo instances.',
     'depends': [
-        'auto_backup',
-        'sentry',
+        'base_technical_features',
+        'disable_odoo_online',
+        'disable_quick_create',
     ],
     'installable': True,
 }
