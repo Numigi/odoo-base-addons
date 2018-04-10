@@ -1,6 +1,6 @@
-NumiTech
+NumiPack
 ========
-Module that install technological modules that we want for quality.
+Module that install functionnal modules required on every projects.
 
 Contributors
 ------------
