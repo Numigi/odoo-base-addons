@@ -14,6 +14,7 @@
         'base_technical_features',
         'disable_odoo_online',
         'disable_quick_create',
+        'report_aeroo',
     ],
     'installable': True,
 }
