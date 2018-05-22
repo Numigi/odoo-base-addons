@@ -15,6 +15,7 @@
         'disable_odoo_online',
         'disable_quick_create',
         'report_aeroo',
+        'web_search_date_range',
     ],
     'installable': True,
 }
