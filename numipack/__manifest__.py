@@ -17,7 +17,6 @@
         'report_aeroo',
         'web_search_date_range',
         'password_security',  # TA#2532
-        'auth_brute_force',  # TA#2534
     ],
     'installable': True,
 }
