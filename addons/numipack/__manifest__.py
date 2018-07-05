@@ -12,6 +12,7 @@
     'summary': 'Functional dependencies for all Odoo instances.',
     'depends': [
         'base_technical_features',
+        'board',
         'disable_odoo_online',
         'disable_quick_create',
         'password_security',  # TA#2532
