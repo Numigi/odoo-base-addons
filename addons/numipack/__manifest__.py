@@ -14,9 +14,10 @@
         'base_technical_features',
         'disable_odoo_online',
         'disable_quick_create',
+        'password_security',  # TA#2532
         'report_aeroo',
         'web_search_date_range',
-        'password_security',  # TA#2532
+        'web_search_with_and',  # TA#2547
     ],
     'installable': True,
 }
