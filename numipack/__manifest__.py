@@ -17,6 +17,7 @@
         'disable_quick_create',
         'password_security',  # TA#2532
         'report_aeroo',
+        'web_contextual_search_favorite',  # TA#2637
         'web_search_date_range',
         'web_search_with_and',  # TA#2547
     ],
