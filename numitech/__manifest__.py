@@ -11,6 +11,7 @@
     'category': 'Extra Tools',
     'summary': 'Quality tools we want in every instances.',
     'depends': [
+        # OCA/server-tools
         'auto_backup',
         'sentry',
     ],

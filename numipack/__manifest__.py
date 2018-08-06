@@ -11,14 +11,27 @@
     'category': 'Other',
     'summary': 'Functional dependencies for all Odoo instances.',
     'depends': [
+        # OCA/server-tools
         'base_technical_features',
+
+        # odoo/odoo
         'board',
+
+        # OCA/server_brand
         'disable_odoo_online',
-        'disable_quick_create',
+
+        # OCA/server-auth
         'password_security',  # TA#2532
+
+        # Numigi/aeroo_reports
         'report_aeroo',
+
+        # Numigi/odoo-web-addons
         'web_contextual_search_favorite',  # TA#2637
         'web_search_date_range',
+        'disable_quick_create',
+
+        # OCA/web
         'web_search_with_and',  # TA#2547
     ],
     'installable': True,
