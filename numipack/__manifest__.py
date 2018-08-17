@@ -16,6 +16,7 @@
 
         # odoo/odoo
         'board',
+        'document',  # TA#3415
 
         # OCA/server_brand
         'disable_odoo_online',
