@@ -14,6 +14,9 @@
         # OCA/server-tools
         'base_technical_features',
 
+        # OCA/server-ux
+        'mass_editing',  # TA#4119
+
         # odoo/odoo
         'board',
         'document',  # TA#3415
