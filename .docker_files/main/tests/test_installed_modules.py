@@ -12,3 +12,7 @@ class TestModules(TransactionCase):
     def setUp(self):
         super(TestModules, self).setUp()
         self.modules = self.env['ir.module.module']
+
+    def test_project_stage_no_quick_create(self):
+        """Project Stage No Quick Create is installed."""
+        self.assertTrue(self.modules.search([('name', '=', 'ir_attachment_name_autocomplete')]))
