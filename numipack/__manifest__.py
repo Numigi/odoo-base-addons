@@ -43,5 +43,8 @@
         # OCA/web
         'web_search_with_and',  # TA#2547
     ],
+    'data': [
+        'admin_light_user_password_security_binding.xml',
+    ],
     'installable': True,
 }
