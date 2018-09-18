@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="group_user_management" model="res.groups">
+        <field name="name">Users</field>
+        <field name="category_id" ref="admin_light_base.module_category_admin"/>
+        <field name="implied_ids" eval="[(4, ref('admin_light_base.group_admin'))]"/>
+    </record>
+
+    <menuitem
+        id="menu_user_management"
+        name="Users"
+        parent="admin_light_base.menu_admin"
+        groups="group_user_management"
+        sequence="0"/>
+
+    <menuitem
+        id="menu_users"
+        name="Users"
+        parent="menu_user_management"
+        action="base.action_res_users"
+        sequence="0"/>
+
+    <menuitem
+        id="menu_groups"
+        name="Groups"
+        parent="menu_user_management"
+        action="base.action_res_groups"
+        sequence="1"/>
+
+    <!-- Enable Reset Password -->
+    <record id="base.change_password_wizard_action" model="ir.actions.act_window">
+        <field name="groups_id" eval="[(4, ref('group_user_management'))]"/>
+    </record>
+
+</odoo>

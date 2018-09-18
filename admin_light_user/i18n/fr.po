@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* admin_light_user
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-18 16:28-0400\n"
+"PO-Revision-Date: 2018-09-18 16:31-0400\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.0.6\n"
+"Language: fr\n"
+
+#. module: admin_light_user
+#: model:ir.model,name:admin_light_user.model_res_groups
+msgid "Access Groups"
+msgstr ""
+
+#. module: admin_light_user
+#: model:ir.ui.view,arch_db:admin_light_user.user_groups_view_without_admin_applications
+msgid "Application Accesses"
+msgstr "Accès à l'application"
+
+#. module: admin_light_user
+#: model:ir.ui.menu,name:admin_light_user.menu_groups
+msgid "Groups"
+msgstr "Groupes"
+
+#. module: admin_light_user
+#: model:ir.ui.view,arch_db:admin_light_user.user_groups_view_without_admin_applications
+msgid "Other"
+msgstr "Autres"
+
+#. module: admin_light_user
+#: model:ir.ui.view,arch_db:admin_light_user.user_groups_view_without_admin_applications
+msgid "Other Extra Rights"
+msgstr "Droits supplémentaires"
+
+#. module: admin_light_user
+#: model:ir.model,name:admin_light_user.model_res_users
+#: model:ir.ui.menu,name:admin_light_user.menu_user_management
+#: model:ir.ui.menu,name:admin_light_user.menu_users
+#: model:res.groups,name:admin_light_user.group_user_management
+msgid "Users"
+msgstr "Utilisateurs"
+
+#. module: admin_light_user
+#: code:addons/admin_light_user/prevent_grand_admin_access.py:44
+#, python-format
+msgid "You are not authorized to grant admin priviledges. Only the super admin can."
+msgstr "Vous n'êtes pas autorisé à accorder des privilèges administrateurs. Seulement le super administrateur peut."

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="module_category_admin" model="ir.module.category">
+        <field name="name">Administration (Light)</field>
+        <field name="sequence">100</field>
+    </record>
+
+    <record id="group_admin" model="res.groups">
+        <field name="name">Administration (Light) / Base</field>
+        <field name="category_id" ref="base.module_category_usability"/>
+    </record>
+
+    <menuitem
+        id="menu_admin"
+        name="Administration"
+        web_icon="base,static/description/settings.png"
+        sequence="500"
+        groups="group_admin"/>
+
+</odoo>
