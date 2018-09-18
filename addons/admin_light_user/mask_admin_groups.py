@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from lxml import etree
-from odoo import api, models, _
+from odoo import api, models
 
 SUPER_ADMIN_APPLICATIONS = [
     'admin_light_base.module_category_admin',
