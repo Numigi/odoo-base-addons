@@ -11,6 +11,10 @@
     'category': 'Other',
     'summary': 'Functional dependencies for all Odoo instances.',
     'depends': [
+        # Numigi/odoo-base
+        'admin_light_base',  # TA#4894
+        'admin_light_user',  # TA#4894
+
         # OCA/server-tools
         'base_technical_features',
 
