@@ -11,6 +11,10 @@
     'category': 'Other',
     'summary': 'Functional dependencies for all Odoo instances.',
     'depends': [
+        # Numigi/odoo-base
+        'admin_light_base',  # TA#4894
+        'admin_light_user',  # TA#4894
+
         # OCA/server-tools
         'base_technical_features',
 
@@ -38,6 +42,9 @@
 
         # OCA/web
         'web_search_with_and',  # TA#2547
+    ],
+    'data': [
+        'admin_light_user_password_security_binding.xml',
     ],
     'installable': True,
 }
