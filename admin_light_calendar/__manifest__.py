@@ -9,7 +9,7 @@
     'license': 'LGPL-3',
     'category': 'Other',
     'summary': 'Add calendar objects to the Admin Light application.',
-    'depends': ['admin_light_base', 'calendar'],
+    'depends': ['admin_light_base', 'calendar', 'resource'],
     'data': [
         'data.xml',
         'security/ir.model.access.csv',
