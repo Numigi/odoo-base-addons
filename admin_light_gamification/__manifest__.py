@@ -2,19 +2,16 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Admin Light Email',
+    'name': 'Admin Light Gamification',
     'version': '1.0.0',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
     'category': 'Other',
-    'summary': 'Add email management to the Admin Light application.',
-    'depends': ['admin_light_base', 'auditlog', 'fetchmail'],
+    'summary': 'Add a group to manage gamification.',
+    'depends': ['admin_light_base', 'gamification'],
     'data': [
-        'common.xml',
-        'email_and_messages.xml',
-        'mail_template.xml',
-        'mail_server.xml',
+        'data.xml',
         'security/ir.model.access.csv',
     ],
     'installable': True,
