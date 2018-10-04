@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Admin Light Email',
+    'name': 'Admin Light Web',
     'version': '1.0.0',
     'author': 'Numigi',
     'maintainer': 'Numigi',
@@ -11,13 +11,13 @@
     'summary': 'Add email management to the Admin Light application.',
     'depends': [
         'admin_light_base',
-        'fetchmail',
+        'web_custom_label',
+        'web_search_date_range',
     ],
     'data': [
         'common.xml',
-        'email_and_messages.xml',
-        'mail_template.xml',
-        'mail_server.xml',
+        'custom_labels.xml',
+        'date_filters.xml',
         'security/ir.model.access.csv',
     ],
     'installable': True,
