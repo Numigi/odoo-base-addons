@@ -9,7 +9,10 @@
     'license': 'LGPL-3',
     'category': 'Other',
     'summary': 'Add email management to the Admin Light application.',
-    'depends': ['admin_light_base', 'auditlog', 'fetchmail'],
+    'depends': [
+        'admin_light_base',
+        'fetchmail',
+    ],
     'data': [
         'common.xml',
         'email_and_messages.xml',
