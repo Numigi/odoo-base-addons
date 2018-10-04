@@ -17,6 +17,7 @@
         # 'admin_light_mail',  # TA#3892
         'admin_light_base',  # TA#4894
         'admin_light_user',  # TA#4894
+        'admin_light_web',  # TA#3892
 
         # OCA/server-tools
         # 'base_technical_features',
