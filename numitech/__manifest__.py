@@ -12,11 +12,11 @@
     'summary': 'Quality tools we want in every instances.',
     'depends': [
         # OCA/server-tools
-        'auto_backup',
-        'sentry',
+        # 'auto_backup',
+        # 'sentry',
     ],
     'data': [
-        'data/db_backup.xml',
+        # 'data/db_backup.xml',
     ],
     'installable': True,
 }
