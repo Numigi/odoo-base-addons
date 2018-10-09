@@ -14,7 +14,7 @@
         # Numigi/odoo-base
         # 'admin_light_auditlog',  # TA#3892
         'admin_light_calendar',  # TA#3892
-        'admin_light_mail',  # TA#3892
+        # 'admin_light_mail',  # TA#3892
         'admin_light_base',  # TA#4894
         'admin_light_user',  # TA#4894
 
