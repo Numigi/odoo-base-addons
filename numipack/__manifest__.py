@@ -38,16 +38,16 @@
         # 'report_aeroo',
 
         # Numigi/odoo-web-addons
-        # 'web_contextual_search_favorite',  # TA#2637
-        # 'web_custom_label',  # TA#3928
-        # 'web_search_date_range',
-        # 'disable_quick_create',
+        'web_contextual_search_favorite',  # TA#2637
+        'web_custom_label',  # TA#3928
+        'web_search_date_range',
+        'disable_quick_create',
 
         # OCA/web
         # 'web_search_with_and',  # TA#2547
     ],
     'data': [
-        'admin_light_user_password_security_binding.xml',
+        # 'admin_light_user_password_security_binding.xml',
     ],
     'installable': True,
 }
