@@ -13,7 +13,6 @@
     'depends': [
         # OCA/server-tools
         # 'auto_backup',
-        # 'sentry',
     ],
     'data': [
         # 'data/db_backup.xml',
