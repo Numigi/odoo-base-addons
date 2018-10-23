@@ -12,10 +12,6 @@ class TestModules(TransactionCase):
         super(TestModules, self).setUp()
         self.modules = self.env['ir.module.module']
 
-    def test_sentry(self):
-        """ Sentry is installed."""
-        self.assertTrue(self.modules.search([('name', '=', 'sentry')]))
-
     def test_auto_back(self):
         """ Auto Backup is installed."""
         self.assertTrue(self.modules.search([('name', '=', 'auto_backup')]))
