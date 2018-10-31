@@ -37,6 +37,9 @@
         # Numigi/aeroo_reports
         # 'report_aeroo',
 
+        # Numigi/odoo-partner-addons
+        'partner_phone_validation',  # TA#5979
+
         # Numigi/odoo-web-addons
         'web_contextual_search_favorite',  # TA#2637
         'web_custom_label',  # TA#3928
