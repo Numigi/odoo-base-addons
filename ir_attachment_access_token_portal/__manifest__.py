@@ -8,6 +8,6 @@
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
     'category': 'base',
-    'summary': '',
+    'summary': 'This module grant access to documents to the portal user.',
     'installable': True,
 }
