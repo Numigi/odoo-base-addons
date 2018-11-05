@@ -42,6 +42,9 @@
         'partner_phone_validation',  # TA#5979
 
         # Numigi/odoo-web-addons
+        'ir_attachment_access_token_portal',  # TA#6109
+
+        # Numigi/odoo-web-addons
         'web_contextual_search_favorite',  # TA#2637
         'web_custom_label',  # TA#3928
         'web_search_date_range',
