@@ -19,11 +19,9 @@
         'admin_light_user',  # TA#4894
         'admin_light_web',  # TA#3892
 
-        # OCA/server-tools
-        # 'base_technical_features',
-
         # OCA/server-ux
-        # 'mass_editing',  # TA#4119
+        'base_technical_features',
+        'mass_editing',  # TA#4119
 
         # odoo/odoo
         'board',
@@ -41,7 +39,7 @@
         # Numigi/odoo-partner-addons
         'partner_phone_validation',  # TA#5979
 
-        # Numigi/odoo-web-addons
+        # Numigi/odoo-base-addons
         'ir_attachment_access_token_portal',  # TA#6109
 
         # Numigi/odoo-web-addons
