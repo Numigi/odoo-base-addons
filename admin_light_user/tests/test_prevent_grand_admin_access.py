@@ -44,6 +44,7 @@ class TestPreventGrandAdminAccess(common.SavepointCase):
         self.env['res.users'].sudo(self.admin).create({
             'name': 'Basic User 2',
             'login': 'basic_user_2',
+            'email': 'basic_user_2@example.com',
             'groups_id': [(4, self.env.ref('base.group_user').id)],
         })
 
@@ -53,6 +54,7 @@ class TestPreventGrandAdminAccess(common.SavepointCase):
             self.env['res.users'].sudo(self.admin).create({
                 'name': 'Basic User 2',
                 'login': 'basic_user_2',
+                'email': 'basic_user_2@example.com',
                 'groups_id': [(4, self.env.ref(admin_group).id)],
             })
 
@@ -73,6 +75,7 @@ class TestPreventGrandAdminAccess(common.SavepointCase):
         self.env['res.users'].sudo(self.admin).create({
             'name': 'Basic User 2',
             'login': 'basic_user_2',
+            'email': 'basic_user_2@example.com',
             'groups_id': [(6, 0, [self.env.ref('base.group_user').id])],
         })
 
@@ -83,5 +86,6 @@ class TestPreventGrandAdminAccess(common.SavepointCase):
             self.env['res.users'].sudo(self.admin).create({
                 'name': 'Basic User 2',
                 'login': 'basic_user_2',
+                'email': 'basic_user_2@example.com',
                 'groups_id': [(6, 0, groups)],
             })
