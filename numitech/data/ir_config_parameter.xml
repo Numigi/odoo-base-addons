@@ -2,9 +2,9 @@
 <odoo>
     <data>
         <!--TA#6960-->
-        <record id="web_base_url_freeze" model="ir.config_parameter">
-            <field name="key">web.base.url.freeze</field>
-            <field name="value">True</field>
-        </record>
+        <function model="ir.config_parameter"
+                  name="set_param"
+                  eval="('web.base.url.freeze', True)" />
+
     </data>
 </odoo>
