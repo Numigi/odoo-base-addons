@@ -11,6 +11,7 @@
     'category': 'Other',
     'summary': 'Install all addons required for testing.',
     'depends': [
+        'ir_attachment_access_token_portal',
         'ir_attachment_name_autocomplete',
     ],
     'installable': True,
