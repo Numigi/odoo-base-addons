@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_auditlog_log_line_form" model="ir.ui.view">
+        <field name="name">Field Log Form</field>
+        <field name="model">auditlog.log.line</field>
+        <field name="arch" type="xml">
+            <form string="Field Log" create="false" edit="false" delete="false">
+                <sheet>
+                    <group>
+                        <field name="model_id" invisible="context.get('field_logs_from_record_form')"/>
+                        <field name="name" invisible="context.get('field_logs_from_record_form')"/>
+                        <field name="res_id" invisible="context.get('field_logs_from_record_form')"/>
+                        <field name="field_description" string="Field"/>
+                        <field name="old_value" string="Old Value"/>
+                        <field name="new_value" string="New Value"/>
+                        <field name="create_date" string="Modification Date"/>
+                        <field name="user_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_auditlog_log_line_tree" model="ir.ui.view">
+        <field name="name">Field Log List</field>
+        <field name="model">auditlog.log.line</field>
+        <field name="arch" type="xml">
+            <tree string="Field Logs" create="false" edit="false" delete="false">
+                <field name="create_date" string="Date"/>
+                <field name="model_id" invisible="context.get('field_logs_from_record_form')"/>
+                <field name="name" invisible="context.get('field_logs_from_record_form')"/>
+                <field name="res_id" invisible="context.get('field_logs_from_record_form')"/>
+                <field name="field_description" string="Field"/>
+                <field name="old_value_display" string="Old Value"/>
+                <field name="new_value_display" string="New Value"/>
+                <field name="create_date" string="Modification Date"/>
+                <field name="user_id"/>
+            </tree>
+        </field>
+    </record>
+
+   <record id="view_auditlog_log_line_search" model="ir.ui.view">
+        <field name="name">Field Log Search</field>
+        <field name="model">auditlog.log.line</field>
+        <field name="arch" type="xml">
+            <search string="Logs">
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="res_id"/>
+                <field name="user_id"/>
+                <group expand="0" string="Group By...">
+                    <filter name="group_by_user_id" string="User" domain="[]" context="{'group_by':'user_id'}"/>
+                    <filter name="group_by_model_id" string="Model" domain="[]" context="{'group_by':'model_id'}"/>
+                    <filter name="group_by_field_id" string="Field" domain="[]" context="{'group_by':'field_id'}"/>
+                    <filter name="group_by_res_id" string="Resource ID" domain="[]" context="{'group_by':'res_id'}"/>
+                    <filter name="group_by_create_date" string="Date" domain="[]" context="{'group_by':'create_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_auditlog_log_line_tree" model="ir.actions.act_window">
+        <field name="name">Field Logs</field>
+        <field name="res_model">auditlog.log.line</field>
+        <field name="view_type">form</field>
+        <field name="search_view_id" ref="view_auditlog_log_line_search"/>
+    </record>
+
+</odoo>
