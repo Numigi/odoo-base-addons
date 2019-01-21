@@ -11,6 +11,8 @@
     'category': 'Other',
     'summary': 'Install all addons required for testing.',
     'depends': [
+        'account',  # required for testing auditlog
+
         'auditlog',
         'ir_attachment_access_token_portal',
         'ir_attachment_name_autocomplete',
