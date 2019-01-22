@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="group_view_audit_logs" model="res.groups">
+        <field name="name">View Audit Logs</field>
+    </record>
+
+    <record id="base.group_erp_manager" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('group_view_audit_logs'))]"/>
+    </record>
+
+</odoo>

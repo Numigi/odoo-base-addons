@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_auditlog_log_form" model="ir.ui.view">
+        <field name="name">Audit Log Form</field>
+        <field name="model">auditlog.log</field>
+        <field name="arch" type="xml">
+            <form string="Log">
+                <sheet>
+                    <group string="Log">
+                        <group colspan="1">
+                            <field name="create_date" readonly="1"/>
+                            <field name="user_id" readonly="1"/>
+                            <field name="method" readonly="1"/>
+                        </group>
+                        <group colspan="1">
+                            <field name="model_id" readonly="1"/>
+                            <field name="res_id" readonly="1"/>
+                            <field name="name" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="HTTP Context">
+                        <field name="http_request_id"/>
+                    </group>
+                    <group string="Fields updated">
+                        <field name="line_ids" readonly="1" nolabel="1">
+                            <form string="Log - Field updated">
+                                <group>
+                                    <field name="field_id" readonly="1"/>
+                                </group>
+                                <group string="Values" col="4">
+                                    <field name="old_value" readonly="1"/>
+                                    <field name="new_value" readonly="1"/>
+                                </group>
+                            </form>
+                            <tree>
+                                <field name="field_description"/>
+                                <field name="field_name"/>
+                                <field name="old_value_display" string="Old Value"/>
+                                <field name="new_value_display" string="New Value"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_auditlog_log_tree" model="ir.ui.view">
+        <field name="name">Audit Log List</field>
+        <field name="model">auditlog.log</field>
+        <field name="arch" type="xml">
+            <tree string="Logs" create="false">
+                <field name="create_date"/>
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="res_id"/>
+                <field name="method"/>
+                <field name="user_id"/>
+            </tree>
+        </field>
+    </record>
+
+   <record id="view_auditlog_log_search" model="ir.ui.view">
+        <field name="name">Audit Log Search</field>
+        <field name="model">auditlog.log</field>
+        <field name="arch" type="xml">
+            <search string="Logs">
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="res_id"/>
+                <field name="user_id"/>
+                <group expand="0" string="Group By...">
+                    <filter name="group_by_user_id" string="User" domain="[]" context="{'group_by':'user_id'}"/>
+                    <filter name="group_by_model_id" string="Model" domain="[]" context="{'group_by':'model_id'}"/>
+                    <filter name="group_by_res_id" string="Resource ID" domain="[]" context="{'group_by':'res_id'}"/>
+                    <filter name="group_by_create_date" string="Date" domain="[]" context="{'group_by':'create_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_auditlog_log_tree" model="ir.actions.act_window">
+        <field name="name">Audit Logs</field>
+        <field name="res_model">auditlog.log</field>
+        <field name="view_type">form</field>
+        <field name="search_view_id" ref="view_auditlog_log_search"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_auditlog_http_request_form" model="ir.ui.view">
+        <field name="name">Auditlog HTTP Request Form</field>
+        <field name="model">auditlog.http.request</field>
+        <field name="arch" type="xml">
+            <form string="HTTP Request">
+                <sheet>
+                    <group string="HTTP Request">
+                        <field name="root_url"/>
+                        <field name="name"/>
+                        <field name="create_date"/>
+                        <field name="user_context"/>
+                    </group>
+                    <group string="Logs">
+                        <field name="log_ids" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

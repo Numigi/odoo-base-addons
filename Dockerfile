@@ -3,6 +3,7 @@ MAINTAINER numigi <contact@numigi.com>
 
 USER odoo
 
+COPY auditlog /mnt/extra-addons/auditlog
 COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_token_portal
 COPY ir_attachment_name_autocomplete /mnt/extra-addons/ir_attachment_name_autocomplete
 
