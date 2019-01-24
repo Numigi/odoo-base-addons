@@ -12,33 +12,35 @@
     'summary': 'Functional dependencies for all Odoo instances.',
     'depends': [
         # Numigi/odoo-base
-        # 'admin_light_auditlog',  # TA#3892
+        'admin_light_auditlog',  # TA#3892
         'admin_light_calendar',  # TA#3892
-        # 'admin_light_mail',  # TA#3892
+        'admin_light_mail',  # TA#3892
         'admin_light_base',  # TA#4894
         'admin_light_user',  # TA#4894
-
-        # OCA/server-tools
-        # 'base_technical_features',
+        'admin_light_web',  # TA#3892
 
         # OCA/server-ux
-        # 'mass_editing',  # TA#4119
+        'base_technical_features',
+        'mass_editing',  # TA#4119
 
         # odoo/odoo
         'board',
         'document',  # TA#3415
 
         # OCA/server_brand
-        # 'disable_odoo_online',
+        'disable_odoo_online',
 
         # OCA/server-auth
         # 'password_security',  # TA#2532
 
         # Numigi/aeroo_reports
-        # 'report_aeroo',
+        'report_aeroo',
 
         # Numigi/odoo-partner-addons
         'partner_phone_validation',  # TA#5979
+
+        # Numigi/odoo-base-addons
+        'ir_attachment_access_token_portal',  # TA#6109
 
         # Numigi/odoo-web-addons
         'web_contextual_search_favorite',  # TA#2637
