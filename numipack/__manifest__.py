@@ -28,13 +28,13 @@
         'document',  # TA#3415
 
         # OCA/server_brand
-        # 'disable_odoo_online',
+        'disable_odoo_online',
 
         # OCA/server-auth
         # 'password_security',  # TA#2532
 
         # Numigi/aeroo_reports
-        # 'report_aeroo',
+        'report_aeroo',
 
         # Numigi/odoo-partner-addons
         'partner_phone_validation',  # TA#5979
