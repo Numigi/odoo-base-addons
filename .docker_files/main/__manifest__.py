@@ -16,6 +16,7 @@
         'auditlog',
         'ir_attachment_access_token_portal',
         'ir_attachment_name_autocomplete',
+        'super_calendar',
     ],
     'installable': True,
 }
