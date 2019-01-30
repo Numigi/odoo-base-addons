@@ -7,11 +7,10 @@
 # © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import logging
 from datetime import datetime, date
-from pytz import timezone, utc
+from pytz import timezone
 from mako.template import Template
-from odoo import _, api, exceptions, fields, models, tools
+from odoo import _, api, exceptions, fields, models
 from odoo.models import BaseModel
 from odoo.osv.expression import AND
 from odoo.tools.safe_eval import safe_eval

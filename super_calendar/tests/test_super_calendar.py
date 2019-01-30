@@ -8,7 +8,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from pytz import timezone
-from odoo import fields
 from odoo.tests import SavepointCase
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
