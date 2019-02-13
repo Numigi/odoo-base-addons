@@ -113,6 +113,14 @@ class TestSuperCalendar(SavepointCase):
         assert not event_a.exists()
         assert event_b.exists()
 
+    def test_on_multiple_unlink_then_all_events_are_unlinked(self):
+        self.env['super.calendar.configurator'].generate_calendar_records()
+        event_a = self._find_event(self.partner_a)
+        event_b = self._find_event(self.partner_b)
+        (self.partner_a | self.partner_b).unlink()
+        assert not event_a.exists()
+        assert not event_b.exists()
+
     def _write_partner_values(self, partner, vals):
         """Simulate a write to a partner record from a distinct transaction.
 

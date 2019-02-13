@@ -13,6 +13,6 @@ class BaseWithUnlinkPropagatedToCalendarEvents(models.AbstractModel):
     def unlink(self):
         if self._name != 'super.calendar':
             self.env['super.calendar'].search([
-                ('res_id', 'in', self.mapped(lambda r: '{},{}'.format(self._name, self.id))),
+                ('res_id', 'in', self.mapped(lambda r: '{},{}'.format(r._name, r.id))),
             ]).unlink()
         return super().unlink()
