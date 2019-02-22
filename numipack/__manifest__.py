@@ -31,7 +31,7 @@
         'disable_odoo_online',
 
         # OCA/server-auth
-        # 'password_security',  # TA#2532
+        'password_security',  # TA#2532
 
         # Numigi/aeroo_reports
         'report_aeroo',
