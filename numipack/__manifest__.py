@@ -49,7 +49,7 @@
         'disable_quick_create',
 
         # OCA/web
-        # 'web_search_with_and',  # TA#2547
+        'web_search_with_and',  # TA#2547
     ],
     'data': [
         # 'admin_light_user_password_security_binding.xml',
