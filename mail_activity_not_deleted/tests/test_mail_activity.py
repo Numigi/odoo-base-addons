@@ -13,15 +13,14 @@ class TestMailActivity(common.SavepointCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.partner = cls.env['res.partner'].create({'name': 'Test'})
-        cls.partner.write({
-            'activity_ids': [(0, 0, {
-                'res_id': cls.partner.id,
-                'res_model_id': cls.env.ref('base.model_res_partner').id,
-                'date_deadline': datetime.now().date(),
-                'user_id': cls.env.user.id,
-            })]
+        cls.activity = cls.env['mail.activity'].create({
+            'res_id': cls.partner.id,
+            'res_model_id': cls.env.ref('base.model_res_partner').id,
+            'date_deadline': datetime.now().date(),
+            'user_id': cls.env.user.id,
         })
-        cls.activity = cls.partner.activity_ids
+        cls.partner.modified(['activity_ids'])
+        cls.partner.recompute()
 
     def test_when_activity_is_completed_then_it_is_inactive_instead_of_deleted(self):
         self.assertTrue(self.activity.active)
