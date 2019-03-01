@@ -21,6 +21,7 @@
     'data': [
         'views/super_calendar_view.xml',
         'data/cron_data.xml',
+        'security/groups.xml',
         'security/ir.model.access.csv',
     ],
     'installable': True,
