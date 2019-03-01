@@ -1,4 +1,4 @@
-FROM quay.io/numigi/odoo-public:12.0
+FROM quay.io/numigi/odoo-public:12.latest
 MAINTAINER numigi <contact@numigi.com>
 
 USER odoo
@@ -6,6 +6,7 @@ USER odoo
 COPY auditlog /mnt/extra-addons/auditlog
 COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_token_portal
 COPY ir_attachment_name_autocomplete /mnt/extra-addons/ir_attachment_name_autocomplete
+COPY mail_activity_not_deleted /mnt/extra-addons/mail_activity_not_deleted
 COPY super_calendar /mnt/extra-addons/super_calendar
 
 COPY .docker_files/main /mnt/extra-addons/main

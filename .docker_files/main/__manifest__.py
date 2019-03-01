@@ -16,6 +16,7 @@
         'auditlog',
         'ir_attachment_access_token_portal',
         'ir_attachment_name_autocomplete',
+        'mail_activity_not_deleted',
         'super_calendar',
     ],
     'installable': True,
