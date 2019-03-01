@@ -13,6 +13,7 @@
     'depends': [
         'ir_attachment_access_token_portal',
         'ir_attachment_name_autocomplete',
+        'mail_activity_list',  # TA#8714
         'mail_activity_not_deleted',
         'mail_recipient_unchecked',
     ],
