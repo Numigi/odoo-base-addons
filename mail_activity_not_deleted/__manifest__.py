@@ -10,5 +10,8 @@
     'category': 'Other',
     'summary': 'Deactivate terminated activities instead of deleting.',
     'depends': ['mail'],
+    'data': [
+        'views/activity.xml',
+    ],
     'installable': True,
 }

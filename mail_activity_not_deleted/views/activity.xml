@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="activity_search_with_activities_done_filter" model="ir.ui.view">
+        <field name="name">Activity Search: add Activities Done filter</field>
+        <field name="model">mail.activity</field>
+        <field name="inherit_id" ref="mail.mail_activity_view_search"/>
+        <field name="arch" type="xml">
+            <filter name="activities_overdue" position="attributes">
+                <attribute name="domain">[
+                    ('date_deadline', '&lt;', context_today().strftime('%Y-%m-%d')),
+                    ('active', '=', True),
+                ]</attribute>
+            </filter>
+            <filter name="activities_today" position="attributes">
+                <attribute name="domain">[
+                    ('date_deadline', '=', context_today().strftime('%Y-%m-%d')),
+                    ('active', '=', True),
+                ]</attribute>
+            </filter>
+            <filter name="activities_upcoming_all" position="attributes">
+                <attribute name="domain">[
+                    ('date_deadline', '&gt;', context_today().strftime('%Y-%m-%d')),
+                    ('active', '=', True),
+                ]</attribute>
+            </filter>
+            <filter name="activities_upcoming_all" position="after">
+                <filter string="Completed Activities" name="completed_activities" domain="[('active', '=', False)]"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>
