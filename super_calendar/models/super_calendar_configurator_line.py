@@ -218,10 +218,11 @@ E.g.: '${o.project_id.name}'"""),
         else:
             self._delete_all_calendar_events()
 
-        domain = (
-            AND([self._get_domain(), [('write_date', '>=', self.last_cron_update)]])
-            if self.last_cron_update else self._get_domain()
-        )
+        domain = AND([self._get_domain(), [(self.date_start_field_id.name, '!=', False)]])
+
+        if self.last_cron_update:
+            domain = AND([domain, [('write_date', '>=', self.last_cron_update)]])
+
         records_to_process = self.env[self.name.model].search(domain)
 
         for record in records_to_process:

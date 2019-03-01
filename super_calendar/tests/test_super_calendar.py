@@ -158,3 +158,12 @@ class TestSuperCalendar(SavepointCase):
             ('configurator_line_id', '=', self.configurator_line.id),
         ])
         assert events
+
+    def test_if_no_start_date__event_is_not_created(self):
+        date_field = self.env.ref('base.field_res_partner__date')
+        self.configurator_line.date_start_field_id = date_field
+        self.partner_a.date = False
+        self.partner_b.date = datetime.now().date()
+        self.env['super.calendar.configurator'].generate_calendar_records()
+        assert not self._find_event(self.partner_a)
+        assert self._find_event(self.partner_b)
