@@ -1,4 +1,4 @@
-FROM quay.io/numigi/odoo-public:11.latest
+FROM quay.io/numigi/odoo-public:11.0
 MAINTAINER numigi <contact@numigi.com>
 
 USER odoo
