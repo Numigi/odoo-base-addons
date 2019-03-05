@@ -11,7 +11,8 @@ Those default stages are not configurable.
 Also, if you are using a multi-lang Odoo instance (i.e. French (CA) is activated),
 you may encounter the following error when creating a new user:
 
-``dupplicate key value violates unique constraint ir_translation_model_unique DETAIL: Key (type, lang, name, res_id)=(model,fr_CA,note,stage,name, 17) already exists.``
+``duplicate key value violates unique constraint "ir_translation_model_unique"
+DETAIL: Key (type, lang, name, res_id)=(model, fr_CA, note.stage,name, 16) already exists.``
 
 This is because of a bug in the creation of the default stages.
 
