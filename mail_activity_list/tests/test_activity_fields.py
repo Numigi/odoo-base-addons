@@ -32,3 +32,11 @@ class TestActivityFields(common.SavepointCase):
 
     def test_record_reference(self):
         assert self.activity.record_reference == "res.partner,{}".format(self.partner.id)
+
+    def test_if_activity_has_no_summary__display_name_is_activity(self):
+        self.env.user.lang = 'en_US'
+        assert self.activity.display_name == 'Activity'
+
+    def test_if_activity_has_summary__display_name_is_summary(self):
+        self.activity.summary = 'Test'
+        assert self.activity.display_name == 'Test'
