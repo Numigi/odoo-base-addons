@@ -24,14 +24,12 @@
         'mass_editing',  # TA#4119
 
         # odoo/odoo
+        'auth_password_policy',  # TA#9918
         'board',
         'document',  # TA#3415
 
         # OCA/server_brand
         'disable_odoo_online',
-
-        # OCA/server-auth
-        'password_security',  # TA#2532
 
         # Numigi/aeroo_reports
         'report_aeroo',
