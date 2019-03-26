@@ -18,4 +18,11 @@
         sequence="500"
         groups="group_admin"/>
 
+    <menuitem
+        id="menu_other"
+        name="Other"
+        parent="menu_admin"
+        sequence="100"
+        />
+
 </odoo>

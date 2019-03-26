@@ -10,7 +10,11 @@
     'category': 'Other',
     'summary': 'Add an admin menu with restricted functionalities.',
     'depends': ['base'],
-    'data': ['data.xml'],
+    'data': [
+        'base.xml',
+        'sequence.xml',
+        'security/ir.model.access.csv',
+    ],
     'installable': True,
     'application': True
 }
