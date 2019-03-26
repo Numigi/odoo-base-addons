@@ -31,3 +31,14 @@ msgstr "Administration (Léger)"
 #: model:res.groups,name:admin_light_base.group_admin
 msgid "Administration (Light) / Base"
 msgstr "Administration (Léger) / Base"
+
+#. module: admin_light_base
+#: model:ir.ui.menu,name:admin_light_base.menu_other
+msgid "Other"
+msgstr "Autre"
+
+#. module: admin_light_base
+#: model:ir.ui.menu,name:admin_light_base.menu_sequence
+#: model:res.groups,name:admin_light_base.group_sequence
+msgid "Sequences"
+msgstr "Séquences"
