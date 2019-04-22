@@ -24,17 +24,17 @@ class TestMailFollowers(common.SavepointCase):
 
     def test_when_getRecipientData_thenGetAllPartners(self):
         followers = [f[0] for f in self.mail_followers._get_recipient_data(self.main_partner, 1)]
-        assert self.partner1 in followers
-        assert self.partner2 in followers
-        assert self.partner3 in followers
+        assert self.partner1.id in followers
+        assert self.partner2.id in followers
+        assert self.partner3.id in followers
 
     def test_when_getRecipientDataWithContext_thenGetSomePartners(self):
         followers = [
             f[0]
-            for f in self.mail_followers.with_context(custom_followers=[self.partner1])._get_recipient_data(
+            for f in self.mail_followers.with_context(custom_followers=self.partner1)._get_recipient_data(
                 self.main_partner, 1
             )
         ]
-        assert self.partner1 in followers
-        assert not self.partner2 in followers
-        assert not self.partner3 in followers
+        assert self.partner1.id in followers
+        assert self.partner2.id not in followers
+        assert self.partner3.id not in followers
