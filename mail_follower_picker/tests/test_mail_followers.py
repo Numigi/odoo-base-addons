@@ -11,9 +11,9 @@ class TestMailFollowers(common.SavepointCase):
         super().setUpClass()
         cls.mail_followers = cls.env['mail.followers']
         cls.main_partner = cls.env['res.partner'].create({'name': 'main'})
-        cls.partner1 = cls.env['res,partner'].create({'name': 'toto'})
-        cls.partner2 = cls.env['res,partner'].create({'name': 'tata'})
-        cls.partner3 = cls.env['res,partner'].create({'name': 'titi'})
+        cls.partner1 = cls.env['res.partner'].create({'name': 'toto'})
+        cls.partner2 = cls.env['res.partner'].create({'name': 'tata'})
+        cls.partner3 = cls.env['res.partner'].create({'name': 'titi'})
 
         cls.mail_followers._insert_followers(
             'res.partner',
