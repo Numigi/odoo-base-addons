@@ -1,7 +1,10 @@
 # © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
+import logging
 from odoo import models, fields, api
+
+_logger = logging.getLogger(__name__)
 
 
 class MailComposeMessageFollowers(models.TransientModel):
@@ -18,7 +21,7 @@ class MailComposeMessageFollowers(models.TransientModel):
 
         :rtype: recordset of res.partners
         """
-        result = super().default_get(['model', 'res_id'])
+        result = self.default_get(['model', 'res_id'])
         res_id = result['res_id']
         model = result['model']
         record = self.env[model].browse(res_id)
@@ -48,4 +51,5 @@ class MailFollowersCustomFollowers(models.Model):
         follower_ids = self.env.context.get('custom_followers')
         if follower_ids:
             res = [r for r in res if r[0] in follower_ids.mapped('id')]
+            _logger.info('Sending email to partial list of followers: %s', follower_ids)
         return res
