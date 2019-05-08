@@ -9,7 +9,6 @@
         <field name="backup_format">zip</field>
     </record>
 
-    <!-- Disabled until hourly feature is ported to odoo version 12
     <record id="hourly_backup" model="db.backup">
         <field name="name">/var/lib/odoo/backups/hourly</field>
         <field name="folder">/var/lib/odoo/backups/hourly</field>
@@ -17,6 +16,5 @@
         <field name="frequency">hourly</field>
         <field name="backup_format">dump</field>
     </record>
-    -->
 
 </odoo>
