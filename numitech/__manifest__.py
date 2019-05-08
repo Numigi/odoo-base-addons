@@ -3,7 +3,7 @@
 
 {
     'name': 'Numitech',
-    'version': '1.1.0',
+    'version': '1.2.0',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
