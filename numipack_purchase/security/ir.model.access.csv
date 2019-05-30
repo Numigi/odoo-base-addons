@@ -1,0 +1,10 @@
+id,model_id:id,perm_unlink
+purchase.access_account_move,account.model_account_move,0
+
+purchase.access_account_invoice_purchase,account.model_account_invoice,0
+purchase.access_account_invoice_purchase_manager,account.model_account_invoice,0
+
+purchase.access_purchase_order,purchase.model_purchase_order,0
+purchase.access_purchase_order_invoicing_payments,purchase.model_purchase_order,0
+purchase.access_purchase_order_manager,purchase.model_purchase_order,0
+purchase.access_purchase_order_portal,purchase.model_purchase_order,0

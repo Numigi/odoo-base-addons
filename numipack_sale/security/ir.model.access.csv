@@ -1,0 +1,11 @@
+id,model_id:id,perm_unlink
+sale.access_account_invoice_manager,account.model_account_invoice,0
+sale.access_account_invoice_salesman,account.model_account_invoice,0
+
+sale.access_sale_order,sale.model_sale_order,0
+sale.access_sale_order_accountant,sale.model_sale_order,0
+sale.access_sale_order_invoicing_payments,sale.model_sale_order,0
+sale.access_sale_order_manager,sale.model_sale_order,0
+sale.access_sale_order_portal,sale.model_sale_order,0
+
+sale.access_account_analytic_account_salesman,analytic.model_account_analytic_account,0
