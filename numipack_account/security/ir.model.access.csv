@@ -12,3 +12,5 @@ account.access_account_invoice_uinvoice,account.model_account_invoice,0
 account.access_account_analytic_account,analytic.model_account_analytic_account,0
 account.access_account_analytic_accountant,analytic.model_account_analytic_account,0
 analytic.access_account_analytic_account,analytic.model_account_analytic_account,0
+
+analytic.access_account_analytic_group,analytic.model_account_analytic_group,0
