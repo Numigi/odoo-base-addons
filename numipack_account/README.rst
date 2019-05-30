@@ -13,6 +13,7 @@ This module installs all modules required on every projects that use the account
 * `Account Move Chatter <https://github.com/Numigi/odoo-account-addons/tree/12.0/account_move_chatter>`_
 * `Account Negative Debit Credit <https://github.com/Numigi/odoo-account-addons/tree/12.0/account_negative_debit_credit>`_
 * `Invoice Currency Validation <https://github.com/Numigi/odoo-account-addons/tree/12.0/invoice_currency_validation>`_
+* `Vendor Invoice Full List <https://github.com/Numigi/odoo-account-addons/tree/12.0/vendor_invoice_full_list>`_
 
 _`Account Invoice Check Total`
 ------------------------------
