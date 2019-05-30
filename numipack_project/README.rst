@@ -16,8 +16,9 @@ Access Rights
 -------------
 The module removes access rights to delete the following models:
 
-* Project (project.project)
 * Analytic Account (account.analytic.account)
+* Analytic Account Group (account.analytic.group)
+* Project (project.project)
 
 project_stage_no_quick_create
 
