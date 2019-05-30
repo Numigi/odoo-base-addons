@@ -1,0 +1,15 @@
+id,model_id:id,perm_unlink
+account.access_account_move_manager,account.model_account_move,0
+account.access_account_move_uinvoice,account.model_account_move,0
+purchase.access_account_move,account.model_account_move,0
+
+account.access_account_payment,account.model_account_payment,0
+
+account.access_account_invoice_accountant,account.model_account_invoice,0
+account.access_account_invoice_group_invoice,account.model_account_invoice,0
+account.access_account_invoice_portal,account.model_account_invoice,0
+account.access_account_invoice_uinvoice,account.model_account_invoice,0
+purchase.access_account_invoice_purchase,account.model_account_invoice,0
+purchase.access_account_invoice_purchase_manager,account.model_account_invoice,0
+sale.access_account_invoice_manager,account.model_account_invoice,0
+sale.access_account_invoice_salesman,account.model_account_invoice,0
