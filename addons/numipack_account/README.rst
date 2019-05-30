@@ -32,9 +32,11 @@ Access Rights
 -------------
 The module removes all access rights to delete the following models:
 
-* Journal Entries (account.move)
-* Invoices (account.invoice)
-* Payments (account.payment)
+* Analytic Account (account.analytic.account)
+* Analytic Account Group (account.analytic.group)
+* Invoice (account.invoice)
+* Journal Entry (account.move)
+* Payment (account.payment)
 
 Contributors
 ------------
