@@ -16,6 +16,7 @@
         'account_move_chatter',
         'account_negative_debit_credit',
         'invoice_currency_validation',
+        'vendor_invoice_full_list',
 
         # Numigi/aeroo_reports
         'account_check_printing_aeroo',
