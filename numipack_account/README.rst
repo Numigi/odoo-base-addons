@@ -1,5 +1,10 @@
 NumiPack - Accounting
 =====================
+
+.. contents:: Table of Contents
+
+Installed Modules
+-----------------
 This module installs all modules required on every projects that use the accounting app.
 
 * `Account Bank Menu <https://github.com/Numigi/odoo-account-addons/tree/12.0/account_bank_menu>`_
@@ -22,6 +27,14 @@ By default, the feature is hidden.
 To activate it, you must fo to the settings of the accounting app and check the following box:
 
 .. image:: static/description/account_invoice_check_total__config.png
+
+Access Rights
+-------------
+The module removes all access rights to delete the following models:
+
+* Journal Entries (account.move)
+* Invoices (account.invoice)
+* Payments (account.payment)
 
 Contributors
 ------------
