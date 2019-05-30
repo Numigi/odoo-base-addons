@@ -11,8 +11,8 @@ Access Rights
 -------------
 The module removes access rights to delete the following models:
 
-* Invoices (account.invoice)
-* Sale Orders (sale.order)
+* Invoice (account.invoice)
+* Sale Order (sale.order)
 
 Contributors
 ------------

@@ -11,9 +11,9 @@ Access Rights
 -------------
 The module removes access rights to delete the following models:
 
-* Journal Entries (account.move)
-* Invoices (account.invoice)
-* Purchase Orders (purchase.order)
+* Journal Entry (account.move)
+* Invoice (account.invoice)
+* Purchase Order (purchase.order)
 
 Contributors
 ------------
