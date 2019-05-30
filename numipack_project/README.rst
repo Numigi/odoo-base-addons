@@ -20,8 +20,6 @@ The module removes access rights to delete the following models:
 * Analytic Account Group (account.analytic.group)
 * Project (project.project)
 
-project_stage_no_quick_create
-
 Contributors
 ------------
 * Numigi (tm) and all its contributors (https://bit.ly/numigiens)
