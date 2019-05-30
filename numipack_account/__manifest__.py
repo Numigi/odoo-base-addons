@@ -20,5 +20,8 @@
         # Numigi/aeroo_reports
         'account_check_printing_aeroo',
     ],
+    'data': [
+        'security/ir.model.access.csv',
+    ],
     'installable': True,
 }
