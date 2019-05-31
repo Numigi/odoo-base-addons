@@ -35,6 +35,7 @@
         'report_aeroo',
 
         # Numigi/odoo-partner-addons
+        'partner_edit_group',  # TA#10975
         'partner_phone_validation',  # TA#5979
 
         # Numigi/odoo-base-addons
