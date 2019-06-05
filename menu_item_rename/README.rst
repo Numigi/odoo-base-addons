@@ -12,6 +12,17 @@ Renaming a menu in Odoo directly through the web interface is not a good idea.
 
 Usage
 -----
+Inside an xml file:
+
+* Add a `function` node with model="ir.ui.menu".
+* Inside the `function` node, you must set 3 `value` nodes.
+
+  These nodes must have type="char" and respectively contain the following data:
+
+    1. The XML ID of the menu item
+    2. The languge code
+    3. The new label to set
+
 Here is an example to rename the `Settings` menu to `Administration`.
 
 .. code-block:: XML
