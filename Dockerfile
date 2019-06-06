@@ -8,6 +8,7 @@ COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_to
 COPY ir_attachment_name_autocomplete /mnt/extra-addons/ir_attachment_name_autocomplete
 COPY mail_activity_not_deleted /mnt/extra-addons/mail_activity_not_deleted
 COPY mail_follower_picker /mnt/extra-addons/mail_follower_picker
+COPY menu_item_rename /mnt/extra-addons/menu_item_rename
 COPY note_no_default_stage /mnt/extra-addons/note_no_default_stage
 COPY super_calendar /mnt/extra-addons/super_calendar
 
