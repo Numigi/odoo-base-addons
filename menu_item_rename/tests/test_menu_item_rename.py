@@ -19,6 +19,7 @@ class TestRenameMenuItem(common.SavepointCase):
         cls.menu = cls.env.ref('base.menu_action_res_users')
         cls.menu.with_context(lang='fr_FR').name = cls.menu_name_fr
         cls.action = cls.env.ref('base.action_res_users')
+        cls.action.with_context(lang='fr_FR').name = cls.menu_name_fr
 
     def _rename_menu(self, lang, label):
         self.env['ir.ui.menu'].rename('base.menu_action_res_users', lang, label)
