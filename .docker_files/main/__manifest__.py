@@ -19,6 +19,7 @@
         'ir_attachment_name_autocomplete',
         'mail_activity_not_deleted',
         'mail_follower_picker',
+        'menu_item_rename',
         'note_no_default_stage',
         'super_calendar',
     ],
