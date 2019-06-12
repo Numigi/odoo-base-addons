@@ -34,3 +34,6 @@ class MenuItem(models.Model):
             )
 
         menu.with_context(lang=lang).name = value
+
+        if menu.action:
+            menu.action.with_context(lang=lang).name = value
