@@ -1,9 +1,10 @@
-FROM quay.io/numigi/odoo-public:12.latest
+FROM quay.io/numigi/odoo-base:12.latest
 MAINTAINER numigi <contact@numigi.com>
 
 USER odoo
 
 COPY auditlog /mnt/extra-addons/auditlog
+COPY disable_install_from_website /mnt/extra-addons/disable_install_from_website
 COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_token_portal
 COPY ir_attachment_name_autocomplete /mnt/extra-addons/ir_attachment_name_autocomplete
 COPY mail_activity_not_deleted /mnt/extra-addons/mail_activity_not_deleted
