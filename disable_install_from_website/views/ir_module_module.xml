@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hide_install_kanban" model="ir.ui.view">
+        <field name="name">Module: Hide install buttons</field>
+        <field name="model">ir.module.module</field>
+        <field ref="base.module_view_kanban" name="inherit_id"/>
+        <field name="arch" type="xml">
+            <button name="button_immediate_install" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+            <button name="button_uninstall_cancel" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+            <button name="button_install_cancel" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+            <a name="button_immediate_upgrade" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </a>
+            <a name="button_uninstall_wizard" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </a>
+
+        </field>
+    </record>
+
+    <record id="hide_install_form" model="ir.ui.view">
+        <field name="name">Module: hide install buttons</field>
+        <field name="model">ir.module.module</field>
+        <field ref="base.module_form" name="inherit_id"/>
+        <field name="arch" type="xml">
+            <button name="button_immediate_install" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+
+            <button name="button_immediate_upgrade" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+            <button name="button_uninstall_wizard" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+            <button name="button_uninstall_cancel" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+        </field>
+    </record>
+
+</odoo>

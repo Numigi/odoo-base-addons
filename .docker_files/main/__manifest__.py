@@ -14,6 +14,7 @@
         'account',  # required for testing auditlog
 
         'auditlog',
+        'disable_install_from_website',
         'ir_attachment_access_token_portal',
         'ir_attachment_name_autocomplete',
         'mail_activity_not_deleted',

@@ -16,7 +16,7 @@ services:
     environment:
       - LOG_ODOO=/var/log/odoo
   db:
-    image: quay.io/numigi/postgres-odoo:11.1
+    image: quay.io/numigi/postgres-odoo:12.2
     environment:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
