@@ -9,9 +9,11 @@ This module installs all modules required on every projects that use the account
 
 * `Account Bank Menu <https://github.com/Numigi/odoo-account-addons/tree/12.0/account_bank_menu>`_
 * `Account Check Printing Aeroo <https://github.com/Numigi/aeroo_reports/tree/12.0/account_check_printing_aeroo>`_
+* `Account fr_CA labels <https://github.com/Numigi/odoo-account-addons/tree/12.0/account_fr_ca_labels>`_
 * `Account Invoice Check Total`_
 * `Account Move Chatter <https://github.com/Numigi/odoo-account-addons/tree/12.0/account_move_chatter>`_
 * `Account Negative Debit Credit <https://github.com/Numigi/odoo-account-addons/tree/12.0/account_negative_debit_credit>`_
+* `Account Payment Cancel Group <https://github.com/Numigi/odoo-account-addons/tree/12.0/account_payment_cancel_group>`_
 * `Invoice Currency Validation <https://github.com/Numigi/odoo-account-addons/tree/12.0/invoice_currency_validation>`_
 * `Vendor Invoice Full List <https://github.com/Numigi/odoo-account-addons/tree/12.0/vendor_invoice_full_list>`_
 
