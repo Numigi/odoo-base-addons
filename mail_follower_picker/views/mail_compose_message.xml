@@ -6,18 +6,18 @@
         <field name="model">mail.compose.message</field>
         <field ref="mail.email_compose_message_wizard_form" name="inherit_id"/>
         <field name="arch" type="xml">
-            <span name="document_followers_text" position="attributes">
+            <xpath expr="//field[@name='partner_ids']/preceding::span[1]" position="attributes">
                 <attribute name="invisible">1</attribute>
-            </span>
-            <span name="document_followers_text" position="after">
+            </xpath>
+            <xpath expr="//field[@name='partner_ids']/preceding::span[1]" position="after">
                 <span>
                     <field
-                        name="follower_ids"
-                        widget="many2many_checkboxes"
-                        domain="[('id', 'in', follower_ids)]"
-                        />
+                            name="follower_ids"
+                            widget="many2many_checkboxes"
+                            domain="[('id', 'in', follower_ids)]"
+                    />
                 </span>
-            </span>
+            </xpath>
         </field>
     </record>
 
