@@ -53,3 +53,23 @@ class MailFollowersCustomFollowers(models.Model):
             res = [r for r in res if r[0] in follower_ids.mapped('id')]
             _logger.info('Sending email to partial list of followers: %s', follower_ids)
         return res
+
+
+class MailMessage(models.Model):
+    _inherit = "mail.message"
+
+    @api.model
+    def create(self, values):
+        """ Make sure we don't sent email twice to the same partner because it is in the followers and in the contacts.
+
+        :see ticket:
+            * TA#13704: the list of followers must not contain the partners in contact list
+        """
+        if "follower_ids" in values and "partner_ids" in values:
+            # under the form of [[6, False, [ids]]] for follower_ids and partner_ids
+            follower_ids = values['follower_ids'][0][-1]
+            partner_ids = values['partner_ids'][0][-1]
+            follower_short_list_ids = list(set(follower_ids) - set(partner_ids))
+            values['follower_ids'][0][-1] = list(follower_short_list_ids)
+
+        return super().create(values)
