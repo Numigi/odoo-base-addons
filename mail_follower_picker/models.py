@@ -26,7 +26,11 @@ class MailComposeMessageFollowers(models.TransientModel):
         model = result['model']
         record = self.env[model].browse(res_id)
         followers_details = self.env['mail.followers']._get_recipient_data(record, subtype_id)
-        return self.env['res.partner'].browse(details[0] for details in followers_details)
+        followers_details_without_channels = [
+            details for details in followers_details if details[0]
+        ]
+        partner_follower_ids = [details[0] for details in followers_details_without_channels]
+        return self.env['res.partner'].browse(partner_follower_ids)
 
     follower_ids = fields.Many2many(
         'res.partner', 'mail_compose_message_res_partner_rel',

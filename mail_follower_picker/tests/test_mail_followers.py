@@ -14,12 +14,25 @@ class TestMailFollowers(common.SavepointCase):
         cls.partner1 = cls.env['res.partner'].create({'name': 'toto'})
         cls.partner2 = cls.env['res.partner'].create({'name': 'tata'})
         cls.partner3 = cls.env['res.partner'].create({'name': 'titi'})
+        cls.channel1 = cls.env['mail.channel'].create({'name': 'My Channel'})
+        cls._insert_partner_follower(cls.partner1)
+        cls._insert_partner_follower(cls.partner2)
+        cls._insert_partner_follower(cls.partner3)
 
+    @classmethod
+    def _insert_partner_follower(cls, partner):
         cls.mail_followers._insert_followers(
-            'res.partner',
-            [cls.main_partner.id],
-            [cls.partner1.id, cls.partner2.id, cls.partner3.id],
-            None, None, None
+            'res.partner', [cls.main_partner.id],
+            [partner.id], None,
+            [], None,
+        )
+
+    @classmethod
+    def _insert_channel_follower(cls, channel):
+        cls.mail_followers._insert_followers(
+            'res.partner', [cls.main_partner.id],
+            [], None,
+            [channel.id], None,
         )
 
     def test_when_getRecipientData_thenGetAllPartners(self):
@@ -38,3 +51,16 @@ class TestMailFollowers(common.SavepointCase):
         assert self.partner1.id in followers
         assert self.partner2.id not in followers
         assert self.partner3.id not in followers
+
+    def _open_mail_compose_wizard(self):
+        wizard_obj = (
+            self.env['mail.compose.message']
+            .with_context(active_id=self.main_partner.id, active_model='res.partner')
+        )
+        wizard = wizard_obj.create(wizard_obj.default_get(wizard_obj._fields.keys()))
+        return wizard
+
+    def test_ifChannelInFollowers_channelIsExcludedFromMailFollowers(self):
+        self._insert_channel_follower(self.channel1)
+        wizard = self._open_mail_compose_wizard()
+        assert wizard.follower_ids == self.partner1 | self.partner2 | self.partner3
