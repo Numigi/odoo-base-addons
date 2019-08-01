@@ -22,6 +22,7 @@
         'menu_item_rename',
         'note_no_default_stage',
         'super_calendar',
+        'web_email_field_new_tab',
     ],
     'installable': True,
 }
