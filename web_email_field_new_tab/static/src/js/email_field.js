@@ -7,7 +7,7 @@ var basicFields = require("web.basic_fields");
 
 basicFields.FieldEmail.include({
     _renderReadonly() {
-    	this._super();
+        this._super();
         this.$el.attr("target", "_blank");
     },
 });
