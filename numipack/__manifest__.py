@@ -28,7 +28,7 @@
         'board',
         'document',  # TA#3415
 
-        # OCA/server_brand
+        # OCA/server-brand
         'disable_odoo_online',
 
         # Numigi/aeroo_reports
@@ -40,6 +40,7 @@
 
         # Numigi/odoo-base-addons
         'ir_attachment_access_token_portal',  # TA#6109
+        'web_email_field_new_tab',  # TA#9753
 
         # Numigi/odoo-web-addons
         'web_contextual_search_favorite',  # TA#2637
