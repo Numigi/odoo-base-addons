@@ -1,6 +1,10 @@
 Mail Recipient Unchecked
 ========================
-This module unchecks the recipients of the chatter.
+In vanilla Odoo, the mail recipient checkbox is checked by default.
+
+.. image:: static/description/mail_recipient_checkbox.png
+
+With this module installed, the checkbox is unchecked by default.
 
 Contributors
 ------------

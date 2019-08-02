@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates>
-    <t t-name="mail.chatter.ChatComposer" t-extend="mail.chatter.ChatComposer">
+    <t t-name="mail.chatter.Composer" t-extend="mail.chatter.Composer">
         <t t-jquery="input[type='checkbox'][t-att-data-fullname='recipient.full_name']" t-operation="attributes">
             <attribute name="t-att-checked">undefined</attribute>
         </t>
