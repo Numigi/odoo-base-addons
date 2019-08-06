@@ -27,26 +27,31 @@ class ResPartner(models.Model):
         return AND((domain, [('customer', '=', True)]))
 
     def check_extended_security_all(self):
+        super().check_extended_security_all()
         for partner in self:
             if partner.employee:
                 raise AccessError(EMPLOYEE_ACCESS_MESSAGE)
 
     def check_extended_security_read(self):
+        super().check_extended_security_read()
         for partner in self:
             if not partner.customer:
                 raise AccessError(NON_CUSTOMER_READ_MESSAGE)
 
     def check_extended_security_write(self):
+        super().check_extended_security_write()
         for partner in self:
             if not partner.customer:
                 raise AccessError(NON_CUSTOMER_WRITE_MESSAGE)
 
     def check_extended_security_create(self):
+        super().check_extended_security_create()
         for partner in self:
             if not partner.customer:
                 raise AccessError(NON_CUSTOMER_CREATE_MESSAGE)
 
     def check_extended_security_unlink(self):
+        super().check_extended_security_unlink()
         for partner in self:
             if not partner.customer:
                 raise AccessError(NON_CUSTOMER_UNLINK_MESSAGE)
