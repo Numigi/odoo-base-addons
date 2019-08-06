@@ -48,6 +48,7 @@ Suppose that in a specific module, we implement security rules for invoices.
 In our scenario, only members of the group ``Purchase / User`` are allowed to access vendor bills.
 
 .. code-block:: python
+
     from odoo import models, _
     from odoo.exceptions import AccessError
     from odoo.osv.expression import AND
