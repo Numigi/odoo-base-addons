@@ -19,3 +19,23 @@ class BaseWithExtendedSecurity(models.AbstractModel):
         :rtype: list
         """
         return []
+
+    def check_extended_security_all(self):
+        """Check extended security rules that applies for all CRUD operations."""
+        pass
+
+    def check_extended_security_read(self):
+        """Check extended security rules for read operations."""
+        pass
+
+    def check_extended_security_write(self):
+        """Check extended security rules for write operations."""
+        pass
+
+    def check_extended_security_create(self):
+        """Check extended security rules for create operations."""
+        pass
+
+    def check_extended_security_unlink(self):
+        """Check extended security rules for unlink operations."""
+        pass
