@@ -2,16 +2,18 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Mail Follower Picker',
-    'version': '1.1.1',
+    'name': 'Web Email Field New Tab',
+    'version': '1.0.0',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
-    'category': 'Base',
-    'summary': 'Allow to pick recipients of a message from the wizard.',
-    'depends': ['mail'],
+    'category': 'Other',
+    'summary': 'Open a new tab when clicking on an email address.',
+    'depends': [
+        'web',
+    ],
     'data': [
-        'views/mail_compose_message.xml',
+        'assets.xml',
     ],
     'installable': True,
 }
