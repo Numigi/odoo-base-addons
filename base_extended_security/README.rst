@@ -62,7 +62,7 @@ In our scenario, only members of the group ``Purchase / User`` are allowed to ac
             result = super().get_extended_security_domain()
 
             if not self.env.user.has_group('purchase.group_purchase_user'):
-                result = AND(result, [('type', 'not in', ('in_invoice', 'in_refunc'))]
+                result = AND(result, [('type', 'not in', ('in_invoice', 'in_refunc'))])
 
             return result
 
@@ -72,7 +72,7 @@ In our scenario, only members of the group ``Purchase / User`` are allowed to ac
             supplier_bills = self.filtered(lambda i: i.type in ('in_invoice', 'in_refunc'))
 
             if supplier_bills and not self.env.user.has_group('purchase.group_purchase_user'):
-                raise AccessError(_('You are not allowed to access vendor bills.')
+                raise AccessError(_('You are not allowed to access vendor bills.'))
 
 
 In this example, if the user is not member of ``Purchase / User``, the invoices of type ``Vendor Bill`` or ``Vendor Refund`` will be masked.
