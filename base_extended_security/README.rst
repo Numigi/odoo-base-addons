@@ -85,7 +85,8 @@ the native access rules (ir.rule).
 
 Known Limitations
 -----------------
-This module does not allow do set any kind if access rule through the web interface.
+This module does not allow do define access rules through the web interface.
+The access rules must be coded in modules.
 
 Contributors
 ------------
