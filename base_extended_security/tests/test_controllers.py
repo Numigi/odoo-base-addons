@@ -253,21 +253,6 @@ class TestControllers(SavepointCase):
     def test_on_read_with_customer__access_error_not_raised(self):
         self._read(self.customer | self.supplier_customer)
 
-    def _name_get(self, records):
-        with mock_odoo_request(self.env):
-            return self.controller.call('res.partner', 'name_get', [records.ids])
-
-    def test_on_name_get_with_employee__access_error_raised(self):
-        with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
-            self._name_get(self.employee)
-
-    def test_on_name_get_with_non_customer__access_error_raised(self):
-        with pytest.raises(AccessError, match=NON_CUSTOMER_READ_MESSAGE):
-            self._name_get(self.supplier)
-
-    def test_on_name_get_with_customer__access_error_not_raised(self):
-        self._name_get(self.customer | self.supplier_customer)
-
     def _write(self, records, values):
         with mock_odoo_request(self.env):
             return self.controller.call('res.partner', 'write', [records.ids, values])

@@ -122,7 +122,6 @@ class DataSetWithExtendedSearchSecurity(DataSet):
 
 READ_WRITE_UNLINK_METHODS = [
     'read',
-    'name_get',
     'write',
     'unlink',
 ]
@@ -145,8 +144,7 @@ class DataSetWithExtendedSecurity(DataSetWithExtendedSearchSecurity):
     def _call_kw(self, model, method, args, kwargs):
         if method in READ_WRITE_UNLINK_METHODS:
             record_ids = args[0]
-            method_to_check = 'read' if method == 'name_get' else method
-            self._check_extended_security_rules(model, method_to_check, record_ids)
+            self._check_extended_security_rules(model, method, record_ids)
 
         result = super()._call_kw(model, method, args, kwargs)
 
