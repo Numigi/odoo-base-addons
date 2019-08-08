@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import pytest
-from ddt import ddt, data
+from ddt import ddt, data, unpack
 from odoo import models
 from odoo.exceptions import AccessError
 from odoo.osv.expression import AND
@@ -94,88 +94,147 @@ class TestControllers(SavepointCase):
         super().setUp()
         self.controller = DataSetWithExtendedSecurity()
 
-    def _search(self, domain):
+    def _search(self, domain, domain_kwarg):
         with mock_odoo_request(self.env):
-            return self.controller.call('res.partner', 'search', [domain])
+            args = [] if domain_kwarg else [domain]
+            kwargs = {'args': domain} if domain_kwarg else {}
+            return self.controller.call_kw('res.partner', 'search', args, kwargs)
 
-    def test_search_with_empty_domain(self):
-        ids = self._search([])
+    @data(True, False)
+    def test_search_with_empty_domain(self, domain_kwarg):
+        ids = self._search([], domain_kwarg)
         assert self.customer.id in ids
         assert self.supplier.id not in ids
         assert self.supplier_customer.id in ids
 
-    def test_search_with_supplier_domain(self):
-        ids = self._search([('supplier', '=', True)])
+    @data(True, False)
+    def test_search_with_supplier_domain(self, domain_kwarg):
+        ids = self._search([('supplier', '=', True)], domain_kwarg)
         assert self.customer.id not in ids
         assert self.supplier.id not in ids
         assert self.supplier_customer.id in ids
 
-    def _name_search(self, name, domain):
+    def _name_search(self, name, domain, name_kwarg, domain_kwarg):
         with mock_odoo_request(self.env):
-            name_get = self.controller.call('res.partner', 'name_search', [name, domain])
+            args = []
+            kwargs = {}
+
+            if name_kwarg:
+                kwargs['name'] = name
+            else:
+                args.append(name)
+
+            if domain_kwarg:
+                kwargs['args'] = domain
+            else:
+                args.append(domain)
+
+            name_get = self.controller.call_kw('res.partner', 'name_search', args, kwargs)
             return [r[0] for r in name_get]
 
-    def test_name_search_with_empty_domain(self):
-        ids = self._name_search('My Partner', [])
+    @data(
+        (True, True),
+        (False, False),
+        (False, True),
+    )
+    @unpack
+    def _test_name_search_with_empty_domain(self, name_kwarg, domain_kwarg):
+        ids = self._name_search('My Partner', [], name_kwarg, domain_kwarg)
         assert self.customer.id in ids
         assert self.supplier.id not in ids
         assert self.supplier_customer.id in ids
 
-    def test_name_search_with_supplier_domain(self):
-        ids = self._name_search('My Partner', [('supplier', '=', True)])
+    @data(
+        (True, True),
+        (False, False),
+        (False, True),
+    )
+    @unpack
+    def test_name_search_with_supplier_domain(self, name_kwarg, domain_kwarg):
+        ids = self._name_search('My Partner', [('supplier', '=', True)], name_kwarg, domain_kwarg)
         assert self.customer.id not in ids
         assert self.supplier.id not in ids
         assert self.supplier_customer.id in ids
 
-    def _search_count(self, domain):
+    def _search_count(self, domain, domain_kwarg):
         with mock_odoo_request(self.env):
-            return self.controller.call('res.partner', 'search_count', [domain])
+            args = [] if domain_kwarg else [domain]
+            kwargs = {'args': domain} if domain_kwarg else {}
+            return self.controller.call_kw('res.partner', 'search_count', args, kwargs)
 
-    def test_search_count_with_empty_domain(self):
-        count = self._search_count([])
+    @data(True, False)
+    def test_search_count_with_empty_domain(self, domain_kwarg):
+        count = self._search_count([], domain_kwarg)
         assert count == self.customer_count
 
-    def test_search_count_with_supplier_domain(self):
-        count = self._search_count([('supplier', '=', True)])
+    @data(True, False)
+    def test_search_count_with_supplier_domain(self, domain_kwarg):
+        count = self._search_count([('supplier', '=', True)], domain_kwarg)
         assert count == self.supplier_customer_count
 
-    def _search_read(self, domain, use_search_read_route):
+    def _search_read(self, domain, use_search_read_route, domain_kwarg):
         with mock_odoo_request(self.env):
             if use_search_read_route:
                 result = self.controller.search_read('res.partner', fields=[], domain=domain)
                 records = result['records']
-            else:
+            elif domain_kwarg:
                 records = self.controller.call('res.partner', 'search_read', [domain, []])
+            else:
+                records = self.controller.call_kw(
+                    'res.partner', 'search_read', [], {'domain': domain})
 
             return [r['id'] for r in records]
 
-    @data(True, False)
-    def test_search_read_with_empty_domain(self, use_search_read_route):
-        ids = self._search_read([], use_search_read_route)
+    @data(
+        (True, False),
+        (False, False),
+        (False, True),
+    )
+    @unpack
+    def test_search_read_with_empty_domain(self, use_search_read_route, domain_kwarg):
+        ids = self._search_read([], use_search_read_route, domain_kwarg)
         assert self.customer.id in ids
         assert self.supplier.id not in ids
         assert self.supplier_customer.id in ids
 
-    @data(True, False)
-    def test_search_read_with_supplier_domain(self, use_search_read_route):
-        ids = self._search_read([('supplier', '=', True)], use_search_read_route)
+    @data(
+        (True, False),
+        (False, False),
+        (False, True),
+    )
+    @unpack
+    def test_search_read_with_supplier_domain(self, use_search_read_route, domain_kwarg):
+        ids = self._search_read([('supplier', '=', True)], use_search_read_route, domain_kwarg)
         assert self.customer.id not in ids
         assert self.supplier.id not in ids
         assert self.supplier_customer.id in ids
 
-    def _read_group(self, domain, fields, orderby):
+    def _read_group(self, domain, fields, groupby, domain_kwarg):
         with mock_odoo_request(self.env):
-            return self.controller.call(
-                'res.partner', 'read_group', [domain, [], fields], {'orderby': orderby})
+            if domain_kwarg:
+                args = []
+                kwargs = {
+                    'domain': domain, 'fields': fields,
+                    'groupby': groupby, 'orderby': groupby
+                }
+            else:
+                args = [domain, [], fields, groupby]
+                kwargs = {'orderby': groupby}
 
-    def test_read_group_with_empty_domain(self):
-        groups = self._read_group([], fields=['customer'], orderby='customer')
+            return self.controller.call_kw('res.partner', 'read_group', args, kwargs)
+
+    @data(True, False)
+    def test_read_group_with_empty_domain(self, domain_kwarg):
+        groups = self._read_group(
+            [], fields=['customer'], groupby='customer', domain_kwarg=domain_kwarg)
         assert len(groups) == 1
         assert groups[0]['customer_count'] == self.customer_count
 
-    def test_read_group_with_supplier_domain(self):
+    @data(True, False)
+    def test_read_group_with_supplier_domain(self, domain_kwarg):
         domain = [('supplier', '=', True)]
-        groups = self._read_group(domain, fields=['customer'], orderby='customer')
+        groups = self._read_group(
+            domain, fields=['customer'], groupby='customer', domain_kwarg=domain_kwarg)
         assert len(groups) == 1
         assert groups[0]['customer_count'] == self.supplier_customer_count
 
