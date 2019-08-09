@@ -3,7 +3,6 @@
 
 import json
 import pytest
-from odoo.addons.web.controllers.main import CSVExport
 from odoo.exceptions import AccessError
 from .common import mock_odoo_request, ControllerCase
 from ..controllers.web_export import CSVControllerWithSecurity
