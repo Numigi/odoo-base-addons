@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-24 16:35+0000\n"
-"PO-Revision-Date: 2019-01-24 11:35-0500\n"
+"POT-Creation-Date: 2019-08-12 17:50+0000\n"
+"PO-Revision-Date: 2019-08-12 13:51-0400\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -49,6 +49,11 @@ msgid "Incoming Mail Servers"
 msgstr "Serveurs entrants"
 
 #. module: admin_light_mail
+#: model:res.groups,name:admin_light_mail.group_mail_subtype
+msgid "Mail Subtypes"
+msgstr "Sous-types de messages"
+
+#. module: admin_light_mail
 #: model:ir.ui.menu,name:admin_light_mail.menu_messages
 msgid "Messages"
 msgstr "Messages"
@@ -57,3 +62,8 @@ msgstr "Messages"
 #: model:ir.ui.menu,name:admin_light_mail.menu_outgoing_mail_server
 msgid "Outgoing Mail Servers"
 msgstr "Serveurs sortants"
+
+#. module: admin_light_mail
+#: model:ir.ui.menu,name:admin_light_mail.menu_mail_subtype
+msgid "Subtypes"
+msgstr "Sous-types"

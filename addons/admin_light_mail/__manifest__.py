@@ -16,8 +16,9 @@
     'data': [
         'common.xml',
         'email_and_messages.xml',
-        'mail_template.xml',
+        'mail_message_subtype.xml',
         'mail_server.xml',
+        'mail_template.xml',
         'security/ir.model.access.csv',
     ],
     'installable': True,
