@@ -68,3 +68,11 @@ class TestMailActivity(common.SavepointCase):
         self.assertTrue(self.partner.activity_date_deadline)
         self.activity.action_done()
         self.assertFalse(self.partner.activity_date_deadline)
+
+    def test_on_action_feedback__feedback_is_stored_on_activity(self):
+        expected_feedback = 'My feedback'
+        self.activity.action_feedback(expected_feedback)
+        self.activity.refresh()
+
+        # assertIn because feedback is an html field
+        self.assertIn(expected_feedback, self.activity.feedback)
