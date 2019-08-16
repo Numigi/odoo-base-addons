@@ -9,19 +9,6 @@
             <button name="button_immediate_install" position="attributes">
                 <attribute name="invisible">1</attribute>
             </button>
-            <button name="button_uninstall_cancel" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </button>
-            <button name="button_install_cancel" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </button>
-            <a name="button_immediate_upgrade" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </a>
-            <a name="button_uninstall_wizard" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </a>
-
         </field>
     </record>
 

@@ -3,7 +3,7 @@
 
 import logging
 from odoo import models, api, _
-from odoo.addons.base.models.ir_module import assert_log_admin_access
+from odoo.addons.base.module.module import assert_log_admin_access
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
