@@ -15,7 +15,7 @@ class MailActivityInactivatedInsteadOfDeleted(models.Model):
 
     def action_feedback(self, feedback=False):
         self = self.with_context(mail_activity_no_delete=True)
-        return super(MailActivityInactivatedInsteadOfDeleted, self).action_feedback(False)
+        return super(MailActivityInactivatedInsteadOfDeleted, self).action_feedback(feedback)
 
     @api.multi
     def unlink(self):
