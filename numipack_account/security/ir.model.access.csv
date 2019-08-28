@@ -1,7 +1,4 @@
 id,model_id:id,perm_unlink
-account.access_account_move_manager,account.model_account_move,0
-account.access_account_move_uinvoice,account.model_account_move,0
-
 account.access_account_payment,account.model_account_payment,0
 
 account.access_account_invoice_accountant,account.model_account_invoice,0
