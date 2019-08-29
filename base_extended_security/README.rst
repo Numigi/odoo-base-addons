@@ -96,7 +96,7 @@ As administrator, I go to ``Settings / Technical / Security / Extended Security 
 
 I add a new rule so that only project managers may create or delete tasks.
 
-.. image:: static/description/extended_security_rule_list.png
+.. image:: static/description/extended_security_rule_list_new.png
 
 As member of ``Project / User``, I go to the kanban view of tasks.
 
