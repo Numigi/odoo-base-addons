@@ -83,10 +83,34 @@ However, the module does not presume that the user is allowed or not to access c
 This is where the approach of this module makes the code easier to reason about than
 the native access rules (ir.rule).
 
-Known Limitations
------------------
-This module does not allow do define access rules through the web interface.
-The access rules must be coded in modules.
+Defining Basic Rules
+--------------------
+This section explains how to setup basic security rules directly through the web interface.
+
+This feature was added in version ``1.1.0`` of the module.
+It uses the assets defined in the module and generalizes a way to add simple RWCD rules.
+
+As administrator, I go to ``Settings / Technical / Security / Extended Security Rules``.
+
+.. image:: static/description/extended_security_rule_list.png
+
+I add a new rule so that only project managers may create or delete tasks.
+
+.. image:: static/description/extended_security_rule_list.png
+
+As member of ``Project / User``, I go to the kanban view of tasks.
+
+I notice that I can not create a task.
+
+.. image:: static/description/task_no_create.png
+
+I can neither delete a task.
+
+.. image:: static/description/task_no_delete.png
+
+However, I can edit existing tasks.
+
+.. image:: static/description/task_edit.png
 
 Contributors
 ------------

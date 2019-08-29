@@ -18,7 +18,9 @@ class BaseWithExtendedSecurity(models.AbstractModel):
 
         :rtype: list
         """
-        return []
+        return self.env['extended.security.rule'].get_user_security_domain(
+            model=self._name
+        )
 
     def check_extended_security_all(self):
         """Check extended security rules that applies for all CRUD operations."""
@@ -26,16 +28,24 @@ class BaseWithExtendedSecurity(models.AbstractModel):
 
     def check_extended_security_read(self):
         """Check extended security rules for read operations."""
-        pass
+        self.env['extended.security.rule'].check_user_access(
+            model=self._name, access_type='read',
+        )
 
     def check_extended_security_write(self):
         """Check extended security rules for write operations."""
-        pass
+        self.env['extended.security.rule'].check_user_access(
+            model=self._name, access_type='write',
+        )
 
     def check_extended_security_create(self):
         """Check extended security rules for create operations."""
-        pass
+        self.env['extended.security.rule'].check_user_access(
+            model=self._name, access_type='create',
+        )
 
     def check_extended_security_unlink(self):
         """Check extended security rules for unlink operations."""
-        pass
+        self.env['extended.security.rule'].check_user_access(
+            model=self._name, access_type='unlink',
+        )
