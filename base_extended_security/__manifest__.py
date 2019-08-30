@@ -3,7 +3,7 @@
 
 {
     'name': 'Base Extended Security',
-    'version': '1.0.0',
+    'version': '1.1.0',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
@@ -12,6 +12,9 @@
     'depends': [
         'web',
     ],
-    'data': [],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/extended_security_rule.xml',
+    ],
     'installable': True,
 }
