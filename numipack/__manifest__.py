@@ -42,6 +42,9 @@
         'ir_attachment_access_token_portal',  # TA#6109
         'web_email_field_new_tab',  # TA#9753
 
+        # Numigi/odoo-product-addons
+        'product_extra_views',  # TA#15297
+
         # Numigi/odoo-web-addons
         'web_contextual_search_favorite',  # TA#2637
         'web_custom_label',  # TA#3928
