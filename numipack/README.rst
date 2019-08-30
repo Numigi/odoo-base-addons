@@ -18,6 +18,7 @@ Numigi Modules
 * `Disable Quick Create <https://github.com/Numigi/odoo-web-addons/tree/12.0/disable_quick_create>`_
 * `Partner Edit Group <https://github.com/Numigi/odoo-partner-addons/tree/12.0/partner_edit_group>`_
 * `Partner Phone Validation <https://github.com/Numigi/odoo-partner-addons/tree/12.0/partner_phone_validation>`_
+* `Product Extra Views <https://github.com/Numigi/odoo-product-addons/tree/12.0/product_extra_views>`_
 * `Web Contextual Search Favorite <https://github.com/Numigi/odoo-web-addons/tree/12.0/web_contextual_search_favorite>`_
 * `Web Custom Label <https://github.com/Numigi/odoo-web-addons/tree/12.0/web_custom_label>`_
 * `Web Email Field New Tab <https://github.com/Numigi/odoo-base-addons/tree/12.0/web_email_field_new_tab>`_
