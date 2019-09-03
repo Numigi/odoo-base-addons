@@ -10,6 +10,9 @@
     'category': 'Extra Tools',
     'summary': 'Quality tools we want in every instances.',
     'depends': [
+        # Numigi/odoo-base
+        'database_bi_user',
+
         # OCA/server-tools
         'auto_backup',
     ],
