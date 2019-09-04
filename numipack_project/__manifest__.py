@@ -22,7 +22,7 @@
         'project_type',
     ],
     'data': [
-        'security/ir.model.access.csv',
+        'security/extended_security_rule.xml',
     ],
     'installable': True,
 }
