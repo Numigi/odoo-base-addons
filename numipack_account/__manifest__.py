@@ -24,7 +24,7 @@
         'account_check_printing_aeroo',
     ],
     'data': [
-        'security/ir.model.access.csv',
+        'security/extended_security_rule.xml',
     ],
     'installable': True,
 }
