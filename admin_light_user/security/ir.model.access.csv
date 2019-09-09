@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_groups,Admin Light: res.groups,base.model_res_groups,group_user_management,1,0,0,0
+access_groups,Admin Light: res.groups,base.model_res_groups,group_user_management,1,1,0,0
 access_ir_model_access,Admin Light: ir.model.access,base.model_ir_model_access,group_user_management,1,0,0,0
 access_ir_module_category,Admin Light: ir.module.category,base.model_ir_module_category,group_user_management,1,0,0,0
 access_ir_rule,Admin Light: ir.rule,base.model_ir_rule,group_user_management,1,0,0,0
