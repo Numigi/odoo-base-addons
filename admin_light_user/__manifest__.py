@@ -18,6 +18,8 @@
         # users by non-super-admin.
         # See TA#6395
         'auth_signup',
+
+        'base_extended_security',
     ],
     'data': [
         'data.xml',
