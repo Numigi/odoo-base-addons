@@ -16,7 +16,7 @@ For example, it should not add a field that is related to accounting, sales, inv
 
 ## Model Agnostic
 
-These modules are not related to specific model more than another.
+These modules are not related to a specific model more than another.
 
 For modules related to partners, see [partner-addons](https://github.com/Numigi/odoo-partner-addons).
 For modules related to products, see [product-addons](https://github.com/Numigi/odoo-product-addons).
