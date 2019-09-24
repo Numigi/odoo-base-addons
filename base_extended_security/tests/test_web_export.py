@@ -3,8 +3,9 @@
 
 import json
 import pytest
+from odoo.addons.test_http_request.common import mock_odoo_request
 from odoo.exceptions import AccessError
-from .common import mock_odoo_request, ControllerCase
+from .common import ControllerCase
 from ..controllers.web_export import CSVControllerWithSecurity
 
 

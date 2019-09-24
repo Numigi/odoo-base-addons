@@ -23,7 +23,16 @@ class BaseWithExtendedSecurity(models.AbstractModel):
         )
 
     def check_extended_security_all(self):
-        """Check extended security rules that applies for all CRUD operations."""
+        """Check extended security rules that applies for all CRUD operations.
+
+        This method excludes the name_get operation.
+
+        The reason is that name_get is much less likely to be a security
+        issue for most use cases.
+
+        Blocking name_get also causes errors in the web.interface,
+        because of Many2one fields.
+        """
         pass
 
     def check_extended_security_read(self):
@@ -48,4 +57,10 @@ class BaseWithExtendedSecurity(models.AbstractModel):
         """Check extended security rules for unlink operations."""
         self.env['extended.security.rule'].check_user_access(
             model=self._name, access_type='unlink',
+        )
+
+    def check_extended_security_name_get(self):
+        """Check extended security rules for name_get operations."""
+        self.env['extended.security.rule'].check_user_access(
+            model=self._name, access_type='name_get',
         )
