@@ -11,7 +11,7 @@ from werkzeug.wrappers import Request
 
 
 @contextmanager
-def mock_odoo_request(env: Environment):
+def mock_odoo_request(env: Environment, method='POST'):
     """Mock an Odoo HTTP request.
 
     This methods builds an HttpRequest object and adds it to
@@ -20,6 +20,9 @@ def mock_odoo_request(env: Environment):
     The Odoo environment of the test fixture is injected to the
     request so that objects created in the fixture are available
     for controllers.
+
+    :param env: the odoo environment to bind with the request.
+    :param method: the HTTP method called during the request.
     """
     session = FilesystemSessionStore(
         config.session_dir, session_class=OpenERPSession, renew_missing=True)
@@ -27,7 +30,7 @@ def mock_odoo_request(env: Environment):
     session.uid = env.uid
     session.context = env.context
 
-    environ_builder = EnvironBuilder(method='POST', data={})
+    environ_builder = EnvironBuilder(method=method, data={})
     environ = environ_builder.get_environ()
     httprequest = Request(environ)
     httprequest.session = session
