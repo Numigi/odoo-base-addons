@@ -8,7 +8,7 @@ However, if installed, it will have no impact on a production instance.
 Context
 -------
 Testing HTTP controllers in Odoo is not a trivial task.
-Therefore, many developpers do not automate the tests of their controllers. This is a mistake.
+Therefore, many developpers do not automate the tests of their controllers.
 
 This modules intends to offer tools to make the task easier.
 
