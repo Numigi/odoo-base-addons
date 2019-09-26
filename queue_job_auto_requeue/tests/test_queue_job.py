@@ -7,7 +7,7 @@ from odoo import models
 from odoo.addons.queue_job.job import job
 from odoo.tests.common import SavepointCase
 from uuid import uuid4
-from ..models.queue_job import TIME_LIMIT_PARAMETER, DEFAULT_JOB_TIME_LIMIT
+from ..models.queue_job import TIME_LIMIT_PARAMETER
 
 
 class ResPartner(models.Model):
