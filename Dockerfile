@@ -24,7 +24,6 @@ COPY mail_activity_not_deleted /mnt/extra-addons/mail_activity_not_deleted
 COPY mail_follower_picker /mnt/extra-addons/mail_follower_picker
 COPY menu_item_rename /mnt/extra-addons/menu_item_rename
 COPY note_no_default_stage /mnt/extra-addons/note_no_default_stage
-COPY private_data_group /mnt/extra-addons/private_data_group
 COPY queue_job_auto_requeue /mnt/extra-addons/queue_job_auto_requeue
 COPY super_calendar /mnt/extra-addons/super_calendar
 COPY web_email_field_new_tab /mnt/extra-addons/web_email_field_new_tab
