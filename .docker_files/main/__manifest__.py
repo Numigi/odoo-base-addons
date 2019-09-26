@@ -23,6 +23,7 @@
         'menu_item_rename',
         'note_no_default_stage',
         'private_data_group',
+        'queue_job_auto_requeue',
         'super_calendar',
         'web_email_field_new_tab',
     ],
