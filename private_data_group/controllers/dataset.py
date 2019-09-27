@@ -1,14 +1,12 @@
 # © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import _
 from odoo.addons.web.controllers.main import DataSet
 from odoo.addons.base_extended_security.controllers.main import (
     SEARCH_METHODS,
     get_domain_from_args_and_kwargs,
 )
 from odoo.http import request
-from odoo.osv.expression import AND
 from odoo.tools import pycompat
 from typing import Iterable
 from .common import check_model_fields_access, extract_fields_from_domain

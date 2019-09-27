@@ -1,12 +1,10 @@
 # © 2018 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from ddt import data, ddt
 from lxml import etree
 from odoo.tests import common
 
 
-@ddt
 class TestViewRendering(common.SavepointCase):
 
     @classmethod

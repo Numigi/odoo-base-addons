@@ -3,7 +3,6 @@
 
 from lxml import etree
 from odoo import api, models
-from typing import List
 
 
 def _get_arch_without_private_fields(env: api.Environment, model: str, arch: str):

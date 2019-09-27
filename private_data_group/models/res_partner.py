@@ -22,7 +22,7 @@ def _check_private_addess_access(partners: 'res.partner'):
     if not partners.env.user.has_private_data_access():
         private_addresses = partners.filtered(lambda p: p.type == 'private')
         if private_addresses:
-            context = partners._context
+            context = partners._context  # pylint: disable=unused-variable
             raise AccessError(_(PARTNER_ERROR_MESSAGE).format(private_addresses[0].id))
 
 
