@@ -1,15 +1,8 @@
 
-from contextlib import contextmanager
 from odoo import models
-from odoo.api import Environment
 from odoo.exceptions import AccessError
-from odoo.http import HttpRequest, OpenERPSession
 from odoo.osv.expression import AND
 from odoo.tests.common import SavepointCase
-from odoo.tools import config
-from werkzeug.contrib.sessions import FilesystemSessionStore
-from werkzeug.test import EnvironBuilder
-from werkzeug.wrappers import Request
 
 
 EMPLOYEE_ACCESS_MESSAGE = 'You are not authorized to access employees.'
@@ -56,34 +49,6 @@ class ResPartner(models.Model):
         for partner in self:
             if not partner.customer:
                 raise AccessError(NON_CUSTOMER_UNLINK_MESSAGE)
-
-
-@contextmanager
-def mock_odoo_request(env: Environment):
-    """Mock an Odoo HTTP request.
-
-    This methods builds an HttpRequest object and adds it to
-    the local stack of the application.
-
-    The Odoo environment of the test fixture is injected to the
-    request so that objects created in the fixture are available
-    for controllers.
-    """
-    session = FilesystemSessionStore(
-        config.session_dir, session_class=OpenERPSession, renew_missing=True)
-    session.db = env.cr.dbname
-    session.uid = env.uid
-    session.context = env.context
-
-    environ_builder = EnvironBuilder(method='POST', data={})
-    environ = environ_builder.get_environ()
-    httprequest = Request(environ)
-    httprequest.session = session
-
-    odoo_http_request = HttpRequest(httprequest)
-    odoo_http_request._env = env
-    with odoo_http_request:
-        yield
 
 
 class ControllerCase(SavepointCase):

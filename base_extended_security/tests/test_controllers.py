@@ -3,9 +3,9 @@
 
 import pytest
 from ddt import ddt, data, unpack
+from odoo.addons.test_http_request.common import mock_odoo_request
 from odoo.exceptions import AccessError
 from .common import (
-    mock_odoo_request,
     ControllerCase,
     EMPLOYEE_ACCESS_MESSAGE,
     NON_CUSTOMER_READ_MESSAGE,

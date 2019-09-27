@@ -32,7 +32,7 @@ DOMAIN_ARGUMENT_INDEXES = {
 }
 
 
-def _get_domain_from_args_and_kwargs(method, args, kwargs):
+def get_domain_from_args_and_kwargs(method, args, kwargs):
     """Get the domain from the given args and kwargs.
 
     If neither the args or kwargs contain the domain (which is a valid case),
@@ -112,7 +112,7 @@ class DataSetWithExtendedSearchSecurity(DataSet):
     def _call_kw(self, model, method, args, kwargs):
         if method in SEARCH_METHODS:
             security_domain = self._get_extended_security_domain(model)
-            search_domain = _get_domain_from_args_and_kwargs(method, args, kwargs)
+            search_domain = get_domain_from_args_and_kwargs(method, args, kwargs)
             complete_domain = AND((search_domain, security_domain))
             args, kwargs = _get_args_and_kwargs_with_new_domain(
                 method, args, kwargs, complete_domain)
@@ -124,6 +124,7 @@ READ_WRITE_UNLINK_METHODS = [
     'read',
     'write',
     'unlink',
+    'name_get',
 ]
 
 
@@ -138,7 +139,10 @@ class DataSetWithExtendedSecurity(DataSetWithExtendedSearchSecurity):
 
     def _check_extended_security_rules(self, model, method, record_ids):
         records = request.env[model].browse(record_ids)
-        records.check_extended_security_all()
+
+        if method != 'name_get':
+            records.check_extended_security_all()
+
         getattr(records, 'check_extended_security_{}'.format(method))()
 
     def _call_kw(self, model, method, args, kwargs):
