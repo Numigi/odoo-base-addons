@@ -189,5 +189,5 @@ class TestSecurityRules(SavepointCase):
             'group_ids': [(4, self.group.id)],
             'perm_{}'.format(access_type): True,
         })
-        many2many_list = self._get_nested_ir_model_access_one2many_arch()
-        assert view_property in many2many_list.attrib
+        one2many_list = self._get_nested_ir_model_access_one2many_arch()
+        assert view_property in one2many_list.attrib
