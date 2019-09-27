@@ -149,3 +149,45 @@ class TestSecurityRules(SavepointCase):
     def test_if_authorized__view_property_not_disabled(self, access_type, view_property):
         list_view = self._get_product_list_view_arch()
         assert view_property not in list_view.attrib
+
+    def _get_nested_ir_rule_many2many_arch(self):
+        view = self.env.ref('base.view_groups_form')
+        result = self.env['res.groups'].fields_view_get(view_id=view.id)
+        arch = result['fields']['rule_groups']['views']['tree']['arch']
+        return etree.fromstring(arch)
+
+    @data(
+        ('write', 'edit'),
+        ('create', 'create'),
+        ('unlink', 'delete'),
+    )
+    @unpack
+    def test_in_nested_many2many_list__view_property_not_disabled(self, access_type, view_property):
+        self.env['extended.security.rule'].create({
+            'model_id': self.env.ref('base.model_ir_rule').id,
+            'group_ids': [(4, self.group.id)],
+            'perm_{}'.format(access_type): True,
+        })
+        many2many_list = self._get_nested_ir_rule_many2many_arch()
+        assert view_property not in many2many_list.attrib
+
+    def _get_nested_ir_model_access_one2many_arch(self):
+        view = self.env.ref('base.view_groups_form')
+        result = self.env['res.groups'].fields_view_get(view_id=view.id)
+        arch = result['fields']['model_access']['views']['tree']['arch']
+        return etree.fromstring(arch)
+
+    @data(
+        ('write', 'edit'),
+        ('create', 'create'),
+        ('unlink', 'delete'),
+    )
+    @unpack
+    def test_in_nested_one2many_list__view_property_disabled(self, access_type, view_property):
+        self.env['extended.security.rule'].create({
+            'model_id': self.env.ref('base.model_ir_model_access').id,
+            'group_ids': [(4, self.group.id)],
+            'perm_{}'.format(access_type): True,
+        })
+        one2many_list = self._get_nested_ir_model_access_one2many_arch()
+        assert view_property in one2many_list.attrib
