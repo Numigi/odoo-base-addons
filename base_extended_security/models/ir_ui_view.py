@@ -3,6 +3,7 @@
 
 from lxml import etree
 from odoo import api, models
+from typing import Iterable
 
 
 def _hide_buttons_with_access_blocked(env: api.Environment, model: str, arch: str) -> str:
@@ -35,6 +36,25 @@ def _hide_buttons_with_access_blocked(env: api.Environment, model: str, arch: st
     return etree.tostring(tree)
 
 
+def _hide_one2many_view_buttons_with_access_blocked(
+    env: api.Environment, fields: Iterable[dict]
+) -> None:
+    """Hide the buttons in nested one2many fields with access restricted.
+
+    The view architectures are updated directly inside the field
+    definition if required.
+
+    :param env: the Odoo environment
+    :param fields: the field definitions
+    """
+    one2many_fields = (f for f in fields.values() if f['type'] == 'one2many')
+    for field in one2many_fields:
+        model = field['relation']
+
+        for view in field['views'].values():
+            view['arch'] = _hide_buttons_with_access_blocked(env, model, view['arch'])
+
+
 class ViewWithButtonsHiden(models.Model):
 
     _inherit = 'ir.ui.view'
@@ -46,5 +66,10 @@ class ViewWithButtonsHiden(models.Model):
         This method is called in Odoo when generating the final xml of a view.
         """
         arch, fields = super().postprocess_and_fields(model, node, view_id)
-        arch_with_buttons_hidden = _hide_buttons_with_access_blocked(self.env, model, arch)
-        return arch_with_buttons_hidden, fields
+
+        is_nested_view = bool(self._context.get('base_model_name'))
+        if not is_nested_view:
+            arch = _hide_buttons_with_access_blocked(self.env, model, arch)
+            _hide_one2many_view_buttons_with_access_blocked(self.env, fields)
+
+        return arch, fields
