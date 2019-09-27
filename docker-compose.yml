@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - GIT_TOKEN=${GIT_TOKEN}
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./.log:/var/log/odoo
