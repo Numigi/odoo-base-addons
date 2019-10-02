@@ -33,6 +33,7 @@
 
         # Numigi/aeroo_reports
         'report_aeroo',
+        'report_aeroo_replace_qweb',
 
         # Numigi/odoo-partner-addons
         'partner_edit_group',  # TA#10975
