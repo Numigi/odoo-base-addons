@@ -12,6 +12,7 @@
     'summary': 'Install all addons required for testing.',
     'depends': [
         'account',  # required for testing auditlog
+        'sale',  # required for testing mail_message_from_author
 
         'auditlog',
         'base_extended_security',
@@ -20,6 +21,8 @@
         'ir_attachment_name_autocomplete',
         'mail_activity_not_deleted',
         'mail_follower_picker',
+        'mail_message_from_author',
+        'mail_recipient_unchecked',
         'menu_item_rename',
         'note_no_default_stage',
         'private_data_group',
