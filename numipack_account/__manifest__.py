@@ -10,6 +10,9 @@
     'category': 'Other',
     'summary': 'Functional dependencies for all Odoo instances using accounting.',
     'depends': [
+        # Numigi/odoo-base-addons
+        'base_extended_security',
+
         # Numigi/odoo-account-addons
         'account_bank_menu',
         'account_fr_ca_labels',
