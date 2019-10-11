@@ -3,5 +3,6 @@
 
 from . import (
     database_bi_user_update,
+    ir_private_field,
     res_config_settings,
 )
