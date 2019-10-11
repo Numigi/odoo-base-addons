@@ -26,6 +26,9 @@ class BIUserCase(TransactionCase):
     def setUp(self):
         super().setUp()
         self.dbname = self.env.cr.dbname
+        self.password = 'bi_password'
+        with open_cursor(self.dbname) as cr:
+            cr.execute('ALTER ROLE bi WITH PASSWORD %s', (self.password, ))
 
 
 class TestBIUser(BIUserCase):
@@ -42,12 +45,6 @@ class TestBIUser(BIUserCase):
 
 
 class TestBIUserAccess(BIUserCase):
-
-    def setUp(self):
-        super().setUp()
-        self.password = 'bi_password'
-        with open_cursor(self.dbname) as cr:
-            cr.execute('ALTER ROLE bi WITH PASSWORD %s', (self.password, ))
 
     def test_has_select_access_to_odoo_tables(self):
         with open_cursor(self.dbname, user='bi', password=self.password) as cr:
@@ -79,3 +76,36 @@ class TestUpdatePassword(BIUserCase):
         user = self.env.ref('base.user_demo')
         with pytest.raises(AccessError):
             self.env['database.bi.user.update'].sudo(user).set_password('new_password')
+
+
+class TestPrivateFields(BIUserCase):
+
+    def setUp(self):
+        super().setUp()
+        self.employee_name = 'John Doe'
+        with open_cursor(self.dbname) as cr:
+            env = Environment(cr, SUPERUSER_ID, {})
+            self.employee_id = env['hr.employee'].create({
+                'name': self.employee_name,
+                'ssnid': '010 101 010',
+            }).id
+
+    def tearDown(self):
+        with open_cursor(self.dbname) as cr:
+            env = Environment(cr, SUPERUSER_ID, {})
+            env['hr.employee'].browse(self.employee_id).unlink()
+
+    def _read_employee_column(self, column):
+        with open_cursor(self.dbname, user='bi', password=self.password) as cr:
+            cr.execute(
+                "SELECT " + column + " FROM hr_employee WHERE id = %s",
+                (self.employee_id, ),
+            )
+            return cr.fetchone()[0]
+
+    def test_if_field_protected__can_not_fetch_field(self):
+        with pytest.raises(ProgrammingError):
+            self._read_employee_column('ssnid')
+
+    def test_if_field_not_protected__can_fetch_field(self):
+        assert self._read_employee_column('name') == self.employee_name
