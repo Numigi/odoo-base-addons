@@ -3,7 +3,7 @@
 
 {
     'name': 'Database BI User',
-    'version': '1.0.0',
+    'version': '1.1.0',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
@@ -11,6 +11,7 @@
     'summary': 'Add a BI database user with restricted privileges',
     'depends': [
         'base_setup',
+        'private_data_group',
     ],
     'data': [
         'data/update.xml',
