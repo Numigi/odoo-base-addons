@@ -12,7 +12,7 @@ from werkzeug.test import EnvironBuilder
 from werkzeug.wrappers import Request
 
 
-class MockerOdooHttpRequest(HttpRequest):
+class _MockOdooHttpRequest(HttpRequest):
 
     @staticmethod
     def redirect(url, code=302):
@@ -36,7 +36,11 @@ class MockerOdooHttpRequest(HttpRequest):
         return self.env['website'].get_current_website()
 
     def __exit__(self, exc_type, exc_value, traceback):
-        """Prevent commiting the transaction when exiting the HTTP request."""
+        """Prevent commiting the transaction when exiting the HTTP request.
+
+        Since the request uses the same cursor as the test fixture,
+        the cursor must not be commited when exiting the request.
+        """
         _request_stack.pop()
 
 
@@ -66,7 +70,7 @@ def mock_odoo_request(env: Environment, method='POST'):
     httprequest = Request(environ)
     httprequest.session = session
 
-    odoo_http_request = MockerOdooHttpRequest(httprequest)
+    odoo_http_request = _MockOdooHttpRequest(httprequest)
     odoo_http_request._env = env
     odoo_http_request._cr = env.cr
     odoo_http_request._uid = env.uid
