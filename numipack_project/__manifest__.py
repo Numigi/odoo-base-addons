@@ -18,6 +18,7 @@
         'project_stage_no_quick_create',
         'project_task_date_planned',
         'project_task_full_text_search',
+        'project_task_stage_external_mail',  # TA#15910
         'project_task_type',
         'project_type',
     ],
