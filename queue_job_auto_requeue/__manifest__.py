@@ -16,4 +16,5 @@
         'data/ir_cron.xml',
     ],
     'installable': True,
+    'auto_install': True,
 }
