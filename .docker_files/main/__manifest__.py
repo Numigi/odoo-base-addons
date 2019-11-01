@@ -22,6 +22,7 @@
         'mail_activity_not_deleted',
         'mail_follower_picker',
         'mail_message_from_author',
+        'mail_notification_no_footer',
         'mail_recipient_unchecked',
         'menu_item_rename',
         'note_no_default_stage',
