@@ -2,7 +2,7 @@ Mail Notification No Footer
 ===========================
 This module removes the footer from the notification templates.
 
-.. image:: static/description/notification_without_footer.png.png
+.. image:: static/description/notification_without_footer.png
 
 Contributors
 ------------
