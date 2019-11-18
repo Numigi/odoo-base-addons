@@ -1,12 +1,14 @@
 # © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
+import json
 import werkzeug
 from contextlib import contextmanager
 from odoo.addons.http_routing.models.ir_http import url_for
 from odoo.api import Environment
 from odoo.http import HttpRequest, OpenERPSession, _request_stack
 from odoo.tools import config
+from typing import Optional
 from werkzeug.contrib.sessions import FilesystemSessionStore
 from werkzeug.test import EnvironBuilder
 from werkzeug.wrappers import Request
@@ -45,7 +47,12 @@ class _MockOdooHttpRequest(HttpRequest):
 
 
 @contextmanager
-def mock_odoo_request(env: Environment, method='POST'):
+def mock_odoo_request(
+    env: Environment,
+    method: str ='POST',
+    headers: Optional[dict]=None,
+    data: Optional[dict]=None,
+):
     """Mock an Odoo HTTP request.
 
     This methods builds an HttpRequest object and adds it to
@@ -57,6 +64,8 @@ def mock_odoo_request(env: Environment, method='POST'):
 
     :param env: the odoo environment to bind with the request.
     :param method: the HTTP method called during the request.
+    :param headers: the request headers.
+    :param data: an optional dict to be serialized as json data.
     """
     session_store = FilesystemSessionStore(
         config.session_dir, session_class=OpenERPSession, renew_missing=True)
@@ -65,7 +74,9 @@ def mock_odoo_request(env: Environment, method='POST'):
     session.uid = env.uid
     session.context = env.context
 
-    environ_builder = EnvironBuilder(method=method, data={})
+    json_data = json.dumps(data or {})
+
+    environ_builder = EnvironBuilder(method=method, data=json_data, headers=headers)
     environ = environ_builder.get_environ()
     httprequest = Request(environ)
     httprequest.session = session
