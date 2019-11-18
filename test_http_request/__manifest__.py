@@ -12,8 +12,5 @@
     'depends': [
         'base',
     ],
-    'data': [
-        'assets.xml',
-    ],
     'installable': True,
 }
