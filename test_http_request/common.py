@@ -96,7 +96,7 @@ def mock_odoo_request(
     :param method: the HTTP method called during the request.
     :param headers: the request headers.
     :param data: an optional dict to be serialized as json or url-encoded data.
-    :param routing_type: whether to send an http (x-www-form-urlencoded) or json request.
+    :param routing_type: whether to use an http (x-www-form-urlencoded) or json request.
     """
     environ = _make_environ(method, headers, data, routing_type)
     httprequest = Request(environ)
