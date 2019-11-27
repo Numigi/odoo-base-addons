@@ -6,7 +6,7 @@ import werkzeug
 from contextlib import contextmanager
 from odoo.addons.http_routing.models.ir_http import url_for
 from odoo.api import Environment
-from odoo.http import HttpRequest, OpenERPSession, _request_stack
+from odoo.http import HttpRequest, JsonRequest, OpenERPSession, _request_stack
 from odoo.tools import config
 from typing import Optional
 from werkzeug.contrib.sessions import FilesystemSessionStore
@@ -14,7 +14,7 @@ from werkzeug.test import EnvironBuilder
 from werkzeug.wrappers import Request
 
 
-class _MockOdooHttpRequest(HttpRequest):
+class _MockOdooRequestMixin:
 
     @staticmethod
     def redirect(url, code=302):
@@ -46,12 +46,42 @@ class _MockOdooHttpRequest(HttpRequest):
         _request_stack.pop()
 
 
+class _MockOdooHttpRequest(_MockOdooRequestMixin, HttpRequest):
+    pass
+
+
+class _MockOdooJsonRequest(_MockOdooRequestMixin, JsonRequest):
+    pass
+
+
+def _make_environ(
+    method: str = 'POST',
+    headers: Optional[dict] = None,
+    data: Optional[dict] = None,
+    routing_type: str = 'http',
+):
+    """Make an environ for the given request parameters."""
+    assert routing_type in ('http', 'json')
+    environ_builder = EnvironBuilder(
+        method=method,
+        data=json.dumps(data or {}) if routing_type == 'json' else data,
+        headers=headers,
+    )
+    environ_builder.content_type = (
+        'application/json' if routing_type == 'json' else
+        'application/x-www-form-urlencoded'
+    )
+    environ = environ_builder.get_environ()
+    return environ
+
+
 @contextmanager
 def mock_odoo_request(
     env: Environment,
-    method: str ='POST',
-    headers: Optional[dict]=None,
-    data: Optional[dict]=None,
+    method: str = 'POST',
+    headers: Optional[dict] = None,
+    data: Optional[dict] = None,
+    routing_type: str = 'http',
 ):
     """Mock an Odoo HTTP request.
 
@@ -65,8 +95,12 @@ def mock_odoo_request(
     :param env: the odoo environment to bind with the request.
     :param method: the HTTP method called during the request.
     :param headers: the request headers.
-    :param data: an optional dict to be serialized as json data.
+    :param data: an optional dict to be serialized as json or url-encoded data.
+    :param routing_type: whether to use an http (x-www-form-urlencoded) or json request.
     """
+    environ = _make_environ(method, headers, data, routing_type)
+    httprequest = Request(environ)
+
     session_store = FilesystemSessionStore(
         config.session_dir, session_class=OpenERPSession, renew_missing=True)
     session = session_store.new()
@@ -74,14 +108,13 @@ def mock_odoo_request(
     session.uid = env.uid
     session.context = env.context
 
-    json_data = json.dumps(data or {})
-
-    environ_builder = EnvironBuilder(method=method, data=json_data, headers=headers)
-    environ = environ_builder.get_environ()
-    httprequest = Request(environ)
     httprequest.session = session
 
-    odoo_http_request = _MockOdooHttpRequest(httprequest)
+    odoo_http_request_cls = (
+        _MockOdooJsonRequest if routing_type == 'json' else
+        _MockOdooHttpRequest
+    )
+    odoo_http_request = odoo_http_request_cls(httprequest)
     odoo_http_request._env = env
     odoo_http_request._cr = env.cr
     odoo_http_request._uid = env.uid
