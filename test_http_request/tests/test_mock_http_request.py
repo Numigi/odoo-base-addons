@@ -7,6 +7,7 @@ from ddt import data, ddt, unpack
 from odoo.http import request
 from odoo.tests import common
 from werkzeug.datastructures import ImmutableMultiDict
+from werkzeug.urls import url_encode
 from ..common import mock_odoo_request
 
 
@@ -57,3 +58,8 @@ class TestMockHttpRequest(common.TransactionCase):
         with mock_odoo_request(self.env, data=self.data, routing_type='json'):
             assert not request.httprequest.form
             assert request.httprequest.data == json_data
+
+    def test_form_data_propagated_with_correct_key_order(self):
+        data = OrderedDict([(str(i), str(i)) for i in range(10)])
+        with mock_odoo_request(self.env, data=data):
+            assert url_encode(request.httprequest.form) == url_encode(data)

@@ -4,13 +4,16 @@
 import json
 import werkzeug
 from contextlib import contextmanager
+from io import BytesIO
 from odoo.addons.http_routing.models.ir_http import url_for
 from odoo.api import Environment
 from odoo.http import HttpRequest, JsonRequest, OpenERPSession, _request_stack
 from odoo.tools import config
-from typing import Optional
-from werkzeug.contrib.sessions import FilesystemSessionStore
+from typing import Optional, Union
+from werkzeug.contrib.sessions import FilesystemSessionStore, Session
+from werkzeug.datastructures import ImmutableOrderedMultiDict
 from werkzeug.test import EnvironBuilder
+from werkzeug.urls import url_encode
 from werkzeug.wrappers import Request
 
 
@@ -54,6 +57,21 @@ class _MockOdooJsonRequest(_MockOdooRequestMixin, JsonRequest):
     pass
 
 
+def _make_environ_form_data_stream(data: dict) -> BytesIO:
+    """Make the form data stream for an Odoo http request.
+
+    Odoo uses ImmutableOrderedMultiDict to store url encoded form
+    data instead of the default ImmutableMultiDict in werkzeug.
+
+    The test utility :class:`werkzeug.test.EnvironBuilder` uses
+    MultiDict to store form data.
+
+    This must be ajusted in order reproduce properly the behavior of Odoo.
+    """
+    encoded_data = url_encode(data).encode("ascii")
+    return BytesIO(encoded_data)
+
+
 def _make_environ(
     method: str = 'POST',
     headers: Optional[dict] = None,
@@ -66,13 +84,58 @@ def _make_environ(
         method=method,
         data=json.dumps(data or {}) if routing_type == 'json' else data,
         headers=headers,
-    )
-    environ_builder.content_type = (
-        'application/json' if routing_type == 'json' else
-        'application/x-www-form-urlencoded'
+        content_type=(
+            'application/json' if routing_type == 'json' else
+            'application/x-www-form-urlencoded'
+        )
     )
     environ = environ_builder.get_environ()
+
+    if routing_type == 'http' and data:
+        environ['wsgi.input'] = _make_environ_form_data_stream(data)
+
     return environ
+
+
+def _set_request_storage_class(httprequest: Request):
+    """Set the data structure used to store form data.
+
+    This is done in the method Root.dispatch of odoo/http.py.
+    """
+    httprequest.parameter_storage_class = ImmutableOrderedMultiDict
+
+
+def _make_werkzeug_request(environ: dict) -> Request:
+    """Make a werkzeug request from the given environ."""
+    httprequest = Request(environ)
+    _set_request_storage_class(httprequest)
+    return httprequest
+
+
+def _make_filesystem_session(env: Environment) -> Session:
+    session_store = FilesystemSessionStore(
+        config.session_dir, session_class=OpenERPSession, renew_missing=True)
+    session = session_store.new()
+    session.db = env.cr.dbname
+    session.uid = env.uid
+    session.context = env.context
+    return session
+
+
+def _make_odoo_request(
+        werkzeug_request: Request, env: Environment, routing_type: str,
+) -> Union[_MockOdooHttpRequest, _MockOdooJsonRequest]:
+    """Make an Odoo request from the given werkzeug request."""
+    odoo_request_cls = (
+        _MockOdooJsonRequest if routing_type == 'json' else
+        _MockOdooHttpRequest
+    )
+    odoo_request = odoo_request_cls(werkzeug_request)
+    odoo_request._env = env
+    odoo_request._cr = env.cr
+    odoo_request._uid = env.uid
+    odoo_request._context = env.context
+    return odoo_request
 
 
 @contextmanager
@@ -99,26 +162,9 @@ def mock_odoo_request(
     :param routing_type: whether to use an http (x-www-form-urlencoded) or json request.
     """
     environ = _make_environ(method, headers, data, routing_type)
-    httprequest = Request(environ)
+    werkzeug_request = _make_werkzeug_request(environ)
+    werkzeug_request.session = _make_filesystem_session(env)
+    odoo_request = _make_odoo_request(werkzeug_request, env, routing_type)
 
-    session_store = FilesystemSessionStore(
-        config.session_dir, session_class=OpenERPSession, renew_missing=True)
-    session = session_store.new()
-    session.db = env.cr.dbname
-    session.uid = env.uid
-    session.context = env.context
-
-    httprequest.session = session
-
-    odoo_http_request_cls = (
-        _MockOdooJsonRequest if routing_type == 'json' else
-        _MockOdooHttpRequest
-    )
-    odoo_http_request = odoo_http_request_cls(httprequest)
-    odoo_http_request._env = env
-    odoo_http_request._cr = env.cr
-    odoo_http_request._uid = env.uid
-    odoo_http_request._context = env.context
-
-    with odoo_http_request:
-        yield odoo_http_request
+    with odoo_request:
+        yield odoo_request
