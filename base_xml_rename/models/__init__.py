@@ -2,6 +2,6 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from . import (
+    base,
     ir_ui_menu,
-    res_groups,
 )

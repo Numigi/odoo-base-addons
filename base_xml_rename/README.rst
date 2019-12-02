@@ -2,6 +2,8 @@ Base XML Rename
 ===============
 This module allows to rename UI elements using XML data files in modules.
 
+.. contents:: Table of Contents
+
 Context
 -------
 Renaming a menu in Odoo directly through the web interface is not a good idea.
@@ -12,8 +14,23 @@ Renaming a menu in Odoo directly through the web interface is not a good idea.
 
 The same applies for renaming other objects such as user groups.
 
+Module Design
+-------------
+A method ``rename`` is added to every model.
+
+This method takes 3 mandatory parameters:
+
+* ``ref``: the xml reference of the record.
+* ``lang``: the language of the term.
+* ``value``: the new term.
+
+Optionaly, a ``field`` parameter can be supplied, in case the field is not ``name``.
+
 Usage
 -----
+The same syntax can be used in XML to rename any kind of object.
+
+Here are 2 examples for renaming menu items and user groups.
 
 Renaming a Menu
 ~~~~~~~~~~~~~~~
@@ -65,7 +82,7 @@ After loading the XML, the group is named ``Comptable``.
 Known Issues
 ~~~~~~~~~~~~
 If you reload translations with ``Overwrite Existing Terms`` checked, the terms loaded with XML
-will not be reloaded automatically.
+will not be reloaded automatically. You will need to update the modules containing these XML files).
 
 Contributors
 ------------
