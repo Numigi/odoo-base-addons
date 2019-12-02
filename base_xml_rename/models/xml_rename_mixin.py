@@ -13,9 +13,10 @@ def is_lang_installed(env: 'Environment', lang: str):
     return lang in dict(env['res.lang'].get_installed())
 
 
-class Base(models.AbstractModel):
+class XMLRenameMixin(models.AbstractModel):
 
-    _inherit = 'base'
+    _name = 'xml.rename.mixin'
+    _description = 'Mixin For Renaming Records Through XML'
 
     @api.model
     def rename(self, ref, lang, value, field='name'):

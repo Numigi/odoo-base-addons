@@ -16,9 +16,9 @@ The same applies for renaming other objects such as user groups.
 
 Module Design
 -------------
-A method ``rename`` is added to every model.
+A mixin ``xml.rename.mixin`` is added.
 
-This method takes 3 mandatory parameters:
+This mixin has a method ``rename`` which takes 3 mandatory parameters:
 
 * ``ref``: the xml reference of the record.
 * ``lang``: the language of the term.
@@ -26,10 +26,12 @@ This method takes 3 mandatory parameters:
 
 Optionaly, a ``field`` parameter can be supplied, in case the field is not ``name``.
 
+The mixin can be added to any model.
+
+For now, the module adds the mixin to ir.ui.menu and res.groups.
+
 Usage
 -----
-The same syntax can be used in XML to rename any kind of object.
-
 Here are 2 examples for renaming menu items and user groups.
 
 Renaming a Menu

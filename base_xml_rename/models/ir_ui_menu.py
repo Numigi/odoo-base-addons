@@ -2,12 +2,13 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import api, models
-from .base import is_lang_installed
+from .xml_rename_mixin import is_lang_installed
 
 
 class IrUiMenu(models.Model):
 
-    _inherit = 'ir.ui.menu'
+    _inherit = ('ir.ui.menu', 'xml.rename.mixin')
+    _name = 'ir.ui.menu'
 
     @api.model
     def rename(self, ref, lang, value, field='name'):
