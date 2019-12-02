@@ -4,12 +4,13 @@
 import logging
 from odoo import api, models
 from odoo.exceptions import ValidationError
+from .common import is_lang_installed, rename_record
 
 
 _logger = logging.getLogger(__name__)
 
 
-class MenuItem(models.Model):
+class IrUiMenu(models.Model):
 
     _inherit = 'ir.ui.menu'
 
@@ -21,19 +22,27 @@ class MenuItem(models.Model):
         :param lang: the language of the menu entry
         :param value: the new name for the menu entry
         """
+        if not is_lang_installed(self.env, lang):
+            _logger.debug(
+                'Skip renaming menu item {menu_ref} for the language {lang}. '
+                'The language is not installed.'
+                .format(menu_ref=menu_ref, lang=lang)
+            )
+            return
+
         _logger.info(
             'Renaming menu item {menu_ref} with the label `{value}` '
             'for the language {lang}.'
             .format(menu_ref=menu_ref, lang=lang, value=value)
         )
         menu = self.env.ref(menu_ref)
-        if menu._name != 'ir.ui.menu':
+        if menu._name != self._name:
             raise ValidationError(
                 'The XML ID {} does not reference a menu item.'
                 .format(menu_ref)
             )
 
-        menu.with_context(lang=lang).name = value
+        rename_record(menu, lang, value)
 
         if menu.action:
-            menu.action.with_context(lang=lang).name = value
+            rename_record(menu.action, lang, value)

@@ -63,3 +63,8 @@ class TestRenameMenuItem(common.SavepointCase):
         new_label = 'New label'
         self._rename_menu('en_US', new_label)
         assert self.action.with_context(lang='fr_FR').name == self.menu_name_fr
+
+    def test_if_lang_not_active__term_ignored(self):
+        self.fr_lang.active = False
+        self._rename_menu('fr_FR', 'Nouveau libellé')
+        assert self.menu.name == self.menu_name_en
