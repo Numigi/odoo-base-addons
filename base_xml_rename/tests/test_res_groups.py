@@ -41,3 +41,8 @@ class TestRenamegroupItem(common.SavepointCase):
         new_label = 'New label'
         self._rename_group('en_US', new_label)
         assert self.group.with_context(lang='fr_FR').name == self.group_name_fr
+
+    def test_if_lang_not_active__term_ignored(self):
+        self.fr_lang.active = False
+        self._rename_group('fr_FR', 'Nouveau libellé')
+        assert self.group.name == self.group_name_en
