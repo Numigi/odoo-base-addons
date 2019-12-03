@@ -8,6 +8,10 @@ and `Konvergo <https://github.com/Numigi/odoo-base/tree/12.0/konvergo_base>`_
 Added Modules
 -------------
 
+Numigi Modules
+~~~~~~~~~~~~~~
+* `Account Show Full Features <https://github.com/Numigi/odoo-account-addons/tree/12.0/account_show_full_features>`_
+
 MIS Builder and its Dependencies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * `MIS Builder <https://github.com/OCA/mis-builder/tree/12.0/mis_builder>`_
