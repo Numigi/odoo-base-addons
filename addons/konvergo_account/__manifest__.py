@@ -14,6 +14,9 @@
         'konvergo_base',
         'numipack_account',
 
+        # Numigi/odoo-account-addons
+        'account_show_full_features',  # TA#16549
+
         # OCA/mis-builder
         'mis_builder',  # TA#16549
 
