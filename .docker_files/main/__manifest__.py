@@ -29,6 +29,7 @@
         'private_data_group',
         'queue_job_auto_requeue',
         'super_calendar',
+        'url_link_type',
         'web_email_field_new_tab',
     ],
     'installable': True,
