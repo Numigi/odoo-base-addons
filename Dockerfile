@@ -17,6 +17,7 @@ USER odoo
 
 COPY auditlog /mnt/extra-addons/auditlog
 COPY base_extended_security /mnt/extra-addons/base_extended_security
+COPY base_extended_security_grid /mnt/extra-addons/base_extended_security_grid
 COPY base_xml_rename /mnt/extra-addons/base_xml_rename
 COPY disable_install_from_website /mnt/extra-addons/disable_install_from_website
 COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_token_portal
