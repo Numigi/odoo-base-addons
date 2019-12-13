@@ -1,10 +1,7 @@
 # © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-import pytest
-from datetime import datetime
 from odoo.addons.test_http_request.common import mock_odoo_request
-from odoo.exceptions import AccessError
 from odoo.addons.base_extended_security.tests.common import (
     ControllerCase,
 )
