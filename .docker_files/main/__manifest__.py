@@ -16,6 +16,7 @@
 
         'auditlog',
         'base_extended_security',
+        'base_extended_security_grid',
         'base_xml_rename',
         'disable_install_from_website',
         'ir_attachment_access_token_portal',

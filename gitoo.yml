@@ -1,3 +1,8 @@
 - url: https://github.com/oca/queue
   branch: "12.0"
   includes: ["queue_job"]
+
+- url: https://{{GIT_TOKEN}}@github.com/Numigi/odoo-enterprise
+  branch: "12.0"
+  includes:
+    - web_grid
