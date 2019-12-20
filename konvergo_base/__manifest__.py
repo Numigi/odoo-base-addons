@@ -12,6 +12,7 @@
     'depends': [
         # Numigi/odoo-base
         'numipack',
+        'odoo-debrand',  # TA#16526
 
         # OCA/social
         'mail_debrand',  # TA#16549
