@@ -52,6 +52,7 @@
         # Numigi/odoo-web-addons
         'web_contextual_search_favorite',  # TA#2637
         'web_custom_label',  # TA#3928
+        'web_custom_modifier',  # TA#16243
         'web_form_disable_autocomplete',  # TA#16461
         'web_search_date_range',
         'disable_quick_create',
