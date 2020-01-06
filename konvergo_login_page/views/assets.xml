@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="_assets_primary_variables" inherit_id="web._assets_primary_variables" priority="1">
+        <xpath expr="//link[last()]" position="after">
+            <link href="/konvergo_login_page/static/src/scss/colors.scss"
+                  rel="stylesheet"
+                  type="text/scss"/>
+        </xpath>
+    </template>
+
+
+    <template id="custom_scss" inherit_id="web.assets_frontend">
+        <xpath expr="//link[last()]" position="after">
+            <link href="/konvergo_login_page/static/src/scss/components.scss"
+                  rel="stylesheet"
+                  type="text/scss"/>
+        </xpath>
+    </template>
+</odoo>
