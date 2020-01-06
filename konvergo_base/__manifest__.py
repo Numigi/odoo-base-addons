@@ -13,6 +13,7 @@
         # Numigi/odoo-base
         'numipack',
         'odoo-debrand',  # TA#16526
+        'konvergo_login_page',  # TA#18145
 
         # OCA/social
         'mail_debrand',  # TA#16549
