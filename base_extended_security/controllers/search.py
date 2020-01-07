@@ -48,7 +48,7 @@ class DataSetWithExtendedSearchSecurity(DataSet):
     def _call_kw(self, model, method, args, kwargs):
         if method in SEARCH_METHODS:
             security_domain = _get_extended_security_domain(model)
-            search_domain = _get_domain_from_args_and_kwargs(method, args, kwargs)
+            search_domain = get_domain_from_args_and_kwargs(method, args, kwargs)
             complete_domain = AND((search_domain, security_domain))
             args, kwargs = _get_args_and_kwargs_with_new_domain(
                 method, args, kwargs, complete_domain)
@@ -60,7 +60,7 @@ def _get_extended_security_domain(model):
     return request.env[model].get_extended_security_domain()
 
 
-def _get_domain_from_args_and_kwargs(method, args, kwargs):
+def get_domain_from_args_and_kwargs(method, args, kwargs):
     """Get the domain from the given args and kwargs.
 
     If neither the args or kwargs contain the domain (which is a valid case),
