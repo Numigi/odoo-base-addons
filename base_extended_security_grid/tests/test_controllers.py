@@ -5,7 +5,7 @@ from odoo.addons.test_http_request.common import mock_odoo_request
 from odoo.addons.base_extended_security.tests.common import (
     ControllerCase,
 )
-from odoo.addons.base_extended_security.controllers.main import DataSetWithExtendedSecurity
+from odoo.addons.base_extended_security.controllers.crud import DataSetWithExtendedSecurity
 
 
 class TestControllers(ControllerCase):
