@@ -1,0 +1,151 @@
+# © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+
+import pytest
+from ddt import ddt, data, unpack
+from odoo.addons.test_http_request.common import mock_odoo_request
+from odoo.exceptions import AccessError
+from .common import (
+    ControllerCase,
+    EMPLOYEE_ACCESS_MESSAGE,
+    NON_CUSTOMER_READ_MESSAGE,
+    NON_CUSTOMER_WRITE_MESSAGE,
+    NON_CUSTOMER_CREATE_MESSAGE,
+    NON_CUSTOMER_UNLINK_MESSAGE,
+)
+from ..controllers.crud import DataSetWithExtendedSecurity
+
+
+@ddt
+class TestControllers(ControllerCase):
+
+    def setUp(self):
+        super().setUp()
+        self.controller = DataSetWithExtendedSecurity()
+
+    def _read(self, records):
+        with mock_odoo_request(self.env):
+            return self.controller.call(
+                'res.partner', 'read',
+                [records.ids, ['name', 'customer', 'supplier']]
+            )
+
+    def test_on_read_with_employee__access_error_raised(self):
+        with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
+            self._read(self.employee)
+
+    def test_on_read_with_non_customer__access_error_raised(self):
+        with pytest.raises(AccessError, match=NON_CUSTOMER_READ_MESSAGE):
+            self._read(self.supplier)
+
+    def test_on_read_with_customer__access_error_not_raised(self):
+        self._read(self.customer | self.supplier_customer)
+
+    def _write(self, records, values):
+        with mock_odoo_request(self.env):
+            return self.controller.call('res.partner', 'write', [records.ids, values])
+
+    def test_on_write_with_employee__access_error_raised(self):
+        with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
+            self._write(self.employee, {'name': 'My Employee'})
+
+    def test_on_write_with_non_customer__access_error_raised(self):
+        with pytest.raises(AccessError, match=NON_CUSTOMER_WRITE_MESSAGE):
+            self._write(self.supplier, {'name': 'My Supplier'})
+
+    def test_on_write__if_not_authorized_after_write__access_error_raised(self):
+        with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
+            self._write(self.customer, {'employee': True})
+
+    def test_on_write_with_customer__access_error_not_raised(self):
+        self._write(self.customer | self.supplier_customer, {'name': 'My Customer'})
+
+    def _create(self, values):
+        with mock_odoo_request(self.env):
+            return self.controller.call('res.partner', 'create', [values])
+
+    def test_on_create_with_employee__access_error_raised(self):
+        values = [{
+            'name': 'My Employee',
+            'customer': True,
+            'supplier': True,
+            'employee': True,
+        }]
+        with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
+            self._create(values)
+
+    def test_on_create_with_non_customer__access_error_raised(self):
+        values = [{
+            'name': 'My Supplier',
+            'customer': False,
+            'supplier': True,
+        }]
+        with pytest.raises(AccessError, match=NON_CUSTOMER_CREATE_MESSAGE):
+            self._create(values)
+
+    def test_on_create_with_customer__access_error_not_raised(self):
+        values = [
+            {
+                'name': 'My Customer',
+                'customer': True,
+                'supplier': False,
+            },
+            {
+                'name': 'My Supplier Customer',
+                'customer': True,
+                'supplier': True,
+            }
+        ]
+        self._create(values)
+
+    def _unlink(self, records):
+        with mock_odoo_request(self.env):
+            return self.controller.call('res.partner', 'unlink', [records.ids])
+
+    def test_on_unlink_with_employee__access_error_raised(self):
+        with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
+            self._unlink(self.employee)
+
+    def test_on_unlink_with_non_customer__access_error_raised(self):
+        with pytest.raises(AccessError, match=NON_CUSTOMER_UNLINK_MESSAGE):
+            self._unlink(self.supplier)
+
+    def test_on_unlink_with_customer__access_error_not_raised(self):
+        self._unlink(self.customer | self.supplier_customer)
+
+    def _name_create(self, name):
+        with mock_odoo_request(self.env):
+            return self.controller.call('res.partner', 'name_create', [name])
+
+    def _set_default_value(self, field, value):
+        self.env['ir.default'].set('res.partner', field, value, user_id=self.env.uid)
+
+    def test_on_name_create_with_customer__access_error_not_raised(self):
+        self._set_default_value('customer', True)
+        self._name_create('My Partner')
+
+    def test_on_name_create_with_non_customer__access_error_raised(self):
+        self._set_default_value('customer', False)
+        with pytest.raises(AccessError, match=NON_CUSTOMER_CREATE_MESSAGE):
+            self._name_create('My Partner')
+
+    def test_on_name_create_with_employee__access_error_not_raised(self):
+        self._set_default_value('customer', True)
+        self._set_default_value('customer', False)
+        with pytest.raises(AccessError, match=NON_CUSTOMER_CREATE_MESSAGE):
+            self._name_create('My Partner')
+
+    def _name_get(self, records):
+        with mock_odoo_request(self.env):
+            return self.controller.call('res.partner', 'name_get', [records.ids])
+
+    def test_on_name_get__access_error_not_raised(self):
+        self._name_get(self.employee)
+
+    def _read_many2many_tags(self, records):
+        with mock_odoo_request(self.env):
+            fields = ['display_name', 'color']
+            return self.controller.call('res.partner', 'read', [records.ids, fields])
+
+    def test_on_many2many_tags_read__access_error_not_raised(self):
+        self._read_many2many_tags(self.employee)
