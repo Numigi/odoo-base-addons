@@ -2,7 +2,6 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import pytest
-from ddt import ddt, data, unpack
 from odoo.addons.test_http_request.common import mock_odoo_request
 from odoo.exceptions import AccessError
 from .common import (
@@ -16,7 +15,6 @@ from .common import (
 from ..controllers.crud import DataSetWithExtendedSecurity
 
 
-@ddt
 class TestControllers(ControllerCase):
 
     def setUp(self):
