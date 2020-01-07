@@ -169,7 +169,10 @@ class TestControllers(ControllerCase):
 
     def _read(self, records):
         with mock_odoo_request(self.env):
-            return self.controller.call('res.partner', 'read', [records.ids, ['name']])
+            return self.controller.call(
+                'res.partner', 'read',
+                [records.ids, ['name', 'customer', 'supplier']]
+            )
 
     def test_on_read_with_employee__access_error_raised(self):
         with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
@@ -193,6 +196,10 @@ class TestControllers(ControllerCase):
     def test_on_write_with_non_customer__access_error_raised(self):
         with pytest.raises(AccessError, match=NON_CUSTOMER_WRITE_MESSAGE):
             self._write(self.supplier, {'name': 'My Supplier'})
+
+    def test_on_write__if_not_authorized_after_write__access_error_raised(self):
+        with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
+            self._write(self.customer, {'employee': True})
 
     def test_on_write_with_customer__access_error_not_raised(self):
         self._write(self.customer | self.supplier_customer, {'name': 'My Customer'})
@@ -271,3 +278,18 @@ class TestControllers(ControllerCase):
         self._set_default_value('customer', False)
         with pytest.raises(AccessError, match=NON_CUSTOMER_CREATE_MESSAGE):
             self._name_create('My Partner')
+
+    def _name_get(self, records):
+        with mock_odoo_request(self.env):
+            return self.controller.call('res.partner', 'name_get', [records.ids])
+
+    def test_on_name_get__access_error_not_raised(self):
+        self._name_get(self.employee)
+
+    def _on_many2many_tags_read_request(self, records):
+        with mock_odoo_request(self.env):
+            fields = ['display_name', 'color']
+            return self.controller.call('res.partner', 'read', [records.ids, fields])
+
+    def test_on_many2many_tags_read__access_error_not_raised(self):
+        self._on_many2many_tags_read_request(self.employee)
