@@ -32,6 +32,34 @@ DOMAIN_ARGUMENT_INDEXES = {
 }
 
 
+class DataSetWithExtendedSearchSecurity(DataSet):
+    """Add extra security domains to search operations."""
+
+    def do_search_read(
+        self, model, fields=False, offset=0, limit=False, domain=None, sort=None
+    ):
+        search_domain = domain or []
+        security_domain = _get_extended_security_domain(model)
+        complete_domain = AND([search_domain, security_domain])
+        return super().do_search_read(
+            model, fields=fields, offset=offset, limit=limit, domain=complete_domain, sort=sort
+        )
+
+    def _call_kw(self, model, method, args, kwargs):
+        if method in SEARCH_METHODS:
+            security_domain = _get_extended_security_domain(model)
+            search_domain = get_domain_from_args_and_kwargs(method, args, kwargs)
+            complete_domain = AND((search_domain, security_domain))
+            args, kwargs = _get_args_and_kwargs_with_new_domain(
+                method, args, kwargs, complete_domain)
+
+        return super()._call_kw(model, method, args, kwargs)
+
+
+def _get_extended_security_domain(model):
+    return request.env[model].get_extended_security_domain()
+
+
 def get_domain_from_args_and_kwargs(method, args, kwargs):
     """Get the domain from the given args and kwargs.
 
@@ -91,69 +119,3 @@ def _get_args_and_kwargs_with_new_domain(method, args, kwargs, domain):
         kwargs[argument_name] = domain
 
     return args, kwargs
-
-
-class DataSetWithExtendedSearchSecurity(DataSet):
-    """Add extra security domains to search operations."""
-
-    def _get_extended_security_domain(self, model):
-        return request.env[model].get_extended_security_domain()
-
-    def do_search_read(
-        self, model, fields=False, offset=0, limit=False, domain=None, sort=None
-    ):
-        search_domain = domain or []
-        security_domain = self._get_extended_security_domain(model)
-        complete_domain = AND([search_domain, security_domain])
-        return super().do_search_read(
-            model, fields=fields, offset=offset, limit=limit, domain=complete_domain, sort=sort
-        )
-
-    def _call_kw(self, model, method, args, kwargs):
-        if method in SEARCH_METHODS:
-            security_domain = self._get_extended_security_domain(model)
-            search_domain = get_domain_from_args_and_kwargs(method, args, kwargs)
-            complete_domain = AND((search_domain, security_domain))
-            args, kwargs = _get_args_and_kwargs_with_new_domain(
-                method, args, kwargs, complete_domain)
-
-        return super()._call_kw(model, method, args, kwargs)
-
-
-READ_WRITE_UNLINK_METHODS = [
-    'read',
-    'write',
-    'unlink',
-    'name_get',
-]
-
-
-CREATE_METHODS = [
-    'create',
-    'name_create',
-]
-
-
-class DataSetWithExtendedSecurity(DataSetWithExtendedSearchSecurity):
-    """Add extra security rules for read/write/create/unlink operations."""
-
-    def _check_extended_security_rules(self, model, method, record_ids):
-        records = request.env[model].browse(record_ids)
-
-        if method != 'name_get':
-            records.check_extended_security_all()
-
-        getattr(records, 'check_extended_security_{}'.format(method))()
-
-    def _call_kw(self, model, method, args, kwargs):
-        if method in READ_WRITE_UNLINK_METHODS:
-            record_ids = args[0]
-            self._check_extended_security_rules(model, method, record_ids)
-
-        result = super()._call_kw(model, method, args, kwargs)
-
-        if method in CREATE_METHODS:
-            record_ids = [result[0]] if method == 'name_create' else result
-            self._check_extended_security_rules(model, 'create', record_ids)
-
-        return result

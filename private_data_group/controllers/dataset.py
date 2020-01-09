@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo.addons.web.controllers.main import DataSet
-from odoo.addons.base_extended_security.controllers.main import (
+from odoo.addons.base_extended_security.controllers.search import (
     SEARCH_METHODS,
     get_domain_from_args_and_kwargs,
 )

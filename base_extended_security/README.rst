@@ -112,6 +112,26 @@ However, I can edit existing tasks.
 
 .. image:: static/description/task_edit.png
 
+Excluded Queries
+----------------
+The module ignores some xml-rpc queries.
+The extra security rules are not checked against these queries.
+
+Name Get
+~~~~~~~~
+The module ignores name_get queries.
+
+Blocking a name_get query could raise errors related to many2one fields.
+
+Many2many Tags
+~~~~~~~~~~~~~~
+Many2many tags fields in Odoo use a separate ``read`` query to render their content.
+
+This ``read`` query contains at most 2 fields ``display_name`` and ``color``.
+The module does not check security rules for such query.
+
+It is equivalent to a ``name_get`` query.
+
 Contributors
 ------------
 * Numigi (tm) and all its contributors (https://bit.ly/numigiens)
