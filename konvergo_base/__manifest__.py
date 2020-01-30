@@ -12,7 +12,9 @@
     'depends': [
         # Numigi/odoo-base
         'numipack',
-        'odoo-debrand',  # TA#16526
+        # commented for now. It is not compatible with konvergo_login_page
+        # see TA#17781
+        # 'odoo-debrand',  # TA#16526
         'konvergo_login_page',  # TA#18145
 
         # OCA/social
