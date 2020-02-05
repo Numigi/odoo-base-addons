@@ -12,6 +12,9 @@
     'depends': [
         # odoo/odoo
         'sale_management',
+
+        # numigi/odoo-product-addons
+        'contacts_config_sale_manager',
     ],
     'data': [
         'security/extended_security_rule.xml',
