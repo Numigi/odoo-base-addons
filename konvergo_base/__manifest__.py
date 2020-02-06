@@ -15,10 +15,15 @@
         # commented for now. It is not compatible with konvergo_login_page
         # see TA#17781
         # 'odoo-debrand',  # TA#16526
+        'konvergo_favicon_title',  # TA#16527
         'konvergo_login_page',  # TA#18145
 
         # OCA/social
         'mail_debrand',  # TA#16549
+
+
+        # theme
+        'muk_web_theme',
     ],
     'installable': True,
 }
