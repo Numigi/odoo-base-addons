@@ -83,17 +83,41 @@ class TestPrivateFields(BIUserCase):
     def setUp(self):
         super().setUp()
         self.employee_name = 'John Doe'
+        self.employee_id = self._create_employee()
+
+    def tearDown(self):
+        self._delete_employee(self.employee_id)
+        self._enable_column_protection()
+
+    def _create_employee(self):
         with open_cursor(self.dbname) as cr:
             env = Environment(cr, SUPERUSER_ID, {})
-            self.employee_id = env['hr.employee'].create({
+            return env['hr.employee'].create({
                 'name': self.employee_name,
                 'ssnid': '010 101 010',
             }).id
 
-    def tearDown(self):
+    def _delete_employee(self, employee_id):
         with open_cursor(self.dbname) as cr:
             env = Environment(cr, SUPERUSER_ID, {})
-            env['hr.employee'].browse(self.employee_id).unlink()
+            env['hr.employee'].browse(employee_id).unlink()
+
+    def test_if_field_protected__can_not_fetch_field(self):
+        with pytest.raises(ProgrammingError):
+            self._read_employee_column('ssnid')
+
+    def test_if_field_not_protected__can_fetch_field(self):
+        assert self._read_employee_column('name') == self.employee_name
+
+    def test_disable_column_protection(self):
+        self._disable_column_protection()
+        self._read_employee_column('ssnid')
+
+    def test_enable_column_protection(self):
+        self._disable_column_protection()
+        self._enable_column_protection()
+        with pytest.raises(ProgrammingError):
+            self._read_employee_column('ssnid')
 
     def _read_employee_column(self, column):
         with open_cursor(self.dbname, user='bi', password=self.password) as cr:
@@ -103,9 +127,12 @@ class TestPrivateFields(BIUserCase):
             )
             return cr.fetchone()[0]
 
-    def test_if_field_protected__can_not_fetch_field(self):
-        with pytest.raises(ProgrammingError):
-            self._read_employee_column('ssnid')
+    def _enable_column_protection(self):
+        with open_cursor(self.dbname) as cr:
+            env = Environment(cr, SUPERUSER_ID, {})
+            env['database.bi.user.update'].enable_column_protection()
 
-    def test_if_field_not_protected__can_fetch_field(self):
-        assert self._read_employee_column('name') == self.employee_name
+    def _disable_column_protection(self):
+        with open_cursor(self.dbname) as cr:
+            env = Environment(cr, SUPERUSER_ID, {})
+            env['database.bi.user.update'].disable_column_protection()
