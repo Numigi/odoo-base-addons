@@ -25,6 +25,14 @@ the columns are revoked from the BI user in real time.
 
 Private fields are implemented in the module `private_data_group <https://github.com/Numigi/odoo-base-addons/tree/12.0/private_data_group>`_.
 
+Disable Field Protection
+~~~~~~~~~~~~~~~~~~~~~~~~
+Since version ``1.2.0`` of the module, a new checkbox is added in the general settings.
+
+.. image:: static/description/disable_field_protection.png
+
+Checking this box lifts the protection on private columns for the BI user.
+
 Known Issues
 ~~~~~~~~~~~~
 This feature is only available for fields stored as columns.
