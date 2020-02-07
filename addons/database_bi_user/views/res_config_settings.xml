@@ -23,6 +23,20 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="database_bi_user_disable_column_protection"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="database_bi_user_disable_column_protection" string="Disable Sentive Data Protection"/>
+                                <div class="text-muted">
+                                    By default, columns related to private (sensitive) fields (SIN, gender, marital status, etc)
+                                    are revoked from the BI User.
+
+                                    By checking this box, the restriction on those columns is lifted.
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </xpath>
