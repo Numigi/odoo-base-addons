@@ -59,6 +59,9 @@
 
         # OCA/web
         'web_search_with_and',  # TA#2547
+
+        # Smile-SA/odoo_addons
+        'smile_web_impex',  # TA#19309
     ],
     'data': [
         # 'admin_light_user_password_security_binding.xml',
