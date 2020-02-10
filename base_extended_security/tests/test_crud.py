@@ -111,6 +111,65 @@ class TestControllers(ControllerCase):
     def test_on_unlink_with_customer__access_error_not_raised(self):
         self._unlink(self.customer | self.supplier_customer)
 
+    def _x2many_unlink(self, parent, child):
+        self._write(parent, {'child_ids': [(2, child.id)]})
+
+    def test_on_x2many_unlink_with_employee__access_error_raised(self):
+        self.customer.child_ids |= self.employee
+        with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
+            self._x2many_unlink(self.customer, self.employee)
+
+    def test_on_x2many_unlink_with_non_customer__access_error_raised(self):
+        self.customer.child_ids |= self.supplier
+        with pytest.raises(AccessError, match=NON_CUSTOMER_UNLINK_MESSAGE):
+            self._x2many_unlink(self.customer, self.supplier)
+
+    def test_on_x2many_unlink_with_customer__access_error_not_raised(self):
+        self.customer.child_ids |= self.supplier_customer
+        self._x2many_unlink(self.customer, self.supplier_customer)
+
+    def _x2many_write(self, parent, child):
+        vals = {'name': 'Some Value'}
+        self._write(parent, {'child_ids': [(1, child.id, vals)]})
+
+    def test_on_x2many_write_with_employee__access_error_raised(self):
+        self.customer.child_ids |= self.employee
+        with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
+            self._x2many_write(self.customer, self.employee)
+
+    def test_on_x2many_write_with_non_customer__access_error_raised(self):
+        self.customer.child_ids |= self.supplier
+        with pytest.raises(AccessError, match=NON_CUSTOMER_WRITE_MESSAGE):
+            self._x2many_write(self.customer, self.supplier)
+
+    def test_on_x2many_write_with_customer__access_error_not_raised(self):
+        self.customer.child_ids |= self.supplier_customer
+        self._x2many_write(self.customer, self.supplier_customer)
+
+    def _x2many_create(self, parent, vals):
+        self._write(parent, {'child_ids': [(0, 0, vals)]})
+
+    def test_on_x2many_create_with_employee__access_error_raised(self):
+        with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
+            self._x2many_create(self.customer, {
+                'name': 'Some Contact',
+                'customer': True,
+                'employee': True,
+            })
+
+    def test_on_x2many_create_with_non_customer__access_error_raised(self):
+        with pytest.raises(AccessError, match=NON_CUSTOMER_WRITE_MESSAGE):
+            self._x2many_create(self.customer, {
+                'name': 'Some Contact',
+                'customer': False,
+            })
+
+    def test_on_x2many_create_with_customer__access_error_not_raised(self):
+        self._x2many_create(self.customer, {
+            'name': 'Some Contact',
+            'customer': True,
+        })
+
     def _name_create(self, name):
         with mock_odoo_request(self.env):
             return self.controller.call('res.partner', 'name_create', [name])
