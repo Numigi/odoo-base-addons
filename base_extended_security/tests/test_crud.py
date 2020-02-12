@@ -206,3 +206,14 @@ class TestControllers(ControllerCase):
 
     def test_on_many2many_tags_read__access_error_not_raised(self):
         self._read_many2many_tags(self.employee)
+
+    def _call_button(self, records, action_name):
+        with mock_odoo_request(self.env):
+            return self.controller.call_button('res.partner', action_name, [records.ids])
+
+    def test_toggle_active_with_employee__access_error_raised(self):
+        with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
+            self._call_button(self.employee, 'toggle_active')
+
+    def test_toggle_active_with_customer__access_error_not_raised(self):
+        self._call_button(self.customer, 'toggle_active')

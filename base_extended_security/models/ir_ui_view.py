@@ -6,7 +6,27 @@ from odoo import api, models
 from typing import Iterable
 
 
-def _hide_buttons_with_access_blocked(env: api.Environment, model: str, arch: str) -> str:
+class ViewWithButtonsHiden(models.Model):
+
+    _inherit = 'ir.ui.view'
+
+    @api.model
+    def postprocess_and_fields(self, model, node, view_id):
+        """Add custom labels to the view xml.
+
+        This method is called in Odoo when generating the final xml of a view.
+        """
+        arch, fields = super().postprocess_and_fields(model, node, view_id)
+
+        is_nested_view = bool(self._context.get('base_model_name'))
+        if not is_nested_view:
+            arch = _hide_buttons_with_access_blocked(self.env, model, arch)
+            _hide_one2many_view_buttons_with_access_blocked(self.env, fields)
+
+        return arch, fields
+
+
+def _hide_buttons_with_access_blocked(env, model, arch):
     """Hide buttons on the view for which the user access is blocked.
 
     :param env: the Odoo environment
@@ -26,6 +46,7 @@ def _hide_buttons_with_access_blocked(env: api.Environment, model: str, arch: st
 
     if not perm_write:
         tree.attrib['edit'] = "false"
+        _remove_all_button_tags(tree)
 
     if not perm_create:
         tree.attrib['create'] = "false"
@@ -36,9 +57,12 @@ def _hide_buttons_with_access_blocked(env: api.Environment, model: str, arch: st
     return etree.tostring(tree)
 
 
-def _hide_one2many_view_buttons_with_access_blocked(
-    env: api.Environment, fields: Iterable[dict]
-) -> None:
+def _remove_all_button_tags(tree):
+    for button in tree.xpath('//button'):
+        button.getparent().remove(button)
+
+
+def _hide_one2many_view_buttons_with_access_blocked(env, fields):
     """Hide the buttons in nested one2many fields with access restricted.
 
     The view architectures are updated directly inside the field
@@ -53,23 +77,3 @@ def _hide_one2many_view_buttons_with_access_blocked(
 
         for view in field['views'].values():
             view['arch'] = _hide_buttons_with_access_blocked(env, model, view['arch'])
-
-
-class ViewWithButtonsHiden(models.Model):
-
-    _inherit = 'ir.ui.view'
-
-    @api.model
-    def postprocess_and_fields(self, model, node, view_id):
-        """Add custom labels to the view xml.
-
-        This method is called in Odoo when generating the final xml of a view.
-        """
-        arch, fields = super().postprocess_and_fields(model, node, view_id)
-
-        is_nested_view = bool(self._context.get('base_model_name'))
-        if not is_nested_view:
-            arch = _hide_buttons_with_access_blocked(self.env, model, arch)
-            _hide_one2many_view_buttons_with_access_blocked(self.env, fields)
-
-        return arch, fields

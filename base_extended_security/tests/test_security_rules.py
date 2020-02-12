@@ -191,3 +191,18 @@ class TestSecurityRules(SavepointCase):
         })
         one2many_list = self._get_nested_ir_model_access_one2many_arch()
         assert view_property in one2many_list.attrib
+
+    def _get_product_form_view_arch(self):
+        view = self.env.ref('product.product_normal_form_view')
+        arch = self.env['product.product'].fields_view_get(view_id=view.id)['arch']
+        return etree.fromstring(arch)
+
+    def test_if_authorized__toggle_button_not_hidden(self):
+        form_view = self._get_product_form_view_arch()
+        assert form_view.xpath("//button[@name='toggle_active']")
+
+    def test_if_not_authorized__toggle_button_hidden(self):
+        self.rule.perm_write = True
+
+        form_view = self._get_product_form_view_arch()
+        assert not form_view.xpath("//button[@name='toggle_active']")
