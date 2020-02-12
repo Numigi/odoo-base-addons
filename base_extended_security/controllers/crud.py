@@ -66,7 +66,7 @@ class _ExtendedSecurityVerifier:
         return self._method == 'read' and not self._is_many2many_tag_read_request()
 
     def _is_write(self):
-        return self._method == 'write'
+        return self._method in ('write', 'toggle_active')
 
     def _is_create(self):
         return self._method in ('create', 'name_create')
