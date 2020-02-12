@@ -36,6 +36,7 @@
         'report_aeroo_replace_qweb',
 
         # Numigi/odoo-partner-addons
+        'contacts_config_menu_moved_right',  # TA#18504
         'partner_edit_group',  # TA#10975
         'partner_phone_validation',  # TA#5979
 
