@@ -192,13 +192,6 @@ class TestControllers(ControllerCase):
         with pytest.raises(AccessError, match=NON_CUSTOMER_CREATE_MESSAGE):
             self._name_create('My Partner')
 
-    def _name_get(self, records):
-        with mock_odoo_request(self.env):
-            return self.controller.call('res.partner', 'name_get', [records.ids])
-
-    def test_on_name_get__access_error_not_raised(self):
-        self._name_get(self.employee)
-
     def _read_many2many_tags(self, records):
         with mock_odoo_request(self.env):
             fields = ['display_name', 'color']

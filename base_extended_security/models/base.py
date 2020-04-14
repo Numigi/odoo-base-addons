@@ -58,9 +58,3 @@ class BaseWithExtendedSecurity(models.AbstractModel):
         self.env['extended.security.rule'].check_user_access(
             model=self._name, access_type='unlink',
         )
-
-    def check_extended_security_name_get(self):
-        """Check extended security rules for name_get operations."""
-        self.env['extended.security.rule'].check_user_access(
-            model=self._name, access_type='name_get',
-        )

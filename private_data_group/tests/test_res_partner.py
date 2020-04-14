@@ -37,17 +37,6 @@ class TestResPartner(common.SavepointCase):
         with pytest.raises(AccessError):
             self.private_address.sudo(self.user).check_extended_security_all()
 
-    def test_if_is_authorized__access_error_not_raised_on_name_get(self):
-        self.user.groups_id |= self.group
-        self.private_address.sudo(self.user).check_extended_security_name_get()
-
-    def test_if_partner_is_not_private__access_error_not_raised_on_name_get(self):
-        self.contact.sudo(self.user).check_extended_security_name_get()
-
-    def test_if_not_authorized__access_error_raised_on_name_get(self):
-        with pytest.raises(AccessError):
-            self.private_address.sudo(self.user).check_extended_security_name_get()
-
     def _search_partners(self):
         partner_pool = self.env['res.partner'].sudo(self.user)
         domain = partner_pool.get_extended_security_domain()

@@ -24,7 +24,6 @@ class ExtendedSecurityRule(models.Model):
     perm_write = fields.Boolean('Write')
     perm_create = fields.Boolean('Create')
     perm_unlink = fields.Boolean('Delete')
-    perm_name_get = fields.Boolean('Name Get')
     active = fields.Boolean(default=True)
 
     @api.model_create_multi
