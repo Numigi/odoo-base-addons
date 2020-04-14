@@ -29,6 +29,7 @@ class TestControllers(TransactionCase):
         self.domain = [('id', '=', self.employee.id)]
 
         self.controller = DataSetWithPrivateFields()
+        self.env = self.env(user=self.user)
 
     def test_private_field_removed_from_read_request(self):
         with mock_odoo_request(self.env):
