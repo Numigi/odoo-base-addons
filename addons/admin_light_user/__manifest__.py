@@ -26,6 +26,7 @@
         'mask_admin_groups.xml',
         'security/ir.model.access.csv',
         'security/extended_security_rule.xml',
+        'security/ir_rule.xml',
     ],
     'installable': True,
 }
