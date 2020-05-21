@@ -3,7 +3,7 @@
 
     <record id="res_company_rule_erp_manager" model="ir.rule">
         <field name="name">Admin Light: multi-company</field>
-        <field name="model_id" ref="model_res_company"/>
+        <field name="model_id" ref="base.model_res_company"/>
         <field name="groups" eval="[(6, 0, [ref('group_user_management')])]"/>
         <field name="domain_force">[]</field>
     </record>
