@@ -11,11 +11,15 @@
 
     <function model="ir.config_parameter"
               name="set_param"
+              eval="('ir_attachment.location.region', 'us-east-1')" />
+
+    <function model="ir.config_parameter"
+              name="set_param"
               eval="('ir_attachment.location.access_key', 'minio')" />
 
     <function model="ir.config_parameter"
               name="set_param"
-              eval="('ir_attachment.location.secret_key', 'minio_secret')" />
+              eval="('ir_attachment.location.secret_key', 'miniosecret')" />
 
     <function model="ir.config_parameter"
               name="set_param"
