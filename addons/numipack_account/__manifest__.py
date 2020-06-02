@@ -25,6 +25,9 @@
 
         # Numigi/aeroo_reports
         'account_check_printing_aeroo',
+
+        # Numigi/web-addons
+        'web_search_date_range_account',
     ],
     'data': [
         'security/extended_security_rule.xml',
