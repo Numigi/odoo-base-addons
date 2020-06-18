@@ -12,6 +12,7 @@
     'depends': [
         'numikube_attachment_minio',
         'numikube_database_backup',
+        'session_redis',
     ],
     'installable': True,
 }
