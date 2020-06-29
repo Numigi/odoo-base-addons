@@ -31,7 +31,6 @@ Once the transfer is completed, the backup is deleted from the Odoo server.
 The export is always done with the same URL, bucket name and credentials.
 
 * URL: minio:9000
-* Bucket Name: backups
 * Access Key: minio
 * Secret Key: miniosecret
 * Secure: False
@@ -55,6 +54,9 @@ Bucket Creation
 ---------------
 When the cron is ran, if the ``backups`` bucket does not exist on the minio server,
 it is created automatically.
+
+The parameter backups_minio_bucket must be set in the Odoo config file
+in order to identify the proper bucket for this client.
 
 Contributors
 ------------

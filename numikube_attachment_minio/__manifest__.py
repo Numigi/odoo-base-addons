@@ -9,7 +9,7 @@
     "license": "LGPL-3",
     "category": "Other",
     "summary": "Attachment Minio for the Numigi Kubernetes infrastructure",
-    "depends": ["attachment_minio",],
+    "depends": ["attachment_minio", "numikube_minio"],
     "data": ["data/ir_config_parameter.xml",],
     "post_init_hook": "post_init_hook",
     "installable": True,
