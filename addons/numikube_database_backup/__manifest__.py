@@ -9,7 +9,7 @@
     "license": "LGPL-3",
     "category": "Other",
     "summary": "Database Backups for the Numigi Kubernetes infrastructure",
-    "depends": ["base",],
+    "depends": ["base", "numikube_minio"],
     "data": ["data/ir_cron.xml",],
     "installable": True,
 }

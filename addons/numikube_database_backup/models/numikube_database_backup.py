@@ -6,9 +6,8 @@ from datetime import datetime
 from minio import Minio
 from odoo.models import AbstractModel
 from odoo.service.db import dump_db
-
-
-BUCKET_NAME = "backups"
+from odoo.addons.numikube_minio.minio import get_minio_client, auto_create_bucket
+from ..bucket import get_backups_bucket_name
 
 
 class DatabaseBackup(AbstractModel):
@@ -20,19 +19,9 @@ class DatabaseBackup(AbstractModel):
         self._autocreate_backups_bucket()
         self._execute_backup()
 
-    def get_minio_client(self):
-        return Minio(
-            "minio:9000",
-            access_key="minio",
-            secret_key="miniosecret",
-            secure=False,
-        )
-
     def _autocreate_backups_bucket(self):
-        client = self.get_minio_client()
-        bucket_names = {b.name for b in client.list_buckets()}
-        if BUCKET_NAME not in bucket_names:
-            client.make_bucket(BUCKET_NAME, location="us-east-1")
+        bucket_name = get_backups_bucket_name()
+        auto_create_bucket(bucket_name)
 
     def _execute_backup(self):
         filename = self._make_filename()
@@ -42,8 +31,9 @@ class DatabaseBackup(AbstractModel):
             self._transfer_file_to_minio(filename, file)
 
     def _transfer_file_to_minio(self, filename, file):
-        client = self.get_minio_client()
-        client.fput_object(BUCKET_NAME, filename, file.name)
+        client = get_minio_client()
+        bucket_name = get_backups_bucket_name()
+        client.fput_object(bucket_name, filename, file.name)
 
     def _make_filename(self):
         return "{:%Y_%m_%d_%H_%M_%S}.dump".format(datetime.now())
