@@ -23,10 +23,6 @@
 
     <function model="ir.config_parameter"
               name="set_param"
-              eval="('ir_attachment.location.bucket', 'attachments')" />
-
-    <function model="ir.config_parameter"
-              name="set_param"
               eval="('ir_attachment.location.secure', '')" />
 
 </odoo>
