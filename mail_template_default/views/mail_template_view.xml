@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+    	<!-- View Form -->
+    	<record id="mail_template_view_form" model="ir.ui.view">
+	        <field name="name">mail.template.view.from</field>
+	        <field name="model">mail.template</field>
+	        <field name="inherit_id" ref="mail.email_template_form"/>
+	        <field name="arch" type="xml">
+	            <xpath expr="//field[@name='model_id']" position="after">
+	                <field name="default_template" />
+	            </xpath>
+	        </field>
+    	</record>
+    	
+    	<!-- View Tree -->
+    	<record id="mail_template_view_tree" model="ir.ui.view">
+	        <field name="name">mail.template.view.tree</field>
+	        <field name="model">mail.template</field>
+	        <field name="inherit_id" ref="mail.email_template_tree"/>
+	        <field name="arch" type="xml">
+	            <xpath expr="//field[@name='model_id']" position="after">
+	                <field name="default_template" />
+	            </xpath>
+	        </field>
+    	</record>
+    
+    </data>
+</odoo>
