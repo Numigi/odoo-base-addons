@@ -21,6 +21,20 @@ However, it can be ran manually for test purposes.
 By default, when creating a new database and installing the module, the cron is deactivated.
 It must be activated manually in production.
 
+Hourly / Daily Backups
+----------------------
+Since version 1.1.0 of the module, two crons are defined by the module instead of one:
+
+* one for houly backups
+* one for daily backups
+
+Hourly backups are saved as ``{db_name}-hourly-{h}.dump`` where ``{h}`` is the current UTC hour modulo 3.
+
+Daily backups are saved as ``{db_name}-daily-{d}.dump`` where ``{d}`` is the ISO weekday number (sunday is 0 and saturday is 6).
+
+If a backup already exists in the minio instance for a given name, it is replaced with the new backups.
+A maximum 3 hourly backups and 7 daily backups are kept.
+
 Module Architecture
 -------------------
 The module uses the `minio python client <https://docs.min.io/docs/python-client-api-reference.html>`_ to export the backups to the minio server.
