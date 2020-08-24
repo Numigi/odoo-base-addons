@@ -15,15 +15,6 @@
          'mail',
      ],
     'data': [
-    #     'security/res_groups.xml',
-    #     'security/ir.model.access.csv',
-    #     'security/ir_rule.xml',
-    #     'views/recording.xml',
          'views/mail_template.xml',
     ],
-    # 'demo': [
-    #     'demo/recording.xml',
-    # ],
-    # 'installable': True,
-    # 'application': True,
 }
