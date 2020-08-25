@@ -29,7 +29,7 @@ msgstr "Modèle de courriel"
 #. module: mail_template_default
 #: model:ir.model,name:mail_template_default.model_mail_compose_message
 msgid "Email composition wizard"
-msgstr ""
+msgstr "Assistant de composition de courriel"
 
 #. module: mail_template_default
 #: code:addons/mail_template_default/models/mail_template.py:16
