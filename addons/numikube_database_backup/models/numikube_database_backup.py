@@ -3,6 +3,7 @@
 
 import tempfile
 import logging
+import io
 from datetime import datetime
 from minio import Minio
 from odoo.models import AbstractModel
@@ -49,14 +50,16 @@ class DatabaseBackup(AbstractModel):
 
     def _backup_database_with_filename(self, filename):
         _logger.info("Saving the database to minio as filename {}".format(filename))
-        with tempfile.NamedTemporaryFile() as file:
-            dump_db(self._database_name, file, "dump")
-            self._transfer_file_to_minio(filename, file)
+        file = dump_db(self._database_name, None, "dump")
+        content = file.read()
+        self._transfer_file_to_minio(filename, content)
 
-    def _transfer_file_to_minio(self, filename, file):
+    def _transfer_file_to_minio(self, filename, content):
+        content_length = len(content)
+        content_stream = io.BytesIO(content)
         client = get_minio_client()
         bucket_name = get_backups_bucket_name()
-        client.fput_object(bucket_name, filename, file.name)
+        client.put_object(bucket_name, filename, content_stream, content_length)
 
     def _make_hourly_filename(self):
         return "{db_name}-hourly-{backup_number}.dump".format(
