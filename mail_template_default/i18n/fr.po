@@ -24,7 +24,7 @@ msgstr "Modèle par défaut"
 #. module: mail_template_default
 #: model:ir.model,name:mail_template_default.model_mail_template
 msgid "Email Templates"
-msgstr ""
+msgstr "Modèle de courriel"
 
 #. module: mail_template_default
 #: model:ir.model,name:mail_template_default.model_mail_compose_message
