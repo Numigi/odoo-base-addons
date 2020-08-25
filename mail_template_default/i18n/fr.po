@@ -19,7 +19,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mail_template_default.field_email_template_preview__is_default_template
 #: model:ir.model.fields,field_description:mail_template_default.field_mail_template__is_default_template
 msgid "Default Template"
-msgstr ""
+msgstr "Modèle par défaut"
 
 #. module: mail_template_default
 #: model:ir.model,name:mail_template_default.model_mail_template
