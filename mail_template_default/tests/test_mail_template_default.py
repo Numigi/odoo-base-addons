@@ -28,7 +28,9 @@ class TestMailTemplateDefault(SavepointCase):
     def test_get_default_template(self):
         self.mail_1.is_default_template = True
         self.assertEquals(
-            self.env["mail.compose.message"].with_context(default_model="res.partner").default_get(["template_id"])["template_id"],
+            self.env["mail.compose.message"].with_context(
+                default_model="res.partner"
+            ).default_get(["template_id"])["template_id"],
             self.mail_1.id
         )
         self.mail_1.is_default_template = False
