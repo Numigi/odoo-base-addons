@@ -36,5 +36,6 @@ msgstr "Assistant de composition de courriel"
 #, python-format
 msgid "This object already has a default template associated. \n"
 "You cannot assign more than one default template by object."
-msgstr ""
+msgstr "Un modèle de courriel par défaut est déjà sélectionné pour cet objet.\n"
+"Un seul modèle de courriel par défaut peut être défini par objet."
 
