@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Mail Enable Archive',
+    'name': 'Mail Template Archive',
     'version': '1.2.0',
     'author': 'Numigi',
     'maintainer': 'Numigi',
@@ -17,4 +17,5 @@
     'data': [
          'views/mail_template.xml',
     ],
+    'installable': True,
 }
