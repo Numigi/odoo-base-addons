@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="mail_template_form" model="ir.ui.view">
+        <field name="name">Mail Template Form: Add smart button archive</field>
+        <field name="model">mail.template</field>
+        <field name="inherit_id" ref="mail.email_template_form"/>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='oe_button_box']/field[@name='ref_ir_act_window']" position="before">
+                    <button class="oe_stat_button" type="object" name="toggle_active" icon="fa-archive" groups="base.group_system">
+                        <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                    </button>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="mail_template_tree" model="ir.ui.view">
+        <field name="name">Mail Template Tree: Add filter is archived</field>
+        <field name="model">mail.template</field>
+        <field name="inherit_id" ref="mail.view_email_template_search"/>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <filter string="Archived" name="filter_archived" domain="[('active', '=', False)]"/>
+                <filter string="Active" name="filter_active" domain="[('active', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>
+
+
+
+
+</odoo>
