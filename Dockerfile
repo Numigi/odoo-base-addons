@@ -27,6 +27,7 @@ COPY mail_follower_picker /mnt/extra-addons/mail_follower_picker
 COPY mail_message_from_author /mnt/extra-addons/mail_message_from_author
 COPY mail_notification_no_footer /mnt/extra-addons/mail_notification_no_footer
 COPY mail_recipient_unchecked /mnt/extra-addons/mail_recipient_unchecked
+COPY mail_template_archive /mnt/extra-addons/mail_template_archive
 COPY mail_template_default /mnt/extra-addons/mail_template_default
 COPY note_no_default_stage /mnt/extra-addons/note_no_default_stage
 COPY private_data_group /mnt/extra-addons/private_data_group
