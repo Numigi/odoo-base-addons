@@ -18,6 +18,7 @@ Numigi Modules
 * `Disable Quick Create <https://github.com/Numigi/odoo-web-addons/tree/12.0/disable_quick_create>`_
 * `Mail Notification No Footer <https://github.com/Numigi/odoo-base-addons/tree/12.0/mail_notification_no_footer>`_
 * `Mail Message From Author <https://github.com/Numigi/odoo-base-addons/tree/12.0/mail_message_from_author>`_
+* `Mail Template Default <https://github.com/Numigi/odoo-base-addons/tree/12.0/mail_template_default>`_
 * `Partner Edit Group <https://github.com/Numigi/odoo-partner-addons/tree/12.0/partner_edit_group>`_
 * `Partner Phone Validation <https://github.com/Numigi/odoo-partner-addons/tree/12.0/partner_phone_validation>`_
 * `Product Extra Views <https://github.com/Numigi/odoo-product-addons/tree/12.0/product_extra_views>`_
