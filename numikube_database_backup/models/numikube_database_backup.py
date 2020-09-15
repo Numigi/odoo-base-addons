@@ -10,6 +10,7 @@ from datetime import datetime
 from minio import Minio
 from odoo.models import AbstractModel
 from odoo.service.db import dump_db
+from odoo.tools.misc import exec_pg_environ
 from odoo.addons.numikube_minio.minio import get_minio_client, auto_create_bucket
 from ..bucket import get_backups_bucket_name
 
@@ -52,9 +53,21 @@ class DatabaseBackup(AbstractModel):
 
     def _backup_database_with_filename(self, filename):
         _logger.info("Saving the database to minio as filename {}".format(filename))
-        with tempfile.NamedTemporaryFile(mode='w+b') as file:
-            dump_db(self._database_name, file, "dump")
+        with tempfile.NamedTemporaryFile(mode="w+b") as file:
+            self._dump_db(file.name)
             self._upload_file_with_s3cli(filename, file.name)
+
+    def _dump_db(self, file_path):
+        env = exec_pg_environ()
+        command = [
+            "pg_dump",
+            "--format=c",
+            "--no-owner",
+            "--file={}".format(file_path),
+            self._database_name,
+        ]
+        complete_process = subprocess.run(command, env=env)
+        complete_process.check_returncode()
 
     def _upload_file_with_s3cli(self, filename, file_path):
         bucket = get_backups_bucket_name()
@@ -77,14 +90,12 @@ class DatabaseBackup(AbstractModel):
 
     def _make_hourly_filename(self):
         return "{db_name}-hourly-{backup_number}.dump".format(
-            db_name=self._get_db_name(),
-            backup_number=self._get_hourly_backup_number(),
+            db_name=self._get_db_name(), backup_number=self._get_hourly_backup_number(),
         )
 
     def _make_daily_filename(self):
         return "{db_name}-daily-{backup_number}.dump".format(
-            db_name=self._get_db_name(),
-            backup_number=self._get_daily_backup_number(),
+            db_name=self._get_db_name(), backup_number=self._get_daily_backup_number(),
         )
 
     def _get_db_name(self):
