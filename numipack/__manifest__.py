@@ -45,7 +45,6 @@
         'base_extended_security',
         'ir_attachment_access_token_portal',  # TA#6109
         'mail_message_from_author',  # TA#16040
-        'mail_notification_no_footer',  # TA#16957
         'mail_template_default',  # TA#21323
         'web_email_field_new_tab',  # TA#9753
 

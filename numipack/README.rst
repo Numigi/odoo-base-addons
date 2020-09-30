@@ -16,7 +16,6 @@ Numigi Modules
 * `Aeroo Reports <https://github.com/Numigi/aeroo_reports>`_
 * `Attachment Access Token Portal <https://github.com/Numigi/odoo-base-addons/tree/12.0/ir_attachment_access_token_portal>`_
 * `Disable Quick Create <https://github.com/Numigi/odoo-web-addons/tree/12.0/disable_quick_create>`_
-* `Mail Notification No Footer <https://github.com/Numigi/odoo-base-addons/tree/12.0/mail_notification_no_footer>`_
 * `Mail Message From Author <https://github.com/Numigi/odoo-base-addons/tree/12.0/mail_message_from_author>`_
 * `Mail Template Default <https://github.com/Numigi/odoo-base-addons/tree/12.0/mail_template_default>`_
 * `Partner Edit Group <https://github.com/Numigi/odoo-partner-addons/tree/12.0/partner_edit_group>`_
