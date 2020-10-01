@@ -25,6 +25,7 @@ COPY ir_attachment_name_autocomplete /mnt/extra-addons/ir_attachment_name_autoco
 COPY mail_activity_not_deleted /mnt/extra-addons/mail_activity_not_deleted
 COPY mail_follower_picker /mnt/extra-addons/mail_follower_picker
 COPY mail_message_from_author /mnt/extra-addons/mail_message_from_author
+COPY mail_notification_no_action_button /mnt/extra-addons/mail_notification_no_action_button
 COPY mail_notification_no_footer /mnt/extra-addons/mail_notification_no_footer
 COPY mail_recipient_unchecked /mnt/extra-addons/mail_recipient_unchecked
 COPY mail_template_archive /mnt/extra-addons/mail_template_archive
