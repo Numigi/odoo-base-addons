@@ -13,6 +13,7 @@
     'depends': [
         'account',  # required for testing auditlog
         'sale',  # required for testing mail_message_from_author
+        'crm',  # required for testing mail_notification_no_action_button
 
         'auditlog',
         'base_extended_security',
@@ -24,6 +25,7 @@
         'mail_activity_not_deleted',
         'mail_follower_picker',
         'mail_message_from_author',
+        'mail_notification_no_action_button',
         'mail_notification_no_footer',
         'mail_recipient_unchecked',
         'mail_template_archive',
