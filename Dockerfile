@@ -23,6 +23,7 @@ COPY disable_install_from_website /mnt/extra-addons/disable_install_from_website
 COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_token_portal
 COPY ir_attachment_name_autocomplete /mnt/extra-addons/ir_attachment_name_autocomplete
 COPY mail_activity_not_deleted /mnt/extra-addons/mail_activity_not_deleted
+COPY mail_bot_no_pong /mnt/extra-addons/mail_bot_no_pong
 COPY mail_follower_picker /mnt/extra-addons/mail_follower_picker
 COPY mail_message_from_author /mnt/extra-addons/mail_message_from_author
 COPY mail_notification_no_action_button /mnt/extra-addons/mail_notification_no_action_button
