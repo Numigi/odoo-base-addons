@@ -14,8 +14,7 @@ Usage
 .. image:: static/description/automatic_activity_deadlines_activity_type.png
 
 - I create a new leave request with Sick Leaves type and save.
-- I see a scheduled activity is created as expected. But I see the deadline for the created activity is the next three
-days instead of today
+- I see a scheduled activity is created as expected. But I see the deadline for the created activity is the next three days instead of today
 
 .. image:: static/description/automatic_activity_deadlines_activity.png
 
