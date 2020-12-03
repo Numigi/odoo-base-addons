@@ -20,7 +20,7 @@ Usage
 
 Configuration
 -------------
-The only model which inherit mail.activity.mixin and use activity_schedule() to create automated activities is affected
+Only models which inherit mail.activity.mixin and use activity_schedule() to create automated activities are affected.
 
 Contributors
 ------------
