@@ -15,7 +15,7 @@ In this workflow, automatic emails are sent to the followers of the history reco
 
 .. image:: static/description/messages_before.png
 
-Some users are mysteriously added as followers of all history records.
+Also, in production, some users are mysteriously added as followers of all history records.
 For now, no explanation has been found regarding this behavior.
 
 This generates a massive amount of spams in emails.
