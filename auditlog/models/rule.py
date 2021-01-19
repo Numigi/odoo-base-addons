@@ -15,7 +15,7 @@ class AuditlogRule(models.Model):
     _name = 'auditlog.rule'
     _description = "Auditlog - Rule"
 
-    name = fields.Char("Name", required=True)
+    name = fields.Char("Name")
     model_id = fields.Many2one(
         'ir.model', "Model", required=True,
         help="Select model for which you want to generate log.")
