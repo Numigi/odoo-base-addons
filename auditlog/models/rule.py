@@ -36,12 +36,6 @@ class AuditlogRule(models.Model):
         string="State", required=True, default='draft')
     action_id = fields.Many2one('ir.actions.act_window', string="Action")
 
-    _sql_constraints = [
-        ('model_uniq', 'unique(model_id)',
-         ("There is already a rule defined on this model\n"
-          "You cannot define another: please edit the existing one."))
-    ]
-
     @api.model
     def create(self, vals):
         """Update the registry when a new rule is created."""
