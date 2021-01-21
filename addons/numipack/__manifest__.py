@@ -68,7 +68,8 @@
         'smile_web_impex',  # TA#19309
     ],
     'data': [
-        # 'admin_light_user_password_security_binding.xml',
+        'data/auditlog_rule.xml',
+        'security/extended_security_rule.xml',
     ],
     'installable': True,
 }
