@@ -30,6 +30,7 @@
         'web_search_date_range_account',
     ],
     'data': [
+        'data/auditlog_rule.xml',
         'security/extended_security_rule.xml',
     ],
     'installable': True,
