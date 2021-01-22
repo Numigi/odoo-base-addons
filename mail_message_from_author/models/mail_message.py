@@ -8,18 +8,10 @@ class MailMessage(models.Model):
 
     _inherit = 'mail.message'
 
-    def _propagate_autor_to_email_from(self):
-        messages_with_author_emails = self.filtered(lambda m: m.author_id.email)
-        for message in messages_with_author_emails:
-            author = message.author_id
-            expected_email_from = "{} <{}>".format(author.name, author.email)
-            if expected_email_from != message.email_from:
-                message.email_from = expected_email_from
-
     @api.model
     def create(self, vals):
         message = super().create(vals)
-        message._propagate_autor_to_email_from()
+        message._propagate_author_to_email_from_if_required()
         return message
 
     @api.multi
@@ -27,6 +19,19 @@ class MailMessage(models.Model):
         result = super().write(vals)
 
         if vals.get('email_from') or vals.get('author_id'):
-            self._propagate_autor_to_email_from()
+            self._propagate_author_to_email_from_if_required()
 
         return result
+
+    def _propagate_author_to_email_from_if_required(self):
+        odoobot = self.env.ref("base.user_root").sudo()
+        if odoobot.email in self.email_from:
+            self._propagate_author_to_email_from()
+
+    def _propagate_author_to_email_from(self):
+        messages_with_author_emails = self.filtered(lambda m: m.author_id.email)
+        for message in messages_with_author_emails:
+            author = message.author_id
+            expected_email_from = "{} <{}>".format(author.name, author.email)
+            if expected_email_from != message.email_from:
+                message.email_from = expected_email_from

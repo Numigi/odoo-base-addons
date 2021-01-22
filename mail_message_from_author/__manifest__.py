@@ -3,7 +3,7 @@
 
 {
     'name': 'Mail Message From Author',
-    'version': '1.1.1',
+    'version': '1.1.2',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
