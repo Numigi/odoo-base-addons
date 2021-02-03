@@ -10,6 +10,7 @@
     'category': 'Other',
     'summary': 'Functional dependencies for all Odoo instances using purchases.',
     'depends': [
+        'numipack',
         'purchase',
     ],
     'data': [

@@ -10,6 +10,8 @@
     'category': 'Other',
     'summary': 'Functional dependencies for all Odoo instances using sales.',
     'depends': [
+        'numipack',
+
         # odoo/odoo
         'sale_management',
 
