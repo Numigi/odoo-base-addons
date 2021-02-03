@@ -10,6 +10,8 @@
     'category': 'Other',
     'summary': 'Functional dependencies for all Odoo instances using the inventory.',
     'depends': [
+        'numipack',
+
         # numigi/odoo-stock-addons
         'stock_immediate_transfer_disable',
         'stock_move_origin_link',
