@@ -8,11 +8,12 @@ import os
 import subprocess
 from datetime import datetime
 from minio import Minio
+from odoo.exceptions import ValidationError
 from odoo.models import AbstractModel
 from odoo.service.db import dump_db
 from odoo.tools.misc import exec_pg_environ
 from odoo.addons.numikube_minio.minio import get_minio_client, auto_create_bucket
-from ..bucket import get_backups_bucket_name
+from ..bucket import get_backups_bucket_name, is_backups_disabled
 
 _logger = logging.getLogger(__name__)
 
@@ -32,12 +33,20 @@ class DatabaseBackup(AbstractModel):
         self.run_hourly_backup()
 
     def run_hourly_backup(self):
+        self._check_backups_enabled()
         self._autocreate_backups_bucket()
         self._execute_hourly_backup()
 
     def run_daily_backup(self):
+        self._check_backups_enabled()
         self._autocreate_backups_bucket()
         self._execute_daily_backup()
+
+    def _check_backups_enabled(self):
+        if is_backups_disabled():
+            raise ValidationError(
+                "Database backups are disabled on this Odoo instance."
+            )
 
     def _autocreate_backups_bucket(self):
         bucket_name = get_backups_bucket_name()
