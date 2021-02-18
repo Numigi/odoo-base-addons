@@ -6,7 +6,7 @@
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
-    'category': 'Base',
+    'category': 'After-Sales',
     'summary': 'Helpdesk Ticket Phone',
     'depends': [
         # Odoo
