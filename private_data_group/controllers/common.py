@@ -29,19 +29,21 @@ def _raise_private_field_access_error(model: str, field: str):
     )
 
 
-def check_model_fields_access(model: str, fields_to_check: Iterable[str]):
+def check_model_fields_access(model: str, fields: Iterable[str]):
     env = request.env
     if env.user.has_private_data_access():
         return
 
-    related_model_fields = (f for f in fields_to_check if '.' in f)
+    fields = [f for f in fields if isinstance(f, str)]
+
+    related_model_fields = (f for f in fields if '.' in f)
     for field in related_model_fields:
         relation, dummy, remaining_field_parts = field.partition('.')
         related_model = _get_related_model(model, relation)
         check_model_fields_access(related_model, [remaining_field_parts])
 
     private_fields = env['ir.private.field'].get_model_private_fields(model)
-    for field in fields_to_check:
+    for field in fields:
         column_name = field.split('.')[0].split(':')[0]
         if column_name in private_fields:
             _raise_private_field_access_error(model, field)
