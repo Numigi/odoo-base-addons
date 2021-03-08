@@ -192,13 +192,17 @@ class TestControllers(ControllerCase):
         with pytest.raises(AccessError, match=NON_CUSTOMER_CREATE_MESSAGE):
             self._name_create('My Partner')
 
-    def _read_many2many_tags(self, records):
-        with mock_odoo_request(self.env):
-            fields = ['display_name', 'color']
-            return self.controller.call('res.partner', 'read', [records.ids, fields])
-
     def test_on_many2many_tags_read__access_error_not_raised(self):
-        self._read_many2many_tags(self.employee)
+        fields = ['display_name', 'color']
+        self._read_many2many_tags(self.employee, fields)
+
+    def test_on_many2many_tags_read__with_all_fields_requested(self):
+        with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
+            self._read_many2many_tags(self.employee, None)
+
+    def _read_many2many_tags(self, records, fields):
+        with mock_odoo_request(self.env):
+            return self.controller.call('res.partner', 'read', [records.ids, fields])
 
     def _call_button(self, records, action_name):
         with mock_odoo_request(self.env):

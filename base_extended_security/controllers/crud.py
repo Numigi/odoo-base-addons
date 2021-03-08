@@ -78,7 +78,7 @@ class _ExtendedSecurityVerifier:
         if self._method != 'read':
             return False
 
-        fields = set(self._get_read_request_fields())
+        fields = set(self._get_read_request_fields() or [])
 
         all_fields_requested = not fields
         if all_fields_requested:
