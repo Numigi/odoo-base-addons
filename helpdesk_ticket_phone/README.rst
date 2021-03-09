@@ -5,6 +5,7 @@ Description
 -----------
 
 This module adds a field phone and mobile on helpdesk ticket model
+
 .. image:: static/description/ticket_phone_mobile.png
 
 Configuration
