@@ -206,3 +206,9 @@ class TestSecurityRules(SavepointCase):
 
         form_view = self._get_product_form_view_arch()
         assert not form_view.xpath("//button[@name='toggle_active']")
+
+    def test_if_not_authorized__action_buttons_still_enabled(self):
+        self.env.user.groups_id |= self.env.ref("product.group_product_variant")
+        form_view = self._get_product_form_view_arch()
+        action = self.env.ref("product.product_attribute_value_action")
+        assert form_view.xpath("//button[@name='{}']".format(action.id))
