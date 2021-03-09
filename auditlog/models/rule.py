@@ -15,7 +15,7 @@ class AuditlogRule(models.Model):
     _name = 'auditlog.rule'
     _description = "Auditlog - Rule"
 
-    name = fields.Char("Name", required=True)
+    name = fields.Char("Name")
     model_id = fields.Many2one(
         'ir.model', "Model", required=True,
         help="Select model for which you want to generate log.")
@@ -35,12 +35,6 @@ class AuditlogRule(models.Model):
         [('draft', "Draft"), ('subscribed', "Subscribed")],
         string="State", required=True, default='draft')
     action_id = fields.Many2one('ir.actions.act_window', string="Action")
-
-    _sql_constraints = [
-        ('model_uniq', 'unique(model_id)',
-         ("There is already a rule defined on this model\n"
-          "You cannot define another: please edit the existing one."))
-    ]
 
     @api.model
     def create(self, vals):
