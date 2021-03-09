@@ -20,6 +20,7 @@ COPY base_extended_security /mnt/extra-addons/base_extended_security
 COPY base_extended_security_grid /mnt/extra-addons/base_extended_security_grid
 COPY base_xml_rename /mnt/extra-addons/base_xml_rename
 COPY disable_install_from_website /mnt/extra-addons/disable_install_from_website
+COPY helpdesk_ticket_phone /mnt/extra-addons/helpdesk_ticket_phone
 COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_token_portal
 COPY ir_attachment_name_autocomplete /mnt/extra-addons/ir_attachment_name_autocomplete
 COPY mail_activity_not_deleted /mnt/extra-addons/mail_activity_not_deleted

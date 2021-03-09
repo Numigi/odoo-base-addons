@@ -19,6 +19,7 @@
         'base_extended_security_grid',
         'base_xml_rename',
         'disable_install_from_website',
+        'helpdesk_ticket_phone',
         'ir_attachment_access_token_portal',
         'ir_attachment_name_autocomplete',
         'mail_activity_not_deleted',
