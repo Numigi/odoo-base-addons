@@ -8,7 +8,7 @@ class MailThread(models.AbstractModel):
 
     _inherit = 'mail.thread'
 
-    @api.multi
+    
     def _notify_classify_recipients_on_records(self, *args, **kwargs):
         res = super()._notify_classify_recipients_on_records(*args, **kwargs)
         for data in res.values():
