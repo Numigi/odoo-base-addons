@@ -32,13 +32,13 @@ class PrivateField(models.Model):
         self.clear_caches()
         return res
 
-    @api.multi
+    
     def write(self, vals):
         res = super().write(vals)
         self.clear_caches()
         return res
 
-    @api.multi
+    
     def unlink(self):
         res = super().unlink()
         self.clear_caches()

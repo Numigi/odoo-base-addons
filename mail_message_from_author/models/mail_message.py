@@ -14,7 +14,7 @@ class MailMessage(models.Model):
         message._propagate_author_to_email_from()
         return message
 
-    @api.multi
+    
     def write(self, vals):
         result = super().write(vals)
 

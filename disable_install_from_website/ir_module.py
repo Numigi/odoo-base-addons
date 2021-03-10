@@ -14,7 +14,7 @@ class Module(models.Model):
     _inherit = 'ir.module.module'
 
     @assert_log_admin_access
-    @api.multi
+    
     def button_immediate_install(self):
         """ Disable install of selected modules.
         """

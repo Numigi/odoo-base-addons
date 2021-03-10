@@ -17,7 +17,7 @@ class MailActivityInactivatedInsteadOfDeleted(models.Model):
         self = self.with_context(mail_activity_no_delete=True)
         return super(MailActivityInactivatedInsteadOfDeleted, self).action_feedback(feedback)
 
-    @api.multi
+    
     def unlink(self):
         """Deactivate instead of deleting the activity when it is completed."""
         if self._context.get('mail_activity_no_delete'):
@@ -73,7 +73,7 @@ class MailActivityMixinWithActivityNotDeletedWhenRecordDeactivated(models.Abstra
     # auto_join prevents the active filter from being automatically applied.
     activity_ids = fields.One2many(auto_join=False)
 
-    @api.multi
+    
     def write(self, vals):
         if 'active' in vals and vals['active'] is False:
             self = self.with_context(mail_activity_no_delete=True)

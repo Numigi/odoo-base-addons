@@ -16,7 +16,7 @@ class HelpdeskTicket(models.Model):
             self.partner_phone = self.partner_id.phone
             self.partner_mobile = self.partner_id.mobile
 
-    @api.multi
+    
     def _set_phone_number_format(self):
         for record in self.with_context(skip_set_phone_format=True):
             phone = self.phone_format(
@@ -49,7 +49,7 @@ class HelpdeskTicket(models.Model):
         res._set_phone_number_format()
         return res
 
-    @api.multi
+    
     def write(self, vals):
         res = super().write(vals)
         if not self._context.get("skip_set_phone_format"):

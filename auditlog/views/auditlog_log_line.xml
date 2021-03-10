@@ -63,7 +63,6 @@
     <record id="action_auditlog_log_line_tree" model="ir.actions.act_window">
         <field name="name">Field Logs</field>
         <field name="res_model">auditlog.log.line</field>
-        <field name="view_type">form</field>
         <field name="search_view_id" ref="view_auditlog_log_line_search"/>
     </record>
 

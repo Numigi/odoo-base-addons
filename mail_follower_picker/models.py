@@ -37,7 +37,7 @@ class MailComposeMessageFollowers(models.TransientModel):
         'wizard_id', 'partner_id', 'Followers',
         default=get_mail_followers)
 
-    @api.multi
+    
     def action_send_mail(self):
         """ Pass the context "custom_followers" """
         self_with_context = self.with_context(custom_followers=self.follower_ids)

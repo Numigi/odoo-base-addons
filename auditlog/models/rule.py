@@ -6,35 +6,60 @@ from typing import Iterable, Mapping
 from odoo import models, fields, api, modules, tools, _
 
 FIELDS_BLACKLIST = {
-    'id', 'create_uid', 'create_date', 'write_uid', 'write_date',
-    'display_name', '__last_update', 'password',
+    "id",
+    "create_uid",
+    "create_date",
+    "write_uid",
+    "write_date",
+    "display_name",
+    "__last_update",
+    "password",
 }
 
 
 class AuditlogRule(models.Model):
-    _name = 'auditlog.rule'
+    _name = "auditlog.rule"
     _description = "Auditlog - Rule"
 
     name = fields.Char("Name")
     model_id = fields.Many2one(
-        'ir.model', "Model", required=True,
-        help="Select model for which you want to generate log.")
+        "ir.model",
+        "Model",
+        required=True,
+        ondelete="cascade",
+        help="Select model for which you want to generate log.",
+    )
     log_write = fields.Boolean(
-        "Log Writes", default=True,
-        help=("Select this if you want to keep track of modification on any "
-              "record of the model of this rule"))
+        "Log Writes",
+        default=True,
+        help=(
+            "Select this if you want to keep track of modification on any "
+            "record of the model of this rule"
+        ),
+    )
     log_unlink = fields.Boolean(
-        "Log Deletes", default=True,
-        help=("Select this if you want to keep track of deletion on any "
-              "record of the model of this rule"))
+        "Log Deletes",
+        default=True,
+        help=(
+            "Select this if you want to keep track of deletion on any "
+            "record of the model of this rule"
+        ),
+    )
     log_create = fields.Boolean(
-        "Log Creates", default=True,
-        help=("Select this if you want to keep track of creation on any "
-              "record of the model of this rule"))
+        "Log Creates",
+        default=True,
+        help=(
+            "Select this if you want to keep track of creation on any "
+            "record of the model of this rule"
+        ),
+    )
     state = fields.Selection(
-        [('draft', "Draft"), ('subscribed', "Subscribed")],
-        string="State", required=True, default='draft')
-    action_id = fields.Many2one('ir.actions.act_window', string="Action")
+        [("draft", "Draft"), ("subscribed", "Subscribed")],
+        string="State",
+        required=True,
+        default="draft",
+    )
+    action_id = fields.Many2one("ir.actions.act_window", string="Action")
 
     @api.model
     def create(self, vals):
@@ -43,46 +68,51 @@ class AuditlogRule(models.Model):
         modules.registry.Registry(self.env.cr.dbname).clear_caches()
         return new_record
 
-    @api.multi
     def write(self, vals):
         """Update the registry when existing rules are updated."""
         super().write(vals)
         modules.registry.Registry(self.env.cr.dbname).clear_caches()
         return True
 
-    @api.multi
     def unlink(self):
         """Unsubscribe rules before removing them."""
         super().unlink()
         modules.registry.Registry(self.env.cr.dbname).clear_caches()
         return True
 
-    @api.multi
     def subscribe(self):
         for rule in self:
-            rule.state = 'subscribed'
+            rule.state = "subscribed"
             if not rule.action_id:
                 rule.action_id = rule._create_auditlog_shortcut()
         return True
 
     def _create_auditlog_shortcut(self):
         """Create a shortcut to view the logs of a record form the form view."""
-        shortcut = self.env['ir.actions.act_window'].sudo().create({
-            'name': "Logs",
-            'res_model': 'auditlog.log.line',
-            'src_model': self.model_id.model,
-            'binding_model_id': self.model_id.id,
-            'domain': (
-                "[('log_id.model_id', '=', {model_id}), ('log_id.res_id', '=', active_id)]"
-                .format(model_id=self.model_id.id)
-            ),
-            'context': "{'field_logs_from_record_form': True}",
-            'groups_id': [(4, self.env.ref('auditlog.group_view_audit_logs').id)],
-        })
+        domain = (
+            "[('log_id.model_id', '=', {model_id}), ('log_id.res_id', '=', active_id)]"
+        )
+        shortcut = (
+            self.env["ir.actions.act_window"]
+            .sudo()
+            .create(
+                {
+                    "name": "Logs",
+                    "res_model": "auditlog.log.line",
+                    "binding_model_id": self.model_id.id,
+                    "domain": (domain.format(model_id=self.model_id.id)),
+                    "context": "{'field_logs_from_record_form': True}",
+                    "groups_id": [
+                        (4, self.env.ref("auditlog.group_view_audit_logs").id)
+                    ],
+                }
+            )
+        )
 
-        for lang in self.env['res.lang'].search([]):
-            shortcut.with_context(lang=lang.code).name = (
-                self.with_context(lang=lang.code)._get_shortcut_label())
+        for lang in self.env["res.lang"].search([]):
+            shortcut.with_context(lang=lang.code).name = self.with_context(
+                lang=lang.code
+            )._get_shortcut_label()
 
         return shortcut
 
@@ -93,61 +123,67 @@ class AuditlogRule(models.Model):
         This must be isolated in a seperate method so that the label is translated
         in a specific language.
         """
-        return _('Logs')
+        return _("Logs")
 
-    @api.multi
     def unsubscribe(self):
         # Remove the shortcut to view logs
-        self.mapped('action_id').unlink()
-        self.write({'state': 'draft'})
+        self.mapped("action_id").unlink()
+        self.write({"state": "draft"})
         modules.registry.Registry(self.env.cr.dbname).clear_caches()
         return True
 
 
 class BaseWithAuditLogs(models.AbstractModel):
 
-    _inherit = 'base'
+    _inherit = "base"
 
     @api.model
-    @api.returns('self', lambda value: value.id)
+    @api.returns("self", lambda value: value.id)
     def create(self, vals, **kwargs):
-        if not self._is_auditlog_enabled('create'):
+        if not self._is_auditlog_enabled("create"):
             return super().create(vals, **kwargs)
 
         fields_to_log = list(vals.keys())
         new_record = super().create(vals, **kwargs)
         values = new_record._get_auditlog_field_values(fields_to_log)
-        OperationLogger(new_record, 'create').log_operation(fields_to_log, {}, values)
+        OperationLogger(new_record, "create").log_operation(fields_to_log, {}, values)
         return new_record
 
-    @api.multi
     def write(self, vals, **kwargs):
-        if not self._is_auditlog_enabled('write'):
+        if not self._is_auditlog_enabled("write"):
             return super().write(vals, **kwargs)
 
         fields_to_log = list(vals.keys())
         values_before = self._get_auditlog_field_values(fields_to_log)
         super().write(vals, **kwargs)
         values_after = self._get_auditlog_field_values(fields_to_log)
-        OperationLogger(self, 'write').log_operation(fields_to_log, values_before, values_after)
+        OperationLogger(self, "write").log_operation(
+            fields_to_log, values_before, values_after
+        )
         return True
 
-    @api.multi
     def unlink(self, **kwargs):
-        if self._is_auditlog_enabled('unlink'):
-            OperationLogger(self, 'unlink').log_operation({}, {}, {})
+        if self._is_auditlog_enabled("unlink"):
+            OperationLogger(self, "unlink").log_operation({}, {}, {})
 
         return super().unlink(**kwargs)
 
-    @tools.ormcache('operation')
+    @tools.ormcache("operation")
     def _is_auditlog_enabled(self, operation):
         """Check if the operation is logged for the given model."""
-        log_field = 'log_{operation}'.format(operation=operation)
-        count = self.env['auditlog.rule'].sudo().search([
-            ('model_id.model', '=', self._name),
-            (log_field, '=', True),
-            ('state', '=', 'subscribed')
-        ], count=True)
+        log_field = "log_{operation}".format(operation=operation)
+        count = (
+            self.env["auditlog.rule"]
+            .sudo()
+            .search(
+                [
+                    ("model_id.model", "=", self._name),
+                    (log_field, "=", True),
+                    ("state", "=", "subscribed"),
+                ],
+                count=True,
+            )
+        )
         return count > 0
 
     def _get_auditlog_field_values(self, field_names):
@@ -157,8 +193,10 @@ class BaseWithAuditLogs(models.AbstractModel):
         :param field_names: the names of the fields to read.
         """
         return dict(
-            (d['id'], d) for d in self.sudo()
-            .with_context(prefetch_fields=False).read(list(field_names))
+            (d["id"], d)
+            for d in self.sudo()
+            .with_context(prefetch_fields=False)
+            .read(list(field_names))
         )
 
 
@@ -176,9 +214,11 @@ class OperationLogger:
         self._method = method
         self._env = records.env
         self._model = records._name
-        self._model_record = self._env['ir.model'].sudo()._get(self._model)
+        self._model_record = self._env["ir.model"].sudo()._get(self._model)
         self._field_records = {f.name: f for f in self._model_record.field_id}
-        self._http_request = self._env['auditlog.http.request'].sudo().current_http_request()
+        self._http_request = (
+            self._env["auditlog.http.request"].sudo().current_http_request()
+        )
 
     def log_operation(
         self,
@@ -187,7 +227,9 @@ class OperationLogger:
         new_values: Mapping[int, dict],
     ):
         for record in self._records.sudo():
-            self._log_operation_for_single_record(record, fields_updated, old_values, new_values)
+            self._log_operation_for_single_record(
+                record, fields_updated, old_values, new_values
+            )
 
     def _log_operation_for_single_record(
         self,
@@ -203,27 +245,31 @@ class OperationLogger:
         :param old_values: the field values before the operation
         :param new_values: the values after the operation
         """
-        log = self._env['auditlog.log'].sudo().create({
-            'name': record.display_name,
-            'model_id': self._model_record.id,
-            'res_id': record.id,
-            'method': self._method,
-            'user_id': self._user.id,
-            'http_request_id': self._http_request.id,
-        })
+        log = (
+            self._env["auditlog.log"]
+            .sudo()
+            .create(
+                {
+                    "name": record.display_name,
+                    "model_id": self._model_record.id,
+                    "res_id": record.id,
+                    "method": self._method,
+                    "user_id": self._user.id,
+                    "http_request_id": self._http_request.id,
+                }
+            )
+        )
 
         if fields_updated:
             record_old_values = old_values.get(record.id) or {}
             record_new_values = new_values.get(record.id) or {}
 
-            self._create_log_lines(log, fields_updated, record_old_values, record_new_values)
+            self._create_log_lines(
+                log, fields_updated, record_old_values, record_new_values
+            )
 
     def _create_log_lines(
-        self,
-        log,
-        fields_updated: Iterable[str],
-        old_values: dict,
-        new_values: dict,
+        self, log, fields_updated: Iterable[str], old_values: dict, new_values: dict,
     ):
         """Create a log line for each updated field.
 
@@ -232,19 +278,22 @@ class OperationLogger:
         :param new_values: the values after the operation.
         """
         fields_to_log = {
-            self._field_records.get(f) for f in fields_updated
+            self._field_records.get(f)
+            for f in fields_updated
             if f not in FIELDS_BLACKLIST and f in self._field_records
         }
 
         for field in fields_to_log:
             value_before = old_values.get(field.name)
             value_after = new_values.get(field.name)
-            self._env['auditlog.log.line'].sudo().create({
-                'field_id': field.id,
-                'log_id': log.id,
-                'old_value': self._format_field_value(field, value_before),
-                'new_value': self._format_field_value(field, value_after),
-            })
+            self._env["auditlog.log.line"].sudo().create(
+                {
+                    "field_id": field.id,
+                    "log_id": log.id,
+                    "old_value": self._format_field_value(field, value_before),
+                    "new_value": self._format_field_value(field, value_after),
+                }
+            )
 
     def _format_field_value(self, field, value):
         """Format a field value.
@@ -256,7 +305,7 @@ class OperationLogger:
         if value is None:
             return value
 
-        is_x2many_field = field.relation and '2many' in field.ttype
+        is_x2many_field = field.relation and "2many" in field.ttype
         if is_x2many_field:
             return self._format_x2many_field_value(field, value)
         else:
@@ -279,6 +328,6 @@ class OperationLogger:
 
         # Deleted resources will have a 'DELETED' text representation
         deleted_ids = set(value) - set(existing_records.ids)
-        value_text.extend(((i, 'DELETED') for i in deleted_ids))
+        value_text.extend(((i, "DELETED") for i in deleted_ids))
 
         return value_text

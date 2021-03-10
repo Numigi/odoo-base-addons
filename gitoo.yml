@@ -1,15 +1,15 @@
 - url: https://github.com/oca/helpdesk
-  branch: "12.0"
+  branch: "14.0"
   includes: ["helpdesk_mgmt"]
 
 - url: https://github.com/oca/queue
-  branch: "12.0"
+  branch: "14.0"
   includes: ["queue_job"]
 
 - url: https://{{GIT_TOKEN}}@github.com/Numigi/odoo-enterprise
-  branch: "12.0"
+  branch: "14.0"
   includes:
     - web_grid
 
 - url: https://github.com/oca/knowledge
-  branch: "12.0"
+  branch: "14.0"
