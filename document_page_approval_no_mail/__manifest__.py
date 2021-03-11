@@ -10,5 +10,5 @@
     "category": "Knowledge Management",
     "summary": "Prevent emails related to approval of page changes",
     "depends": ["document_page_approval"],
-    "installable": True,
+    "installable": False,
 }

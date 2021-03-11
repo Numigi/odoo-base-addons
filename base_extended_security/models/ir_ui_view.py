@@ -10,13 +10,12 @@ class ViewWithButtonsHiden(models.Model):
 
     _inherit = 'ir.ui.view'
 
-    @api.model
-    def postprocess_and_fields(self, model, node, view_id):
+    def postprocess_and_fields(self, node, model=None, validate=False):
         """Add custom labels to the view xml.
 
         This method is called in Odoo when generating the final xml of a view.
         """
-        arch, fields = super().postprocess_and_fields(model, node, view_id)
+        arch, fields = super().postprocess_and_fields(node, model=model, validate=validate)
 
         is_nested_view = bool(self._context.get('base_model_name'))
         if not is_nested_view:

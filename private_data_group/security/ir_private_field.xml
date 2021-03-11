@@ -45,10 +45,6 @@
         <field name="field_id" ref="hr.field_hr_employee__gender"/>
     </record>
 
-    <record id="private_field_google_drive_link" model="ir.private.field">
-        <field name="field_id" ref="hr.field_hr_employee__google_drive_link"/>
-    </record>
-
     <record id="private_field_identification_id" model="ir.private.field">
         <field name="field_id" ref="hr.field_hr_employee__identification_id"/>
     </record>

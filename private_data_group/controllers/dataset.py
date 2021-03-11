@@ -77,7 +77,7 @@ def _filter_unauthorized_fields(model: str, record_values: Iterable[dict]):
 
 def _extract_groupby_from_args_and_kwargs(args: list, kwargs: dict):
     groupby = args[2] if len(args) > 2 else kwargs.get('groupby', [])
-    groupby_fields = [groupby] if isinstance(groupby, pycompat.string_types) else groupby
+    groupby_fields = [groupby] if isinstance(groupby, str) else groupby
     return [f.split(':')[0] for f in groupby_fields]
 
 

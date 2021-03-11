@@ -4,6 +4,10 @@ This module prevents automatic emails sent for the approval of changes to docume
 
 .. contents:: Table of Contents
 
+Not Installable
+---------------
+This module is not installable in version 14.0 of Odoo for now.
+
 Context
 -------
 When using the module `document_page_approval <https://github.com/OCA/knowledge/tree/12.0/document_page_approval>`_,

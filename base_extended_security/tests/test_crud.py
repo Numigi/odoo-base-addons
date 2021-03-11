@@ -186,12 +186,6 @@ class TestControllers(ControllerCase):
         with pytest.raises(AccessError, match=NON_CUSTOMER_CREATE_MESSAGE):
             self._name_create('My Partner')
 
-    def test_on_name_create_with_employee__access_error_not_raised(self):
-        self._set_default_value('customer', True)
-        self._set_default_value('customer', False)
-        with pytest.raises(AccessError, match=NON_CUSTOMER_CREATE_MESSAGE):
-            self._name_create('My Partner')
-
     def test_on_many2many_tags_read__access_error_not_raised(self):
         fields = ['display_name', 'color']
         self._read_many2many_tags(self.employee, fields)
@@ -206,7 +200,7 @@ class TestControllers(ControllerCase):
 
     def _call_button(self, records, action_name):
         with mock_odoo_request(self.env):
-            return self.controller.call_button('res.partner', action_name, [records.ids])
+            return self.controller.call_button('res.partner', action_name, [records.ids], {})
 
     def test_toggle_active_with_employee__access_error_raised(self):
         with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):

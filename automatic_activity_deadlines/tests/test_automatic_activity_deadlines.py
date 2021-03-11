@@ -18,9 +18,6 @@ class TestAutomaticActivityDeadlines(SavepointCase):
             {
                 "name": "No delay",
                 "delay_count": 0,
-                "time_type": "other",
-                "allocation_type": "no",
-                "validity_start": False,
             }
         )
         cls.activity_type_5_days_delay = cls.activity_type_no_delay.copy(

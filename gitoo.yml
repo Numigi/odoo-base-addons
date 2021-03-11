@@ -10,6 +10,3 @@
   branch: "14.0"
   includes:
     - web_grid
-
-- url: https://github.com/oca/knowledge
-  branch: "14.0"

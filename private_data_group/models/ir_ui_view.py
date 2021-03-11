@@ -28,12 +28,16 @@ class ViewWithPrivateFieldsRemoved(models.Model):
     _inherit = 'ir.ui.view'
 
     @api.model
-    def postprocess_and_fields(self, model, node, view_id):
+    def postprocess_and_fields(self, node, model=None, validate=False):
         """Add custom labels to the view xml.
 
         This method is called in Odoo when generating the final xml of a view.
         """
-        arch, fields = super().postprocess_and_fields(model, node, view_id)
+        """Add custom labels to the view xml.
+
+        This method is called in Odoo when generating the final xml of a view.
+        """
+        arch, fields = super().postprocess_and_fields(node, model=model, validate=validate)
 
         if not self.env.user.has_private_data_access():
             arch = _get_arch_without_private_fields(self.env, model, arch)
