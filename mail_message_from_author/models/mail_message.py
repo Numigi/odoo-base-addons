@@ -18,7 +18,7 @@ class MailMessage(models.Model):
     def write(self, vals):
         result = super().write(vals)
 
-        if vals.get('email_from') or vals.get('author_idgs'):
+        if vals.get('email_from') or vals.get('author_id'):
             self._propagate_author_to_email_from()
 
         return result
