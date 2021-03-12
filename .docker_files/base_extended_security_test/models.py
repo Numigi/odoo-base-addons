@@ -8,5 +8,5 @@ class ResPartner(models.Model):
 
     _inherit = "res.partner"
 
-    supplier = fields.Boolean()
-    customer = fields.Boolean()
+    supplier = fields.Boolean(default=True)
+    customer = fields.Boolean(default=True)
