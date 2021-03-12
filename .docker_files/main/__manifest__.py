@@ -16,6 +16,7 @@
         "stock",  # required for testing base_extended_security
         "crm",  # required for testing mail_notification_no_action_button
         "auditlog",
+        "automatic_activity_deadlines",
         "base_extended_security",
         "base_extended_security_grid",
         "base_extended_security_test",
