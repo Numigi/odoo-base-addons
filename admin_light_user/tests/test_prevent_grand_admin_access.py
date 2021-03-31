@@ -89,3 +89,11 @@ class TestPreventGrandAdminAccess(common.SavepointCase):
                 'email': 'basic_user_2@example.com',
                 'groups_id': [(6, 0, groups)],
             })
+
+    def test_can_not_unarchive_super_admin(self):
+        self.user.groups_id |= self.env.ref("base.group_erp_manager")
+        with pytest.raises(AccessError):
+            self.user.sudo(self.admin).active = True
+
+    def test_can_unarchive_non_admin_user(self):
+        self.user.sudo(self.admin).active = True
