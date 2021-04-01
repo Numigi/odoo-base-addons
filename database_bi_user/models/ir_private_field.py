@@ -19,13 +19,11 @@ class PrivateField(models.Model):
         _update_bi_user(self.env)
         return res
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         _update_bi_user(self.env)
         return res
 
-    @api.multi
     def unlink(self):
         res = super().unlink()
         _update_bi_user(self.env)
