@@ -29,5 +29,5 @@
         'data/auditlog_rule.xml',
         'security/extended_security_rule.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

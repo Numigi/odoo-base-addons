@@ -14,6 +14,7 @@
         'private_data_group',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'data/update.xml',
         'views/res_config_settings.xml',
     ],

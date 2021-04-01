@@ -26,5 +26,5 @@
         # OCA/partner-contact
         'partner_firstname',  # dependency of hr_employee_firstname
     ],
-    'installable': True,
+    'installable': False,
 }

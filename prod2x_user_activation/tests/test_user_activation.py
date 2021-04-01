@@ -14,11 +14,10 @@ class TestUserActivation(SavepointCase):
                 "name": "test@example.com",
                 "email": "test@example.com",
                 "login": "test@example.com",
-                "prod2x_activation": True,
-                "active": False,
                 "groups_id": [(4, cls.group.id)],
             }
         )
+        cls.user.active = False
 
     def test_activation_enabled(self):
         assert not self.user.active
