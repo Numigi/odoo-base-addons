@@ -14,14 +14,12 @@ class AuditRule(models.Model):
 
     _inherit = 'auditlog.rule'
 
-    @api.multi
     def unsubscribe(self):
         if self.env.user.has_group('admin_light_auditlog.group_auditlogs'):
             self = self.sudo()
 
         return super(AuditRule, self).unsubscribe()
 
-    @api.multi
     def subscribe(self):
         if self.env.user.has_group('admin_light_auditlog.group_auditlogs'):
             self = self.sudo()

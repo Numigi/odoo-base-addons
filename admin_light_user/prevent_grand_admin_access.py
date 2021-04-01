@@ -22,7 +22,6 @@ class UsersWithNotGrantAdminAccessConstraint(models.Model):
 
         return super().create(vals)
 
-    @api.multi
     def write(self, vals):
         if self.env.user.has_group("admin_light_user.group_user_management"):
             self._check_not_granting_admin_priviledges(vals)
