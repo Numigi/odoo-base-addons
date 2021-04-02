@@ -39,7 +39,8 @@ class ViewWithPrivateFieldsRemoved(models.Model):
         """
         arch, fields = super().postprocess_and_fields(node, model=model, validate=validate)
 
-        if not self.env.user.has_private_data_access():
-            arch = _get_arch_without_private_fields(self.env, model, arch)
+        view_model = model or self.model
+        if not self.env.user.has_private_data_access() and view_model:
+            arch = _get_arch_without_private_fields(self.env, view_model, arch)
 
         return arch, fields
