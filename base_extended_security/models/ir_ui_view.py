@@ -18,8 +18,10 @@ class ViewWithButtonsHiden(models.Model):
         arch, fields = super().postprocess_and_fields(node, model=model, validate=validate)
 
         is_nested_view = bool(self._context.get('base_model_name'))
-        if not is_nested_view:
-            arch = _hide_buttons_with_access_blocked(self.env, model, arch)
+        view_model = model or self.model
+
+        if not is_nested_view and view_model:
+            arch = _hide_buttons_with_access_blocked(self.env, view_model, arch)
             _hide_one2many_view_buttons_with_access_blocked(self.env, fields)
 
         return arch, fields
