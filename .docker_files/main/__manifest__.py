@@ -23,6 +23,7 @@
         "base_xml_rename",
         "helpdesk_ticket_phone",
         "ir_attachment_access_token_portal",
+        "lang_fr_activated",
         "mail_activity_not_deleted",
         "mail_bot_no_pong",
         "mail_follower_picker",

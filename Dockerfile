@@ -22,6 +22,7 @@ COPY base_extended_security_grid /mnt/extra-addons/base_extended_security_grid
 COPY base_xml_rename /mnt/extra-addons/base_xml_rename
 COPY helpdesk_ticket_phone /mnt/extra-addons/helpdesk_ticket_phone
 COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_token_portal
+COPY lang_fr_activated /mnt/extra-addons/lang_fr_activated
 COPY mail_activity_not_deleted /mnt/extra-addons/mail_activity_not_deleted
 COPY mail_bot_no_pong /mnt/extra-addons/mail_bot_no_pong
 COPY mail_follower_picker /mnt/extra-addons/mail_follower_picker
