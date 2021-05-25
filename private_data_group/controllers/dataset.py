@@ -6,6 +6,7 @@ from odoo.addons.base_extended_security.controllers.search import (
     SEARCH_METHODS,
     get_domain_from_args_and_kwargs,
 )
+from odoo.models import regex_field_agg
 from odoo.http import request
 from odoo.tools import pycompat
 from typing import Iterable
@@ -81,6 +82,24 @@ def _extract_groupby_from_args_and_kwargs(args: list, kwargs: dict):
     return [f.split(':')[0] for f in groupby_fields]
 
 
+def _get_read_group_fields(args, kwargs):
+    fields = args[1] if len(args) > 1 else kwargs.get("fields") or []
+
+    return [
+        _remove_field_alias(f) for f in fields
+    ]
+
+
+def _remove_field_alias(field):
+    match = regex_field_agg.match(field)
+
+    if match:
+        name, func, fname = match.groups()
+        return fname or name
+
+    return field
+
+
 class DataSetWithPrivateFields(DataSet):
     """Add access restriction to private fields."""
 
@@ -107,6 +126,7 @@ class DataSetWithPrivateFields(DataSet):
         fields_to_check = set()
 
         if method == 'read_group':
+            fields_to_check.update(_get_read_group_fields(args, kwargs))
             fields_to_check.update(_extract_groupby_from_args_and_kwargs(args, kwargs))
 
         if method in METHODS_WITH_ORDERBY:
