@@ -130,14 +130,6 @@ class TestControllers(TransactionCase):
 
             return self.controller.call_kw("hr.employee", "read_group", args, kwargs)
 
-    def test_private_field_not_in_read_group_result(self):
-        with mock_odoo_request(self.env):
-            result = self._read_group(
-                self.domain, self.fields, ["name"], use_kwargs=True
-            )
-            assert "name" in result[0]
-            assert "sinid" not in result[0]
-
     @data(
         (True, ["name", "sinid"]),
         (True, "sinid"),
@@ -150,6 +142,20 @@ class TestControllers(TransactionCase):
             with pytest.raises(AccessError):
                 self._read_group(
                     self.domain, self.fields, groupby, use_kwargs=use_kwargs
+                )
+
+    @data(
+        (True, ["sinid"]),
+        (False, ["sinid"]),
+        (False, ["sinid:count"]),
+        (False, ["field_alias:count(sinid)"]),
+    )
+    @unpack
+    def test_if_private_field_in_fields__raise_error(self, use_kwargs, fields):
+        with mock_odoo_request(self.env):
+            with pytest.raises(AccessError):
+                self._read_group(
+                    self.domain, fields, ["name"], use_kwargs=use_kwargs
                 )
 
     @data(
