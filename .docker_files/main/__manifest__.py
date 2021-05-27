@@ -38,6 +38,7 @@
         "queue_job_auto_requeue",
         "super_calendar",
         "url_link_type",
+        "utm_archive",
         "web_email_field_new_tab",
     ],
     "installable": True,
