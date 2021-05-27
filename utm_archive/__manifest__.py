@@ -9,6 +9,6 @@
     "author": "Numigi",
     "license": "AGPL-3",
     "depends": ["link_tracker"],
-    "data": ["views/utm.xml"],
+    "data": ["views/source.xml", "views/campaign.xml"],
     "installable": True,
 }
