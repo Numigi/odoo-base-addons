@@ -40,6 +40,7 @@ COPY queue_job_auto_requeue /mnt/extra-addons/queue_job_auto_requeue
 COPY super_calendar /mnt/extra-addons/super_calendar
 COPY test_http_request /mnt/extra-addons/test_http_request
 COPY url_link_type /mnt/extra-addons/url_link_type
+COPY utm_archive /mnt/extra-addons/utm_archive
 COPY web_email_field_new_tab /mnt/extra-addons/web_email_field_new_tab
 
 COPY .docker_files/main /mnt/extra-addons/main
