@@ -42,7 +42,6 @@ class TestBocRateProvider(SavepointCase):
 
     @data(401, 404, 410, 500, 502)
     def test_get_rates_exceptions(self, error_code):
-        json_data = self._get_rates_json()
         with requests_mock.Mocker() as m:
             m.get(API_ADDRESS, status_code=error_code)
             with pytest.raises(ValidationError):
