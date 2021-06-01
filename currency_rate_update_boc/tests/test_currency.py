@@ -13,7 +13,7 @@ from ..models.currency import API_ADDRESS
 
 
 @ddt
-class TestMailActivity(SavepointCase):
+class TestBocRateProvider(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
