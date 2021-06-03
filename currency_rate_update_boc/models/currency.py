@@ -31,4 +31,4 @@ SUPPORTED_CURRENCIES_BOC = [
     "ZAR",
 ]
 
-API_ADDRESS = "http://www.bankofcanada.ca/valet/observations/group/FX_RATES_DAILY/json"
+BASE_API_ADDRESS = "https://www.bankofcanada.ca/valet/observations/"

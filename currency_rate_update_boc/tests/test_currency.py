@@ -9,7 +9,7 @@ from datetime import date, timedelta
 from odoo.tests.common import SavepointCase
 from ddt import ddt, data
 from odoo.exceptions import ValidationError
-from ..models.currency import API_ADDRESS
+from ..models.currency import BASE_API_ADDRESS
 
 
 @ddt
@@ -36,21 +36,21 @@ class TestBocRateProvider(SavepointCase):
     def test_get_rates(self):
         json_data = self._get_rates_json()
         with requests_mock.Mocker() as m:
-            m.get(API_ADDRESS, json=json_data)
+            m.get(BASE_API_ADDRESS, json=json_data)
             rates = self.provider._get_rates_from_boc(self.date, self.date)
             assert rates == json_data["observations"]
 
     @data(401, 404, 410, 500, 502)
     def test_get_rates_exceptions(self, error_code):
         with requests_mock.Mocker() as m:
-            m.get(API_ADDRESS, status_code=error_code)
+            m.get(BASE_API_ADDRESS, status_code=error_code)
             with pytest.raises(ValidationError):
                 self.provider._get_rates_from_boc(self.date, self.date)
 
     def test_rates_filtered_cad2x(self):
         json_data = self._get_rates_json()
         with requests_mock.Mocker() as m:
-            m.get(API_ADDRESS, status_code=200, json=json_data)
+            m.get(BASE_API_ADDRESS, status_code=200, json=json_data)
             filtered_rates = self.provider._obtain_rates(
                 "CAD", ["USD", "EUR"], self.date, self.date
             )
@@ -60,7 +60,7 @@ class TestBocRateProvider(SavepointCase):
     def test_rates_filtered_x2cad(self):
         json_data = self._get_rates_json()
         with requests_mock.Mocker() as m:
-            m.get(API_ADDRESS, status_code=200, json=json_data)
+            m.get(BASE_API_ADDRESS, status_code=200, json=json_data)
             filtered_rates = self.provider._obtain_rates(
                 "USD", ["CAD"], self.date, self.date
             )
@@ -69,7 +69,7 @@ class TestBocRateProvider(SavepointCase):
     def test_rates_filtered_x2x(self):
         json_data = self._get_rates_json()
         with requests_mock.Mocker() as m:
-            m.get(API_ADDRESS, status_code=200, json=json_data)
+            m.get(BASE_API_ADDRESS, status_code=200, json=json_data)
             filtered_rates = self.provider._obtain_rates(
                 "USD", ["EUR"], self.date, self.date
             )
@@ -80,7 +80,7 @@ class TestBocRateProvider(SavepointCase):
     def test_invalid_currency(self):
         json_data = self._get_rates_json()
         with requests_mock.Mocker() as m:
-            m.get(API_ADDRESS, status_code=200, json=json_data)
+            m.get(BASE_API_ADDRESS, status_code=200, json=json_data)
             filtered_rates = self.provider._obtain_rates(
                 "CAD", ["ZZZZ"], self.date, self.date
             )
@@ -89,7 +89,7 @@ class TestBocRateProvider(SavepointCase):
     def test_invalid_date(self):
         json_data = self._get_rates_json()
         with requests_mock.Mocker() as m:
-            m.get(API_ADDRESS, status_code=200, json=json_data)
+            m.get(BASE_API_ADDRESS, status_code=200, json=json_data)
             filtered_rates = self.provider._obtain_rates(
                 "CAD", ["USD", "EUR"], self.date, self.date - timedelta(5)
             )
