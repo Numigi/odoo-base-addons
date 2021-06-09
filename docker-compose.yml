@@ -9,6 +9,7 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./.log:/var/log/odoo
+      - ./currency_rate_update_boc:/mnt/extra-addons/currency_rate_update_boc
     ports:
       - "8069:8069"
       - "8071:8071"

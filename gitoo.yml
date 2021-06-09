@@ -1,3 +1,8 @@
+- url: https://github.com/oca/currency
+  branch: "12.0"
+  includes:
+    - currency_rate_update
+
 - url: https://github.com/oca/helpdesk
   branch: "12.0"
   includes: ["helpdesk_mgmt"]
