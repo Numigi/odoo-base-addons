@@ -24,6 +24,7 @@
         "helpdesk_ticket_phone",
         "ir_attachment_access_token_portal",
         "ir_attachment_name_autocomplete",
+        "ir_attachment_ressource_editable",
         "mail_activity_not_deleted",
         "mail_bot_no_pong",
         "mail_follower_picker",
