@@ -19,6 +19,7 @@ COPY auditlog /mnt/extra-addons/auditlog
 COPY base_extended_security /mnt/extra-addons/base_extended_security
 COPY base_extended_security_grid /mnt/extra-addons/base_extended_security_grid
 COPY base_xml_rename /mnt/extra-addons/base_xml_rename
+COPY currency_rate_update_boc /mnt/extra-addons/currency_rate_update_boc
 COPY disable_install_from_website /mnt/extra-addons/disable_install_from_website
 COPY document_page_approval_no_mail /mnt/extra-addons/document_page_approval_no_mail
 COPY helpdesk_mgmt_no_mail /mnt/extra-addons/helpdesk_mgmt_no_mail

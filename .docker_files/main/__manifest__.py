@@ -18,9 +18,10 @@
         "base_extended_security",
         "base_extended_security_grid",
         "base_xml_rename",
+        "currency_rate_update_boc",
         "disable_install_from_website",
         "document_page_approval_no_mail",
-        "helpdesk_mgmt_no_mail", # TA#30196
+        "helpdesk_mgmt_no_mail",
         "helpdesk_ticket_phone",
         "ir_attachment_access_token_portal",
         "ir_attachment_name_autocomplete",

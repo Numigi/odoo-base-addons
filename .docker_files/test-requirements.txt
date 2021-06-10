@@ -1,1 +1,2 @@
 ddt==1.2.1
+requests-mock==1.9.3
