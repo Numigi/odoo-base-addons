@@ -26,6 +26,7 @@ COPY helpdesk_mgmt_no_mail /mnt/extra-addons/helpdesk_mgmt_no_mail
 COPY helpdesk_ticket_phone /mnt/extra-addons/helpdesk_ticket_phone
 COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_token_portal
 COPY ir_attachment_name_autocomplete /mnt/extra-addons/ir_attachment_name_autocomplete
+COPY ir_attachment_ressource_editable /mnt/extra-addons/ir_attachment_ressource_editable
 COPY mail_activity_not_deleted /mnt/extra-addons/mail_activity_not_deleted
 COPY mail_bot_no_pong /mnt/extra-addons/mail_bot_no_pong
 COPY mail_follower_picker /mnt/extra-addons/mail_follower_picker
