@@ -1,6 +1,7 @@
 # © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
+from collections import defaultdict
 from odoo import api, fields, models, tools, _
 from odoo.exceptions import AccessError
 
@@ -29,35 +30,27 @@ class ExtendedSecurityRule(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         res = super().create(vals_list)
-        self.clear_caches()
+        self._flush_and_clear_cache()
         return res
 
-    
     def write(self, vals):
         res = super().write(vals)
-        self.clear_caches()
+        self._flush_and_clear_cache()
         return res
 
-    
     def unlink(self):
         res = super().unlink()
-        self.clear_caches()
+        self._flush_and_clear_cache()
         return res
 
-    @tools.ormcache('model', 'access_type')
-    def _find_matching_rules(self, model, access_type):
-        return self.sudo().search([
-            ('model_id.model', '=', model),
-            ('perm_{}'.format(access_type), '=', True),
-        ])
-
-    def _is_user_authorized(self, user):
-        return self.group_ids & user.groups_id
+    def _flush_and_clear_cache(self):
+        self.flush()
+        self.clear_caches()
 
     @api.model
     def check_user_access(self, model, access_type):
-        for rule in self._find_matching_rules(model, access_type):
-            if not rule._is_user_authorized(self.env.user):
+        for rule in self._iter_matching_rules(model, access_type):
+            if not _rule_matches_user(rule, self.env.user):
                 raise AccessError(_(
                     'You are not authorized to access records of model {model} '
                     'in {access_type} mode.',
@@ -65,10 +58,36 @@ class ExtendedSecurityRule(models.Model):
 
     @api.model
     def is_user_authorized(self, model, access_type):
-        matching_rules = self._find_matching_rules(model, access_type)
-        return all(rule._is_user_authorized(self.env.user) for rule in matching_rules)
+        matching_rules = self._iter_matching_rules(model, access_type)
+        return all(_rule_matches_user(rule, self.env.user) for rule in matching_rules)
 
     @api.model
     def get_user_security_domain(self, model):
         authorized = self.is_user_authorized(model, 'read')
         return [] if authorized else [('id', '=', False)]
+
+    def _iter_matching_rules(self, model, access_type):
+        rules = self._get_rules()
+        return (r for r in rules[model] if r[access_type])
+
+    @api.model
+    @tools.ormcache()
+    def _get_rules(self):
+        res = defaultdict(list)
+        for record in self.sudo().search([]):
+            res[record.model_id.model].append(record._make_rule_dict())
+        return res
+
+    def _make_rule_dict(self):
+        return {
+            "group_ids": self.group_ids.ids,
+            "read": self.perm_read,
+            "write": self.perm_write,
+            "create": self.perm_create,
+            "unlink": self.perm_unlink,
+        }
+
+
+def _rule_matches_user(rule, user):
+    user_group_ids = user.groups_id.ids
+    return any(id_ in user_group_ids for id_ in rule["group_ids"])
