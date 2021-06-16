@@ -18,15 +18,12 @@
         # Numigi/odoo-account-addons
         'account_bank_menu',
         'account_fr_ca_labels',
-        'account_invoice_check_total',
-        'account_move_chatter',
+        # 'account_invoice_check_total',
         'account_move_reversal_access',  # TA#33729
-        'account_move_reversed_entry', # TA#33729
         'account_move_unique_reversal', # TA#33729
         'account_negative_debit_credit',
         'account_payment_cancel_group',
         'invoice_currency_validation',
-        'vendor_invoice_full_list',
 
         # Numigi/aeroo_reports
         'account_check_printing_aeroo',
@@ -38,5 +35,5 @@
         'data/auditlog_rule.xml',
         'security/extended_security_rule.xml',
     ],
-    'installable': False,
+    'installable': True,
 }

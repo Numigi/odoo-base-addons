@@ -23,8 +23,8 @@
         'prod2x_user_activation',
 
         # OCA/server-ux
-        # 'base_technical_features',
-        # 'mass_editing',  # TA#4119
+        'base_technical_features',
+        'mass_editing',  # TA#4119
 
         # odoo/odoo
         'auth_password_policy',  # TA#9918
@@ -33,11 +33,11 @@
         'product',
 
         # OCA/server-brand
-        # 'disable_odoo_online',
+        'disable_odoo_online',
 
         # Numigi/aeroo_reports
-        # 'report_aeroo',
-        # 'report_aeroo_replace_qweb',
+        'report_aeroo',
+        'report_aeroo_replace_qweb',
 
         # Numigi/odoo-partner-addons
         # 'contacts_config_menu_moved_right',  # TA#18504
