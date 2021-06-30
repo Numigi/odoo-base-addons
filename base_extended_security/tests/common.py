@@ -1,5 +1,5 @@
 
-from odoo import models
+from odoo import models, api
 from odoo.exceptions import AccessError
 from odoo.osv.expression import AND
 from odoo.tests.common import SavepointCase
@@ -49,6 +49,12 @@ class ResPartner(models.Model):
         for partner in self:
             if not partner.customer:
                 raise AccessError(NON_CUSTOMER_UNLINK_MESSAGE)
+
+    @api.model
+    def get_read_access_actions(self):
+        res = super().get_read_access_actions()
+        res.append("create_company")
+        return res
 
 
 class ControllerCase(SavepointCase):

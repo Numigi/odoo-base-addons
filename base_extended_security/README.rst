@@ -112,6 +112,42 @@ However, I can edit existing tasks.
 
 .. image:: static/description/task_edit.png
 
+Action Buttons
+--------------
+When a user has only read access to a given model because of a `Basic Rule <#defining-basic-rules>`_,
+the action buttons on the form view are hidden.
+
+This feature is only esthetic.
+It does not prevent users from actually calling a method through xml-rpc
+(extended security rules only block CRUD operations).
+
+The reason is that there are a lot of method possibily called from the web interface,
+even when accessing an object in read mode.
+It would be very risky to block method calls arbitrarily.
+
+Read Access Buttons
+~~~~~~~~~~~~~~~~~~~
+There is a hook defined by the module that allows to define methods that are
+considered ``Read`` access actions.
+
+The buttons bound to these actions are made visible through the web interface even
+though the user has read access to the model.
+
+.. code-block:: python
+
+    class SaleOrder(models.Model):
+
+        _inherit = 'sale.order'
+
+        @api.model
+        def get_read_access_actions(self):
+            res = super().get_read_access_actions()
+            res.append("action_draft")
+            return res
+
+However, if the native Odoo ACL (``ir.model.access``) prevent the user from seeing the button,
+this hook will have no effect.
+
 Excluded Queries
 ----------------
 The module ignores some xml-rpc queries.
