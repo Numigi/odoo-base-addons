@@ -1,7 +1,7 @@
 # © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import models
+from odoo import models, api
 
 
 class BaseWithExtendedSecurity(models.AbstractModel):
@@ -53,3 +53,17 @@ class BaseWithExtendedSecurity(models.AbstractModel):
             model=self._name, access_type='unlink',
         )
         self.check_extended_security_all()
+
+    @api.model
+    def get_read_access_actions(self):
+        """Get names of actions that should always appear on form views.
+
+        By default, when a user has only read access to a model,
+        the action buttons are hidden.
+
+        This method returns a list of method names.
+
+        Buttons bound to these method will not be hidden by the
+        extended security module.
+        """
+        return []

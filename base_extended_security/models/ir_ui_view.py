@@ -46,7 +46,7 @@ def _hide_buttons_with_access_blocked(env, model, arch):
 
     if not perm_write:
         tree.attrib['edit'] = "false"
-        _remove_object_button_tags(tree)
+        _remove_write_access_buttons(env, model, tree)
 
     if not perm_create:
         tree.attrib['create'] = "false"
@@ -57,9 +57,12 @@ def _hide_buttons_with_access_blocked(env, model, arch):
     return etree.tostring(tree)
 
 
-def _remove_object_button_tags(tree):
+def _remove_write_access_buttons(env, model, tree):
+    read_access_buttons = env[model].get_read_access_actions()
     for button in tree.xpath("//button[@type='object']"):
-        button.getparent().remove(button)
+        is_read_access_button = button.attrib.get("name") in read_access_buttons
+        if not is_read_access_button:
+            button.getparent().remove(button)
 
 
 def _hide_one2many_view_buttons_with_access_blocked(env, fields):
