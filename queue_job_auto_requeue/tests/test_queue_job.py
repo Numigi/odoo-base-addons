@@ -4,19 +4,9 @@
 from datetime import datetime, timedelta
 from ddt import data, ddt
 from odoo import models
-from odoo.addons.queue_job.job import job
 from odoo.tests.common import SavepointCase
 from uuid import uuid4
 from ..models.queue_job import TIME_LIMIT_PARAMETER
-
-
-class ResPartner(models.Model):
-
-    _inherit = 'res.partner'
-
-    @job
-    def _my_custom_job_method(self):
-        pass
 
 
 @ddt
@@ -25,12 +15,14 @@ class TestQueueJob(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.job = cls.env['queue.job'].create({
+        cls.job_cls = cls.env["queue.job"]
+        cls.job_obj = cls.job_cls.with_context(_job_edit_sentinel=cls.job_cls.EDIT_SENTINEL)
+        cls.job = cls.job_obj.create({
             'uuid': str(uuid4()),
             'user_id': cls.env.user.id,
             'state': 'pending',
             'model_name': 'res.partner',
-            'method_name': '_my_custom_job_method',
+            'method_name': 'name_get',
             'record_ids': [cls.env.user.partner_id.id],
             'args': tuple(),
         })
