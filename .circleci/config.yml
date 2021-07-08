@@ -7,6 +7,16 @@ jobs:
        - checkout
 
        - run:
+          name: Start Database
+          command: docker-compose up -d db && sleep 5
+
+       - run:
+          name: Restore Database
+          command: |
+            docker-compose exec db godoo restore \
+              --database dev --bucket odoo --minio-host minio-public.numigi.net --minio-port 443
+
+       - run:
           name: Build -- Init Database
           command: docker-compose run --rm odoo odoo --stop-after-init -i main
 

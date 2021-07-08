@@ -9,7 +9,6 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./.log:/var/log/odoo
-      - ./currency_rate_update_boc:/mnt/extra-addons/currency_rate_update_boc
     ports:
       - "8069:8069"
       - "8071:8071"
@@ -19,7 +18,7 @@ services:
     environment:
       - LOG_ODOO=/var/log/odoo
   db:
-    image: quay.io/numigi/postgres-odoo:12.2
+    image: quay.io/numigi/postgres-odoo:13.1.5
     environment:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
