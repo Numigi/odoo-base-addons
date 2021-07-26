@@ -37,6 +37,7 @@
         "mail_template_archive",
         "mail_template_default",
         "note_no_default_stage",
+        "portal_attachment",
         "private_data_group",
         "queue_job_auto_requeue",
         "super_calendar",
