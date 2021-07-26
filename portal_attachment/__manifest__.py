@@ -7,8 +7,8 @@
     "summary": "Allow to upload attachments from the customer portal.",
     "license": "LGPL-3",
     "version": "1.0.0",
-    'author': 'Numigi',
-    'maintainer': 'Numigi',
+    "author": "Numigi",
+    "maintainer": "Numigi",
     "depends": ["portal"],
     "data": [
         "views/templates.xml",
