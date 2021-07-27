@@ -21,7 +21,7 @@ class TestControllers(TransactionCase):
         }
 
     def test_portal_chatter_post(self):
-        with mock_odoo_request(self.env, headers=self.headers) as request:
+        with mock_odoo_request(self.env, headers=self.headers):
             self.controller.portal_chatter_post(
                 self.res_model, self.res_id, self.message
             )
