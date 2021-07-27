@@ -80,14 +80,12 @@ def _make_environ(
 ):
     """Make an environ for the given request parameters."""
     assert routing_type in ('http', 'json')
+
     environ_builder = EnvironBuilder(
         method=method,
         data=json.dumps(data or {}) if routing_type == 'json' else data,
         headers=headers,
-        content_type=(
-            'application/json' if routing_type == 'json' else
-            'application/x-www-form-urlencoded'
-        )
+        content_type=_get_content_type(headers, routing_type),
     )
     environ = environ_builder.get_environ()
 
@@ -95,6 +93,18 @@ def _make_environ(
         environ['wsgi.input'] = _make_environ_form_data_stream(data)
 
     return environ
+
+
+def _get_content_type(headers, routing_type):
+    content_type = headers.get("Content-Type") if headers else None
+
+    if not content_type:
+        content_type = (
+            'application/json' if routing_type == 'json' else
+            'application/x-www-form-urlencoded'
+        )
+
+    return content_type
 
 
 def _set_request_storage_class(httprequest: Request):
