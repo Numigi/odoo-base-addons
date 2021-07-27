@@ -96,7 +96,7 @@ def _make_environ(
 
 
 def _get_content_type(headers, routing_type):
-    content_type = headers.get("Content-Type")
+    content_type = headers.get("Content-Type") if headers else None
 
     if not content_type:
         content_type = (
