@@ -17,6 +17,7 @@
         "auditlog",
         "base_extended_security",
         "base_extended_security_grid",
+        "base_selection_label",
         "base_view_mode_restricted",
         "base_xml_rename",
         "currency_rate_update_boc",

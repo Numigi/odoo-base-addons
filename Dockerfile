@@ -18,6 +18,7 @@ USER odoo
 COPY auditlog /mnt/extra-addons/auditlog
 COPY base_extended_security /mnt/extra-addons/base_extended_security
 COPY base_extended_security_grid /mnt/extra-addons/base_extended_security_grid
+COPY base_selection_label /mnt/extra-addons/base_selection_label
 COPY base_view_mode_restricted /mnt/extra-addons/base_view_mode_restricted
 COPY base_xml_rename /mnt/extra-addons/base_xml_rename
 COPY currency_rate_update_boc /mnt/extra-addons/currency_rate_update_boc
