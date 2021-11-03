@@ -7,7 +7,7 @@ from contextlib import contextmanager
 from io import BytesIO
 from odoo.addons.http_routing.models.ir_http import url_for
 from odoo.api import Environment
-from odoo.http import HttpRequest, JsonRequest, OpenERPSession, _request_stack
+from odoo.http import HttpRequest, JsonRequest, OpenERPSession, _request_stack, root
 from odoo.tools import config
 from typing import Optional, Union
 from werkzeug.contrib.sessions import FilesystemSessionStore, Session
@@ -18,7 +18,6 @@ from werkzeug.wrappers import Request
 
 
 class _MockOdooRequestMixin:
-
     @staticmethod
     def redirect(url, code=302):
         """Add the `redirect` method to the request.
@@ -38,7 +37,7 @@ class _MockOdooRequestMixin:
         The attribute is added as a property so that the request object
         can be used even if the module website is not installed.
         """
-        return self.env['website'].get_current_website()
+        return self.env["website"].get_current_website()
 
     def __exit__(self, exc_type, exc_value, traceback):
         """Prevent commiting the transaction when exiting the HTTP request.
@@ -73,24 +72,24 @@ def _make_environ_form_data_stream(data: dict) -> BytesIO:
 
 
 def _make_environ(
-    method: str = 'POST',
+    method: str = "POST",
     headers: Optional[dict] = None,
     data: Optional[dict] = None,
-    routing_type: str = 'http',
+    routing_type: str = "http",
 ):
     """Make an environ for the given request parameters."""
-    assert routing_type in ('http', 'json')
+    assert routing_type in ("http", "json")
 
     environ_builder = EnvironBuilder(
         method=method,
-        data=json.dumps(data or {}) if routing_type == 'json' else data,
+        data=json.dumps(data or {}) if routing_type == "json" else data,
         headers=headers,
         content_type=_get_content_type(headers, routing_type),
     )
     environ = environ_builder.get_environ()
 
-    if routing_type == 'http' and data:
-        environ['wsgi.input'] = _make_environ_form_data_stream(data)
+    if routing_type == "http" and data:
+        environ["wsgi.input"] = _make_environ_form_data_stream(data)
 
     return environ
 
@@ -100,8 +99,9 @@ def _get_content_type(headers, routing_type):
 
     if not content_type:
         content_type = (
-            'application/json' if routing_type == 'json' else
-            'application/x-www-form-urlencoded'
+            "application/json"
+            if routing_type == "json"
+            else "application/x-www-form-urlencoded"
         )
 
     return content_type
@@ -119,12 +119,14 @@ def _make_werkzeug_request(environ: dict) -> Request:
     """Make a werkzeug request from the given environ."""
     httprequest = Request(environ)
     _set_request_storage_class(httprequest)
+    httprequest.app = root
     return httprequest
 
 
 def _make_filesystem_session(env: Environment) -> Session:
     session_store = FilesystemSessionStore(
-        config.session_dir, session_class=OpenERPSession, renew_missing=True)
+        config.session_dir, session_class=OpenERPSession, renew_missing=True
+    )
     session = session_store.new()
     session.db = env.cr.dbname
     session.uid = env.uid
@@ -133,12 +135,13 @@ def _make_filesystem_session(env: Environment) -> Session:
 
 
 def _make_odoo_request(
-        werkzeug_request: Request, env: Environment, routing_type: str,
+    werkzeug_request: Request,
+    env: Environment,
+    routing_type: str,
 ) -> Union[_MockOdooHttpRequest, _MockOdooJsonRequest]:
     """Make an Odoo request from the given werkzeug request."""
     odoo_request_cls = (
-        _MockOdooJsonRequest if routing_type == 'json' else
-        _MockOdooHttpRequest
+        _MockOdooJsonRequest if routing_type == "json" else _MockOdooHttpRequest
     )
     odoo_request = odoo_request_cls(werkzeug_request)
     odoo_request._env = env
@@ -151,10 +154,10 @@ def _make_odoo_request(
 @contextmanager
 def mock_odoo_request(
     env: Environment,
-    method: str = 'POST',
+    method: str = "POST",
     headers: Optional[dict] = None,
     data: Optional[dict] = None,
-    routing_type: str = 'http',
+    routing_type: str = "http",
 ):
     """Mock an Odoo HTTP request.
 
