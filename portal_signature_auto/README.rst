@@ -1,8 +1,10 @@
 Portal Signature Auto
 =====================
-This module allows to automatically fill a signature when signing from the portal
+This module allows to automatically fill a signature when signing from the portal.
 
-.. image:: static/description/portal.png
+.. image:: static/description/portal_signature.png
+
+.. image:: static/description/portal_signature_signed.png
 
 Contributors
 ------------
