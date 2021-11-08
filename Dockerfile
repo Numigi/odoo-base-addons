@@ -40,6 +40,7 @@ COPY mail_template_archive /mnt/extra-addons/mail_template_archive
 COPY mail_template_default /mnt/extra-addons/mail_template_default
 COPY note_no_default_stage /mnt/extra-addons/note_no_default_stage
 COPY portal_attachment /mnt/extra-addons/portal_attachment
+COPY portal_signature_auto /mnt/extra-addons/portal_signature_auto
 COPY private_data_group /mnt/extra-addons/private_data_group
 COPY queue_job_auto_requeue /mnt/extra-addons/queue_job_auto_requeue
 COPY super_calendar /mnt/extra-addons/super_calendar
