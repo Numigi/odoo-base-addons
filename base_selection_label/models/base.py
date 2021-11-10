@@ -12,4 +12,4 @@ class Base(models.AbstractModel):
         field = self._fields.get(field_name)
         selection = field._description_selection(self.env)
         value = self[field_name]
-        return next((label for value, label in selection if value == value), None)
+        return next((label for key, label in selection if key == value), None)
