@@ -38,7 +38,9 @@ class TestBocRateProvider(SavepointCase):
         assert currency_code in supported_currencies
 
     def test_boc_response(self):
-        with self._mock_boc_response(["FXUSDCAD"]):
+        json_data = self._get_rates_json()
+
+        with self._mock_boc_response(self.test_boc_url, json_data):
             rates = self.provider._get_boc_response(self.test_boc_url).json()
             assert rates == json_data
 
@@ -81,16 +83,19 @@ class TestBocRateProvider(SavepointCase):
         """
         self.provider.last_successful_run = self.date
         self.provider.next_run = self.date + timedelta(1)
-        with self._mock_boc_response(["FXUSDCAD"]):
+
+        url = self.test_boc_url + "FXUSDCAD"
+        json_data = self._get_rates_json()
+
+        with self._mock_boc_response(url, json_data):
             self.env["res.currency.rate.provider"]._scheduled_update()
+
         rate = self.cad._get_rates(self.company, self.date)[self.cad.id]
         assert round(rate, 4) == 1.2279
 
     @contextmanager
-    def _mock_boc_response(self, series):
-        json_data = self._get_rates_json()
+    def _mock_boc_response(self, url, json_data):
         with requests_mock.Mocker() as m:
-            url = self.test_boc_url + ",".join(series)
             m.get(url, json=json_data)
             yield
 

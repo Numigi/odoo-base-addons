@@ -92,5 +92,4 @@ class ResCurrencyRateProvider(models.Model):
             return first_rate * second_rate
 
     def _get_rate_from_boc_series(self, observation, series):
-
         return float(observation[series]["v"])
