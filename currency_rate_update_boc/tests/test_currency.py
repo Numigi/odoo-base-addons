@@ -17,17 +17,23 @@ class TestBocRateProvider(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-
-        cls.company = cls.env.user.company_id
-
         cls.cad = cls.env.ref("base.CAD")
         cls.cad.active = True
+
+        cls.usd = cls.env.ref("base.USD")
+
+        cls.company = cls.env["res.company"].create({"name": "Company"})
+        cls.company.currency_id = cls.usd
 
         cls.date = date(2021, 5, 3)
         cls.date_string = cls.date.strftime("%Y-%m-%d")
 
         cls.provider = cls.env["res.currency.rate.provider"].create(
-            {"service": "bank_of_canada", "currency_ids": [(4, cls.cad.id)]}
+            {
+                "service": "bank_of_canada",
+                "currency_ids": [(4, cls.cad.id)],
+                "company_id": cls.company.id,
+            }
         )
 
         cls.test_boc_url = "https://www.bankofcanada.ca/valet/observations/"
@@ -70,7 +76,9 @@ class TestBocRateProvider(SavepointCase):
 
     def test_invalid_date(self):
         with pytest.raises(ValidationError):
-            rates = self.provider._obtain_rates("USD", ["ZZZZ"], self.date, self.date - timedelta(5))
+            rates = self.provider._obtain_rates(
+                "USD", ["ZZZZ"], self.date, self.date - timedelta(5)
+            )
 
     def test_cron__loads_rates_one_day_prior(self):
         """Test that the rates of yesterday are loaded by the cron.
