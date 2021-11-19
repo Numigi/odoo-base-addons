@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import requests
+from datetime import timedelta
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 from collections import defaultdict
@@ -26,17 +27,15 @@ class ResCurrencyRateProvider(models.Model):
         if self.service != "bank_of_canada":
             return super()._obtain_rates(base_currency, currencies, date_from, date_to)
 
+        date_from = date_from - timedelta(1)
         observations = self._get_rates_from_boc(
             base_currency, currencies, date_from, date_to
         )["observations"]
-        result = self._process_observations(observations, base_currency, currencies)
-
-        return result
+        return self._process_observations(observations, base_currency, currencies)
 
     def _get_rates_from_boc(self, base_currency, currencies, date_from, date_to):
         url = self._get_boc_url(base_currency, currencies, date_from, date_to)
         response = self._get_boc_response(url)
-
         return response.json()
 
     def _get_boc_url(self, base_currency, currencies, date_from, date_to):
@@ -44,11 +43,10 @@ class ResCurrencyRateProvider(models.Model):
         date_to = date_to.strftime("%Y-%m-%d")
         exchanges = {s for s in self._iter_boc_series(base_currency, currencies)}
         date_filter = f"start_date={date_from}&end_date={date_to}"
-
         return f"{BASE_API_ADDRESS}{','.join(exchanges)}?{date_filter}"
 
     def _iter_boc_series(self, base_currency, currencies):
-        for currency in currencies:
+        for currency in sorted(currencies):
             if base_currency == "CAD" or currency == "CAD":
                 yield f"FX{base_currency}{currency}"
             else:
@@ -94,5 +92,4 @@ class ResCurrencyRateProvider(models.Model):
             return first_rate * second_rate
 
     def _get_rate_from_boc_series(self, observation, series):
-
         return float(observation[series]["v"])
