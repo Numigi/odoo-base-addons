@@ -15,6 +15,7 @@
         "sale",  # required for testing mail_message_from_author
         "crm",  # required for testing mail_notification_no_action_button
         "auditlog",
+        "auth_oauth_microsoft",
         "base_extended_security",
         "base_extended_security_grid",
         "base_selection_label",
