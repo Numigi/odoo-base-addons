@@ -3,7 +3,7 @@
     <record id="provider" model="auth.oauth.provider">
         <field name="name">Microsoft</field>
         <field name="auth_endpoint">https://login.microsoftonline.com/common/oauth2/v2.0/authorize</field>
-        <field name="scope">openid</field>
+        <field name="scope">openid,email</field>
         <field name="validation_endpoint">https://graph.microsoft.com/oidc/userinfo</field>
         <field name="css_class">fa fa-fw fa-windows</field>
         <field name="body">Log in with Microsoft</field>
