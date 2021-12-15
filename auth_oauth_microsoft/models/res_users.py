@@ -27,7 +27,7 @@ class Users(models.Model):
 
         provider_obj = self.env["auth.oauth.provider"].browse(provider)
         if _is_microsoft_endpoint(provider_obj.auth_endpoint):
-            validation["user_id"] = validation["email"]
+            validation["user_id"] = validation.get("email") or validation["sub"]
 
         return validation
 
