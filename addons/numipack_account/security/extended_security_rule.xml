@@ -26,6 +26,13 @@
         <field name="perm_unlink" eval="1"/>
     </record>
 
+    <record id="account_account_type_rule" model="extended.security.rule">
+        <field name="model_id" ref="account.model_account_account_type"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
     <record id="account_journal_unlink_rule" model="extended.security.rule">
         <field name="model_id" ref="account.model_account_journal"/>
         <field name="perm_unlink" eval="1"/>
