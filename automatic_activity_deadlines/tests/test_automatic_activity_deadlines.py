@@ -86,6 +86,10 @@ class TestAutomaticActivityDeadlines(SavepointCase):
             self.today + relativedelta(days=5) + relativedelta(months=2),
         )
 
+    def test_activity_schedule__mail_activity_automation_skip(self):
+        res = self.partner.with_context(mail_activity_automation_skip=True).activity_schedule()
+        assert not res
+
     def _create_activity(self, activity_type, context=None):
         if not context:
             context = {}
