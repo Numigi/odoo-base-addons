@@ -1,5 +1,5 @@
-Mail Activity Board Mark Done
-=============================
+Mail Activity List Mark Done
+============================
 
 .. contents:: Table of Contents
 
