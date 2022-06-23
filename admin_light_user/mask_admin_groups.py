@@ -6,7 +6,7 @@ from odoo import api, models
 
 SUPER_ADMIN_APPLICATIONS = [
     'admin_light_base.module_category_admin',
-    'base.module_category_administration',
+    'base.module_category_administration_administration',
     'base.module_category_hidden',
     'base.module_category_usability',
 ]
@@ -92,7 +92,8 @@ def _remove_separators_with_no_fields_below(tree: etree._Element):
     :param tree: the xml tree of the view to modify.
     """
     seperators = tree.xpath("//separator")
-    for node in seperators:
+    group_administration = tree.xpath("//group[@string='Administration']")
+    for node in seperators + group_administration:
         sibling_node = node.getnext()
         if sibling_node is None or sibling_node.tag != 'field':
             node.getparent().remove(node)
