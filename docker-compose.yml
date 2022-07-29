@@ -10,6 +10,7 @@ services:
       - odoo-web-data:/var/lib/odoo
       - ./.log:/var/log/odoo
       - ./auditlog:/mnt/extra-addons/auditlog
+      - ./auth_oauth_authentik:/mnt/extra-addons/auth_oauth_authentik
       - ./automatic_activity_deadlines:/mnt/extra-addons/automatic_activity_deadlines
       - ./base_extended_security:/mnt/extra-addons/base_extended_security
       - ./base_extended_security_grid:/mnt/extra-addons/base_extended_security_grid
