@@ -16,6 +16,7 @@
         'stock_immediate_transfer_disable',
         'stock_move_origin_link',
         'stock_picking_show_address',
+        'stock_account_visibility',
     ],
     'data': [
         'data/auditlog_rule.xml',
