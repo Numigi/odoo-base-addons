@@ -15,6 +15,7 @@
   branch: "12.0"
   includes:
     - mail_activity_board
+    - mail_preview_base # TA#46953
 
 - url: https://{{GIT_TOKEN}}@github.com/Numigi/odoo-enterprise
   branch: "12.0"
@@ -23,3 +24,12 @@
 
 - url: https://github.com/oca/knowledge
   branch: "12.0"
+
+- url: https://github.com/OCA/dms
+  branch: "12.0"  # TA#46953
+
+- url: https://github.com/OCA/web
+  branch: "12.0"
+  includes:
+    - web_view_searchpanel  # TA#46953
+    - web_drop_target  # TA#46953

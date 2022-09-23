@@ -23,6 +23,7 @@
         "base_xml_rename",
         "currency_rate_update_boc",
         "disable_install_from_website",
+        "dms_document_url",
         "document_page_approval_no_mail",
         "helpdesk_mgmt_no_mail",
         "helpdesk_ticket_phone",

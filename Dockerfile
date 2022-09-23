@@ -24,6 +24,7 @@ COPY base_view_mode_restricted /mnt/extra-addons/base_view_mode_restricted
 COPY base_xml_rename /mnt/extra-addons/base_xml_rename
 COPY currency_rate_update_boc /mnt/extra-addons/currency_rate_update_boc
 COPY disable_install_from_website /mnt/extra-addons/disable_install_from_website
+COPY dms_document_url /mnt/extra-addons/dms_document_url
 COPY document_page_approval_no_mail /mnt/extra-addons/document_page_approval_no_mail
 COPY helpdesk_mgmt_no_mail /mnt/extra-addons/helpdesk_mgmt_no_mail
 COPY helpdesk_ticket_phone /mnt/extra-addons/helpdesk_ticket_phone
