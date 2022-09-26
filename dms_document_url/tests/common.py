@@ -2,8 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import uuid
-
-from odoo.addons.dms.tests import DocumentsBaseCase
+from odoo.addons.dms.tests.common import DocumentsBaseCase
 
 
 class DocumentsURLBaseCase(DocumentsBaseCase):
