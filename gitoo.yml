@@ -15,3 +15,8 @@
   branch: "14.0"
   includes:
     - web_grid
+    
+- url: https://github.com/oca/currency
+  branch: "14.0"
+  includes:
+    - currency_rate_update
