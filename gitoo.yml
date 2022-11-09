@@ -2,6 +2,9 @@
   branch: "14.0"
   includes: ["helpdesk_mgmt"]
 
+- url: https://github.com/oca/product-configurator
+  branch: "14.0"
+
 - url: https://github.com/oca/queue
   branch: "14.0"
   includes: ["queue_job"]
