@@ -3,7 +3,7 @@
 
 {
     'name': 'Base Extended Security',
-    'version': '1.1.1',
+    'version': "14.0.1.0.0",
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',

@@ -46,12 +46,12 @@ class TestSecurityRules(SavepointCase):
         self.user.groups_id |= self.group
 
         method = 'check_extended_security_{}'.format(access_type)
-        getattr(self.product.sudo(self.user), method)()
+        getattr(self.product.with_user(self.user), method)()
 
     @data('read', 'write', 'create', 'unlink')
     def test_if_access_type_uncheked__access_error_raised(self, access_type):
         method = 'check_extended_security_{}'.format(access_type)
-        getattr(self.product.sudo(self.user), method)()
+        getattr(self.product.with_user(self.user), method)()
 
     @data('read', 'write', 'create', 'unlink')
     def test_if_not_member_of_group__access_error_raised(self, access_type):
@@ -59,57 +59,57 @@ class TestSecurityRules(SavepointCase):
 
         method = 'check_extended_security_{}'.format(access_type)
         with pytest.raises(AccessError):
-            getattr(self.product.sudo(self.user), method)()
+            getattr(self.product.with_user(self.user), method)()
 
     def test_after_rule_deleted__rule_not_applied(self):
         self.rule.perm_read = True
 
         with pytest.raises(AccessError):
-            self.product.sudo(self.user).check_extended_security_read()
+            self.product.with_user(self.user).check_extended_security_read()
 
         self.rule.unlink()
-        self.product.sudo(self.user).check_extended_security_read()
+        self.product.with_user(self.user).check_extended_security_read()
 
     def test_after_rule_created__rule_applied(self):
-        self.product.sudo(self.user).check_extended_security_read()
+        self.product.with_user(self.user).check_extended_security_read()
 
         self.rule.copy({'perm_read': True})
 
         with pytest.raises(AccessError):
-            self.product.sudo(self.user).check_extended_security_read()
+            self.product.with_user(self.user).check_extended_security_read()
 
     def test_after_rule_unchecked__rule_not_applied(self):
         self.rule.perm_read = True
 
         with pytest.raises(AccessError):
-            self.product.sudo(self.user).check_extended_security_read()
+            self.product.with_user(self.user).check_extended_security_read()
 
         self.rule.perm_read = False
 
-        self.product.sudo(self.user).check_extended_security_read()
+        self.product.with_user(self.user).check_extended_security_read()
 
     def test_after_rule_archived__rule_not_applied(self):
         self.rule.perm_read = True
 
         with pytest.raises(AccessError):
-            self.product.sudo(self.user).check_extended_security_read()
+            self.product.with_user(self.user).check_extended_security_read()
 
         self.rule.active = False
 
-        self.product.sudo(self.user).check_extended_security_read()
+        self.product.with_user(self.user).check_extended_security_read()
 
     def test_after_rule_checked__rule_applied(self):
-        self.product.sudo(self.user).check_extended_security_read()
+        self.product.with_user(self.user).check_extended_security_read()
 
         self.rule.perm_read = True
 
         with pytest.raises(AccessError):
-            self.product.sudo(self.user).check_extended_security_read()
+            self.product.with_user(self.user).check_extended_security_read()
 
     def test_on_search__if_not_authorized__domain_is_empty(self):
         self.rule.perm_read = True
 
-        domain = self.env['product.product'].sudo(self.user).get_extended_security_domain()
+        domain = self.env['product.product'].with_user(self.user).get_extended_security_domain()
         search_result = self.env['product.product'].search(domain)
 
         assert self.product not in search_result
@@ -118,7 +118,7 @@ class TestSecurityRules(SavepointCase):
         self.rule.perm_read = True
         self.user.groups_id |= self.group
 
-        domain = self.env['product.product'].sudo(self.user).get_extended_security_domain()
+        domain = self.env['product.product'].with_user(self.user).get_extended_security_domain()
         search_result = self.env['product.product'].search(domain)
 
         assert self.product in search_result
