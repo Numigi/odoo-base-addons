@@ -1,7 +1,7 @@
-# © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# © 2022 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import models
+from odoo import models, api
 
 
 class BaseWithExtendedSecurity(models.AbstractModel):
@@ -23,16 +23,7 @@ class BaseWithExtendedSecurity(models.AbstractModel):
         )
 
     def check_extended_security_all(self):
-        """Check extended security rules that applies for all CRUD operations.
-
-        This method excludes the name_get operation.
-
-        The reason is that name_get is much less likely to be a security
-        issue for most use cases.
-
-        Blocking name_get also causes errors in the web.interface,
-        because of Many2one fields.
-        """
+        """Check extended security rules that applies for all CRUD operations."""
         pass
 
     def check_extended_security_read(self):
@@ -40,21 +31,39 @@ class BaseWithExtendedSecurity(models.AbstractModel):
         self.env['extended.security.rule'].check_user_access(
             model=self._name, access_type='read',
         )
+        self.check_extended_security_all()
 
     def check_extended_security_write(self):
         """Check extended security rules for write operations."""
         self.env['extended.security.rule'].check_user_access(
             model=self._name, access_type='write',
         )
+        self.check_extended_security_all()
 
     def check_extended_security_create(self):
         """Check extended security rules for create operations."""
         self.env['extended.security.rule'].check_user_access(
             model=self._name, access_type='create',
         )
+        self.check_extended_security_all()
 
     def check_extended_security_unlink(self):
         """Check extended security rules for unlink operations."""
         self.env['extended.security.rule'].check_user_access(
             model=self._name, access_type='unlink',
         )
+        self.check_extended_security_all()
+
+    @api.model
+    def get_read_access_actions(self):
+        """Get names of actions that should always appear on form views.
+
+        By default, when a user has only read access to a model,
+        the action buttons are hidden.
+
+        This method returns a list of method names.
+
+        Buttons bound to these method will not be hidden by the
+        extended security module.
+        """
+        return []

@@ -1,9 +1,9 @@
-# © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# © 2022 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import pytest
 from ddt import ddt, data, unpack
-from odoo.addons.test_http_request.common import mock_odoo_request
+from unittest.mock import patch
 from .common import ControllerCase
 from ..controllers.search import DataSetWithExtendedSearchSecurity
 
@@ -16,7 +16,7 @@ class TestControllers(ControllerCase):
         self.controller = DataSetWithExtendedSearchSecurity()
 
     def _read_group(self, domain, fields, groupby, domain_kwarg):
-        with mock_odoo_request(self.env):
+        with patch(self.env):
             if domain_kwarg:
                 args = []
                 kwargs = {
@@ -45,7 +45,7 @@ class TestControllers(ControllerCase):
         assert groups[0]['customer_count'] == self.supplier_customer_count
 
     def _search(self, domain, domain_kwarg):
-        with mock_odoo_request(self.env):
+        with patch(self.env):
             args = [] if domain_kwarg else [domain]
             kwargs = {'args': domain} if domain_kwarg else {}
             return self.controller.call_kw('res.partner', 'search', args, kwargs)
@@ -65,7 +65,7 @@ class TestControllers(ControllerCase):
         assert self.supplier_customer.id in ids
 
     def _name_search(self, name, domain, name_kwarg, domain_kwarg):
-        with mock_odoo_request(self.env):
+        with patch(self.env):
             args = []
             kwargs = {}
 
@@ -107,7 +107,7 @@ class TestControllers(ControllerCase):
         assert self.supplier_customer.id in ids
 
     def _search_count(self, domain, domain_kwarg):
-        with mock_odoo_request(self.env):
+        with patch(self.env):
             args = [] if domain_kwarg else [domain]
             kwargs = {'args': domain} if domain_kwarg else {}
             return self.controller.call_kw('res.partner', 'search_count', args, kwargs)
@@ -123,7 +123,7 @@ class TestControllers(ControllerCase):
         assert count == self.supplier_customer_count
 
     def _search_read(self, domain, use_search_read_route, domain_kwarg):
-        with mock_odoo_request(self.env):
+        with patch(self.env):
             if use_search_read_route:
                 result = self.controller.search_read('res.partner', fields=[], domain=domain)
                 records = result['records']

@@ -1,8 +1,8 @@
-# © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# © 2022 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import pytest
-from odoo.addons.test_http_request.common import mock_odoo_request
+from unittest.mock import patch
 from odoo.exceptions import AccessError
 from .common import (
     ControllerCase,
@@ -22,10 +22,10 @@ class TestControllers(ControllerCase):
         self.controller = DataSetWithExtendedSecurity()
 
     def _read(self, records):
-        with mock_odoo_request(self.env):
+        with patch(self.env):
             return self.controller.call(
                 'res.partner', 'read',
-                [records.ids, ['name', 'customer', 'supplier']]
+                [records.ids, ['name']]
             )
 
     def test_on_read_with_employee__access_error_raised(self):
@@ -40,7 +40,7 @@ class TestControllers(ControllerCase):
         self._read(self.customer | self.supplier_customer)
 
     def _write(self, records, values):
-        with mock_odoo_request(self.env):
+        with patch(self.env):
             return self.controller.call('res.partner', 'write', [records.ids, values])
 
     def test_on_write_with_employee__access_error_raised(self):
@@ -59,14 +59,12 @@ class TestControllers(ControllerCase):
         self._write(self.customer | self.supplier_customer, {'name': 'My Customer'})
 
     def _create(self, values):
-        with mock_odoo_request(self.env):
+        with patch(self.env):
             return self.controller.call('res.partner', 'create', [values])
 
     def test_on_create_with_employee__access_error_raised(self):
         values = [{
             'name': 'My Employee',
-            'customer': True,
-            'supplier': True,
             'employee': True,
         }]
         with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
@@ -75,8 +73,6 @@ class TestControllers(ControllerCase):
     def test_on_create_with_non_customer__access_error_raised(self):
         values = [{
             'name': 'My Supplier',
-            'customer': False,
-            'supplier': True,
         }]
         with pytest.raises(AccessError, match=NON_CUSTOMER_CREATE_MESSAGE):
             self._create(values)
@@ -85,19 +81,15 @@ class TestControllers(ControllerCase):
         values = [
             {
                 'name': 'My Customer',
-                'customer': True,
-                'supplier': False,
             },
             {
                 'name': 'My Supplier Customer',
-                'customer': True,
-                'supplier': True,
             }
         ]
         self._create(values)
 
     def _unlink(self, records):
-        with mock_odoo_request(self.env):
+        with patch(self.env):
             return self.controller.call('res.partner', 'unlink', [records.ids])
 
     def test_on_unlink_with_employee__access_error_raised(self):
@@ -153,7 +145,6 @@ class TestControllers(ControllerCase):
         with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
             self._x2many_create(self.customer, {
                 'name': 'Some Contact',
-                'customer': True,
                 'employee': True,
             })
 
@@ -161,28 +152,28 @@ class TestControllers(ControllerCase):
         with pytest.raises(AccessError, match=NON_CUSTOMER_WRITE_MESSAGE):
             self._x2many_create(self.customer, {
                 'name': 'Some Contact',
-                'customer': False,
             })
 
     def test_on_x2many_create_with_customer__access_error_not_raised(self):
         self._x2many_create(self.customer, {
             'name': 'Some Contact',
-            'customer': True,
         })
 
     def _name_create(self, name):
-        with mock_odoo_request(self.env):
+        with patch(self.env):
             return self.controller.call('res.partner', 'name_create', [name])
 
     def _set_default_value(self, field, value):
         self.env['ir.default'].set('res.partner', field, value, user_id=self.env.uid)
 
     def test_on_name_create_with_customer__access_error_not_raised(self):
-        self._set_default_value('customer', True)
         self._name_create('My Partner')
 
     def test_on_name_create_with_non_customer__access_error_raised(self):
-        self._set_default_value('customer', False)
+        with pytest.raises(AccessError, match=NON_CUSTOMER_CREATE_MESSAGE):
+            self._name_create('My Partner')
+
+    def test_on_name_create_with_employee__access_error_not_raised(self):
         with pytest.raises(AccessError, match=NON_CUSTOMER_CREATE_MESSAGE):
             self._name_create('My Partner')
 
@@ -195,12 +186,12 @@ class TestControllers(ControllerCase):
             self._read_many2many_tags(self.employee, None)
 
     def _read_many2many_tags(self, records, fields):
-        with mock_odoo_request(self.env):
+        with patch(self.env):
             return self.controller.call('res.partner', 'read', [records.ids, fields])
 
     def _call_button(self, records, action_name):
-        with mock_odoo_request(self.env):
-            return self.controller.call_button('res.partner', action_name, [records.ids], {})
+        with patch(self.env):
+            return self.controller.call_button('res.partner', action_name, [records.ids])
 
     def test_toggle_active_with_employee__access_error_raised(self):
         with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):

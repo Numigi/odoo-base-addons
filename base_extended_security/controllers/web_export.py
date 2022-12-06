@@ -16,7 +16,6 @@ class ExportFormatWithSecurityDomain(ExportFormat):
 
         if record_ids:
             records = request.env[model].browse(record_ids)
-            records.check_extended_security_all()
             records.check_extended_security_read()
         else:
             search_domain = params.get('domain') or []

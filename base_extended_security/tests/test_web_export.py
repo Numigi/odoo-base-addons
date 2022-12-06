@@ -1,9 +1,9 @@
-# © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# © 2022 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import json
 import pytest
-from odoo.addons.test_http_request.common import mock_odoo_request
+from unittest.mock import patch
 from odoo.exceptions import AccessError
 from .common import ControllerCase
 from ..controllers.web_export import CSVControllerWithSecurity
@@ -25,7 +25,7 @@ class TestWebExport(ControllerCase):
         }
         data_ = json.dumps(params)
         token = 'test1234'
-        with mock_odoo_request(self.env):
+        with patch(self.env):
             response = self.controller.base(data_, token)
             return response.data.decode('utf-8')
 

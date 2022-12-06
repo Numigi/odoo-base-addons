@@ -1,4 +1,4 @@
-# © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# © 2022 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from collections import defaultdict
@@ -30,22 +30,18 @@ class ExtendedSecurityRule(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         res = super().create(vals_list)
-        self._flush_and_clear_cache()
+        self.clear_caches()
         return res
 
     def write(self, vals):
         res = super().write(vals)
-        self._flush_and_clear_cache()
+        self.clear_caches()
         return res
 
     def unlink(self):
         res = super().unlink()
-        self._flush_and_clear_cache()
-        return res
-
-    def _flush_and_clear_cache(self):
-        self.flush()
         self.clear_caches()
+        return res
 
     @api.model
     def check_user_access(self, model, access_type):
