@@ -45,5 +45,4 @@ COPY utm_archive /mnt/extra-addons/utm_archive
 COPY web_email_field_new_tab /mnt/extra-addons/web_email_field_new_tab
 
 COPY .docker_files/main /mnt/extra-addons/main
-COPY .docker_files/base_extended_security_test /mnt/extra-addons/base_extended_security_test
 COPY .docker_files/odoo.conf /etc/odoo
