@@ -25,7 +25,7 @@ COPY base_view_mode_restricted /mnt/extra-addons/base_view_mode_restricted
 COPY base_xml_rename /mnt/extra-addons/base_xml_rename
 #COPY helpdesk_ticket_phone /mnt/extra-addons/helpdesk_ticket_phone
 COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_token_portal
-COPY ir_attachment_access_name_autocomplete /mnt/extra-addons/ir_attachment_access_name_autocomplete
+COPY ir_attachment_name_autocomplete /mnt/extra-addons/ir_attachment_name_autocomplete
 #COPY lang_fr_activated /mnt/extra-addons/lang_fr_activated
 COPY mail_activity_list_mark_done /mnt/extra-addons/mail_activity_list_mark_done
 COPY mail_activity_not_deleted /mnt/extra-addons/mail_activity_not_deleted
