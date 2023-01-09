@@ -10,7 +10,7 @@
     'category': 'Other',
     'summary': 'Securize access to records',
     'depends': [
-        'web',
+        'web', 'test_http_request'
     ],
     'data': [
         'security/ir.model.access.csv',

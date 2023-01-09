@@ -72,7 +72,7 @@ def _hide_one2many_view_buttons_with_access_blocked(env, fields):
     :param env: the Odoo environment
     :param fields: the field definitions
     """
-    one2many_fields = (f for f in fields.values() if f['type'] == 'one2many')
+    one2many_fields = (f for f in fields.values() if 'type' in f.keys() and f['type'] == 'one2many')
     for field in one2many_fields:
         model = field['relation']
 
