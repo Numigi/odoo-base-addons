@@ -78,7 +78,7 @@ class ControllerCase(SavepointCase):
             'employee': True,
         })
 
-        cls.customer_count = cls.env['res.partner'].search_count([('customer_rank', '=', 1)])
+        cls.customer_count = cls.env['res.partner'].search_count([('customer_rank', '>', 0)])
         cls.supplier_customer_count = cls.env['res.partner'].search_count([
             '&', ('customer_rank', '>', 0), ('supplier_rank', '>', 0),
         ])
