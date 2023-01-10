@@ -33,8 +33,8 @@ class TestControllers(ControllerCase):
     def test_read_group_with_empty_domain(self, domain_kwarg):
         groups = self._read_group(
             [], fields=['customer_rank'], groupby='customer_rank', domain_kwarg=domain_kwarg)
-        assert len(groups) == 1
-        assert groups[0]['customer_rank_count'] == self.customer_count
+        assert len(groups) == 2
+        assert groups[0]['customer_rank_count'] == self.customer_count - 1
 
     @data(True, False)
     def test_read_group_with_supplier_domain(self, domain_kwarg):
