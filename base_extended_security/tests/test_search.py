@@ -1,4 +1,4 @@
-# © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# © 2023 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import pytest
@@ -32,17 +32,17 @@ class TestControllers(ControllerCase):
     @data(True, False)
     def test_read_group_with_empty_domain(self, domain_kwarg):
         groups = self._read_group(
-            [], fields=['customer'], groupby='customer', domain_kwarg=domain_kwarg)
-        assert len(groups) == 1
-        assert groups[0]['customer_count'] == self.customer_count
+            [], fields=['customer_rank'], groupby='customer_rank', domain_kwarg=domain_kwarg)
+        assert len(groups) == 2
+        assert groups[0]['customer_rank_count'] == self.customer_count - 1
 
     @data(True, False)
     def test_read_group_with_supplier_domain(self, domain_kwarg):
-        domain = [('supplier', '=', True)]
+        domain = [('supplier_rank', '>', 0)]
         groups = self._read_group(
-            domain, fields=['customer'], groupby='customer', domain_kwarg=domain_kwarg)
+            domain, fields=['customer_rank'], groupby='customer_rank', domain_kwarg=domain_kwarg)
         assert len(groups) == 1
-        assert groups[0]['customer_count'] == self.supplier_customer_count
+        assert groups[0]['customer_rank_count'] == self.supplier_customer_count
 
     def _search(self, domain, domain_kwarg):
         with mock_odoo_request(self.env):
@@ -59,7 +59,7 @@ class TestControllers(ControllerCase):
 
     @data(True, False)
     def test_search_with_supplier_domain(self, domain_kwarg):
-        ids = self._search([('supplier', '=', True)], domain_kwarg)
+        ids = self._search([('supplier_rank', '>', 0)], domain_kwarg)
         assert self.customer.id not in ids
         assert self.supplier.id not in ids
         assert self.supplier_customer.id in ids
@@ -101,7 +101,7 @@ class TestControllers(ControllerCase):
     )
     @unpack
     def test_name_search_with_supplier_domain(self, name_kwarg, domain_kwarg):
-        ids = self._name_search('My Partner', [('supplier', '=', True)], name_kwarg, domain_kwarg)
+        ids = self._name_search('My Partner', [('supplier_rank', '>', 0)], name_kwarg, domain_kwarg)
         assert self.customer.id not in ids
         assert self.supplier.id not in ids
         assert self.supplier_customer.id in ids
@@ -119,7 +119,7 @@ class TestControllers(ControllerCase):
 
     @data(True, False)
     def test_search_count_with_supplier_domain(self, domain_kwarg):
-        count = self._search_count([('supplier', '=', True)], domain_kwarg)
+        count = self._search_count([('supplier_rank', '>', 0)], domain_kwarg)
         assert count == self.supplier_customer_count
 
     def _search_read(self, domain, use_search_read_route, domain_kwarg):
@@ -154,7 +154,7 @@ class TestControllers(ControllerCase):
     )
     @unpack
     def test_search_read_with_supplier_domain(self, use_search_read_route, domain_kwarg):
-        ids = self._search_read([('supplier', '=', True)], use_search_read_route, domain_kwarg)
+        ids = self._search_read([('supplier_rank', '>', 0)], use_search_read_route, domain_kwarg)
         assert self.customer.id not in ids
         assert self.supplier.id not in ids
         assert self.supplier_customer.id in ids

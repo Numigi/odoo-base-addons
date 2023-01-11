@@ -1,4 +1,4 @@
-# © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# © 2023 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from lxml import etree
@@ -72,7 +72,7 @@ def _hide_one2many_view_buttons_with_access_blocked(env, fields):
     :param env: the Odoo environment
     :param fields: the field definitions
     """
-    one2many_fields = (f for f in fields.values() if f['type'] == 'one2many')
+    one2many_fields = (f for f in fields.values() if 'type' in f.keys() and f['type'] == 'one2many')
     for field in one2many_fields:
         model = field['relation']
 

@@ -1,4 +1,4 @@
-# © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# © 2023 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo.addons.test_http_request.common import mock_odoo_request
@@ -34,6 +34,6 @@ class TestControllers(ControllerCase):
         assert partner_count == self.customer_count
 
     def test_read_grid_with_supplier_domain(self):
-        result = self._read_grid([("supplier", "=", True)])
+        result = self._read_grid([("supplier_rank", ">", 0)])
         partner_count = result["grid"][0][0]["size"]
         assert partner_count == self.supplier_customer_count

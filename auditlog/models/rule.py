@@ -1,5 +1,5 @@
 # © 2015 ABF OSIELL <https://osiell.com>
-# © 2018 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# © 2023 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from typing import Iterable, Mapping

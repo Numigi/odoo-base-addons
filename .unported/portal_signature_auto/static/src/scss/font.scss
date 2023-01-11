@@ -1,0 +1,9 @@
+
+$font-path: '../fonts';
+
+@font-face {
+  font-family: 'Italianno';
+  src: url('#{$font-path}/Italianno-Regular.ttf');
+  font-weight: 100;
+  font-style: normal;
+}
