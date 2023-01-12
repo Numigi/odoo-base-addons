@@ -5,7 +5,7 @@ DMS Document URL
 
 Description
 -----------
-This module make it possible to create URL attachments as documents in DMS.
+This module is a binding between dms and document_url. It makes it possible to create URL attachments as documents in DMS.
 
 Usage
 -----
