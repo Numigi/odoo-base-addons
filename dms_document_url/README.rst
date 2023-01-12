@@ -5,7 +5,7 @@ DMS Document URL
 
 Description
 -----------
-This module is a binding between dms and document_url. It makes it possible to create URL attachments as documents in DMS.
+This module is a binding between `dms <https://github.com/OCA/dms/tree/12.0/dms>`_ and `document_url <https://github.com/OCA/knowledge/tree/12.0/document_url>`_. It makes it possible to create URL attachments as documents in DMS.
 
 Usage
 -----
