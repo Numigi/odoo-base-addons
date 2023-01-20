@@ -31,7 +31,7 @@ COPY mail_activity_list_mark_done /mnt/extra-addons/mail_activity_list_mark_done
 COPY mail_activity_not_deleted /mnt/extra-addons/mail_activity_not_deleted
 COPY mail_bot_no_pong /mnt/extra-addons/mail_bot_no_pong
 #COPY mail_follower_picker /mnt/extra-addons/mail_follower_picker
-#COPY mail_notification_no_action_button /mnt/extra-addons/mail_notification_no_action_button
+COPY mail_notification_no_action_button /mnt/extra-addons/mail_notification_no_action_button
 COPY mail_message_from_author /mnt/extra-addons/mail_message_from_author
 COPY mail_notification_no_footer /mnt/extra-addons/mail_notification_no_footer
 #COPY mail_template_archive /mnt/extra-addons/mail_template_archive
