@@ -32,7 +32,7 @@
         "mail_activity_not_deleted",
         "mail_bot_no_pong",
        # "mail_follower_picker",
-        #"mail_notification_no_action_button",
+        "mail_notification_no_action_button",
         "mail_message_from_author",
         "mail_notification_no_footer",
         #"mail_template_archive",
