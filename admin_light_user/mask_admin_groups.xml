@@ -8,7 +8,7 @@
         <record id="user_groups_view_without_admin_applications" model="ir.ui.view">
             <field name="name">User Access View: Remove Admin Applications</field>
             <field name="model">res.users</field>
-            <field name="groups_id" eval="[(4, ref('group_user_management'))]"/>
+            <field name="groups_id" eval="[(4, ref('admin_light_user.group_user_management'))]"/>
             <field name="inherit_id" ref="base.view_users_form"/>
         </record>
 
