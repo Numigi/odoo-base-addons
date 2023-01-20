@@ -1,4 +1,4 @@
-# © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# © 2022 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from collections import defaultdict
@@ -32,13 +32,11 @@ class PrivateField(models.Model):
         self.clear_caches()
         return res
 
-    
     def write(self, vals):
         res = super().write(vals)
         self.clear_caches()
         return res
 
-    
     def unlink(self):
         res = super().unlink()
         self.clear_caches()
