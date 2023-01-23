@@ -49,6 +49,7 @@ class UsersWithAdminGroupsMasked(models.Model):
 
         xml_content = etree.tostring(admin_view_tree, pretty_print=True, encoding="unicode")
         admin_light_view = self.env.ref(ADMIN_LIGHT_USER_VIEW)
+        print(xml_content)
         admin_light_view.write({'arch': xml_content})
 
 
@@ -67,9 +68,7 @@ def _remove_admin_application_selection_fields(tree: etree._Element, env: api.En
         ]
         selected_groups = env['res.groups'].browse(selected_group_ids)
         if selected_groups[0].category_id in admin_applications:
-            if node in node.getparent():
-                print(selected_groups.mapped('name'))
-                node.getparent().remove(node)
+            node.getparent().remove(node)
 
 
 def _remove_admin_application_checkbox_fields(tree: etree._Element, env: api.Environment):
@@ -85,9 +84,7 @@ def _remove_admin_application_checkbox_fields(tree: etree._Element, env: api.Env
         selected_group_id = int(node.attrib['name'].replace('in_group_', ''))
         selected_group = env['res.groups'].browse(selected_group_id)
         if selected_group.category_id in admin_applications:
-            if node in node.getparent():
-                print(selected_group.mapped('name'))
-                node.getparent().remove(node)
+            node.getparent().remove(node)
 
 
 def _remove_separators_with_no_fields_below(tree: etree._Element):
