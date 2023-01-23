@@ -49,7 +49,6 @@ class UsersWithAdminGroupsMasked(models.Model):
 
         xml_content = etree.tostring(admin_view_tree, pretty_print=True, encoding="unicode")
         admin_light_view = self.env.ref(ADMIN_LIGHT_USER_VIEW)
-        print(xml_content)
         admin_light_view.write({'arch': xml_content})
 
 
