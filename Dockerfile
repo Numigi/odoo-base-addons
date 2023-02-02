@@ -38,7 +38,7 @@ COPY mail_notification_no_footer /mnt/extra-addons/mail_notification_no_footer
 COPY mail_template_default /mnt/extra-addons/mail_template_default
 COPY note_no_default_stage /mnt/extra-addons/note_no_default_stage
 COPY private_data_group /mnt/extra-addons/private_data_group
-#COPY queue_job_auto_requeue /mnt/extra-addons/queue_job_auto_requeue
+COPY queue_job_auto_requeue /mnt/extra-addons/queue_job_auto_requeue
 COPY test_http_request /mnt/extra-addons/test_http_request
 #COPY url_link_type /mnt/extra-addons/url_link_type
 COPY utm_archive /mnt/extra-addons/utm_archive

@@ -39,7 +39,7 @@
         "mail_template_default",
         "note_no_default_stage",
         "private_data_group",
-       # "queue_job_auto_requeue",
+        "queue_job_auto_requeue",
         #"url_link_type",
         "test_http_request",
         "utm_archive",

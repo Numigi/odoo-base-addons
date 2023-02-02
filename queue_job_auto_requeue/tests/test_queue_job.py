@@ -1,11 +1,10 @@
-# © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# © 2022 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from datetime import datetime, timedelta
 from ddt import data, ddt
 from odoo import models
 from odoo.tests.common import SavepointCase
-from uuid import uuid4
 from ..models.queue_job import TIME_LIMIT_PARAMETER
 
 
