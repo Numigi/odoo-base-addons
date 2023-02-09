@@ -44,6 +44,7 @@
         "test_http_request",
         "utm_archive",
         "web_email_field_new_tab",
+        "dms_document_url",
     ],
     "installable": True,
 }
