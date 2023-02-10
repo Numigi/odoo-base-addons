@@ -29,3 +29,9 @@
 
 - url: https://github.com/OCA/dms
   branch: "14.0"  # TA#46953
+
+- url: https://github.com/OCA/web
+  branch: "14.0"
+  includes:
+    - web_view_searchpanel  # TA#46953
+    - web_drop_target  # TA#46953
