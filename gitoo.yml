@@ -13,6 +13,7 @@
   branch: "14.0"
   includes:
     - mail_activity_board
+    - mail_preview_base # TA#46953
 
 - url: https://{{GIT_TOKEN}}@github.com/Numigi/odoo-enterprise
   branch: "14.0"
