@@ -23,6 +23,9 @@
   branch: "14.0"
   includes:
     - currency_rate_update
-    
+
+- url: https://github.com/oca/knowledge
+  branch: "14.0"
+
 - url: https://github.com/OCA/dms
   branch: "14.0"  # TA#46953
