@@ -6,7 +6,7 @@ This module adds compatibility between the Microsoft SSO and the vanilla Oauth f
 
 Context
 -------
-As of Odoo version 12.0, the Oauth feature is incompatible with Microsoft.
+As of Odoo version 14.0, the Oauth feature is incompatible with Microsoft.
 
 If you create an Oauth provider similarly to the predefined configurations for Google or Facebook,
 you will end up with errors when authentifying.
@@ -26,3 +26,7 @@ If you manually create a new provider with different parameters for Microsoft, i
 Contributors
 ------------
 * Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+
+More information
+----------------
+* Meet us at https://bit.ly/numigi-com
