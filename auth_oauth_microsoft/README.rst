@@ -23,6 +23,18 @@ Behind the scene, when logging with this provider, the Oauth flow is tweeked a l
 
 If you manually create a new provider with different parameters for Microsoft, it should also work.
 
+Configuration
+-------------
+
+The Microsoft provider is already pre-configured.
+
+.. image:: static/description/auth_oauth_microsoft_preconfigured.png
+
+Simply input the following values taken from your Azure App Registration:
+
+- ``Client ID``
+- ``Client Secret`` (the secret value, not the secret ID)
+
 Contributors
 ------------
 * Numigi (tm) and all its contributors (https://bit.ly/numigiens)
