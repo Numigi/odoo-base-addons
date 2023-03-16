@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_staging_environment,access_staging_environment,model_staging_environment,group_staging,1,0,0,0
+access_staging_job,access_staging_job,model_staging_job,group_staging,1,1,1,0
+access_staging_environment_admin,access_staging_environment_admin,model_staging_environment,base.group_system,1,1,1,1
