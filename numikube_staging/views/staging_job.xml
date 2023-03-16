@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="staging_job_form" model="ir.ui.view">
+        <field name="name">Staging Job Form</field>
+        <field name="model">staging.job</field>
+        <field name="arch" type="xml">
+            <form string="Staging Job">
+                <header>
+                    <button
+                        type="object"
+                        name="run"
+                        string="Run"
+                        states="pending,error"
+                        class="oe_highlight"
+                        />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="pending,running,done"
+                        />
+                </header>
+                <div class="alert alert-info"
+                     role="alert"
+                     attrs="{'invisible': [('state', '!=', 'running')]}"
+                     >
+                        The staging job is running.
+                        <br/>
+                        When it is completed, an email will be sent to inform you.
+                </div>
+                <div class="alert alert-danger"
+                     role="alert"
+                     attrs="{'invisible': [('state', '!=', 'error')]}"
+                     >
+                        An error occured while running this staging.
+                </div>
+                <div class="alert alert-success"
+                     role="alert"
+                     attrs="{'invisible': [('state', '!=', 'done')]}"
+                     >
+                        The staging job was executed successfully.
+                </div>
+                <sheet>
+                    <group>
+                        <group name="group_1">
+                            <field name="environment_id" widget="selection"/>
+                            <field name="type_"/>
+                            <field name="timestamp" attrs="{'invisible': [('type_', '!=', 'prod2x')]}"/>
+                            <field name="suffix" attrs="{'invisible': [('type_', '!=', 'prod2x')]}"/>
+                            <field name="dropdb_database_names"
+                                string="Database Names"
+                                attrs="{
+                                    'invisible': [('type_', '!=', 'dropdb')],
+                                    'required': [('type_', '=', 'dropdb')],
+                                }"/>
+                        </group>
+                        <group name="group_2">
+                            <field name="user_id"/>
+                            <field name="database_name"
+                                attrs="{'invisible': [('database_name', '=', False)]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="error" attrs="{'invisible': [('state', '!=', 'error')]}"/>
+                        <field name="traceback" attrs="{'invisible': [('traceback', '=', False)]}"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="staging_job_list" model="ir.ui.view">
+        <field name="name">Staging Job List</field>
+        <field name="model">staging.job</field>
+        <field name="arch" type="xml">
+            <tree string="Staging Jobs">
+                <field name="start_datetime"/>
+                <field name="environment_id"/>
+                <field name="type_"/>
+                <field name="database_name"/>
+                <field name="user_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="staging_job_search" model="ir.ui.view">
+        <field name="name">Staging Job Search</field>
+        <field name="model">staging.job</field>
+        <field name="arch" type="xml">
+            <search string="Search Staging Jobs">
+                <field name="database_name"/>
+                <field name="environment_id"/>
+                <field name="create_uid"/>
+                <field name="type_"/>
+           </search>
+        </field>
+    </record>
+
+    <record id="action_staging_job" model="ir.actions.act_window">
+        <field name="name">Staging Jobs</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">staging.job</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="staging_job_list"/>
+        <field name="search_view_id" ref="staging_job_search"/>
+    </record>
+
+</odoo>
