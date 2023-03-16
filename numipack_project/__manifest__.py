@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Numipack - Sales',
+    'name': 'Numipack - Project',
     'version': '1.0.0',
     'author': 'Numigi',
     'maintainer': 'Numigi',
@@ -29,5 +29,5 @@
         'data/auditlog_rule.xml',
         'security/extended_security_rule.xml',
     ],
-    'installable': False,
+    'installable': True,
 }

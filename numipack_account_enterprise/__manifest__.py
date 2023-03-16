@@ -16,5 +16,5 @@
         # Numigi/odoo-account-addons
         'account_report_line_menu',
     ],
-    'installable': False,
+    'installable': True,
 }
