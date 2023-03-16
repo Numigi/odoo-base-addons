@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem
+        id="menu_staging"
+        name="Staging"
+        parent="admin_light_base.menu_admin"
+        groups="group_staging"
+        sequence="10"
+        />
+
+    <menuitem
+        id="menu_staging_job"
+        name="Jobs"
+        parent="menu_staging"
+        groups="group_staging"
+        action="action_staging_job"
+        sequence="1"
+        />
+
+    <menuitem
+        id="menu_staging_environment"
+        name="Environments"
+        parent="menu_staging"
+        groups="base.group_system"
+        action="action_staging_environment"
+        sequence="2"
+        />
+
+</odoo>
