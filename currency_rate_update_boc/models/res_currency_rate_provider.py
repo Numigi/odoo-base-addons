@@ -55,13 +55,12 @@ class ResCurrencyRateProvider(models.Model):
                 yield f"FXCAD{currency}"
 
     def _get_boc_response(self, url):
-        # response = requests.request("GET", url)
-        response = requests.get(url, timeout=8)
+        response = requests.get(url)
         if response.status_code >= 400:
             raise ValidationError(
                 _(
-                    "The request to the Valet api of the Bank of Canada terminated with an error.\n\n{}".format(
-                        response.text
+                    "The request to the Valet api of the Bank of Canada terminated with an error.\n\n{} : {}".format(
+                        response.text, url
                     )
                 )
             )
