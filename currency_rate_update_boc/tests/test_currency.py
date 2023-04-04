@@ -1,7 +1,6 @@
-# © 2021 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# © 2023 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import requests_mock
 import json
 import os
 import pytest
@@ -10,6 +9,7 @@ from datetime import date, timedelta
 from odoo.tests.common import SavepointCase
 from ddt import ddt, data
 from odoo.exceptions import ValidationError
+from odoo.addons.website.tools import MockRequest
 
 
 @ddt
@@ -36,11 +36,14 @@ class TestBocRateProvider(SavepointCase):
             }
         )
 
-        cls.test_boc_url = "https://www.bankofcanada.ca/valet/observations/"
+        cls.test_boc_url = "https://www.bankofcanada.ca/valet/observations/FXUSDCAD,FXEURCAD?start_date=%s&end_date=%s" % (
+            cls.date_string, cls.date_string)
+        cls.dumb_test_boc_url = "https://www.bankofcanada.ca/valet/observations/"
 
     @data("CAD", "USD", "EUR")
     def test_supported_currencies(self, currency_code):
-        supported_currencies = self.provider.available_currency_ids.mapped("name")
+        supported_currencies = self.provider.available_currency_ids.mapped(
+            "name")
         assert currency_code in supported_currencies
 
     def test_boc_response(self):
@@ -52,27 +55,32 @@ class TestBocRateProvider(SavepointCase):
 
     @data(401, 404, 410, 500, 502)
     def test_boc_response_exceptions(self, error_code):
-        with requests_mock.Mocker() as m:
-            m.get(self.test_boc_url, status_code=error_code)
+        with MockRequest(self.env) as m:
+            m.httprequest.method = "GET"
+            m.get(self.dumb_test_boc_url, status_code=error_code)
             with pytest.raises(ValidationError):
-                self.provider._get_boc_response(self.test_boc_url)
+                self.provider._get_boc_response(self.dumb_test_boc_url)
 
     def test_rates_cad2x(self):
-        rates = self.provider._obtain_rates("CAD", ["USD", "EUR"], self.date, self.date)
+        rates = self.provider._obtain_rates(
+            "CAD", ["USD", "EUR"], self.date, self.date)
         assert rates[self.date_string]["USD"] == round(1 / 1.2279, 4)
         assert rates[self.date_string]["EUR"] == round(1 / 1.4808, 4)
 
     def test_rates_x2cad(self):
-        rates = self.provider._obtain_rates("USD", ["CAD"], self.date, self.date)
+        rates = self.provider._obtain_rates(
+            "USD", ["CAD"], self.date, self.date)
         assert rates[self.date_string]["CAD"] == 1.2279
 
     def test_rates_x2x(self):
-        rates = self.provider._obtain_rates("USD", ["EUR"], self.date, self.date)
+        rates = self.provider._obtain_rates(
+            "USD", ["EUR"], self.date, self.date)
         assert rates[self.date_string]["EUR"] == round(1.2279 * 1 / 1.4808, 4)
 
     def test_invalid_currency(self):
         with pytest.raises(ValidationError):
-            rates = self.provider._obtain_rates("USD", ["ZZZZ"], self.date, self.date)
+            rates = self.provider._obtain_rates(
+                "USD", ["ZZZZ"], self.date, self.date)
 
     def test_invalid_date(self):
         with pytest.raises(ValidationError):
@@ -103,7 +111,8 @@ class TestBocRateProvider(SavepointCase):
 
     @contextmanager
     def _mock_boc_response(self, url, json_data):
-        with requests_mock.Mocker() as m:
+        with MockRequest(self.env) as m:
+            m.httprequest.method = "GET"
             m.get(url, json=json_data)
             yield
 

@@ -1,7 +1,8 @@
-# © 2021 - today Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# © 2023 - today Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo.addons.test_http_request.common import mock_odoo_request
+from odoo.addons.portal.controllers.mail import PortalChatter
+from odoo.addons.website.tools import MockRequest
 from odoo.tests.common import TransactionCase
 from ..controllers.portal import PortalChatterWithAttachments
 
@@ -21,8 +22,8 @@ class TestControllers(TransactionCase):
         }
 
     def test_portal_chatter_post(self):
-        with mock_odoo_request(self.env, headers=self.headers):
-            self.controller.portal_chatter_post(
+        with MockRequest(self.env, context={'lang': 'fr_FR'}):
+            PortalChatter().portal_chatter_post(
                 self.res_model, self.res_id, self.message
             )
 

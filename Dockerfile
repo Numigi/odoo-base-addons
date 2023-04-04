@@ -23,6 +23,7 @@ COPY base_extended_security_grid /mnt/extra-addons/base_extended_security_grid
 COPY base_selection_label /mnt/extra-addons/base_selection_label
 COPY base_view_mode_restricted /mnt/extra-addons/base_view_mode_restricted
 COPY base_xml_rename /mnt/extra-addons/base_xml_rename
+COPY currency_rate_update_boc /mnt/extra-addons/currency_rate_update_boc
 #COPY helpdesk_ticket_phone /mnt/extra-addons/helpdesk_ticket_phone
 COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_token_portal
 COPY ir_attachment_name_autocomplete /mnt/extra-addons/ir_attachment_name_autocomplete
@@ -37,6 +38,8 @@ COPY mail_notification_no_footer /mnt/extra-addons/mail_notification_no_footer
 #COPY mail_template_archive /mnt/extra-addons/mail_template_archive
 COPY mail_template_default /mnt/extra-addons/mail_template_default
 COPY note_no_default_stage /mnt/extra-addons/note_no_default_stage
+# COPY portal_attachment /mnt/extra-addons/portal_attachment
+COPY portal_signature_auto /mnt/extra-addons/portal_signature_auto
 COPY private_data_group /mnt/extra-addons/private_data_group
 COPY queue_job_auto_requeue /mnt/extra-addons/queue_job_auto_requeue
 COPY test_http_request /mnt/extra-addons/test_http_request
