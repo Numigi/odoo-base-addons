@@ -80,11 +80,11 @@ Example of configuration of the staging environment.
 
 In the production environment, as administrator, I go to ``Administration / Staging / Environments``.
 
-.. image:: numikube_staging/static/description/environment_list.png
+.. image:: static/description/environment_list.png
 
 I create a new environment called ``Lab``.
 
-.. image:: numikube_staging/static/description/environment_form.png
+.. image:: static/description/environment_form.png
 
 1. Under ``URL``, I put the URL of the staging instance.
 
@@ -102,17 +102,17 @@ Usage
 -----
 The module adds a new user group ``Admin Light / Run Staging``.
 
-.. image:: numikube_staging/static/description/user_form.png
+.. image:: static/description/user_form.png
 
 As member of this new group, I go to ``Administration / Staging / Jobs``.
 
 I find the list of staging jobs.
 
-.. image:: numikube_staging/static/description/job_list.png
+.. image:: static/description/job_list.png
 
 I create a new job.
 
-.. image:: numikube_staging/static/description/job_form.png
+.. image:: static/description/job_form.png
 
 1. As environment, I select ``Lab``.
 
@@ -124,11 +124,11 @@ I create a new job.
 
 After saving, I click on ``Run``.
 
-.. image:: numikube_staging/static/description/job_form_run.png
+.. image:: static/description/job_form_run.png
 
 After clicking on ``Run``, the state of the job is set to ``Running``.
 
-.. image:: numikube_staging/static/description/job_form_running.png
+.. image:: static/description/job_form_running.png
 
 At this point, the staging database is being built by the staging environment.
 
@@ -139,21 +139,21 @@ A few seconds (or minutes later), I refresh the form view.
 
 I notice that the job is done and that an email was sent to inform me.
 
-.. image:: numikube_staging/static/description/job_form_done.png
+.. image:: static/description/job_form_done.png
 
 Inside the email, a clickable link allows to access the staging environment
 and select the database.
 
-.. image:: numikube_staging/static/description/job_form_done_email_link.png
+.. image:: static/description/job_form_done_email_link.png
 
-.. image:: numikube_staging/static/description/staging_database_selector.png
+.. image:: static/description/staging_database_selector.png
 
 
 Constraints
 -----------
 The``Suffix`` field should not contain any spaces, special characters, or uppercase letters.
 
-.. image:: numikube_staging/static/description/suffix_constraint.png
+.. image:: static/description/suffix_constraint.png
 
 
 Jobs In Error
@@ -162,7 +162,7 @@ In case of an error, the status is set to ``Error``.
 
 A different email is sent to inform the user of the error.
 
-.. image:: numikube_staging/static/description/job_form_error.png
+.. image:: static/description/job_form_error.png
 
 A job in ``Error`` can be retried by clicking again on ``Run``.
 
@@ -175,13 +175,13 @@ When creating a new job, a new field ``Type`` allows you to choose between:
 * ``New Database``
 * ``Drop Databases``
 
-.. image:: numikube_staging/static/description/job_form_type.png
+.. image:: static/description/job_form_type.png
 
 After selecting ``Drop Databases``, a new field ``Database Names`` appears.
 
 I enter the list of database names to delete.
 
-.. image:: numikube_staging/static/description/dropdb_database_names.png
+.. image:: static/description/dropdb_database_names.png
 
 ..
 
@@ -192,7 +192,7 @@ A dropdb job is completed synchronously in a few seconds.
 It does not run in background like when creating a new database.
 The reason is that droping a database is fast.
 
-.. image:: numikube_staging/static/description/dropdb_done.png
+.. image:: static/description/dropdb_done.png
 
 Database Limit
 --------------
