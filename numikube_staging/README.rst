@@ -65,7 +65,8 @@ The module also needs to be loaded as server-wide module in
 the target staging (lab / test) environment.
 
 The staging configuration must also specify:
-* the token
+
+* a numikube_staging_token of your choice (use a password generator)
 * the minio bucket to use for backups (or else it will fallback to dev-backups specified in odoo-base config)
 
 Example of configuration of the staging environment.
