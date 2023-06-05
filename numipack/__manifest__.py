@@ -4,7 +4,7 @@
 
 {
     'name': 'Numipack',
-    'version': '1.0.0',
+    'version': '1.0.1',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
@@ -15,6 +15,7 @@
         'admin_light_auditlog',  # TA#3892
         'admin_light_calendar',  # TA#3892
         'admin_light_company',  # TA#19785
+        'admin_light_filters',  # TA#52688
         'admin_light_mail',  # TA#3892
         'admin_light_base',  # TA#4894
         'admin_light_user',  # TA#4894
