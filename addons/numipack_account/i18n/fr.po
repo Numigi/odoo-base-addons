@@ -16,3 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "X-Generator: Poedit 2.0.6\n"
+
+#. module: numipack_account
+#: model:ir.model.fields,field_description:numipack_account.field_res_company__account_setup_fy_data_state
+msgid "State of the onboarding fiscal year step"
+msgstr "État de l'étape de l'année fiscale d'intégration"
