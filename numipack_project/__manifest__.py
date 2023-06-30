@@ -18,6 +18,7 @@
 
         # Numigi / odoo-project-addons
         'project_default_task_stage',  # TA#34544
+        'project_list',  # TA#55010
         'project_stage_no_quick_create',
         'project_task_date_planned',
         'project_task_full_text_search',
