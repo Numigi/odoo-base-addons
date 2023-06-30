@@ -62,7 +62,7 @@
         'disable_quick_create',
 
         # OCA/web
-        # 'web_search_with_and',  # TA#2547
+        'web_search_with_and', # TA#2547 TA#53106
 
         # Smile-SA/odoo_addons
         # 'smile_web_impex',  # TA#19309
