@@ -27,7 +27,6 @@
         "currency_rate_update_boc",
         # "helpdesk_ticket_phone",
         "ir_attachment_access_token_portal",
-        "ir_attachment_name_autocomplete",
         "lang_fr_activated",
         "mail_activity_list_mark_done",
         "mail_activity_not_deleted",
