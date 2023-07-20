@@ -4,7 +4,7 @@
 
 {
     'name': 'Numipack',
-    'version': '1.0.1',
+    'version': '1.0.2',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
@@ -62,6 +62,7 @@
         'disable_quick_create',
 
         # OCA/web
+        'web_advanced_search',  # TA#53339
         'web_search_with_and', # TA#2547 TA#53106
 
         # Smile-SA/odoo_addons
