@@ -3,7 +3,7 @@
 
 {
     'name': 'Numipack Stock',
-    'version': '1.0.0',
+    'version': '1.0.1',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
@@ -13,7 +13,6 @@
         'numipack',
 
         # numigi/odoo-stock-addons
-        'stock_immediate_transfer_disable',
         'stock_move_origin_link',
         'stock_picking_show_address',
         'stock_account_visibility',
