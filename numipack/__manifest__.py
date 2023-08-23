@@ -41,9 +41,9 @@
         'report_aeroo_replace_qweb',
 
         # Numigi/odoo-partner-addons
-        # 'contacts_config_menu_moved_right',  # TA#18504
+        'contacts_config_menu_moved_right',  # TA#18504
         'partner_autocomplete_disable',  # TA#47076
-        # 'partner_edit_group',  # TA#10975
+        'partner_edit_group',  # TA#10975
         # 'partner_phone_validation',  # TA#5979
 
         # Numigi/odoo-base-addons
@@ -58,15 +58,13 @@
         # Numigi/odoo-web-addons
         'web_custom_label',  # TA#3928
         'web_custom_modifier',  # TA#16243
-        # 'web_search_date_range',
+        'web_search_date_range',
         'disable_quick_create',
 
         # OCA/web
         'web_advanced_search',  # TA#53339
         'web_search_with_and', # TA#2547 TA#53106
 
-        # Smile-SA/odoo_addons
-        # 'smile_web_impex',  # TA#19309
     ],
     'data': [
         'data/auditlog_rule.xml',
