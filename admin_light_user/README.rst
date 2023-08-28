@@ -2,7 +2,7 @@ Admin Light User
 ================
 This module adds the management of users to the Admin Light application.
 
-A new group `Administration (Light) / Users` is added.
+A new group `Safe Administration / Users` is added.
 
 This group can:
 

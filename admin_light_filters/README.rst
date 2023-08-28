@@ -4,7 +4,7 @@ This module adds user-defined filter management to the Admin Light user.
 
 User Filter
 -----------
-A new group `Administration (Light) / Custom Filters` is added.
+A new group `Safe Administration / Custom Filters` is added.
 
 As a normal user (not the default admin) and member of that group, 
 under the menu `Administration > User Interface > User-defined Filters`, I can :
