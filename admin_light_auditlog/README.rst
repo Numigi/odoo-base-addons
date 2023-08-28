@@ -2,7 +2,7 @@ Admin Light AuditLog
 ====================
 This module adds Auditlog to the Admin Light application.
 
-A new group `Administration (Light) / Audit Logs` is added.
+A new group `Safe Administration / Audit Logs` is added.
 
 This group has access to:
 

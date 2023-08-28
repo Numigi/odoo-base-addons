@@ -2,7 +2,7 @@ Admin Light Gamification
 ========================
 This module adds the gamification settings to the Admin Light application.
 
-A new group `Administration (Light) / Gamification` is added.
+A new group `Safe Administration / Gamification` is added.
 
 This group has access to:
 

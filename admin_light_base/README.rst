@@ -17,7 +17,7 @@ Each functionnality is added by a specific user group.
 
 Sequences
 ---------
-A new group `Administration (Light) / Sequences` is added.
+A new group `Safe Administration / Sequences` is added.
 
 .. image:: static/description/sequence_group.png
 

@@ -24,13 +24,13 @@ msgstr "Administration"
 
 #. module: admin_light_base
 #: model:ir.module.category,name:admin_light_base.module_category_admin
-msgid "Administration (Light)"
-msgstr "Administration (Léger)"
+msgid "Safe Administration"
+msgstr "Administration sécurisée"
 
 #. module: admin_light_base
 #: model:res.groups,name:admin_light_base.group_admin
-msgid "Administration (Light) / Base"
-msgstr "Administration (Léger) / Base"
+msgid "Safe Administration / Base"
+msgstr "Administration sécurisée / Base"
 
 #. module: admin_light_base
 #: model:ir.ui.menu,name:admin_light_base.menu_other
