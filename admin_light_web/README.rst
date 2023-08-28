@@ -4,7 +4,7 @@ This module adds customization of the user interface to the Admin Light applicat
 
 Custom Labels
 -------------
-A new group `Administration (Light) / Custom Labels` is added.
+A new group `Safe Administration / Custom Labels` is added.
 
 This group has access to:
 
@@ -12,7 +12,7 @@ This group has access to:
 
 Date Filters
 ------------
-A new group `Administration (Light) / Date Filters` is added.
+A new group `Safe Administration / Date Filters` is added.
 
 This group has access to:
 

@@ -4,14 +4,14 @@ This module adds email management to the Admin Light application.
 
 Emails & Messages
 -----------------
-A new group `Administration (Light) / Messages` is added.
+A new group `Safe Administration / Messages` is added.
 
 * View the list of emails and messages
 * Resend a failed message
 
 Mail Templates
 --------------
-A new group `Administration (Light) / Email Templates` is added.
+A new group `Safe Administration / Email Templates` is added.
 
 This group has access to:
 
@@ -19,7 +19,7 @@ This group has access to:
 
 Mail Servers
 ------------
-A new group `Administration (Light) / Mail Servers` is added.
+A new group `Safe Administration / Mail Servers` is added.
 
 * View and edit the list of incoming / outgoing mail servers.
 
