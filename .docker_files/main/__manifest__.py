@@ -16,6 +16,7 @@
         "crm",  # required for testing mail_notification_no_action_button
         "auditlog",
         "auth_oauth_microsoft",
+        "auth_session_redis_timeout",
         "base_extended_security",
         "base_extended_security_grid",
         "base_selection_label",
