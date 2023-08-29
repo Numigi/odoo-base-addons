@@ -1,2 +1,4 @@
 ddt==1.2.1
 requests-mock==1.9.3
+# Required for module auth_session_redis_timeout
+redis==3.5.3
