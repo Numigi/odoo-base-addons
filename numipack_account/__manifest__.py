@@ -3,7 +3,7 @@
 
 {
     'name': 'Numipack Accounting',
-    'version': '1.2.0',
+    'version': '1.2.1',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',

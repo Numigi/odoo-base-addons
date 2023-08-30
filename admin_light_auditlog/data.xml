@@ -6,7 +6,6 @@
         <field name="category_id" ref="admin_light_base.module_category_admin"/>
         <field name="implied_ids" eval="[
             (4, ref('admin_light_base.group_admin')),
-            (4, ref('auditlog.group_view_audit_logs')),
         ]"/>
     </record>
 
@@ -30,7 +29,7 @@
         id="menu_audit_field_logs"
         name="Detailed Logs"
         parent="menu_audit"
-        action="auditlog.action_auditlog_log_line_tree"
+        action="auditlog.action_auditlog_line"
         sequence="2"
         />
 
