@@ -15,7 +15,6 @@ RUN gitoo install-all --conf_file /gitoo.yml --destination "${THIRD_PARTY_ADDONS
 
 USER odoo
 
-COPY auditlog /mnt/extra-addons/auditlog
 COPY auth_oauth_authentik /mnt/extra-addons/auth_oauth_authentik
 COPY automatic_activity_deadlines /mnt/extra-addons/automatic_activity_deadlines
 COPY base_extended_security /mnt/extra-addons/base_extended_security

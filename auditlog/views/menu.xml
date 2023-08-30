@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-
-    <menuitem id="menu_audit" name="Audit" parent="base.menu_administration" sequence="100"/>
-    <menuitem id="menu_audit_logs" name="Logs" parent="menu_audit" action="action_auditlog_log_tree" sequence="1"/>
-    <menuitem id="menu_audit_field_logs" name="Detailed Logs" parent="menu_audit" action="action_auditlog_log_line_tree" sequence="2"/>
-    <menuitem id="menu_action_auditlog_rule_tree" name="Rules" parent="menu_audit" action="action_auditlog_rule_tree" sequence="3"/>
-
-</odoo>
