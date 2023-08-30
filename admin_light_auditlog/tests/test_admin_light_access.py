@@ -21,7 +21,7 @@ class TestAdminLightAccess(common.SavepointCase):
 
         cls.rule = cls.env['auditlog.rule'].create({
             'name': 'Test',
-            'model_id': cls.env.ref('base.model_res_partner').id,
+            'model_id': cls.env.ref('base.model_ir_cron').id,
             'log_write': True,
             'log_unlink': True,
             'log_create': True,
