@@ -3,7 +3,7 @@
 
 {
     'name': 'Numipack - Sales',
-    'version': '1.0.0',
+    'version': '1.0.1',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
