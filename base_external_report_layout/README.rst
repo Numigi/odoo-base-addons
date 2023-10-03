@@ -14,7 +14,7 @@ In order to avoid this scenario, this module allows to hide the external report 
 
 Overview
 --------
-After installing this module, the field  `external_report_layout_id` is anymore visible in the general settings view .
+After installing this module, the field  `external_report_layout_id` is not anymore visible in the general settings view .
 
 
 
