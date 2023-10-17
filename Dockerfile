@@ -46,6 +46,7 @@ COPY test_http_request /mnt/extra-addons/test_http_request
 COPY utm_archive /mnt/extra-addons/utm_archive
 COPY web_email_field_new_tab /mnt/extra-addons/web_email_field_new_tab
 COPY dms_document_url /mnt/extra-addons/dms_document_url
+COPY event_allowed_ceu /mnt/extra-addons/event_allowed_ceu
 
 COPY .docker_files/main /mnt/extra-addons/main
 COPY .docker_files/odoo.conf /etc/odoo
