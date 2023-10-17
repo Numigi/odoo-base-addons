@@ -48,6 +48,7 @@
 
         # Numigi/odoo-base-addons
         'base_extended_security',
+        'base_external_report_layout',  # TA#57998
         'ir_attachment_access_token_portal',  # TA#6109
         'mail_template_default',  # TA#21323
         'web_email_field_new_tab',  # TA#9753
