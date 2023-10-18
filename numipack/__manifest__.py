@@ -4,7 +4,7 @@
 
 {
     'name': 'Numipack',
-    'version': '1.0.3',
+    'version': '1.0.4',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
