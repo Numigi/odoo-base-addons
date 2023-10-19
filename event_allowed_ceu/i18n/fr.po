@@ -19,7 +19,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:event_allowed_ceu.field_event_event__event_allowed_ceu
 #: model_terms:ir.ui.view,arch_db:event_allowed_ceu.view_event_form_ceu_inherited
 msgid "Continuing Education Units (CEU)"
-msgstr "Unités de formation continue (CEU)"
+msgstr "Unités de Formation Continue (CEU)"
 
 #. module: event_allowed_ceu
 #: model:ir.model.fields,field_description:event_allowed_ceu.field_event_event__display_name
