@@ -3,7 +3,7 @@
 
 {
     'name': 'Numipack Accounting',
-    'version': '1.2.1',
+    'version': '1.2.2',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
@@ -18,6 +18,7 @@
         # Numigi/odoo-account-addons
         'account_bank_menu',
         'account_fr_ca_labels',
+        'account_fiscalyear_end_on_company',  # TA#58024
         # 'account_invoice_check_total',
         'account_move_reversal_access',  # TA#33729
         'account_move_unique_reversal',  # TA#33729
