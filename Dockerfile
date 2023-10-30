@@ -42,6 +42,7 @@ COPY mail_notification_no_footer /mnt/extra-addons/mail_notification_no_footer
 COPY mail_recipient_unchecked /mnt/extra-addons/mail_recipient_unchecked
 COPY mail_template_archive /mnt/extra-addons/mail_template_archive
 COPY mail_template_default /mnt/extra-addons/mail_template_default
+COPY meeting_minutes /mnt/extra-addons/meeting_minutes
 COPY note_no_default_stage /mnt/extra-addons/note_no_default_stage
 COPY portal_attachment /mnt/extra-addons/portal_attachment
 COPY portal_signature_auto /mnt/extra-addons/portal_signature_auto
