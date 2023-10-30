@@ -15,8 +15,6 @@ class MeansCommunication(models.Model):
 
 class MeetingMinutesMixin(models.AbstractModel):
     _name = "meeting.minutes.mixin"
-    _inherit = ['mail.thread', 'mail.activity.mixin']
-
     _description = "Meeting Minutes Base Model"
 
     name = fields.Char(
