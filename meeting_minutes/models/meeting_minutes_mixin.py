@@ -17,9 +17,7 @@ class MeetingMinutesMixin(models.AbstractModel):
     _name = "meeting.minutes.mixin"
     _description = "Meeting Minutes Base Model"
 
-    name = fields.Char(
-        string='Name'
-    )
+    name = fields.Char(string="Name")
     start_date = fields.Datetime(string="Start time")
     end_date = fields.Datetime(string="End time")
     mean_communication_id = fields.Many2one(
