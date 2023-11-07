@@ -45,6 +45,7 @@
         "portal_attachment",
         "portal_signature_auto",
         "private_data_group",
+        "project_meeting_minutes",
         "queue_job_auto_requeue",
         "super_calendar",
         "url_link_type",

@@ -15,13 +15,9 @@ class MeansCommunication(models.Model):
 
 class MeetingMinutesMixin(models.AbstractModel):
     _name = "meeting.minutes.mixin"
-    _inherit = ['mail.thread', 'mail.activity.mixin']
-
     _description = "Meeting Minutes Base Model"
 
-    name = fields.Char(
-        string='Name', required=True
-    )
+    name = fields.Char(string="Name", required=True)
     start_date = fields.Datetime(string="Start time", required=True)
     end_date = fields.Datetime(string="End time", required=True)
     mean_communication_id = fields.Many2one(
