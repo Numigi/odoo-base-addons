@@ -17,11 +17,11 @@ class MeetingMinutesMixin(models.AbstractModel):
     _name = "meeting.minutes.mixin"
     _description = "Meeting Minutes Base Model"
 
-    name = fields.Char(string="Name", required=True)
-    start_date = fields.Datetime(string="Start time", required=True)
-    end_date = fields.Datetime(string="End time", required=True)
+    name = fields.Char(string="Name")
+    start_date = fields.Datetime(string="Start time")
+    end_date = fields.Datetime(string="End time")
     mean_communication_id = fields.Many2one(
-        "means.communication", string="Communication channel", required=True
+        "means.communication", string="Communication channel"
     )
     partner_ids = fields.Many2many("res.partner", string="Attendees")
     planned_point = fields.Html("Planned Points")
