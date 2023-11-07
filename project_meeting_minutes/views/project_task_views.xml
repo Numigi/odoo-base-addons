@@ -2,7 +2,7 @@
 <odoo>
     <record id="ir_actions_task_meeting_minutes_tree" model="ir.ui.view">
         <field name="model">project.meeting.minutes</field>
-        <field name="name">Reports</field>
+        <field name="name">Meeting minutes</field>
         <field name="arch" type="xml">
             <tree string="Meeting Minutes">
                 <field name="name"/>
@@ -15,7 +15,7 @@
     </record>
 
     <record id="action_view_task_meeting_minutes" model="ir.actions.act_window">
-        <field name="name">Reports</field>
+        <field name="name">Meeting minutes</field>
         <field name="res_model">project.meeting.minutes</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="ir_actions_task_meeting_minutes_tree"/>
@@ -46,7 +46,7 @@
             <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
                 <button name="%(action_view_task_meeting_minutes)d" attrs="{'invisible': [('task_meeting_minutes_count', '=', 0)]}"
                     type="action" class="oe_stat_button order-9"  icon="fa-exchange" groups="project.group_project_user">
-                    <field name="task_meeting_minutes_count" widget="statinfo" string="Reports"/>
+                    <field name="task_meeting_minutes_count" widget="statinfo" string="Meeting minutes"/>
                 </button>
             </xpath>
         </field>

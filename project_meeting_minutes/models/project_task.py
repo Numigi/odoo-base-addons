@@ -7,15 +7,14 @@ from odoo import fields, models, api
 class ProjectTask(models.Model):
     _inherit = "project.task"
 
-    mentions_count = fields.Integer(
-        string="Mentions", compute="_compute_mentions")
+    mentions_count = fields.Integer(string="Mentions", compute="_compute_mentions")
     task_meeting_minutes_ids = fields.Many2many(
         "project.meeting.minutes",
         compute="_compute_project_meeting_minutes",
         string="Meeting minutes associated to this task",
     )
     task_meeting_minutes_count = fields.Integer(
-        string="Reports",
+        string="Meeting minutes",
         compute="_compute_project_meeting_minutes",
         groups="project.group_project_user",
     )
@@ -62,18 +61,17 @@ class ProjectTask(models.Model):
                 (
                     6,
                     0,
-                    [
-                        follower.partner_id.id
-                        for follower in partner_follower_ids
-                    ],
+                    [follower.partner_id.id for follower in partner_follower_ids],
                 )
             ],
         }
 
     def open_meeting_minutes(self):
         meeting_minutes_id = self.get_meeting_minutes()
-        if len(meeting_minutes_id)>1:
-            action = self.env.ref('project_meeting_minutes.action_view_task_meeting_minutes').read()[0]
+        if len(meeting_minutes_id) > 1:
+            action = self.env.ref(
+                "project_meeting_minutes.action_view_task_meeting_minutes"
+            ).read()[0]
             return action
         return {
             "name": "Meeting Minutes",

@@ -13,21 +13,27 @@ class ProjectProject(models.Model):
         string="Meeting minutes associated to this task",
     )
     project_meeting_minutes_count = fields.Integer(
-        string="Reports",
+        string="Meeting minutes",
         compute="_compute_project_meeting_minutes",
         groups="project.group_project_user",
     )
-    pending_actions_ids = fields.Many2many("mail.activity", string="Pending Actions", compute="_compute_pending_action_ids")
+    pending_actions_ids = fields.Many2many(
+        "mail.activity", string="Pending Actions", compute="_compute_pending_action_ids"
+    )
 
     @api.multi
     def _compute_project_meeting_minutes(self):
         for project in self:
-            project.project_meeting_minutes_ids = self.env["project.meeting.minutes"].search(
+            project.project_meeting_minutes_ids = self.env[
+                "project.meeting.minutes"
+            ].search(
                 [
                     ("project_id", "=", project.id),
                 ]
             )
-            project.project_meeting_minutes_count = len(project.project_meeting_minutes_ids)
+            project.project_meeting_minutes_count = len(
+                project.project_meeting_minutes_ids
+            )
 
     @api.multi
     def _compute_pending_action_ids(self):
@@ -45,4 +51,3 @@ class ProjectProject(models.Model):
                     and a.date_deadline < today
                 )
             )
-
