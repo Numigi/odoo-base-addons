@@ -12,9 +12,8 @@
     "depends": ["base"],
     "summary": "Add an abstract model, which can be used on several objects in Odoo.",
     "data": [
-        'security/ir.model.access.csv',
+        "security/ir.model.access.csv",
         "views/meeting_minutes_mixin_views.xml",
-        "views/means_communication_views.xml",
     ],
     "installable": True,
 }

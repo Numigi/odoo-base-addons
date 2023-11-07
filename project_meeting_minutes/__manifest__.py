@@ -18,6 +18,7 @@
         "views/discuss_point_views.xml",
         "views/project_project_views.xml",
         "views/project_task_views.xml",
+        "views/means_communication_views.xml",
     ],
     "installable": True,
 }
