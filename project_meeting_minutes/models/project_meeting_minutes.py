@@ -1,20 +1,21 @@
 # © 2023 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models, api,_
+from pytz import timezone
+from odoo import fields, models, api, _
 
-import pytz
-from pytz import timezone, UTC
 
 class ProjectMeetingMinutes(models.Model):
-    _name = 'project.meeting.minutes'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'meeting.minutes.mixin']
+    _name = "project.meeting.minutes"
+    _inherit = ["mail.thread", "mail.activity.mixin", "meeting.minutes.mixin"]
 
     name = fields.Char(compute="_compute_name")
     task_id = fields.Many2one(
         "project.task", string="Task", ondelete="restrict", index=True
     )
-    project_id = fields.Many2one('project.project', related="task_id.project_id", string='Project', readonly=True)
+    project_id = fields.Many2one(
+        "project.project", related="task_id.project_id", string="Project", readonly=True
+    )
     action_ids = fields.One2many(
         "mail.activity", compute="_compute_action_ids", string="Actions", readonly=True
     )
@@ -29,12 +30,14 @@ class ProjectMeetingMinutes(models.Model):
         name_format = _("Meeting Minutes: {task} - {create_datetime}")
         for record in self:
             date = record.create_date.astimezone(timezone(self.env.user.tz))
-            record.name = name_format.format(task=record.task_id.display_name,create_datetime=date.strftime("%Y-%m-%d %H:%M:%S"))
+            record.name = name_format.format(
+                task=record.task_id.display_name,
+                create_datetime=date.strftime("%Y-%m-%d %H:%M:%S"),
+            )
 
     @api.multi
     def _compute_action_ids(self):
-        homework = self.env.ref(
-            "project_meeting_minutes.activity_homework")
+        homework = self.env.ref("project_meeting_minutes.activity_homework")
         today = fields.Date.context_today(self)
 
         for rec in self:
@@ -56,7 +59,8 @@ class DiscussPoint(models.Model):
     _rec_name = "minutes_task_id"
 
     meeting_minutes_id = fields.Many2one(
-        "project.meeting.minutes", string="Meeting Minutes")
+        "project.meeting.minutes", string="Meeting Minutes"
+    )
     sequence = fields.Integer(string="Sequence")
     task_id = fields.Many2one("project.task", ondelete="restrict")
     minutes_task_id = fields.Many2one(

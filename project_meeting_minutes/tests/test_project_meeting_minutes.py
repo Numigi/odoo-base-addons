@@ -3,6 +3,7 @@
 
 
 from datetime import timedelta
+from pytz import timezone
 from odoo import fields
 from odoo.tests.common import SavepointCase
 
@@ -43,9 +44,7 @@ class TestProjectMeetingMinutes(SavepointCase):
         minutes = self.task_1.open_meeting_minutes()
         assert (
             minutes.get("view_id", False)
-            == self.env.ref(
-                "project_meeting_minutes.project_meeting_minutes_view_form"
-            ).id
+            == self.env.ref("meeting_minutes.meeting_minutes_view_mixin_form").id
         )
 
     def test_second_click_open_meeting_minutes(self):
@@ -68,11 +67,27 @@ class TestProjectMeetingMinutes(SavepointCase):
         self.task_1._message_subscribe(self.partner.ids)
         self.task_1._message_subscribe([], self.channel.ids)
         minutes = self._create_minutes()
+        minutes.discuss_point_ids.create(
+            {
+                "meeting_minutes_id": minutes.id,
+                "sequence": 0,
+                "task_id": self.task_1.id,
+                "notes": "My notes",
+            }
+        )
         assert self.channel.id not in minutes.partner_ids.ids
+        assert self.project_1.project_meeting_minutes_count == 1
+        assert self.task_1.mentions_count == 1
+        assert self.task_1.task_meeting_minutes_count == 1
 
     def test_meeting_minutes_display_name(self):
-        expected_name = "Meeting Minutes: {}".format(self.task_1.display_name)
         minutes = self._create_minutes()
+        date = minutes.create_date.astimezone(timezone(self.env.user.tz))
+        expected_name = "Meeting Minutes: {task} - {create_datetime}".format(
+            task=self.task_1.display_name,
+            create_datetime=date.strftime("%Y-%m-%d %H:%M:%S"),
+        )
+
         assert minutes.display_name == expected_name
 
     def test_homework_activity_in_waiting_actions(self):
