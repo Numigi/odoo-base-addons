@@ -8,7 +8,7 @@
     "maintainer": "Numigi",
     "website": "https://bit.ly/numigi-com",
     "license": "AGPL-3",
-    "category": "Project",
+    "category": "Recording",
     "depends": [
         "report_aeroo",
         "meeting_minutes_project",
@@ -23,6 +23,9 @@
         "views/meeting_minutes.xml",
         "views/meeting_minutes_signature.xml",
         "views/portal.xml",
+    ],
+    "demo": [
+        "demo/meeting_minutes_report.xml",
     ],
     "installable": True,
 }
