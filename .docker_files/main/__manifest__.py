@@ -43,6 +43,7 @@
         "mail_template_default",
         "meeting_minutes",
         "meeting_minutes_project",
+        "meeting_minutes_certificate",
         "note_no_default_stage",
         "portal_attachment",
         "portal_signature_auto",
