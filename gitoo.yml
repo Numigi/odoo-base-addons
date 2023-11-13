@@ -45,7 +45,7 @@
   includes:
     - partner_firstname # TA#56216
 
-- url: https://github.com/Numigi/aeroo_reports TA#56216
+- url: https://github.com/Numigi/aeroo_reports # TA#56216
   branch: "12.0"
   includes:
     - report_aeroo # TA#56216
