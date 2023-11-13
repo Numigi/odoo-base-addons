@@ -256,7 +256,7 @@ msgid "Main Attachment"
 msgstr "Pièce jointe principale"
 
 #. module: meeting_minutes_certificate
-#: model:ir.model,name:meeting_minutes_certificate.model_meeting_minutes
+#: model:ir.model,name:meeting_minutes_certificate.model_meeting_minutes_project
 msgid "Meeting Minutes"
 msgstr "Compte-rendu"
 
