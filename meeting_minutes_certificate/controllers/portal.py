@@ -18,7 +18,7 @@ TRAINING_CERTIFICATE_DOMAIN = [("certificate_enabled", "=", True)]
 class Portal(_Portal):
     def _prepare_portal_layout_values(self):
         values = super()._prepare_portal_layout_values()
-        minutes_count = request.env["meeting.minutes"].search_count(
+        minutes_count = request.env["meeting.minutes.project"].search_count(
             TRAINING_CERTIFICATE_DOMAIN
         )
         values["training_certificates_count"] = minutes_count
@@ -31,7 +31,7 @@ class Portal(_Portal):
         website=True,
     )
     def training_certificate_list_page(self, page=1, **kw):
-        minutes_obj = request.env["meeting.minutes"]
+        minutes_obj = request.env["meeting.minutes.project"]
 
         total = minutes_obj.search_count(TRAINING_CERTIFICATE_DOMAIN)
 
@@ -121,7 +121,7 @@ class Portal(_Portal):
 
 def _get_meeting_minutes(task_id, access_token):
     minutes = (
-        request.env["meeting.minutes"]
+        request.env["meeting.minutes.project"]
         .sudo()
         .search([("task_id", "=", task_id)], limit=1)
     )

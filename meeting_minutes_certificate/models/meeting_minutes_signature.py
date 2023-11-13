@@ -16,7 +16,7 @@ class MeetingMinutesSignature(models.Model):
     _rec_name = "partner_id"
 
     minutes_id = fields.Many2one(
-        "meeting.minutes",
+        "meeting.minutes.project",
         required=True,
         index=True,
         ondelete="cascade",

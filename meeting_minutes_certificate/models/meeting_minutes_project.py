@@ -6,9 +6,8 @@ from odoo import fields, models, api, _
 from odoo.exceptions import AccessError
 
 
-class MeetingMinutes(models.Model):
-
-    _inherit = "meeting.minutes"
+class MeetingMinutesProject(models.Model):
+    _inherit = "meeting.minutes.project"
     _order = "task_id desc"
 
     signature_ids = fields.One2many(
@@ -18,7 +17,10 @@ class MeetingMinutes(models.Model):
 
     certificate_report_id = fields.Many2one(
         "ir.actions.report",
-        domain=[("report_type", "=", "aeroo"), ("model", "=", "meeting.minutes")],
+        domain=[
+            ("report_type", "=", "aeroo"),
+            ("model", "=", "meeting.minutes.project"),
+        ],
     )
 
     access_url = fields.Char(compute="_compute_access_url")
