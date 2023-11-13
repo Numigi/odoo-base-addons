@@ -1,4 +1,6 @@
+git+https://github.com/numigi/aeroolib@master  # TA#56216
 ddt==1.2.1
+Genshi==0.7.5 # TA#56216
 requests-mock==1.9.3
 # Required for module auth_session_redis_timeout
 redis==3.5.3

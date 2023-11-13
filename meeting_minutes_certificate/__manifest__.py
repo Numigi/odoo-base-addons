@@ -9,10 +9,20 @@
     "website": "https://bit.ly/numigi-com",
     "license": "AGPL-3",
     "category": "Project",
-    "depends": ["meeting_minutes_project"],
+    "depends": [
+        "report_aeroo",
+        "meeting_minutes_project",
+        "partner_firstname",
+        "web_widget_digitized_signature",
+    ],
     "summary": "Define meeting minutes on tasks.",
     "data": [
-        "views/_________.xml",
+        "security/ir.model.access.csv",
+        "security/ir_rule.xml",
+        "data/mail_template.xml",
+        "views/meeting_minutes.xml",
+        "views/meeting_minutes_signature.xml",
+        "views/portal.xml",
     ],
     "installable": True,
 }

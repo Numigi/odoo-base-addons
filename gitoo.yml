@@ -38,6 +38,17 @@
   includes:
     - web_view_searchpanel  # TA#46953
     - web_drop_target  # TA#46953
+    - web_widget_digitized_signature # TA#56216
+
+- url: https://github.com/OCA/partner-contact # TA#56216
+  branch: "12.0"
+  includes:
+    - partner_firstname # TA#56216
+
+- url: https://github.com/Numigi/aeroo_reports TA#56216
+  branch: "12.0"
+  includes:
+    - report_aeroo # TA#56216
 
 # Camptocamp addons
 - url: https://github.com/camptocamp/odoo-cloud-platform
