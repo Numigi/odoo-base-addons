@@ -5,8 +5,8 @@ from pytz import timezone
 from odoo import fields, models, api, _
 
 
-class ProjectMeetingMinutes(models.Model):
-    _name = "project.meeting.minutes"
+class MeetingMinutesProject(models.Model):
+    _name = "meeting.minutes.project"
     _inherit = ["mail.thread", "mail.activity.mixin", "meeting.minutes.mixin"]
 
     name = fields.Char(compute="_compute_name")
@@ -37,7 +37,7 @@ class ProjectMeetingMinutes(models.Model):
 
     @api.multi
     def _compute_action_ids(self):
-        homework = self.env.ref("project_meeting_minutes.activity_homework")
+        homework = self.env.ref("meeting_minutes_project.activity_homework")
         today = fields.Date.context_today(self)
 
         for rec in self:
@@ -59,7 +59,7 @@ class DiscussPoint(models.Model):
     _rec_name = "minutes_task_id"
 
     meeting_minutes_id = fields.Many2one(
-        "project.meeting.minutes", string="Meeting Minutes"
+        "meeting.minutes.project", string="Meeting Minutes"
     )
     sequence = fields.Integer(string="Sequence")
     task_id = fields.Many2one("project.task", ondelete="restrict")

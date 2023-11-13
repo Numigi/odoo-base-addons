@@ -8,7 +8,7 @@ from odoo import fields
 from odoo.tests.common import SavepointCase
 
 
-class TestProjectMeetingMinutes(SavepointCase):
+class TestMeetingMinutesProject(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -76,7 +76,7 @@ class TestProjectMeetingMinutes(SavepointCase):
             }
         )
         assert self.channel.id not in minutes.partner_ids.ids
-        assert self.project_1.project_meeting_minutes_count == 1
+        assert self.project_1.meeting_minutes_project_count == 1
         assert self.task_1.mentions_count == 1
         assert self.task_1.task_meeting_minutes_count == 1
 
@@ -118,11 +118,11 @@ class TestProjectMeetingMinutes(SavepointCase):
         assert activity not in minutes.action_ids
 
     def _create_minutes(self):
-        self.env["project.meeting.minutes"].search(
+        self.env["meeting.minutes.project"].search(
             [("task_id", "=", self.task_1.id)]
         ).unlink()
         meeting_minutes = self.task_1.open_meeting_minutes()
-        minutes = self.env["project.meeting.minutes"].search(
+        minutes = self.env["meeting.minutes.project"].search(
             [("id", "=", meeting_minutes.get("res_id", False))]
         )
         return minutes
@@ -135,7 +135,7 @@ class TestProjectMeetingMinutes(SavepointCase):
                 "user_id": self.env.ref("base.user_admin").id,
                 "date_deadline": date_deadline,
                 "activity_type_id": self.env.ref(
-                    "project_meeting_minutes.activity_homework"
+                    "meeting_minutes_project.activity_homework"
                 ).id,
                 "res_model_id": self.env.ref("project.model_project_task").id,
             }

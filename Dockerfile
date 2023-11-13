@@ -47,7 +47,7 @@ COPY note_no_default_stage /mnt/extra-addons/note_no_default_stage
 COPY portal_attachment /mnt/extra-addons/portal_attachment
 COPY portal_signature_auto /mnt/extra-addons/portal_signature_auto
 COPY private_data_group /mnt/extra-addons/private_data_group
-COPY project_meeting_minutes /mnt/extra-addons/project_meeting_minutes
+COPY meeting_minutes_project /mnt/extra-addons/meeting_minutes_project
 COPY queue_job_auto_requeue /mnt/extra-addons/queue_job_auto_requeue
 COPY super_calendar /mnt/extra-addons/super_calendar
 COPY test_http_request /mnt/extra-addons/test_http_request

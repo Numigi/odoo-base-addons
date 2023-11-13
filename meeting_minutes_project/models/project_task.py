@@ -9,20 +9,20 @@ class ProjectTask(models.Model):
 
     mentions_count = fields.Integer(string="Mentions", compute="_compute_mentions")
     task_meeting_minutes_ids = fields.Many2many(
-        "project.meeting.minutes",
-        compute="_compute_project_meeting_minutes",
+        "meeting.minutes.project",
+        compute="_compute_meeting_minutes_project",
         string="Meeting minutes associated to this task",
     )
     task_meeting_minutes_count = fields.Integer(
         string="Meeting minutes",
-        compute="_compute_project_meeting_minutes",
+        compute="_compute_meeting_minutes_project",
         groups="project.group_project_user",
     )
 
     @api.multi
-    def _compute_project_meeting_minutes(self):
+    def _compute_meeting_minutes_project(self):
         for task in self:
-            task.task_meeting_minutes_ids = self.env["project.meeting.minutes"].search(
+            task.task_meeting_minutes_ids = self.env["meeting.minutes.project"].search(
                 [
                     ("task_id", "=", task.id),
                 ]
@@ -38,7 +38,7 @@ class ProjectTask(models.Model):
             task.mentions_count = len(mentions_ids)
 
     def get_meeting_minutes(self):
-        minutes = self.env["project.meeting.minutes"].search(
+        minutes = self.env["meeting.minutes.project"].search(
             [("task_id", "=", self.id)]
         )
         if not minutes:
@@ -46,7 +46,7 @@ class ProjectTask(models.Model):
         return minutes
 
     def _create_meeting_minutes(self):
-        return self.env["project.meeting.minutes"].create(
+        return self.env["meeting.minutes.project"].create(
             self._get_meeting_minutes_vals()
         )
 
@@ -70,7 +70,7 @@ class ProjectTask(models.Model):
         meeting_minutes_id = self.get_meeting_minutes()
         if len(meeting_minutes_id) > 1:
             action = self.env.ref(
-                "project_meeting_minutes.action_view_task_meeting_minutes"
+                "meeting_minutes_project.action_view_task_meeting_minutes"
             ).read()[0]
             return action
         return {
@@ -80,7 +80,7 @@ class ProjectTask(models.Model):
             "view_id": self.env.ref(
                 "meeting_minutes.meeting_minutes_view_mixin_form"
             ).id,
-            "res_model": "project.meeting.minutes",
+            "res_model": "meeting.minutes.project",
             "res_id": meeting_minutes_id.id,
             "type": "ir.actions.act_window",
             "target": "current",

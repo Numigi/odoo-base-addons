@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="ir_actions_task_meeting_minutes_tree" model="ir.ui.view">
-        <field name="model">project.meeting.minutes</field>
+        <field name="model">meeting.minutes.project</field>
         <field name="name">Meeting minutes</field>
         <field name="arch" type="xml">
             <tree string="Meeting Minutes">
@@ -16,7 +16,7 @@
 
     <record id="action_view_task_meeting_minutes" model="ir.actions.act_window">
         <field name="name">Meeting minutes</field>
-        <field name="res_model">project.meeting.minutes</field>
+        <field name="res_model">meeting.minutes.project</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="ir_actions_task_meeting_minutes_tree"/>
         <field name="context">{

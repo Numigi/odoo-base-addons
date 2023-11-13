@@ -4,4 +4,4 @@
 from . import mail_activity
 from . import project_project
 from . import project_task
-from . import project_meeting_minutes
+from . import meeting_minutes_project

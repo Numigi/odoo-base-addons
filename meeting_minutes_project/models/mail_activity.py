@@ -16,7 +16,8 @@ class MailActivity(models.Model):
 
     task_id = fields.Many2one("project.task", string="Task")
     meeting_minutes_id = fields.Many2one(
-        "project.meeting.minutes", string="Meeting Minutes")
+        "meeting.minutes.project", string="Meeting Minutes"
+    )
 
     @api.onchange("task_id")
     def onchange_task_id(self):
@@ -25,5 +26,5 @@ class MailActivity(models.Model):
             self.res_model = "project.task"
             self.res_model_id = self.env["ir.model"]._get("project.task").id
             self.activity_type_id = self.env.ref(
-                "project_meeting_minutes.activity_homework"
+                "meeting_minutes_project.activity_homework"
             ).id

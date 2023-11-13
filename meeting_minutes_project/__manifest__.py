@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Project Meeting Minutes",
+    "name": "Meeting Minutes for Project",
     "version": "1.0.0",
     "author": "Numigi",
     "maintainer": "Numigi",

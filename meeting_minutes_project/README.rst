@@ -1,5 +1,5 @@
-Project Meeting Minutes 
-=======================
+Meeting Minutes for Project
+===========================
 This module adds meeting minutes for project.
 
 .. contents:: Table of Contents

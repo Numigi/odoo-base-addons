@@ -7,14 +7,14 @@ from odoo import fields, models, api
 class ProjectProject(models.Model):
     _inherit = "project.project"
 
-    project_meeting_minutes_ids = fields.Many2many(
-        "project.meeting.minutes",
-        compute="_compute_project_meeting_minutes",
+    meeting_minutes_project_ids = fields.Many2many(
+        "meeting.minutes.project",
+        compute="_compute_meeting_minutes_project",
         string="Meeting minutes associated to this task",
     )
-    project_meeting_minutes_count = fields.Integer(
+    meeting_minutes_project_count = fields.Integer(
         string="Meeting minutes",
-        compute="_compute_project_meeting_minutes",
+        compute="_compute_meeting_minutes_project",
         groups="project.group_project_user",
     )
     pending_actions_ids = fields.Many2many(
@@ -22,22 +22,22 @@ class ProjectProject(models.Model):
     )
 
     @api.multi
-    def _compute_project_meeting_minutes(self):
+    def _compute_meeting_minutes_project(self):
         for project in self:
-            project.project_meeting_minutes_ids = self.env[
-                "project.meeting.minutes"
+            project.meeting_minutes_project_ids = self.env[
+                "meeting.minutes.project"
             ].search(
                 [
                     ("project_id", "=", project.id),
                 ]
             )
-            project.project_meeting_minutes_count = len(
-                project.project_meeting_minutes_ids
+            project.meeting_minutes_project_count = len(
+                project.meeting_minutes_project_ids
             )
 
     @api.multi
     def _compute_pending_action_ids(self):
-        homework = self.env.ref("project_meeting_minutes.activity_homework")
+        homework = self.env.ref("meeting_minutes_project.activity_homework")
         today = fields.Date.context_today(self)
 
         for rec in self:
