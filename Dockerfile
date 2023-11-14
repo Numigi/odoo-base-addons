@@ -44,6 +44,7 @@ COPY mail_template_archive /mnt/extra-addons/mail_template_archive
 COPY mail_template_default /mnt/extra-addons/mail_template_default
 COPY meeting_minutes /mnt/extra-addons/meeting_minutes
 COPY meeting_minutes_project /mnt/extra-addons/meeting_minutes_project
+COPY meeting_minutes_project_parent /mnt/extra-addons/meeting_minutes_project_parent
 COPY note_no_default_stage /mnt/extra-addons/note_no_default_stage
 COPY portal_attachment /mnt/extra-addons/portal_attachment
 COPY portal_signature_auto /mnt/extra-addons/portal_signature_auto
