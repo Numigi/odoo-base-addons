@@ -2,9 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from datetime import timedelta
-from pytz import timezone
-from odoo import fields
 from odoo.addons.meeting_minutes_project.tests.test_project_meeting_minutes import (
     TestMeetingMinutesProject,
 )
