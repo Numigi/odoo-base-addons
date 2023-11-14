@@ -10,7 +10,7 @@ from odoo.addons.meeting_minutes_project.tests.test_project_meeting_minutes impo
 class TestMeetingMinutesProjectParent(TestMeetingMinutesProject):
     @classmethod
     def setUpClass(cls):
-        super().setUpClass()
+        super(TestMeetingMinutesProjectParent, cls).setUpClass()
         cls.project_3 = cls.env["project.project"].create({"name": "Project 3"})
         cls.task_3 = cls.env["project.task"].create(
             {
