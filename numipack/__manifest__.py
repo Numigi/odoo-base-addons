@@ -66,6 +66,9 @@
         'web_advanced_search',  # TA#53339
         'web_search_with_and', # TA#2547 TA#53106
 
+        # itpp-labs/sync-addons
+        'base_automation_webhook',  # TA#56932 TA#59200
+
     ],
     'data': [
         'data/auditlog_rule.xml',
