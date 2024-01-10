@@ -110,8 +110,7 @@ def _get_args_and_kwargs_with_new_domain(method, args, kwargs, domain):
 
     if len(args) > argument_index:
         args = (
-            args[:argument_index] + [domain] +
-            args[argument_index + 1:]
+            args[:argument_index] + [domain] + args[argument_index + 1:]
         )
 
     else:

@@ -27,8 +27,9 @@ class QueueJob(models.Model):
         min_time = datetime.now() - timedelta(seconds=int(time_limit))
 
         stalled_jobs = (
-            started_jobs.filtered(lambda j: j.date_started < min_time) |
-            enqueued_jobs.filtered(lambda j: j.date_enqueued < min_time)
+            started_jobs.filtered(
+                lambda j: j.date_started < min_time) | enqueued_jobs.filtered(
+                    lambda j: j.date_enqueued < min_time)
         )
 
         for job in stalled_jobs:

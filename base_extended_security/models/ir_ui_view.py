@@ -2,8 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from lxml import etree
-from odoo import api, models
-from typing import Iterable
+from odoo import models
 
 
 class ViewWithButtonsHiden(models.Model):
@@ -15,8 +14,9 @@ class ViewWithButtonsHiden(models.Model):
 
         This method is called in Odoo when generating the final xml of a view.
         """
-        arch, fields = super().postprocess_and_fields(node, model=model, validate=validate)
-
+        arch, fields = super().postprocess_and_fields(
+            node, model=model, validate=validate
+        )
         is_nested_view = bool(self._context.get('base_model_name'))
         view_model = model or self.model
 
@@ -72,7 +72,8 @@ def _hide_one2many_view_buttons_with_access_blocked(env, fields):
     :param env: the Odoo environment
     :param fields: the field definitions
     """
-    one2many_fields = (f for f in fields.values() if 'type' in f.keys() and f['type'] == 'one2many')
+    one2many_fields = (
+        f for f in fields.values() if 'type' in f.keys() and f['type'] == 'one2many')
     for field in one2many_fields:
         model = field['relation']
 

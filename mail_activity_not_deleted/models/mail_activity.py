@@ -26,7 +26,7 @@ class MailActivityInactivatedInsteadOfDeleted(models.Model):
     def unlink(self):
         self._send_signal_done()
         self.write(
-            {"active": False, "date_done": datetime.now(),}
+            {"active": False, "date_done": datetime.now()}
         )
         for activity in self:
             activity._update_record_date_deadline()

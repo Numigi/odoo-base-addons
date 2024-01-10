@@ -16,8 +16,7 @@ class IrUiMenu(models.Model):
 
         menu = self.env.ref(ref)
         should_update_action_name = (
-            is_lang_installed(self.env, lang) and
-            menu.action and field == 'name'
+            is_lang_installed(self.env, lang) and menu.action and field == 'name'
         )
         if should_update_action_name:
             menu.action.with_context(lang=lang).name = value

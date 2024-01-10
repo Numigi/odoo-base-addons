@@ -7,7 +7,6 @@ from odoo.addons.base_extended_security.controllers.search import (
     get_domain_from_args_and_kwargs,
 )
 from odoo.http import request
-from odoo.tools import pycompat
 from typing import Iterable
 from .common import check_model_fields_access, extract_fields_from_domain
 

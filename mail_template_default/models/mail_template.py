@@ -12,7 +12,8 @@ class MailTemplate(models.Model):
     @api.constrains("is_default_template", "model_id")
     def _check_unique_default_template(self):
         for record in self:
-            if record.search_count([("is_default_template", "=", True), ("model_id", "=", record.model_id.id)]) > 1:
+            if record.search_count([("is_default_template", "=", True),
+                                    ("model_id", "=", record.model_id.id)]) > 1:
                 raise ValidationError(_(
                     "This object already has a default template associated. \n"
                     "You cannot assign more than one default template by object."

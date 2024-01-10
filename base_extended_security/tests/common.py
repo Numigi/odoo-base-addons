@@ -1,5 +1,5 @@
 
-from odoo import fields, models
+from odoo import models
 from odoo.exceptions import AccessError
 from odoo.osv.expression import AND
 from odoo.tests.common import SavepointCase

@@ -59,7 +59,8 @@ class ResCurrencyRateProvider(models.Model):
         if response.status_code >= 400:
             raise ValidationError(
                 _(
-                    "The request to the Valet api of the Bank of Canada terminated with an error.\n\n{} : {}".format(
+                    "The request to the Valet api of the Bank of Canada terminated"
+                    "with an error.\n\n{} : {}".format(
                         response.text, url
                     )
                 )

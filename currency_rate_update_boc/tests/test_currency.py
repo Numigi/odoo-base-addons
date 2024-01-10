@@ -36,7 +36,8 @@ class TestBocRateProvider(SavepointCase):
             }
         )
 
-        cls.test_boc_url = "https://www.bankofcanada.ca/valet/observations/FXUSDCAD,FXEURCAD?start_date=%s&end_date=%s" % (
+        cls.test_boc_url = "https://www.bankofcanada.ca/valet/observations/FXUSDCAD,"
+        "FXEURCAD?start_date=%s&end_date=%s" % (
             cls.date_string, cls.date_string)
         cls.dumb_test_boc_url = "https://www.bankofcanada.ca/valet/observations/"
 
@@ -79,12 +80,12 @@ class TestBocRateProvider(SavepointCase):
 
     def test_invalid_currency(self):
         with pytest.raises(ValidationError):
-            rates = self.provider._obtain_rates(
+            self.provider._obtain_rates(
                 "USD", ["ZZZZ"], self.date, self.date)
 
     def test_invalid_date(self):
         with pytest.raises(ValidationError):
-            rates = self.provider._obtain_rates(
+            self.provider._obtain_rates(
                 "USD", ["ZZZZ"], self.date, self.date - timedelta(5)
             )
 
