@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<odoo>
-
-	<record id="base.action_attachment" model="ir.actions.act_window">
-		<field name="domain">['|', ('res_field', '=', False), ('res_field', '!=', False)]</field>
-	</record>
-
-</odoo>
