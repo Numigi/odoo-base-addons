@@ -36,8 +36,7 @@ class TestBocRateProvider(SavepointCase):
             }
         )
 
-        cls.test_boc_url = """https://www.bankofcanada.ca/valet/observations/FXUSDCAD,
-        FXEURCAD?start_date=%s&end_date=%s""" % (
+        cls.test_boc_url = """https://www.bankofcanada.ca/valet/observations/FXUSDCAD,FXEURCAD?start_date=%s&end_date=%s""" % (
             cls.date_string, cls.date_string)
         cls.dumb_test_boc_url = "https://www.bankofcanada.ca/valet/observations/"
 
