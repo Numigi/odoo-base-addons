@@ -1,7 +1,6 @@
 # © 2023 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-import pytest
 from ddt import ddt, data, unpack
 from odoo.addons.test_http_request.common import mock_odoo_request
 from .common import ControllerCase
@@ -32,7 +31,8 @@ class TestControllers(ControllerCase):
     @data(True, False)
     def test_read_group_with_empty_domain(self, domain_kwarg):
         groups = self._read_group(
-            [], fields=['customer_rank'], groupby='customer_rank', domain_kwarg=domain_kwarg)
+            [], fields=['customer_rank'], groupby='customer_rank',
+            domain_kwarg=domain_kwarg)
         assert len(groups) == 2
         assert groups[0]['customer_rank_count'] == self.customer_count - 1
 
@@ -40,7 +40,8 @@ class TestControllers(ControllerCase):
     def test_read_group_with_supplier_domain(self, domain_kwarg):
         domain = [('supplier_rank', '>', 0)]
         groups = self._read_group(
-            domain, fields=['customer_rank'], groupby='customer_rank', domain_kwarg=domain_kwarg)
+            domain, fields=['customer_rank'], groupby='customer_rank',
+            domain_kwarg=domain_kwarg)
         assert len(groups) == 1
         assert groups[0]['customer_rank_count'] == self.supplier_customer_count
 
@@ -101,7 +102,8 @@ class TestControllers(ControllerCase):
     )
     @unpack
     def test_name_search_with_supplier_domain(self, name_kwarg, domain_kwarg):
-        ids = self._name_search('My Partner', [('supplier_rank', '>', 0)], name_kwarg, domain_kwarg)
+        ids = self._name_search('My Partner', [('supplier_rank', '>', 0)],
+                                name_kwarg, domain_kwarg)
         assert self.customer.id not in ids
         assert self.supplier.id not in ids
         assert self.supplier_customer.id in ids
@@ -153,8 +155,11 @@ class TestControllers(ControllerCase):
         (False, True),
     )
     @unpack
-    def test_search_read_with_supplier_domain(self, use_search_read_route, domain_kwarg):
-        ids = self._search_read([('supplier_rank', '>', 0)], use_search_read_route, domain_kwarg)
+    def test_search_read_with_supplier_domain(self,
+                                              use_search_read_route, domain_kwarg):
+        ids = self._search_read([('supplier_rank', '>', 0)],
+                                use_search_read_route,
+                                domain_kwarg)
         assert self.customer.id not in ids
         assert self.supplier.id not in ids
         assert self.supplier_customer.id in ids

@@ -49,9 +49,13 @@ class User(models.Model):
                     'model': activity['model'],
                     'type': 'activity',
                     'icon': icon,
-                    'total_count': 0, 'today_count': 0, 'overdue_count': 0, 'planned_count': 0,
+                    'total_count': 0,
+                    'today_count': 0,
+                    'overdue_count': 0,
+                    'planned_count': 0,
                 }
-            user_activities[activity['model']]['%s_count' % activity['states']] += activity['count']
+            user_activities[activity['model']]['%s_count' % activity['states']
+                                               ] += activity['count']
             if activity['states'] in ('today', 'overdue'):
                 user_activities[activity['model']]['total_count'] += activity['count']
 

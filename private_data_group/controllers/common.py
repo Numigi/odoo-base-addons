@@ -22,7 +22,6 @@ def _get_related_model(model: str, relation: str):
 
 
 def _raise_private_field_access_error(model: str, field: str):
-    context = request.env.context  # pylint: disable=unused-variable
     raise AccessError(
         _('You do not have access to the field {field} of model {model}')
         .format(field=field, model=model)

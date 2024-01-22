@@ -22,7 +22,7 @@ class TestControllers(TransactionCase):
         )
 
         self.employee = self.env["hr.employee"].create(
-            {"name": "Employee", "sinid": "123 456 789", "user_id": self.user.id,}
+            {"name": "Employee", "sinid": "123 456 789", "user_id": self.user.id}
         )
         self.fields = ("name", "sinid")
         self.domain = [("id", "=", self.employee.id)]

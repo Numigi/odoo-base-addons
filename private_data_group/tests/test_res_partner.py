@@ -32,8 +32,7 @@ class TestResPartner(common.SavepointCase):
 
     def test_if_is_authorized__access_error_not_raised(self):
         self.user.groups_id |= self.group
-        self.private_address.with_user(
-                self.user).check_extended_security_all()
+        self.private_address.with_user(self.user).check_extended_security_all()
 
     def test_if_not_authorized__access_error_raised(self):
         with pytest.raises(AccessError):

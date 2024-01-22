@@ -162,7 +162,8 @@ class TestSecurityRules(SavepointCase):
         ('unlink', 'delete'),
     )
     @unpack
-    def test_in_nested_many2many_list__view_property_not_disabled(self, access_type, view_property):
+    def test_in_nested_many2many_list__view_property_not_disabled(
+            self, access_type, view_property):
         self.env['extended.security.rule'].create({
             'model_id': self.env.ref('base.model_ir_rule').id,
             'group_ids': [(4, self.group.id)],
