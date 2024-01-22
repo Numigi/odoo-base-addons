@@ -18,14 +18,17 @@ class TestCRMLead(SavepointCase):
             }
         )
         cls.partner = cls.user.partner_id
-        cls.lead = cls.env["crm.lead"].create({"name": "M Lead",})
+        cls.lead = cls.env["crm.lead"].create({"name": "M Lead"})
         cls.subtype = cls.env.ref("mail.mt_comment")
         cls.lead.message_subscribe([cls.partner.id], subtype_ids=[cls.subtype.id])
 
     def send_notification_email(self):
         message = self.lead.message_post(
-            body="Test", mail_auto_delete=False, send_after_commit=False, force_send=True,
-            subtype_id=self.subtype.id,
+            body="Test",
+            mail_auto_delete=False,
+            send_after_commit=False,
+            force_send=True,
+            subtype_id=self.subtype.id
         )
         return self.env["mail.mail"].search(
             [("mail_message_id", "=", message.id)], limit=1
