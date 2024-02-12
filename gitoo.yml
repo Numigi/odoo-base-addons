@@ -51,3 +51,8 @@
   includes:
     - web_view_searchpanel  # TA#46953
     - web_drop_target  # TA#46953
+
+- url: https://github.com/numigi/odoo-web-addons
+  branch: "14.0"
+  includes:
+    - web_custom_label
