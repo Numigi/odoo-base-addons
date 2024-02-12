@@ -41,6 +41,11 @@
   includes:
     - auditlog  # TA#56928
 
+- url: https://github.com/OCA/server-ux
+  branch: "14.0"
+  includes:
+    - filter_multi_user # TA#53673
+
 - url: https://github.com/OCA/web
   branch: "14.0"
   includes:
