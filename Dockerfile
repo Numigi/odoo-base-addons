@@ -35,7 +35,6 @@ COPY base_external_report_layout /mnt/extra-addons/base_external_report_layout
 COPY base_selection_label /mnt/extra-addons/base_selection_label
 COPY base_view_mode_restricted /mnt/extra-addons/base_view_mode_restricted
 COPY base_xml_rename /mnt/extra-addons/base_xml_rename
-COPY cron_lock_disable /mnt/extra-addons/cron_lock_disable
 COPY currency_rate_update_boc /mnt/extra-addons/currency_rate_update_boc
 COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_token_portal
 COPY lang_fr_activated /mnt/extra-addons/lang_fr_activated
