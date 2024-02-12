@@ -31,6 +31,11 @@
 - url: https://github.com/OCA/dms
   branch: "14.0"  # TA#46953
 
+- url: https://github.com/OCA/reporting-engine
+  branch: "14.0"
+  includes:
+    - bi_view_editor
+
 - url: https://github.com/OCA/server-tools
   branch: "14.0"
   includes:
