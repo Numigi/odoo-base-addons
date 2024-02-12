@@ -1,0 +1,95 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* admin_light_user
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-31 18:21+0000\n"
+"PO-Revision-Date: 2021-03-31 14:23-0400\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.0.6\n"
+
+#. module: admin_light_user
+#: model:ir.model,name:admin_light_user.model_res_groups
+msgid "Access Groups"
+msgstr ""
+
+#. module: admin_light_user
+#: model:ir.model,name:admin_light_user.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: admin_light_user
+#: model:ir.ui.menu,name:admin_light_user.menu_groups
+msgid "Groups"
+msgstr "Groupes"
+
+#. module: admin_light_user
+#: model_terms:ir.ui.view,arch_db:admin_light_user.user_groups_view_without_admin_applications
+msgid "Other"
+msgstr "Autres"
+
+#. module: admin_light_user
+#: model:ir.model.fields,field_description:admin_light_user.field_res_partner__signup_expiration
+#: model:ir.model.fields,field_description:admin_light_user.field_res_users__signup_expiration
+msgid "Signup Expiration"
+msgstr ""
+
+#. module: admin_light_user
+#: model:ir.model.fields,field_description:admin_light_user.field_res_partner__signup_token
+#: model:ir.model.fields,field_description:admin_light_user.field_res_users__signup_token
+msgid "Signup Token"
+msgstr ""
+
+#. module: admin_light_user
+#: model:ir.model.fields,field_description:admin_light_user.field_res_partner__signup_type
+#: model:ir.model.fields,field_description:admin_light_user.field_res_users__signup_type
+msgid "Signup Token Type"
+msgstr ""
+
+#. module: admin_light_user
+#: model_terms:ir.ui.view,arch_db:admin_light_user.user_groups_view_without_admin_applications
+msgid "User Type"
+msgstr ""
+
+#. module: admin_light_user
+#: model:ir.model,name:admin_light_user.model_res_users
+#: model:ir.ui.menu,name:admin_light_user.menu_user_management
+#: model:ir.ui.menu,name:admin_light_user.menu_users
+#: model:res.groups,name:admin_light_user.group_user_management
+msgid "Users"
+msgstr "Utilisateurs"
+
+#. module: admin_light_user
+#: code:addons/admin_light_user/prevent_grand_admin_access.py:57
+#, python-format
+msgid ""
+"You are not authorized to archive or unarchive a user with super admin "
+"priviledges. Only the super admin can."
+msgstr ""
+"Vous n'êtes pas autorisé à archiver ou désarchiver un utilisateur avec des "
+"droits super administrateur. Seulement le super administrateur peut."
+
+#. module: admin_light_user
+#: code:addons/admin_light_user/prevent_grand_admin_access.py:44
+#: code:addons/admin_light_user/prevent_grand_admin_access.py:46
+#, python-format
+msgid ""
+"You are not authorized to grant admin priviledges. Only the super admin can."
+msgstr ""
+"Vous n'êtes pas autorisé à accorder des privilèges administrateurs. "
+"Seulement le super administrateur peut."
+
+#~ msgid "Application Accesses"
+#~ msgstr "Accès à l'application"
+
+#~ msgid "Other Extra Rights"
+#~ msgstr "Droits supplémentaires"
