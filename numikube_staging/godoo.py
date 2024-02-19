@@ -40,9 +40,12 @@ def drop_database(db_name):
 
 
 def isolate_database(db_name):
+    db_host = _get_db_host(db_name)
     command = [
         "godoo",
         "isolate",
+        "--db-host",
+        db_host,
         "--database",
         db_name,
     ]
