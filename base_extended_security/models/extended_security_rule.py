@@ -30,22 +30,18 @@ class ExtendedSecurityRule(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         res = super().create(vals_list)
-        self._flush_and_clear_cache()
+        self.clear_caches()
         return res
 
     def write(self, vals):
         res = super().write(vals)
-        self._flush_and_clear_cache()
+        self.clear_caches()
         return res
 
     def unlink(self):
         res = super().unlink()
-        self._flush_and_clear_cache()
-        return res
-
-    def _flush_and_clear_cache(self):
-        self.flush()
         self.clear_caches()
+        return res
 
     @api.model
     def check_user_access(self, model, access_type):

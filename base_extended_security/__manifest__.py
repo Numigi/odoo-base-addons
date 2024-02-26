@@ -3,14 +3,14 @@
 
 {
     'name': 'Base Extended Security',
-    'version': "14.0.1.0.0",
+    'version': '1.2.0',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
     'category': 'Other',
     'summary': 'Securize access to records',
     'depends': [
-        'web', 'test_http_request'
+        'web',
     ],
     'data': [
         'security/ir.model.access.csv',

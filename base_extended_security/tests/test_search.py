@@ -80,7 +80,8 @@ class TestControllers(ControllerCase):
             else:
                 args.append(domain)
 
-            name_get = self.controller.call_kw('res.partner', 'name_search', args, kwargs)
+            name_get = self.controller.call_kw(
+                'res.partner', 'name_search', args, kwargs)
             return [r[0] for r in name_get]
 
     @data(
@@ -102,8 +103,8 @@ class TestControllers(ControllerCase):
     )
     @unpack
     def test_name_search_with_supplier_domain(self, name_kwarg, domain_kwarg):
-        ids = self._name_search('My Partner', [('supplier_rank', '>', 0)],
-                                name_kwarg, domain_kwarg)
+        ids = self._name_search('My Partner',
+                                [('supplier_rank', '>', 0)], name_kwarg, domain_kwarg)
         assert self.customer.id not in ids
         assert self.supplier.id not in ids
         assert self.supplier_customer.id in ids
@@ -127,10 +128,12 @@ class TestControllers(ControllerCase):
     def _search_read(self, domain, use_search_read_route, domain_kwarg):
         with mock_odoo_request(self.env):
             if use_search_read_route:
-                result = self.controller.search_read('res.partner', fields=[], domain=domain)
+                result = self.controller.search_read(
+                    'res.partner', fields=[], domain=domain)
                 records = result['records']
             elif domain_kwarg:
-                records = self.controller.call('res.partner', 'search_read', [domain, []])
+                records = self.controller.call(
+                    'res.partner', 'search_read', [domain, []])
             else:
                 records = self.controller.call_kw(
                     'res.partner', 'search_read', [], {'domain': domain})
@@ -155,11 +158,10 @@ class TestControllers(ControllerCase):
         (False, True),
     )
     @unpack
-    def test_search_read_with_supplier_domain(self,
-                                              use_search_read_route, domain_kwarg):
-        ids = self._search_read([('supplier_rank', '>', 0)],
-                                use_search_read_route,
-                                domain_kwarg)
+    def test_search_read_with_supplier_domain(self, use_search_read_route, domain_kwarg):
+        ids = self._search_read(
+            [('supplier_rank', '>', 0)], use_search_read_route, domain_kwarg
+        )
         assert self.customer.id not in ids
         assert self.supplier.id not in ids
         assert self.supplier_customer.id in ids
