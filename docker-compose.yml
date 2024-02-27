@@ -9,32 +9,16 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./.log:/var/log/odoo
-      - ./auditlog:/mnt/extra-addons/auditlog
-      - ./auth_oauth_authentik:/mnt/extra-addons/auth_oauth_authentik
-      - ./automatic_activity_deadlines:/mnt/extra-addons/automatic_activity_deadlines
-      - ./base_extended_security:/mnt/extra-addons/base_extended_security
-      - ./base_extended_security_grid:/mnt/extra-addons/base_extended_security_grid
-      - ./mail_activity_not_deleted:/mnt/extra-addons/mail_activity_not_deleted
-      - ./test_http_request:/mnt/extra-addons/test_http_request
-      - ./mail_follower_picker:/mnt/extra-addons/mail_follower_picker
-      - ./mail_notification_no_action_button:/mnt/extra-addons/mail_notification_no_action_button
-      - ./mail_notification_no_footer:/mnt/extra-addons/mail_notification_no_footer
-      - ./mail_template_archive:/mnt/extra-addons/mail_template_archive
-      - ./mail_template_default:/mnt/extra-addons/mail_template_default
-      - ./queue_job_auto_requeue:/mnt/extra-addons/queue_job_auto_requeue
-      - ./note_no_default_stage:/mnt/extra-addons/note_no_default_stage
-      - ./private_data_group:/mnt/extra-addons/private_data_group
-      - ../odoo/addons/mail:/usr/local/lib/python3.7/site-packages/odoo/addons/mail
     ports:
-      - "8072:8069"
-      - "8073:8071"
+      - "8069:8069"
+      - "8071:8071"
     depends_on:
       - db
     command: odoo
     environment:
       - LOG_ODOO=/var/log/odoo
   db:
-    image: quay.io/numigi/postgres-odoo:13.1.2
+    image: postgres:16.0
     environment:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
