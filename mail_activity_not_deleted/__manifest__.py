@@ -3,7 +3,7 @@
 
 {
     'name': 'Mail Activity Not Deleted',
-    'version': '1.0.0',
+    'version': '14.0.1.0.1',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',

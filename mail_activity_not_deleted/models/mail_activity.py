@@ -24,7 +24,6 @@ class MailActivityInactivatedInsteadOfDeleted(models.Model):
             activity.state = "done"
 
     def unlink(self):
-        self._send_signal_done()
         self.write(
             {"active": False, "date_done": datetime.now()}
         )
@@ -32,18 +31,6 @@ class MailActivityInactivatedInsteadOfDeleted(models.Model):
             activity._update_record_date_deadline()
 
         return True
-
-    def _send_signal_done(self):
-        """Send the signal to the chatter that the activity has been completed.
-
-        The code in this method was extracted odoo/addons/mail/models/mail_activity.py.
-        """
-        for activity in self:
-            if activity.date_deadline <= fields.Date.today():
-                self.env["bus.bus"].sendone(
-                    (self._cr.dbname, "res.partner", activity.user_id.partner_id.id),
-                    {"type": "activity_updated", "activity_deleted": True},
-                )
 
     def _update_record_date_deadline(self):
         """Update the stored fields that depend on activity_ids on the related record."""
