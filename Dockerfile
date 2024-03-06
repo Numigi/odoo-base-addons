@@ -39,7 +39,6 @@ COPY currency_rate_update_boc /mnt/extra-addons/currency_rate_update_boc
 COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_token_portal
 COPY lang_fr_activated /mnt/extra-addons/lang_fr_activated
 COPY mail_activity_list_mark_done /mnt/extra-addons/mail_activity_list_mark_done
-COPY mail_activity_not_deleted /mnt/extra-addons/mail_activity_not_deleted
 COPY mail_bot_no_pong /mnt/extra-addons/mail_bot_no_pong
 COPY mail_notification_no_action_button /mnt/extra-addons/mail_notification_no_action_button
 COPY mail_message_from_author /mnt/extra-addons/mail_message_from_author

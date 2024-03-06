@@ -39,7 +39,6 @@
         "ir_attachment_access_token_portal",
         "lang_fr_activated",
         "mail_activity_list_mark_done",
-        "mail_activity_not_deleted",
         "mail_bot_no_pong",
         "mail_notification_no_action_button",
         "mail_message_from_author",
