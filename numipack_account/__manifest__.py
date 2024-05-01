@@ -3,7 +3,7 @@
 
 {
     'name': 'Numipack Accounting',
-    'version': '1.2.2',
+    'version': '1.2.3',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
@@ -35,7 +35,6 @@
     'data': [
         'data/auditlog_rule.xml',
         'security/extended_security_rule.xml',
-        'views/res_company.xml',
     ],
     'installable': True,
 }
