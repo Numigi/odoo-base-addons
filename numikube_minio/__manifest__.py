@@ -12,5 +12,8 @@
     'depends': [
         'base',
     ],
+    'external_dependencies': {
+        'python': ['minio']
+    },
     'installable': True,
 }

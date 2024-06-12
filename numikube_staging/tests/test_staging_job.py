@@ -5,11 +5,11 @@ import pytest
 import requests_mock
 from contextlib import contextmanager
 from odoo.exceptions import AccessError, ValidationError
-from odoo.tests import SavepointCase
+from odoo.tests.common import TransactionCase
 from ..callback import run_callback
 
 
-class TestStaging(SavepointCase):
+class TestStaging(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

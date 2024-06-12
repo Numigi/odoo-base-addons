@@ -9,7 +9,7 @@ import subprocess
 from datetime import datetime
 from minio import Minio
 from odoo.exceptions import ValidationError
-from odoo.models import AbstractModel
+from odoo import models
 from odoo.service.db import dump_db
 from odoo.tools.misc import exec_pg_environ
 from odoo.addons.numikube_minio.minio import get_minio_client, auto_create_bucket
@@ -18,7 +18,7 @@ from ..bucket import get_backups_bucket_name, is_backups_disabled
 _logger = logging.getLogger(__name__)
 
 
-class DatabaseBackup(AbstractModel):
+class DatabaseBackup(models.AbstractModel):
 
     _name = "numikube.database.backup"
     _description = "Numikube Database Backup"

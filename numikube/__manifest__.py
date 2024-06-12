@@ -10,10 +10,10 @@
     'category': 'Extra Tools',
     'summary': 'Modules required for the Numigi Kubernetes Infrastructure',
     'depends': [
-        'numikube_attachment_minio',
-        'numikube_database_backup',
+        #'numikube_attachment_minio',
+        #'numikube_database_backup' : it's a numikube_staging  depends
         'numikube_staging',
-        'session_redis',
+        #'session_redis',
     ],
     'installable': True,
 }

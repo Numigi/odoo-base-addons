@@ -5,11 +5,16 @@
     "name": "Numikube Staging",
     "version": "14.0.1.0.0",
     "author": "Numigi",
+    "website": "https://github.com/Numigi/odoo-base",
     "maintainer": "Numigi",
     "license": "LGPL-3",
     "category": "Other",
     "summary": "Run staging from a remote odoo production environment",
-    "depends": ["mail", "admin_light_base"],
+    "depends": [
+        "mail",
+        "admin_light_base",
+        "numikube_database_backup"
+                ],
     "data": [
         "security/res_groups.xml",
         "security/ir.model.access.csv",

@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from datetime import datetime
-from odoo.tests import TransactionCase
+from odoo.tests.common import TransactionCase
 from odoo.addons.numikube_minio.minio import get_minio_client, get_bucket_names
 
 
