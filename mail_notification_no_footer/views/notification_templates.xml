@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-
-    <template id="message_notification_email_without_footer" inherit_id="mail.message_notification_email">
-        <!-- Remove `Sent by YourCompany using Odoo` -->
-        <xpath expr="//span[@t-if='company.name']/.." position="replace"></xpath>
-    </template>
-
-</odoo>

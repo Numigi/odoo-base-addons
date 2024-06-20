@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-
-    <record id="purchase_order_unlink_rule" model="extended.security.rule">
-        <field name="model_id" ref="purchase.model_purchase_order"/>
-        <field name="perm_unlink" eval="1"/>
-    </record>
-
-</odoo>

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data>
-        <menuitem parent="admin_light_web.menu_web" name="User-defined Filters"
-                    id="menu_user_ir_filters" action="base.actions_ir_filters_view" sequence="7"
-                    groups="admin_light_filters.group_custom_filters"/>
-    </data>
-</odoo>
