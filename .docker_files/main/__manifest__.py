@@ -16,6 +16,7 @@
         "sale",  # required for testing mail_message_from_author
         "stock",  # required for testing base_extended_security
         "crm",  # required for testing mail_notification_no_action_button
+        "lang_fr_activated",
     ],
     "installable": True,
 }
