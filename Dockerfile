@@ -61,6 +61,7 @@ COPY utm_archive /mnt/extra-addons/utm_archive
 COPY web_email_field_new_tab /mnt/extra-addons/web_email_field_new_tab
 COPY dms_document_url /mnt/extra-addons/dms_document_url
 COPY event_allowed_ceu /mnt/extra-addons/event_allowed_ceu
+COPY google_api_auth /mnt/extra-addons/google_api_auth
 COPY web_base_url_freeze /mnt/extra-addons/web_base_url_freeze
 
 COPY .docker_files/main /mnt/extra-addons/main
