@@ -61,6 +61,7 @@
         "web_email_field_new_tab",
         "dms_document_url",
         "event_allowed_ceu",
+        "google_api_auth",
         "web_base_url_freeze",
     ],
     "installable": True,
