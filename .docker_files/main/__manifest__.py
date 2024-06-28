@@ -11,11 +11,7 @@
     "category": "Other",
     "summary": "Install all addons required for testing.",
     "depends": [
-        "base",
-        "account",  # required for testing auditlog
-        "sale",  # required for testing mail_message_from_author
-        "stock",  # required for testing base_extended_security
-        "crm",  # required for testing mail_notification_no_action_button
+        "mail_notification_no_action_button",
     ],
     "installable": True,
 }
