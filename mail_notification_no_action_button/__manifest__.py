@@ -11,6 +11,7 @@
     'summary': 'Remove action buttons from notifications',
     'depends': [
         'mail',
+        'crm'
     ],
     'installable': True,
 }
