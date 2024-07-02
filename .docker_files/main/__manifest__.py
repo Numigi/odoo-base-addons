@@ -1,4 +1,4 @@
-# © 2024 Numigi
+# Copyright 2024-today Numigi and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
@@ -15,6 +15,7 @@
         "mail",
         "mail_bot_no_pong",
         "mail_notification_no_action_button",
+        "mail_template_default",
     ],
     "installable": True,
 }

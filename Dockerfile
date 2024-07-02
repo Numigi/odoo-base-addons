@@ -15,6 +15,7 @@ USER odoo
 
 COPY mail_bot_no_pong /mnt/extra-addons/mail_bot_no_pong
 COPY mail_notification_no_action_button /mnt/extra-addons/mail_notification_no_action_button
+COPY mail_template_default /mnt/extra-addons/mail_template_default
 
 COPY .docker_files/main /mnt/extra-addons/main
 COPY .docker_files/odoo.conf /etc/odoo
