@@ -11,6 +11,10 @@
     "category": "Other",
     "summary": "Install all addons required for testing.",
     "depends": [
+        "base",
+        "mail",
+        "mail_bot_no_pong",
+        "mail_notification_no_action_button",
         "mail_template_default",
     ],
     "installable": True,
