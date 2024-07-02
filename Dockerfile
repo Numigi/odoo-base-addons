@@ -3,8 +3,6 @@ LABEL maintainer="contact@numigi.com"
 
 USER root
 
-ARG GIT_TOKEN
-
 COPY .docker_files/test-requirements.txt ./test-requirements.txt
 RUN pip3 install -r ./test-requirements.txt && rm ./test-requirements.txt
 
@@ -15,6 +13,7 @@ RUN gitoo install-all --conf_file /gitoo.yml --destination "${THIRD_PARTY_ADDONS
 
 USER odoo
 
+COPY mail_bot_no_pong /mnt/extra-addons/mail_bot_no_pong
 COPY mail_notification_no_action_button /mnt/extra-addons/mail_notification_no_action_button
 
 COPY .docker_files/main /mnt/extra-addons/main
