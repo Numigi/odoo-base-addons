@@ -2,21 +2,16 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    "name": "Main Module",
-    "version": "1.0.0",
+    "name": "Lang fr_FR activated",
+    "version": "16.0.1.0.0",
     "author": "Numigi",
     "maintainer": "Numigi",
-    "website": "https://www.numigi.com",
     "license": "LGPL-3",
     "category": "Other",
-    "summary": "Install all addons required for testing.",
+    "summary": "Automatically activate the fr_FR language",
     "depends": [
         "base",
-        "lang_fr_activated",
-        "mail",
-        "mail_bot_no_pong",
-        "mail_notification_no_action_button",
-        "mail_template_default",
     ],
+    "post_init_hook": "post_init_hook",
     "installable": True,
 }
