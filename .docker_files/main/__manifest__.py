@@ -12,6 +12,7 @@
     "summary": "Install all addons required for testing.",
     "depends": [
         "base",
+        "ir_attachment_access_token_portal",
         "lang_fr_activated",
         "mail",
         "mail_bot_no_pong",
