@@ -1,9 +1,10 @@
-# © 2023 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# Copyright 2024-today Numigi and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import http
 from odoo.addons.numikube_staging.staging import run_staging_job
 from odoo.addons.numikube_staging.callback import run_callback
+
 
 class StagingWebhook(http.Controller):
     @http.route("/web/staging/run", type="json", auth="none", csrf=False)

@@ -1,8 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_mail_template,Admin Light: mail.template,mail.model_mail_template,group_email_template,1,1,1,0
-access_mail_subtype,Admin Light: mail.message.subtype,mail.model_mail_message_subtype,group_mail_subtype,1,1,0,0
-access_ir_mail_server,Admin Light: ir.mail.server,base.model_ir_mail_server,group_email_server,1,1,1,1
-access_fetchmail_server,Admin Light: fetchmail.server,fetchmail.model_fetchmail_server,group_email_server,1,1,1,1
-access_ir_cron,Admin Light: ir.cron (Required for editing incoming mail servers),base.model_ir_cron,group_email_server,1,1,0,0
-access_mail_tracking_value,Admin Light: mail.tracking.value,mail.model_mail_tracking_value,group_email_messages,1,0,0,0
-access_mail_mail,Admin Light: mail.mail (Required for accessing to incoming mail servers),mail.model_mail_mail,group_email_server,1,0,0,0

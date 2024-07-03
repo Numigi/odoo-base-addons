@@ -1,5 +1,6 @@
-# © 2023 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# Copyright 2024-today Numigi and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+
 import re
 from datetime import datetime
 from urllib.parse import urljoin
@@ -96,7 +97,11 @@ class StagingJob(models.Model):
         for job in self:
             if job.suffix and not re.match(pattern, job.suffix):
                 raise ValidationError(
-                    _("The suffix should not contain any spaces, special characters, or uppercase letters"))
+                    _(
+                        "The suffix should not contain any spaces,"
+                        "special characters, or uppercase letters"
+                    )
+                )
 
     def run(self):
         self.start_datetime = datetime.now()

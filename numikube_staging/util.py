@@ -1,4 +1,4 @@
-# © 2023 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# Copyright 2024-today Numigi and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import requests
@@ -52,6 +52,6 @@ def _exec_callback_error(url, error, trace):
 def _exec_callback(url, data):
     try:
         requests.post(url, json=data)
-    except:
+    except Exception:
         traceback.print_exc()
         raise

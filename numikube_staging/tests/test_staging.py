@@ -1,4 +1,4 @@
-# © 2023 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# Copyright 2024-today Numigi and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import pytest
@@ -48,7 +48,6 @@ class TestStaging(BaseCase):
             validate_token({"token": "wrong_value"})
 
     def test_validate_token__undefined_token(self):
-        token = "xxx"
         config["numikube_staging_token"] = None
         with pytest.raises(AccessError):
             validate_token({"token": None})

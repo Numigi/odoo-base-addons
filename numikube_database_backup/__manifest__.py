@@ -1,4 +1,4 @@
-# © 2020 - today Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# Copyright 2024-today Numigi and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
@@ -10,6 +10,6 @@
     "category": "Other",
     "summary": "Database Backups for the Numigi Kubernetes infrastructure",
     "depends": ["base", "numikube_minio"],
-    "data": ["data/ir_cron.xml",],
+    "data": ["data/ir_cron.xml"],
     "installable": True,
 }
