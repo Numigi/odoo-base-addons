@@ -1,0 +1,12 @@
+# Copyright 2024-today Numigi and all its contributors (https://bit.ly/numigiens)
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+
+from odoo.tests import TransactionCase
+
+
+class TestConfig(TransactionCase):
+
+    def test_web_base_url_freeze(self):
+        self.assertTrue(
+            self.env["ir.config_parameter"].sudo().get_param("web.base.url.freeze")
+        )
