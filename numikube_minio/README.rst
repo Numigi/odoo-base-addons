@@ -1,3 +1,4 @@
+==============
 NumiKube Minio
 ==============
 This module adds the base for communicating with a minio instance attached to Odoo.

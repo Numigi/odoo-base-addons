@@ -1,19 +1,16 @@
-# © 2020 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# Copyright 2024-today Numigi and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'NumiKube Minio',
-    'version': '1.0.0',
-    'author': 'Numigi',
-    'maintainer': 'Numigi',
-    'license': 'LGPL-3',
-    'category': 'Extra Tools',
-    'summary': 'Base for communicating with a minio server',
-    'depends': [
-        'base',
+    "name": "NumiKube Minio",
+    "version": "16.1.1.0.0",
+    "author": "Numigi",
+    "maintainer": "Numigi",
+    "license": "LGPL-3",
+    "category": "Extra Tools",
+    "summary": "Base for communicating with a minio server",
+    "depends": [
+        "base",
     ],
-    'external_dependencies': {
-        'python': ['minio']
-    },
-    'installable': True,
+    "installable": True,
 }
