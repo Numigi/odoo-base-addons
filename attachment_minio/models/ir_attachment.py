@@ -37,6 +37,7 @@ class MinioAttachment(models.Model):
         )
         if not all((host, access_key, secret_key)):
             raise exceptions.UserError("Incorrect configuration of attachment_minio.")
+        print("hostttttttttt", host)
         return Minio(
             host,
             access_key=access_key,
@@ -59,7 +60,8 @@ class MinioAttachment(models.Model):
                 "Incorrect configuration of attachment_minio -- Missing bucket."
             )
         if not client.bucket_exists(bucket):
-            region = params.get_param("ir_attachment.location.region", "us-west-1")
+            region = (params.get_param("ir_attachment.location.region", "us-west-1") or
+                      config.get("attachment_minio_region", "us-west-1"))
             client.make_bucket(bucket, region)
         return bucket
 
