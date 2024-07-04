@@ -134,8 +134,9 @@ class MinioAttachment(models.Model):
                 except S3Error as e:
                     if e.code == "NoSuchKey":
                         _logger.info(
-                            'unable to remove missing attachment "%s" from remote object storage',
-                            (fname,),
+                            'unable to remove missing attachment "%s" '
+                            "from remote object storage",
+                            fname,
                         )
                     else:
                         raise
