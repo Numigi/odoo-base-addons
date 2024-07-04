@@ -12,6 +12,7 @@
     "summary": "Install all addons required for testing.",
     "depends": [
         "base",
+        "base_extended_security",
         "lang_fr_activated",
         "mail",
         "mail_bot_no_pong",
