@@ -1,3 +1,7 @@
+- url: https://github.com/camptocamp/odoo-cloud-platform
+  branch: "16.0"
+  includes: ["base_attachment_object_storage"]
+
 - url: https://github.com/OCA/helpdesk
   branch: "16.0"
   includes: ["helpdesk_mgmt"]

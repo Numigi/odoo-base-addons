@@ -12,9 +12,9 @@
     "summary": "Install all addons required for testing.",
     "depends": [
         "base",
+        "attachment_minio",
         "base_external_report_layout",
         "lang_fr_activated",
-        "mail",
         "mail_bot_no_pong",
         "mail_notification_no_action_button",
         "mail_template_default",
