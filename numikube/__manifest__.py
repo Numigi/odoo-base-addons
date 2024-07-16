@@ -3,16 +3,16 @@
 
 {
     "name": "NumiKube",
-    "version": "1.0.0",
+    "version": "16.0.1.0.0",
     "author": "Numigi",
     "maintainer": "Numigi",
     "license": "LGPL-3",
     "category": "Extra Tools",
     "summary": "Modules required for the Numigi Kubernetes Infrastructure",
     "depends": [
-        # "numikube_attachment_minio",
+        "numikube_attachment_minio",
         "numikube_staging",
-        # "session_redis",
+        "session_redis",
     ],
     "installable": True,
 }
