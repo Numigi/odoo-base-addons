@@ -10,7 +10,7 @@ class TestDefaultUserRights(common.SavepointCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.default_user = cls.env.ref("base.default_user")
-        cls.group = cls.env.ref("sales_team.group_sale_salesman")
+        cls.group = cls.env.ref("base.group_user")
         cls.default_user.write({"groups_id": [(4, cls.group.id)]})
 
     def test_default_user_rights_checked(self):
