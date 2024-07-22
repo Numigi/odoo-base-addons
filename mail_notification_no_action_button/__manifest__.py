@@ -1,9 +1,9 @@
-# © 2022 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# Copyright 2024-today Numigi and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
     'name': 'Mail Notification No Action Button',
-    'version': '1.0.0',
+    'version': '16.0.1.0.0',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
@@ -11,6 +11,7 @@
     'summary': 'Remove action buttons from notifications',
     'depends': [
         'mail',
+        'crm'
     ],
     'installable': True,
 }

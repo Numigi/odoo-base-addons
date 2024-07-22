@@ -1,3 +1,4 @@
+================
 Mail Bot No Pong
 ================
 This module prevents OdooBot from sending a ``Pong`` message when added

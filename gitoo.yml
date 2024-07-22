@@ -1,59 +1,52 @@
-- url: https://github.com/oca/helpdesk
-  branch: "14.0"
+- url: https://github.com/camptocamp/odoo-cloud-platform
+  branch: "16.0"
+  includes: ["base_attachment_object_storage"]
+
+- url: https://github.com/OCA/helpdesk
+  branch: "16.0"
   includes: ["helpdesk_mgmt"]
 
-- url: https://github.com/oca/product-configurator
-  branch: "14.0"
+- url: https://github.com/OCA/product-configurator
+  branch: "16.0"
 
-- url: https://github.com/oca/queue
-  branch: "14.0"
+- url: https://github.com/OCA/queue
+  branch: "16.0"
   includes: ["queue_job"]
 
-- url: https://github.com/oca/social
-  branch: "14.0"
+- url: https://github.com/OCA/social
+  branch: "16.0"
   includes:
     - mail_activity_board
-    - mail_preview_base # TA#46953
-
-- url: https://{{GIT_TOKEN}}@github.com/Numigi/odoo-enterprise
-  branch: "14.0"
-  includes:
-    - web_grid
-    
-- url: https://github.com/oca/currency
-  branch: "14.0"
+    - mail_preview_base
+   
+- url: https://github.com/OCA/currency
+  branch: "16.0"
   includes:
     - currency_rate_update
 
-- url: https://github.com/oca/knowledge
-  branch: "14.0"
+- url: https://github.com/OCA/knowledge
+  branch: "16.0"
 
 - url: https://github.com/OCA/dms
-  branch: "14.0"  # TA#46953
+  branch: "16.0"
 
 - url: https://github.com/OCA/reporting-engine
-  branch: "14.0"
+  branch: "16.0"
   includes:
     - bi_view_editor
 
 - url: https://github.com/OCA/server-tools
-  branch: "14.0"
+  branch: "16.0"
   includes:
-    - auditlog  # TA#56928
+    - auditlog
 
 - url: https://github.com/OCA/server-ux
-  branch: "14.0"
+  branch: "16.0"
   includes:
-    - filter_multi_user # TA#53673
+    - filter_multi_user
 
 - url: https://github.com/OCA/web
-  branch: "14.0"
+  branch: "16.0"
   includes:
-    - web_view_searchpanel  # TA#46953
-    - web_drop_target  # TA#46953
-
-- url: https://github.com/numigi/odoo-web-addons
-  branch: "14.0"
-  includes:
-    - web_custom_label
-    - web_search_date_range
+    - web_view_searchpanel
+    - web_drop_target

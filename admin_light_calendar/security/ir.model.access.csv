@@ -1,6 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_event_type,Admin Light: calendar.event.type,calendar.model_calendar_event_type,group_calendar,1,1,1,1
-access_alarm,Admin Light: calendar.alarm,calendar.model_calendar_alarm,group_calendar,1,1,1,1
-access_resource_calendar,Admin Light: ressource.calendar,resource.model_resource_calendar,group_calendar,1,1,1,1
-access_resource_calendar_attendance,Admin Light: ressource.calendar.attendance,resource.model_resource_calendar_attendance,group_calendar,1,1,1,1
-access_resource_calendar_leaves,Admin Light: ressource.calendar.leaves,resource.model_resource_calendar_leaves,group_calendar,1,1,1,1

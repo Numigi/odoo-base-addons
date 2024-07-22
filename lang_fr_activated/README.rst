@@ -1,3 +1,4 @@
+====================
 Lang fr_FR Activated
 ====================
 This module loads the language fr_FR on installation.
