@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="external_layout_background" inherit_id="web.external_layout_background">
-        <xpath expr="//li[@t-if='company.vat']" position="replace">
-            <li t-if="company.vat" class="list-inline-item">
-                <i class="fa fa-building-o" role="img" aria-label="Tax Number"/>
-                <span t-esc="company.vat"/>
-            </li>
+    <template id="external_layout_striped" inherit_id="web.external_layout_striped">
+        <xpath expr="//li[@t-if='forced_vat']" position="replace">
+             <li t-if="forced_vat">
+                 <span t-esc="forced_vat"/>
+             </li>
         </xpath>
     </template>
 
     <template id="external_layout_boxed" inherit_id="web.external_layout_boxed">
-        <xpath expr="//li[@t-if='company.vat']" position="replace">
-            <li t-if="company.vat" class="list-inline-item">
-                <span t-field="company.vat"/>
-            </li>
+       <xpath expr="//li[@t-if='forced_vat']" position="replace">
+             <li t-if="forced_vat">
+                 <span t-esc="forced_vat"/>
+             </li>
         </xpath>
     </template>
 
-    <template id="external_layout_clean" inherit_id="web.external_layout_clean">
-        <xpath expr="//li[@t-if='company.vat']" position="replace">
-            <li t-if="company.vat" class="list-inline-item">
-                <span t-field="company.vat"/>
-            </li>
+    <template id="external_layout_clean" inherit_id="web.external_layout_bold">
+       <xpath expr="//li[@t-if='forced_vat']" position="replace">
+             <li t-if="forced_vat">
+                 <span t-esc="forced_vat"/>
+             </li>
         </xpath>
     </template>
 
     <template id="external_layout_standard" inherit_id="web.external_layout_standard">
-        <xpath expr="//li[@t-if='company.vat']" position="replace">
-            <li t-if="company.vat" class="list-inline-item">
-                <span t-field="company.vat"/>
-            </li>
+        <xpath expr="//li[@t-if='forced_vat']" position="replace">
+             <li t-if="forced_vat">
+                 <span t-esc="forced_vat"/>
+             </li>
         </xpath>
     </template>
 
