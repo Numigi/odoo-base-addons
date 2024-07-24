@@ -17,7 +17,7 @@
         "account_closing_journal_mis_builder",
         # Numigi/odoo-base
         "lang_fr_activated",
-        # Odoo
+        # odoo/odoo
         "l10n_ca",
     ],
     "data": [
