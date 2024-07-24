@@ -6,6 +6,11 @@
   branch: "16.0"
   includes: ["helpdesk_mgmt"]
 
+- url: https://github.com/OCA/mis-builder
+  branch: "16.0"
+  includes:
+    - mis_builder
+
 - url: https://github.com/OCA/product-configurator
   branch: "16.0"
 
@@ -50,7 +55,18 @@
   includes:
     - web_view_searchpanel
     - web_drop_target
-    -
+
+- url: https://github.com/Numigi/odoo-account-addons
+  branch: "16.0"
+  includes:
+    - canada_account_types
+    - account_closing_journal_mis_builder
+
+- url: https://github.com/Numigi/odoo-base-addons
+  branch: "16.0"
+  includes:
+    - lang_fr_activated
+
 - url: https://github.com/Numigi/odoo-web-addons
   branch: "16.0"
   includes:

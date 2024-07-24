@@ -11,9 +11,9 @@
     "category": "Other",
     "summary": "Install all addons required for testing.",
     "depends": [
-        "base",
         "attachment_minio",
         "base_external_report_layout",
+        "canada_mis_report",
         "canada_vat_label",
         "ir_attachment_access_token_portal",
         "lang_fr_activated",

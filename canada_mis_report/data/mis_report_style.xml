@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="style_h1" model="mis.report.style">
+        <field name="name">canada_h1</field>
+        <field name="dp_inherit" eval="False"/>
+        <field name="dp">2</field>
+        <field name="hide_empty" eval="False"/>
+        <field name="hide_empty_inherit" eval="False"/>
+        <field name="background_color">#3A414E</field>
+        <field name="background_color_inherit" eval="False"/>
+        <field name="color">#FFFFFF</field>
+        <field name="color_inherit" eval="False"/>
+        <field name="divider_inherit" eval="True"/>
+        <field name="indent_level_inherit" eval="True"/>
+        <field name="font_weight">bold</field>
+        <field name="font_weight_inherit" eval="False"/>
+        <field name="prefix_inherit" eval="True"/>
+        <field name="font_style_inherit" eval="True"/>
+        <field name="suffix_inherit" eval="True"/>
+        <field name="font_size">large</field>
+        <field name="font_size_inherit" eval="False"/>
+        <field name="hide_always_inherit" eval="True"/>
+    </record>
+
+    <record id="style_h2" model="mis.report.style">
+        <field name="name">canada_h2</field>
+        <field name="dp_inherit" eval="False"/>
+        <field name="dp">2</field>
+        <field name="hide_empty" eval="False"/>
+        <field name="hide_empty_inherit" eval="False"/>
+        <field name="background_color">#5D6A7F</field>
+        <field name="background_color_inherit" eval="False"/>
+        <field name="color">#FFFFFF</field>
+        <field name="color_inherit" eval="False"/>
+        <field name="divider_inherit" eval="True"/>
+        <field name="indent_level_inherit" eval="True"/>
+        <field name="font_weight">bold</field>
+        <field name="font_weight_inherit" eval="False"/>
+        <field name="prefix_inherit" eval="True"/>
+        <field name="font_style_inherit" eval="True"/>
+        <field name="suffix_inherit" eval="True"/>
+        <field name="font_size_inherit" eval="True"/>
+        <field name="hide_always_inherit" eval="True"/>
+    </record>
+
+    <record id="style_h3" model="mis.report.style">
+        <field name="name">canada_h3</field>
+        <field name="dp_inherit" eval="False"/>
+        <field name="dp">2</field>
+        <field name="hide_empty" eval="False"/>
+        <field name="hide_empty_inherit" eval="False"/>
+        <field name="background_color">#ECF0F6</field>
+        <field name="background_color_inherit" eval="False"/>
+        <field name="color">#242930</field>
+        <field name="color_inherit" eval="False"/>
+        <field name="divider_inherit" eval="True"/>
+        <field name="indent_level_inherit" eval="True"/>
+        <field name="font_weight">bold</field>
+        <field name="font_weight_inherit" eval="False"/>
+        <field name="prefix_inherit" eval="True"/>
+        <field name="font_style_inherit" eval="True"/>
+        <field name="suffix_inherit" eval="True"/>
+        <field name="font_size_inherit" eval="True"/>
+        <field name="hide_always_inherit" eval="True"/>
+    </record>
+
+    <record id="style_detail" model="mis.report.style">
+        <field name="name">canada_detail</field>
+        <field name="dp_inherit" eval="False"/>
+        <field name="dp">2</field>
+        <field name="hide_empty" eval="True"/>
+        <field name="hide_empty_inherit" eval="False"/>
+        <field name="background_color_inherit" eval="True"/>
+        <field name="color_inherit" eval="True"/>
+        <field name="divider_inherit" eval="True"/>
+        <field name="indent_level" eval="2"/>
+        <field name="indent_level_inherit" eval="False"/>
+        <field name="font_weight_inherit" eval="True"/>
+        <field name="prefix_inherit" eval="True"/>
+        <field name="font_style">italic</field>
+        <field name="font_style_inherit" eval="False"/>
+        <field name="suffix_inherit" eval="True"/>
+        <field name="font_size">x-small</field>
+        <field name="font_size_inherit" eval="False"/>
+        <field name="hide_always_inherit" eval="True"/>
+    </record>
+
+    <record id="style_balance_sheet_unbalanced" model="mis.report.style">
+        <field name="name">canada_balance_sheet_unbalanced</field>
+        <field name="dp_inherit" eval="False"/>
+        <field name="dp">2</field>
+        <field name="hide_empty" eval="True"/>
+        <field name="hide_empty_inherit" eval="False"/>
+        <field name="background_color_inherit" eval="True"/>
+        <field name="color">#FF0505</field>
+        <field name="color_inherit" eval="False"/>
+        <field name="divider_inherit" eval="True"/>
+        <field name="divider"></field>
+        <field name="indent_level_inherit" eval="True"/>
+        <field name="font_weight_inherit" eval="True"/>
+        <field name="prefix_inherit" eval="True"/>
+        <field name="font_style">italic</field>
+        <field name="font_style_inherit" eval="False"/>
+        <field name="suffix_inherit" eval="True"/>
+        <field name="font_size">x-small</field>
+        <field name="font_size_inherit" eval="False"/>
+        <field name="hide_always_inherit" eval="True"/>
+    </record>
+
+</odoo>
