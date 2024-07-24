@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="label_vat_english" model="web.custom.label">
+        <field name="lang">en_US</field>
+        <field name="model_ids" eval="[(4, ref('base.model_res_company'))]" />
+        <field name="type_">field</field>
+        <field name="position">string</field>
+        <field name="reference">vat</field>
+        <field name="term">Tax Number</field>
+    </record>
+
+    <record id="label_vat_french" model="web.custom.label">
+        <field name="lang">fr_FR</field>
+        <field name="model_ids" eval="[(4, ref('base.model_res_company'))]" />
+        <field name="type_">field</field>
+        <field name="position">string</field>
+        <field name="reference">vat</field>
+        <field name="term">Numéro de taxe</field>
+    </record>
+
+</odoo>
