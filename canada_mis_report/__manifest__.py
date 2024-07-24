@@ -10,14 +10,12 @@
     "category": "Other",
     "summary": "Add MIS Builder Reports for Canada",
     "depends": [
-        # OCA/mis-builder
-        "mis_builder",
         # Numigi/odoo-account-addons
         "canada_account_types",
         "account_closing_journal_mis_builder",
         # Numigi/odoo-base
         "lang_fr_activated",
-        # odoo/odoo
+        # Odoo/odoo
         "l10n_ca",
     ],
     "data": [
