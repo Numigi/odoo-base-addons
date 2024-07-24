@@ -3,7 +3,7 @@
 
     <record id="label_vat_english" model="web.custom.label">
         <field name="lang">en_US</field>
-        <field name="model_ids" eval="[(4, ref('base.model_res_company'))]"/>
+        <field name="model_ids" eval="[(4, ref('base.model_res_company'))]" />
         <field name="type_">field</field>
         <field name="position">string</field>
         <field name="reference">vat</field>
@@ -12,7 +12,7 @@
 
     <record id="label_vat_french" model="web.custom.label">
         <field name="lang">fr_FR</field>
-        <field name="model_ids" eval="[(4, ref('base.model_res_company'))]"/>
+        <field name="model_ids" eval="[(4, ref('base.model_res_company'))]" />
         <field name="type_">field</field>
         <field name="position">string</field>
         <field name="reference">vat</field>

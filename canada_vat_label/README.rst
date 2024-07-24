@@ -1,3 +1,4 @@
+================
 Canada Vat Label
 ================
 This module customizes the ``VAT`` label for Canada.

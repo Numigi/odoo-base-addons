@@ -3,33 +3,33 @@
 
     <template id="external_layout_striped" inherit_id="web.external_layout_striped">
         <xpath expr="//li[@t-if='forced_vat']" position="replace">
-             <li t-if="forced_vat">
-                 <span t-esc="forced_vat"/>
-             </li>
+            <li t-if="forced_vat">
+                <span t-esc="forced_vat" />
+            </li>
         </xpath>
     </template>
 
     <template id="external_layout_boxed" inherit_id="web.external_layout_boxed">
-       <xpath expr="//li[@t-if='forced_vat']" position="replace">
-             <li t-if="forced_vat">
-                 <span t-esc="forced_vat"/>
-             </li>
+        <xpath expr="//li[@t-if='forced_vat']" position="replace">
+            <li t-if="forced_vat">
+                <span t-esc="forced_vat" />
+            </li>
         </xpath>
     </template>
 
     <template id="external_layout_clean" inherit_id="web.external_layout_bold">
-       <xpath expr="//li[@t-if='forced_vat']" position="replace">
-             <li t-if="forced_vat">
-                 <span t-esc="forced_vat"/>
-             </li>
+        <xpath expr="//li[@t-if='forced_vat']" position="replace">
+            <li t-if="forced_vat">
+                <span t-esc="forced_vat" />
+            </li>
         </xpath>
     </template>
 
     <template id="external_layout_standard" inherit_id="web.external_layout_standard">
         <xpath expr="//li[@t-if='forced_vat']" position="replace">
-             <li t-if="forced_vat">
-                 <span t-esc="forced_vat"/>
-             </li>
+            <li t-if="forced_vat">
+                <span t-esc="forced_vat" />
+            </li>
         </xpath>
     </template>
 
