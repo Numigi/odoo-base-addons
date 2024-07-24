@@ -10,6 +10,6 @@
     "category": "Other",
     "summary": "Customize VAT labels for Canada",
     "depends": ["web", "web_custom_label", "lang_fr_activated"],
-    "data": ["data/web_custom_label.xml", "views/report_footer.xml",],
+    "data": ["data/web_custom_label.xml", "views/report_footer.xml"],
     "installable": True,
 }
