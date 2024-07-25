@@ -1,8 +1,11 @@
 Google API Authentication
 =========================
 This module allows you to set up and connect with Google applications.
+
 It will serve as a base module for other modules to establish connections with Google applications.
+
 This module uses the Google OAuth 2.0 Library for Python.
+
 It also uses OAuth 2.0 for Server-to-Server Applications 
 (see documentation here: <https://github.com/googleapis/google-api-python-client/blob/main/docs/oauth-server.md>).
 
