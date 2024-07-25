@@ -14,7 +14,6 @@
         "base",
         "attachment_minio",
         "base_external_report_layout",
-        "canada_vat_label",
         "ir_attachment_access_token_portal",
         "lang_fr_activated",
         "mail_bot_no_pong",
