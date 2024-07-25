@@ -50,8 +50,3 @@
   includes:
     - web_view_searchpanel
     - web_drop_target
-    -
-- url: https://github.com/Numigi/odoo-web-addons
-  branch: "16.0"
-  includes:
-    - web_custom_label
