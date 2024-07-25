@@ -13,19 +13,35 @@ Usage
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Log in to your Google Account, go to the `Google Developers Console`, and create a new project.
+
+.. image:: static/description/google_api_auth_new_project.png
+
 * Fill in the project name field and click on the "Create" button.
+
+.. image:: static/description/google_api_auth_project_name.png
 
 2- Config OAuth Consent
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * Go to the OAuth Consent Screen.
-* Select the "External" option and click on the "Click" button.
-* Fill in the application name field, select the "Support email" from the options, and fill in the developer support email addresses.
-* Click on the "Save & Continue" button.
-* Set any optional scope options if needed and click on the "Save & Continue" button.
-* You may also want to add test users; do so and then click on the "Save & Continue" button.
-* Review all project information, then click on the "Back to Dashboard" button.
+* Select the "External" option and click on "Create"
+
+.. image:: static/description/google_api_auth_oauth_consent_screen.png
+
+* Fill in all the OAuth consent screen information and click on the "Save and Continue" button.
+
+.. image:: static/description/google_api_auth_oauth_consent_info.png
+
+* (2) Set any optional scope options if needed and click on the "Save & Continue" button.
+* (3) You may also want to add test users; do so and then click on the "Save & Continue"
+* (4) Review all project information, then click on the "Back to Dashboard" button.
+
+.. image:: static/description/google_api_auth_oauth_consent_234.png
+
 * Click on the "Publish App" button.
+
+.. image:: static/description/google_api_auth_oauth_consent_publish_app.png
+
 
 3 - Create credentials account
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -33,17 +49,33 @@ Usage
 * Click on the "Credentials" tab.
 * Click on the "Create Credentials" button.
 * Select "Service account" from the options.
+
+.. image:: static/description/google_api_auth_credentials_service_account.png
+
 * Fill in the service account name and description, then click on the "Create & Continue" button.
-* If needed, grant this service account access to your project as an owner.
+
+.. image:: static/description/google_api_auth_service_account_info.png
+
 * Grant users access to this service account.
-* Download the service account key and save it in a secure location (you cannot download it again later).
+* If needed, grant this service account access to your project as an owner.
+
+.. image:: static/description/google_api_auth_credentials_service_account_grant.png
+
+* Download the service account key in JSON and save it in a secure location (you cannot download it again later).
+
+.. image:: static/description/google_api_auth_service_account_key.png
 
 4 - Enable the application API in Google Developer Console
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Go to the menu: Settings > APIs & Services > Library.
 * Search for the specific API you want to enable (e.g., Google Drive API).
+
+.. image:: static/description/google_api_auth_api_library.png
+
 * Click on the API, then click on the "Enable" button.
+
+.. image:: static/description/google_api_auth_api_enable.png
 
 5 - Establish a connection to the Google application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
