@@ -17,7 +17,6 @@ COPY attachment_minio /mnt/extra-addons/attachment_minio
 COPY base_external_report_layout /mnt/extra-addons/base_external_report_layout
 COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_token_portal
 COPY lang_fr_activated /mnt/extra-addons/lang_fr_activated
-COPY mail_bot_no_pong /mnt/extra-addons/mail_bot_no_pong
 COPY mail_template_default /mnt/extra-addons/mail_template_default
 
 COPY .docker_files/main /mnt/extra-addons/main
