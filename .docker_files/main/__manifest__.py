@@ -17,6 +17,7 @@
         "ir_attachment_access_token_portal",
         "lang_fr_activated",
         "mail_notification_no_action_button",
+        "mail_bot_no_pong",
         "mail_template_default",
     ],
     "installable": True,
