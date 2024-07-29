@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_auditlog_rule_manager,Admin Light: auditlog.rule,auditlog.model_auditlog_rule,group_auditlogs,1,1,1,1
-access_auditlog_log_manager,Admin Light: auditlog.log,auditlog.model_auditlog_log,group_auditlogs,1,1,1,1
-access_auditlog_log_line_manager,Admin Light: auditlog.log.line,auditlog.model_auditlog_log_line,group_auditlogs,1,1,1,1
-access_auditlog_http_request_manager,Admin Light: auditlog.http.request,auditlog.model_auditlog_http_request,group_auditlogs,1,1,1,1
