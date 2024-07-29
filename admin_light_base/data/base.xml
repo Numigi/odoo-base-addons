@@ -8,7 +8,7 @@
 
     <record id="group_admin" model="res.groups">
         <field name="name">Safe Administration / Base</field>
-        <field name="category_id" ref="base.module_category_usability"/>
+        <field name="category_id" ref="base.module_category_usability" />
     </record>
 
     <menuitem
@@ -16,7 +16,7 @@
         name="Administration"
         web_icon="base,static/description/settings.png"
         sequence="500"
-        groups="group_admin"/>
+        groups="group_admin" />
 
     <menuitem
         id="menu_other"
