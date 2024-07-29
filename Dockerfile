@@ -13,6 +13,7 @@ RUN gitoo install-all --conf_file /gitoo.yml --destination "${THIRD_PARTY_ADDONS
 
 USER odoo
 
+COPY admin_light_base /mnt/extra-addons/admin_light_base
 COPY attachment_minio /mnt/extra-addons/attachment_minio
 COPY base_external_report_layout /mnt/extra-addons/base_external_report_layout
 COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_token_portal

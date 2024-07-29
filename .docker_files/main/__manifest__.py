@@ -12,6 +12,7 @@
     "summary": "Install all addons required for testing.",
     "depends": [
         "base",
+        "admin_light_base",
         "attachment_minio",
         "base_external_report_layout",
         "ir_attachment_access_token_portal",
