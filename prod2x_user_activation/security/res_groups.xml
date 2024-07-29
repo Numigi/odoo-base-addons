@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="group_prod2x_activation" model="res.groups">
+        <field name="name">Prod2x Activation</field>
+        <field name="comment">Automatically activate this user in staging (lab / test) environments</field>
+    </record>
+
+</odoo>
