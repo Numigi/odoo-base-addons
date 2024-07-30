@@ -1,3 +1,4 @@
+====================
 Admin Light Calendar
 ====================
 This module adds the editing of calendar objects to the Admin Light application.
