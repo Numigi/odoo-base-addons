@@ -11,8 +11,8 @@
     "summary": "Add an admin menu with restricted functionalities.",
     "depends": ["base"],
     "data": [
-        "views/base.xml",
-        "views/sequence.xml",
+        "data/base.xml",
+        "data/sequence.xml",
         "security/ir.model.access.csv",
     ],
     "installable": True,
