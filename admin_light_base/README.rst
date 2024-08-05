@@ -13,6 +13,8 @@ Specific modules add the functionalities to the application.
 Functionalities are added on an `ad hoc` basis, based on the trainings completed by the client.
 Each functionnality is added by a specific user group.
 
+The section `Safe Administartion` requires developper mode to be displayed.
+
 .. image:: static/description/user_form.png
 
 Sequences
