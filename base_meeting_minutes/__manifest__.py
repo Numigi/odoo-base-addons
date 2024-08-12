@@ -10,7 +10,7 @@
     "license": "AGPL-3",
     "category": "Other",
     "depends": ["contacts"],
-    "summary": "Meeting Minutes abstract model",
+    "summary": "Meeting Minutes base model",
     "data": [
         "security/ir.model.access.csv",
         "views/meeting_channel_views.xml",

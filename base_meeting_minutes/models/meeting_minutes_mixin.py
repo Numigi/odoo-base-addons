@@ -1,28 +1,14 @@
 # © 2023 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
-class MeetingMinutesMixin(models.AbstractModel):
+class MeetingMinutesMixin(models.Model):
     _name = "meeting.minutes.mixin"
     _description = "Meeting Minutes Mixin"
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _auto = True
-
-    @api.model
-    def default_get(self, fields):
-        # super default_model='project.task' for easier use in adddons
-        if (self.env.context.get("default_res_model") and
-                not self.env.context.get("default_res_model_id")):
-            self = self.with_context(
-                default_res_model_id=self.env["ir.model"].sudo().search([
-                    ("model", "=", self.env.context["default_res_model"])
-                ], limit=1).id
-            )
-
-        defaults = super(MeetingMinutesMixin, self).default_get(fields)
-        return defaults
 
     name = fields.Char(string="Name")
     active = fields.Boolean("Active", default=True)
@@ -56,3 +42,11 @@ class MeetingMinutesMixin(models.AbstractModel):
         readonly=True,
         store=True
     )
+
+    @api.constrains("start_date", "end_date")
+    def _check_dates(self):
+        if self.filtered(lambda c: c.end_date and c.start_date > c.end_date):
+            raise ValidationError(
+                _("Meeting Minutes start date must be "
+                  "earlier than Meeting Minutes  end date.")
+            )

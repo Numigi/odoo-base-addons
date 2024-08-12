@@ -3,7 +3,7 @@
     <record id="meeting_minutes_view_mixin_form" model="ir.ui.view">
         <field name="model">meeting.minutes.mixin</field>
         <field name="arch" type="xml">
-            <form>
+            <form create="false" edit="false" delete="false">
                 <header>
                 </header>
                 <sheet>
@@ -44,6 +44,11 @@
                                 <field name="discussed_points" nolabel="1" colspan="4"/>
                             </group>
 
+                            <h2>Duties</h2>
+                            <group>
+                                <field name="duties" nolabel="1"/>
+                            </group>
+
                             <h2>Resources</h2>
                             <group>
                                 <field name="resources" nolabel="1"/>
@@ -52,11 +57,6 @@
                             <h2>Risks</h2>
                             <group>
                                 <field name="risks" nolabel="1"/>
-                            </group>
-
-                            <h2>Duties</h2>
-                            <group>
-                                <field name="duties" nolabel="1"/>
                             </group>
                         </page>
                     </notebook>
@@ -72,7 +72,7 @@
     <record id="meeting_minutes_view_mixin_tree" model="ir.ui.view">
         <field name="model">meeting.minutes.mixin</field>
         <field name="arch" type="xml">
-            <tree create="false" delete="false">
+            <tree create="false" edit="false" delete="false">
                 <field name="name"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
