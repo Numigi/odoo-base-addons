@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_partner_meeting_minutes_form" model="ir.ui.view">
+        <field name="name">Partner Form With Meeting Minutes</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button name="action_show_meeting_minutes" type="object" string="Meeting Minutes" class="oe_stat_button" icon="fa-exchange">
+                    <field name="meeting_minutes_count"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

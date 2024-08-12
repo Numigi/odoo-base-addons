@@ -20,6 +20,7 @@ COPY auth_oauth_microsoft /mnt/extra-addons/auth_oauth_microsoft
 COPY auth_session_redis_timeout /mnt/extra-addons/auth_session_redis_timeout
 COPY base_extended_security /mnt/extra-addons/base_extended_security
 COPY base_extended_security_grid /mnt/extra-addons/base_extended_security_grid
+COPY base_meeting_minutes /mnt/extra-addons/base_meeting_minutes
 COPY base_selection_label /mnt/extra-addons/base_selection_label
 COPY base_view_mode_restricted /mnt/extra-addons/base_view_mode_restricted
 COPY base_xml_rename /mnt/extra-addons/base_xml_rename
@@ -42,7 +43,6 @@ COPY mail_notification_no_footer /mnt/extra-addons/mail_notification_no_footer
 COPY mail_recipient_unchecked /mnt/extra-addons/mail_recipient_unchecked
 COPY mail_template_archive /mnt/extra-addons/mail_template_archive
 COPY mail_template_default /mnt/extra-addons/mail_template_default
-COPY meeting_minutes /mnt/extra-addons/meeting_minutes
 COPY note_no_default_stage /mnt/extra-addons/note_no_default_stage
 COPY portal_attachment /mnt/extra-addons/portal_attachment
 COPY portal_signature_auto /mnt/extra-addons/portal_signature_auto
