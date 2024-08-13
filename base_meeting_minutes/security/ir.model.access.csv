@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_meeting_channel,meeting_channel_user_access,model_meeting_channel,base.group_user,1,1,1,1
+access_meeting_minutes_mixin,meeting_minutes_mixin_user_access,model_meeting_minutes_mixin,base.group_user,1,1,1,1

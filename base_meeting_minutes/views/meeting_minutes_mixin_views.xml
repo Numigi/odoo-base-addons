@@ -3,7 +3,7 @@
     <record id="meeting_minutes_view_mixin_form" model="ir.ui.view">
         <field name="model">meeting.minutes.mixin</field>
         <field name="arch" type="xml">
-            <form>
+            <form create="false" edit="false" delete="false">
                 <header>
                 </header>
                 <sheet>
@@ -22,8 +22,9 @@
                         </group>
 
                         <group>
-                            <field name="mean_communication_id"/>
-
+                            <field name="meeting_channel_id"/>
+                            <field name="res_model"/>
+                            <field name="res_id"/>
                         </group>
                     </group>
 
@@ -35,17 +36,17 @@
                         <page name="meeting_minutes" string="Meeting Minutes">
                             <h2>Planned Points</h2>
                             <group>
-                                <field name="planned_point" nolabel="1"/>
+                                <field name="planned_points" nolabel="1"/>
                             </group>
 
                             <h2>Discussed Points</h2>
                             <group>
-                                <field name="additional_note" nolabel="1" colspan="4"/>
+                                <field name="discussed_points" nolabel="1" colspan="4"/>
                             </group>
 
-                            <h2>Agenda</h2>
+                            <h2>Duties</h2>
                             <group>
-                                <field name="agenda" nolabel="1"/>
+                                <field name="duties" nolabel="1"/>
                             </group>
 
                             <h2>Resources</h2>
@@ -57,14 +58,13 @@
                             <group>
                                 <field name="risks" nolabel="1"/>
                             </group>
-
-                            <h2>Duty</h2>
-                            <group>
-                                <field name="duty" nolabel="1"/>
-                            </group>
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
             </form>
         </field>
     </record>
@@ -72,13 +72,27 @@
     <record id="meeting_minutes_view_mixin_tree" model="ir.ui.view">
         <field name="model">meeting.minutes.mixin</field>
         <field name="arch" type="xml">
-            <tree create="false" delete="false">
+            <tree create="false" edit="false" delete="false">
                 <field name="name"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
-                <field name="mean_communication_id"/>
+                <field name="meeting_channel_id"/>
+                <field name="res_model"/>
+                <field name="res_id"/>
                 <field name="partner_ids" widget="many2many_tags"/>
             </tree>
+        </field>
+    </record>
+
+    <record id="meeting_minutes_action" model="ir.actions.act_window">
+        <field name="name">Meeting Minutes</field>
+        <field name="res_model">meeting.minutes.mixin</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new meeting minutes
+            </p>
         </field>
     </record>
 
