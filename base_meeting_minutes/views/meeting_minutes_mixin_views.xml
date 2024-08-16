@@ -78,7 +78,7 @@
                 <field name="end_date"/>
                 <field name="meeting_channel_id"/>
                 <field name="res_model"/>
-                <field name="res_id"/>
+                <field name="res_id" readonly="1"/>
                 <field name="partner_ids" widget="many2many_tags"/>
             </tree>
         </field>

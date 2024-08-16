@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="base_template_meeting_minutes">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="o" t-value="o.with_context(lang=env.user.lang)" />
+                <t t-set="user_lang" t-value="env['res.lang'].search([('code', '=', env.user.lang)])"/>
+                <t t-call="web.external_layout" t-lang="lang">
+                    <div class="page">
+                        <h1 class="font-weight-bold text-uppercase" style="color:#F7D060;">Meeting minutes</h1>
+                        <div name="info" class="row mb-4"
+                            style="background-color: #EEEEEE; margin: 1rem 0 1rem 0; padding : 1rem 0 1rem 0;">
+                            <div class="col-6" name="object_info">
+                                <div class="row mb-2">
+                                    <div class="col-6 text-start font-weight-bold text-uppercase">
+                                        Objet
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <span t-field="o.name" />
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-6 text-start font-weight-bold text-uppercase">
+                                        Date
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <span t-esc="user_lang.datetime_formatter(o.start_date)"/> from <span
+                                            t-esc="o.start_date.strftime('%H:%M')" /> to <span
+                                            t-esc="o.end_date.strftime('%H:%M')" />
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-6 text-start  font-weight-bold text-uppercase">
+                                        Meeting channel
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <span t-field="o.meeting_channel_id.name" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="font-weight-bold text-uppercase mb-0"> Attendee(s) </p>
+                                    <ul>
+                                        <t t-foreach="o.partner_ids" t-as="partner_id">
+                                            <li>
+                                                <div t-field="partner_id.display_name" />
+                                            </li>
+                                        </t>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-6" name="object_details">
+                            </div>
+                        </div>
+                        <div name="planned_points" class="mb-4">
+                            <h4 class="font-weight-bold text-uppercase">Planned Points</h4>
+                            <t t-if="env['ir.fields.converter'].text_from_html(o.planned_points)">
+                                <div t-field="o.planned_points" />
+                            </t>
+                            <t t-else="">
+                                <div>n/a</div>
+                            </t>
+                        </div>
+                        <div name="discussed_points" class="mb-4">
+                            <h4 class="font-weight-bold text-uppercase">Discussed opions</h4>
+                            <t t-if="env['ir.fields.converter'].text_from_html(o.discussed_points)">
+                                <div t-field="o.discussed_points" />
+                            </t>
+                            <t t-else="">
+                                <div>n/a</div>
+                            </t>
+                        </div>
+                        <div name="duties" class="mb-4">
+                            <h4 class="font-weight-bold text-uppercase">Duties</h4>
+                            <t t-if="env['ir.fields.converter'].text_from_html(o.duties)">
+                                <div t-field="o.duties" />
+                            </t>
+                            <t t-else="">
+                                <div>n/a</div>
+                            </t>
+                        </div>
+                        <div name="resources" class="mb-4">
+                            <h4 class="font-weight-bold text-uppercase">Resources</h4>
+                            <t t-if="env['ir.fields.converter'].text_from_html(o.resources)">
+                                <div t-field="o.resources" />
+                            </t>
+                            <t t-else="">
+                                <div>n/a</div>
+                            </t>
+                        </div>
+                        <div name="risks" class="mb-4">
+                            <h4 class="font-weight-bold text-uppercase">Risks</h4>
+                            <t t-if="env['ir.fields.converter'].text_from_html(o.risks)">
+                                <div t-field="o.risks" />
+                            </t>
+                            <t t-else="">
+                                <div>n/a</div>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
