@@ -15,6 +15,7 @@
         "attachment_minio",
         "base_external_report_layout",
         "ir_attachment_access_token_portal",
+        "base_extended_security",
         "lang_fr_activated",
         "mail_bot_no_pong",
         "mail_notification_no_action_button",

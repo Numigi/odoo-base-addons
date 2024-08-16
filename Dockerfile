@@ -13,9 +13,11 @@ RUN gitoo install-all --conf_file /gitoo.yml --destination "${THIRD_PARTY_ADDONS
 
 USER odoo
 
+
 COPY attachment_minio /mnt/extra-addons/attachment_minio
 COPY base_external_report_layout /mnt/extra-addons/base_external_report_layout
 COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_token_portal
+COPY base_extended_security /mnt/extra-addons/base_extended_security
 COPY lang_fr_activated /mnt/extra-addons/lang_fr_activated
 COPY mail_bot_no_pong /mnt/extra-addons/mail_bot_no_pong
 COPY mail_notification_no_action_button /mnt/extra-addons/mail_notification_no_action_button
