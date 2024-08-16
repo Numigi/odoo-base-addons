@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <report
+        id="action_report_meeting_minutes"
+        string="Meeting minutes"
+        model="meeting.minutes.mixin"
+        report_type="qweb-pdf"
+        name="base_meeting_minutes.base_template_meeting_minutes"
+        file="basemeeting_minutes.base_template_meeting_minutes"
+        print_report_name="(object.name)"
+    />
+
+</odoo>

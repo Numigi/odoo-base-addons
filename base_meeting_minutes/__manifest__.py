@@ -3,7 +3,7 @@
 
 {
     "name": "Base Meeting Minutes",
-    "version": "1.0.0",
+    "version": "12.0.1.0.0",
     "author": "Numigi",
     "maintainer": "Numigi",
     "website": "https://bit.ly/numigi-com",
@@ -13,9 +13,11 @@
     "summary": "Meeting Minutes base model",
     "data": [
         "security/ir.model.access.csv",
+        "templates/meeting_minutes_mixin_templates.xml",
         "views/meeting_channel_views.xml",
         "views/meeting_minutes_mixin_views.xml",
         "views/menus.xml",
+        "views/reports.xml",
         "views/res_partner_views.xml",
     ],
     "installable": True,
