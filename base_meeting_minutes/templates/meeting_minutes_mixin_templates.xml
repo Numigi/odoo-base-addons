@@ -3,36 +3,37 @@
     <template id="base_template_meeting_minutes">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="web.external_layout">
+                <t t-set="o" t-value="o.with_context(lang=env.user.lang)" />
+                <t t-call="web.external_layout" t-lang="lang">
                     <div class="page">
-                        <h1 class="font-weight-bold text-uppercase" style=" color:#F7D060">Meeting
+                        <h1 class="font-weight-bold text-uppercase" style="color:#F7D060;">Meeting
                             minutes</h1>
                         <div name="tilte" class="row"
                             style="background-color: #EEEEEE; margin: 1rem 0 1rem 0; padding : 1rem 0 1rem 0;">
                             <div class="col-6" name="object_info">
                                 <div class="row mb-2">
-                                    <div class="col-5 text-start font-weight-bold text-uppercase">
+                                    <div class="col-6 text-start font-weight-bold text-uppercase">
                                         Objet
                                     </div>
-                                    <div class="col-7 text-end">
+                                    <div class="col-6 text-end">
                                         <span t-field="o.name" />
                                     </div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-5 text-start font-weight-bold text-uppercase">
+                                    <div class="col-6 text-start font-weight-bold text-uppercase">
                                         Date
                                     </div>
-                                    <div class="col-7 text-end">
+                                    <div class="col-6 text-end">
                                         <span t-esc="o.start_date.strftime('%d %B %Y')" /> from <span
                                             t-esc="o.start_date.strftime('%H:%M')" /> to <span
                                             t-esc="o.end_date.strftime('%H:%M')" />
                                     </div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-5 text-start  font-weight-bold text-uppercase">
+                                    <div class="col-6 text-start  font-weight-bold text-uppercase">
                                         Meeting channel
                                     </div>
-                                    <div class="col-7 text-end">
+                                    <div class="col-6 text-end">
                                         <span t-field="o.meeting_channel_id.name" />
                                     </div>
                                 </div>
@@ -50,7 +51,7 @@
                             <div class="col-6" name="object_details">
                             </div>
                         </div>
-                        <div name="planned_points" style="margin-bottom: 2rem">
+                        <div name="planned_points" class="mb-4">
                             <h4 class="font-weight-bold text-uppercase">Planned Points</h4>
                             <t t-if="o.planned_points">
                                 <t t-if="o.planned_points == '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'">
@@ -64,7 +65,7 @@
                                 <div>n/a</div>
                             </t>
                         </div>
-                        <div name="discussed_points" style="margin-bottom: 2rem;">
+                        <div name="discussed_points" class="mb-4">
                             <h4 class="font-weight-bold text-uppercase">Discussed opions</h4>
                             <t t-if="o.discussed_points">
                                 <t t-if="o.discussed_points == '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'">
@@ -78,7 +79,7 @@
                                 <div>n/a</div>
                             </t>
                         </div>
-                        <div name="duties" style="margin-bottom: 2rem;">
+                        <div name="duties" class="mb-4">
                             <h4 class="font-weight-bold text-uppercase">Duties</h4>
                             <t t-if="o.duties">
                                 <t t-if="o.duties == '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'">
@@ -92,7 +93,7 @@
                                 <div>n/a</div>
                             </t>
                         </div>
-                        <div name="resources" style="margin-bottom: 2rem;">
+                        <div name="resources" class="mb-4">
                             <h4 class="font-weight-bold text-uppercase">Resources</h4>
                             <t t-if="o.resources">
                                 <t t-if="o.resources == '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'">
@@ -106,7 +107,7 @@
                                 <div>n/a</div>
                             </t>
                         </div>
-                        <div name="risks" style="margin-bottom: 2rem;">
+                        <div name="risks" class="mb-4">
                             <h4 class="font-weight-bold text-uppercase">Risks</h4>
                             <t t-if="o.risks">
                                 <t t-if="o.risks == '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'">
