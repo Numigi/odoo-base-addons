@@ -16,7 +16,6 @@ USER odoo
 COPY admin_light_base /mnt/extra-addons/admin_light_base
 COPY admin_light_calendar /mnt/extra-addons/admin_light_calendar
 COPY attachment_minio /mnt/extra-addons/attachment_minio
-COPY ir_attachment_access_token_portal /mnt/extra-addons/ir_attachment_access_token_portal
 COPY lang_fr_activated /mnt/extra-addons/lang_fr_activated
 COPY mail_template_default /mnt/extra-addons/mail_template_default
 
