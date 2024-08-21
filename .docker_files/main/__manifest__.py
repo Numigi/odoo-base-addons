@@ -15,7 +15,6 @@
         "admin_light_base",
         "admin_light_calendar",
         "attachment_minio",
-        "base_external_report_layout",
         "ir_attachment_access_token_portal",
         "lang_fr_activated",
         "mail_template_default",
