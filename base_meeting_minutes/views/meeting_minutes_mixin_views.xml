@@ -84,11 +84,22 @@
         </field>
     </record>
 
+    <record id="meeting_minutes_mixin_view_search" model="ir.ui.view">
+        <field name="model">meeting.minutes.mixin</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_ids"/>
+            </search>
+        </field>
+    </record>
+
     <record id="meeting_minutes_action" model="ir.actions.act_window">
         <field name="name">Meeting Minutes</field>
         <field name="res_model">meeting.minutes.mixin</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="meeting_minutes_mixin_view_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new meeting minutes

@@ -10,7 +10,6 @@ class ResPartner(models.Model):
     meeting_minutes_count = fields.Integer(
         string="Meeting minutes",
         compute="_compute_meeting_minutes_count",
-        groups="project.group_project_user",
     )
 
     @api.multi
