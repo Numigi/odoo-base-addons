@@ -63,14 +63,14 @@ In our scenario, only members of the group ``Purchase / User`` are allowed to ac
             result = super().get_extended_security_domain()
 
             if not self.env.user.has_group('purchase.group_purchase_user'):
-                result = AND(result, [('type', 'not in', ('in_invoice', 'in_refunc'))])
+                result = AND(result, [('type', 'not in', ('in_invoice', 'in_refund'))])
 
             return result
 
         def check_extended_security_all(self):
             super().get_extended_security_domain()
 
-            supplier_bills = self.filtered(lambda i: i.type in ('in_invoice', 'in_refunc'))
+            supplier_bills = self.filtered(lambda i: i.type in ('in_invoice', 'in_refund'))
 
             if supplier_bills and not self.env.user.has_group('purchase.group_purchase_user'):
                 raise AccessError(_('You are not allowed to access vendor bills.'))

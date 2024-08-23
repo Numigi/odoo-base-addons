@@ -19,7 +19,7 @@ class ViewWithButtonsHiden(models.Model):
         is_nested_view = bool(self._context.get("base_model_name"))
         if not is_nested_view and model:
             arch = _hide_buttons_with_access_blocked(self.env, model, arch)
-            _hide_one2many_view_buttons_with_access_blocked(self.env, self._fields)
+            _hide_one2many_view_buttons_with_access_blocked(self.env, models, arch)
 
         return arch, models
 
@@ -63,7 +63,7 @@ def _remove_write_access_buttons(env, model, tree):
             button.getparent().remove(button)
 
 
-def _hide_one2many_view_buttons_with_access_blocked(env, fields):
+def _hide_one2many_view_buttons_with_access_blocked(env, models, arch):
     """Hide the buttons in nested one2many fields with access restricted.
 
     The view architectures are updated directly inside the field
@@ -72,14 +72,18 @@ def _hide_one2many_view_buttons_with_access_blocked(env, fields):
     :param env: the Odoo environment
     :param fields: the field definitions
     """
-    test = fields.values()
-    for f in fields.values():
-        if f.type == "one2many":
-            print("hh")
-    one2many_fields = (f for f in fields.values() if f.type == "one2many")
-    for field in one2many_fields:
-        model = field.comodel_name
+    one2many_fields = get_one2many_fields(env,models,arch)
+    for rec in one2many_fields.items():
+        model = one2many_fields['field'].model_id.id
+        res = _hide_buttons_with_access_blocked(env, model, one2many_fields['arch'])
 
-        # FIXE ME HEREEEEE !!!!!!!!!!!!!!! field["views"] does not exist, even view["arch"] may be view.arch
-        for view in field["views"].values():
-            view["arch"] = _hide_buttons_with_access_blocked(env, model, field["arch"])
+def get_one2many_fields(env,models,arch):
+    res={}
+    for key in models:
+        for field in models[key]:
+            field_id = env['ir.model.fields'].search([('name','=',field),
+                                                      ('model','=',key)])
+            if field_id.ttype == 'one2many':
+                res['field']= field_id
+                res['arch']= arch
+    return res
