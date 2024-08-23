@@ -9,7 +9,7 @@
                     <div class="page">
                         <h1 class="font-weight-bold text-uppercase" style="color:#F7D060;">Meeting minutes</h1>
                         <div name="info" class="row mb-4"
-                            style="background-color: #EEEEEE; margin: 1rem 0 1rem 0; padding : 1rem 0 1rem 0;">
+                            style="background-color: #EEEEEE; margin: 1rem 0; padding: 1rem 0rem 0rem 0rem;">
                             <div class="col-6" name="object_info">
                                 <div class="row mb-2">
                                     <div class="col-6 text-start font-weight-bold text-uppercase">
@@ -24,13 +24,15 @@
                                         Date
                                     </div>
                                     <div class="col-6 text-end">
-                                        <span t-esc="user_lang.datetime_formatter(o.start_date)"/> from <span
-                                            t-esc="o.start_date.strftime('%H:%M')" /> to <span
-                                            t-esc="o.end_date.strftime('%H:%M')" />
+                                        <t t-if="o.start_date and o.end_date">
+                                            <span t-esc="user_lang.datetime_formatter(o.start_date)" />
+                                            from <span t-esc="o.start_date.strftime('%H:%M')" /> to <span
+                                                t-esc="o.end_date.strftime('%H:%M')" />
+                                        </t>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-6 text-start  font-weight-bold text-uppercase">
+                                    <div class="col-6 text-start font-weight-bold text-uppercase">
                                         Meeting channel
                                     </div>
                                     <div class="col-6 text-end">
@@ -49,6 +51,7 @@
                                 </div>
                             </div>
                             <div class="col-6" name="object_details">
+                                <!-- Add meeting details from the inherited module here. -->
                             </div>
                         </div>
                         <div name="planned_points" class="mb-4">
