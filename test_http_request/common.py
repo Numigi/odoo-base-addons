@@ -10,12 +10,12 @@ from odoo.api import Environment
 from odoo.http import HTTPRequest, JsonRPCDispatcher, _request_stack
 from odoo.tools import config
 from typing import Optional, Union
-from odoo.http import FilesystemSessionStore
+from odoo.http import FilesystemSessionStore, Request
 from odoo.tools._vendor.sessions import Session
 from werkzeug.datastructures import ImmutableOrderedMultiDict
 from werkzeug.test import EnvironBuilder
 from werkzeug.urls import url_encode
-from odoo.http import Request
+import werkzeug.wrappers as ww
 
 
 class _MockOdooRequestMixin:
@@ -108,7 +108,7 @@ def _set_request_storage_class(httprequest: Request):
 
 def _make_werkzeug_request(environ: dict) -> Request:
     """Make a werkzeug request from the given environ."""
-    httprequest = Request(environ)
+    httprequest = ww.Request(environ)
     _set_request_storage_class(httprequest)
     return httprequest
 
@@ -124,7 +124,7 @@ def _make_filesystem_session(env: Environment) -> Session:
 
 
 def _make_odoo_request(
-        werkzeug_request: Request, env: Environment, routing_type: str,
+        werkzeug_request: ww.Request(Environment) , env: Environment, routing_type: str,
 ) -> Union[_MockOdooHttpRequest, _MockOdooJsonRequest]:
     """Make an Odoo request from the given werkzeug request."""
     odoo_request_cls = (
