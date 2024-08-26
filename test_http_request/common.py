@@ -114,7 +114,7 @@ def _make_werkzeug_request(environ: dict) -> Request:
 
 def _make_filesystem_session(env: Environment) -> Session:
     session_store = FilesystemSessionStore(
-        config.session_dir, renew_missing=True)
+        config.session_dir, session_class=Session, renew_missing=True)
     session = session_store.new()
     session.db = env.cr.dbname
     session.uid = env.uid
