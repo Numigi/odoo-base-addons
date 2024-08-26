@@ -7,7 +7,7 @@ from contextlib import contextmanager
 from io import BytesIO
 from odoo.addons.http_routing.models.ir_http import url_for
 from odoo.api import Environment
-from odoo.http import HttpRequest, JsonRequest, OpenERPSession, _request_stack
+from odoo.http import HTTPRequest, JsonRPCDispatcher, _request_stack
 from odoo.tools import config
 from typing import Optional, Union
 from werkzeug.contrib.sessions import FilesystemSessionStore, Session
@@ -49,11 +49,11 @@ class _MockOdooRequestMixin:
         _request_stack.pop()
 
 
-class _MockOdooHttpRequest(_MockOdooRequestMixin, HttpRequest):
+class _MockOdooHttpRequest(_MockOdooRequestMixin, HTTPRequest):
     pass
 
 
-class _MockOdooJsonRequest(_MockOdooRequestMixin, JsonRequest):
+class _MockOdooJsonRequest(_MockOdooRequestMixin, JsonRPCDispatcher):
     pass
 
 
@@ -114,7 +114,7 @@ def _make_werkzeug_request(environ: dict) -> Request:
 
 def _make_filesystem_session(env: Environment) -> Session:
     session_store = FilesystemSessionStore(
-        config.session_dir, session_class=OpenERPSession, renew_missing=True)
+        config.session_dir,  renew_missing=True)
     session = session_store.new()
     session.db = env.cr.dbname
     session.uid = env.uid
@@ -148,7 +148,7 @@ def mock_odoo_request(
 ):
     """Mock an Odoo HTTP request.
 
-    This methods builds an HttpRequest object and adds it to
+    This methods builds an HTTPRequest object and adds it to
     the local stack of the application.
 
     The Odoo environment of the test fixture is injected to the
