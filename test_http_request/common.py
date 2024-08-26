@@ -15,7 +15,7 @@ from odoo.tools._vendor.sessions import Session
 from werkzeug.datastructures import ImmutableOrderedMultiDict
 from werkzeug.test import EnvironBuilder
 from werkzeug.urls import url_encode
-from werkzeug.wrappers import Request
+from odoo.http import Request
 
 
 class _MockOdooRequestMixin:
