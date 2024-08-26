@@ -10,7 +10,8 @@ from odoo.api import Environment
 from odoo.http import HTTPRequest, JsonRPCDispatcher, _request_stack
 from odoo.tools import config
 from typing import Optional, Union
-from werkzeug.contrib.sessions import FilesystemSessionStore, Session
+from odoo.http import FilesystemSessionStore
+from odoo.tools._vendor.sessions import Session
 from werkzeug.datastructures import ImmutableOrderedMultiDict
 from werkzeug.test import EnvironBuilder
 from werkzeug.urls import url_encode
@@ -114,7 +115,7 @@ def _make_werkzeug_request(environ: dict) -> Request:
 
 def _make_filesystem_session(env: Environment) -> Session:
     session_store = FilesystemSessionStore(
-        config.session_dir,  renew_missing=True)
+        config.session_dir, renew_missing=True)
     session = session_store.new()
     session.db = env.cr.dbname
     session.uid = env.uid
