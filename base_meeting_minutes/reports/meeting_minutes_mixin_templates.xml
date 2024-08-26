@@ -24,9 +24,12 @@
                                         Date
                                     </div>
                                     <div class="col-6 text-end">
-                                        <t t-if="o.start_date and o.end_date">
+                                        <t t-if="o.start_date">
                                             <span t-esc="user_lang.datetime_formatter(o.start_date)" />
-                                            from <span t-esc="o.start_date.strftime('%H:%M')" /> to <span
+                                            from <span t-esc="o.start_date.strftime('%H:%M')" />
+                                        </t>
+                                        <t t-if="o.end_date">
+                                             to <span
                                                 t-esc="o.end_date.strftime('%H:%M')" />
                                         </t>
                                     </div>
