@@ -7,11 +7,11 @@ from contextlib import contextmanager
 from io import BytesIO
 from odoo.addons.http_routing.models.ir_http import url_for
 from odoo.api import Environment
-from odoo.http import HTTPRequest, JsonRPCDispatcher, _request_stack
+from odoo.http import HTTPRequest, JsonRPCDispatcher, _request_stack ,Session
 from odoo.tools import config
 from typing import Optional, Union
 from odoo.http import FilesystemSessionStore
-from odoo.tools._vendor.sessions import Session
+#from odoo.tools._vendor.sessions import
 from werkzeug.datastructures import ImmutableOrderedMultiDict
 from werkzeug.test import EnvironBuilder
 from werkzeug.urls import url_encode
@@ -74,7 +74,7 @@ def _make_environ_form_data_stream(data: dict) -> BytesIO:
 
 
 def _make_environ(
-    #method: str = 'POST',
+    method: str = 'POST',
     headers: Optional[dict] = None,
     data: Optional[dict] = None,
     routing_type: str = 'http',
@@ -82,7 +82,7 @@ def _make_environ(
     """Make an environ for the given request parameters."""
     assert routing_type in ('http', 'json')
     environ_builder = EnvironBuilder(
-        #method=method,
+        method=method,
         data=json.dumps(data or {}) if routing_type == 'json' else data,
         headers=headers,
         content_type=(
@@ -162,7 +162,7 @@ def mock_odoo_request(
     :param data: an optional dict to be serialized as json or url-encoded data.
     :param routing_type: whether to use an http (x-www-form-urlencoded) or json request.
     """
-    environ = _make_environ(headers, data, routing_type)
+    environ = _make_environ(method, headers, data, routing_type)
     werkzeug_request = _make_werkzeug_request(environ)
     werkzeug_request.session = _make_filesystem_session(env)
     odoo_request = _make_odoo_request(werkzeug_request, env, routing_type)
