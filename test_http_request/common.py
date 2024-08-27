@@ -10,7 +10,7 @@ from odoo.api import Environment
 from odoo.http import HTTPRequest, JsonRPCDispatcher, _request_stack
 from odoo.tools import config
 from typing import Optional, Union
-from odoo.http import FilesystemSessionStore, Request
+from odoo.http import FilesystemSessionStore
 from odoo.tools._vendor.sessions import Session
 from werkzeug.datastructures import ImmutableOrderedMultiDict
 from werkzeug.test import EnvironBuilder
@@ -54,7 +54,7 @@ class _MockOdooHttpRequest(_MockOdooRequestMixin, HTTPRequest):
     pass
 
 
-class _MockOdooJsonRequest(_MockOdooRequestMixin, JsonRPCDispatcher):
+class _MockOdooJsonRequest(_MockOdooRequestMixin, HTTPRequest):
     pass
 
 
