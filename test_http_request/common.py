@@ -74,7 +74,7 @@ def _make_environ_form_data_stream(data: dict) -> BytesIO:
 
 
 def _make_environ(
-    method: str = 'POST',
+    #method: str = 'POST',
     headers: Optional[dict] = None,
     data: Optional[dict] = None,
     routing_type: str = 'http',
@@ -82,7 +82,7 @@ def _make_environ(
     """Make an environ for the given request parameters."""
     assert routing_type in ('http', 'json')
     environ_builder = EnvironBuilder(
-        method=method,
+        #method=method,
         data=json.dumps(data or {}) if routing_type == 'json' else data,
         headers=headers,
         content_type=(
