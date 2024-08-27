@@ -131,7 +131,7 @@ def _make_odoo_request(
         _MockOdooJsonRequest if routing_type == 'json' else
         _MockOdooHttpRequest
     )
-    odoo_request = odoo_request_cls(werkzeug_request)
+    odoo_request = odoo_request_cls(werkzeug_request.environ)
     odoo_request._env = env
     odoo_request._cr = env.cr
     odoo_request._uid = env.uid
