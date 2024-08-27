@@ -162,7 +162,7 @@ def mock_odoo_request(
     :param data: an optional dict to be serialized as json or url-encoded data.
     :param routing_type: whether to use an http (x-www-form-urlencoded) or json request.
     """
-    environ = _make_environ(method, headers, data, routing_type)
+    environ = _make_environ(headers, data, routing_type)
     werkzeug_request = _make_werkzeug_request(environ)
     werkzeug_request.session = _make_filesystem_session(env)
     odoo_request = _make_odoo_request(werkzeug_request, env, routing_type)
