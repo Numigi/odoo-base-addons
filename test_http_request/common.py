@@ -7,7 +7,7 @@ from contextlib import contextmanager
 from io import BytesIO
 from odoo.addons.http_routing.models.ir_http import url_for
 from odoo.api import Environment
-from odoo.http import HTTPRequest, JsonRPCDispatcher, _request_stack ,Session, Request
+from odoo.http import HTTPRequest, JsonRPCDispatcher, _request_stack ,Session
 from odoo.tools import config
 from typing import Optional, Union
 from odoo.http import FilesystemSessionStore
@@ -15,7 +15,7 @@ from odoo.http import FilesystemSessionStore
 from werkzeug.datastructures import ImmutableOrderedMultiDict
 from werkzeug.test import EnvironBuilder
 from werkzeug.urls import url_encode
-#from werkzeug.wrappers import Request
+from werkzeug.wrappers import Request
 
 
 class _MockOdooRequestMixin:
@@ -131,8 +131,6 @@ def _make_odoo_request(
         _MockOdooJsonRequest if routing_type == 'json' else
         _MockOdooHttpRequest
     )
-    if routing_type == 'json':
-        werkzeug_request.method = "call"
     odoo_request = odoo_request_cls(werkzeug_request)
     odoo_request._env = env
     odoo_request._cr = env.cr
