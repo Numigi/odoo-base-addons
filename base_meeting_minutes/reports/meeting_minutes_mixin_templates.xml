@@ -13,7 +13,7 @@
                             <div class="col-6" name="object_info">
                                 <div class="row mb-2">
                                     <div class="col-6 text-start font-weight-bold text-uppercase">
-                                        Objet
+                                        Object
                                     </div>
                                     <div class="col-6 text-end">
                                         <span t-field="o.name" />
