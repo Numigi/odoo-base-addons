@@ -13,11 +13,12 @@
     "depends": [
         "base",
         "base_extended_security",
+        "admin_light_base",
+        "admin_light_calendar",
+        "attachment_minio",
         "lang_fr_activated",
-        "mail",
-        "mail_bot_no_pong",
-        "mail_notification_no_action_button",
         "mail_template_default",
+        "test_http_request",
     ],
     "installable": True,
 }

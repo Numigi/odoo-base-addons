@@ -13,11 +13,14 @@ RUN gitoo install-all --conf_file /gitoo.yml --destination "${THIRD_PARTY_ADDONS
 
 USER odoo
 
+
 COPY base_extended_security /mnt/extra-addons/base_extended_security
+COPY admin_light_base /mnt/extra-addons/admin_light_base
+COPY admin_light_calendar /mnt/extra-addons/admin_light_calendar
+COPY attachment_minio /mnt/extra-addons/attachment_minio
 COPY lang_fr_activated /mnt/extra-addons/lang_fr_activated
-COPY mail_bot_no_pong /mnt/extra-addons/mail_bot_no_pong
-COPY mail_notification_no_action_button /mnt/extra-addons/mail_notification_no_action_button
 COPY mail_template_default /mnt/extra-addons/mail_template_default
+COPY test_http_request /mnt/extra-addons/test_http_request
 
 COPY .docker_files/main /mnt/extra-addons/main
 COPY .docker_files/odoo.conf /etc/odoo

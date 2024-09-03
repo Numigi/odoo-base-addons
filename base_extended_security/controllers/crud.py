@@ -97,7 +97,7 @@ class _ExtendedSecurityVerifier:
 
     @lazy_property
     def _utc_now(self):
-        cr = request.env.cr
+        cr = request._cr
         cr.execute("SELECT (now() at time zone 'UTC')")
         string_timestamp = cr.fetchone()[0]
         return fields.Datetime.from_string(string_timestamp)

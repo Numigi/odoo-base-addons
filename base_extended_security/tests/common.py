@@ -2,7 +2,7 @@
 from odoo import models, api
 from odoo.exceptions import AccessError
 from odoo.osv.expression import AND
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
 EMPLOYEE_ACCESS_MESSAGE = 'You are not authorized to access employees.'
@@ -57,7 +57,7 @@ class ResPartner(models.Model):
         return res
 
 
-class ControllerCase(SavepointCase):
+class ControllerCase(TransactionCase):
 
     @classmethod
     def setUpClass(cls):
