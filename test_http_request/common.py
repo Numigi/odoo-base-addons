@@ -15,7 +15,7 @@ from odoo.http import FilesystemSessionStore
 from werkzeug.datastructures import ImmutableOrderedMultiDict
 from werkzeug.test import EnvironBuilder
 from werkzeug.urls import url_encode
-from werkzeug.wrappers import Request
+from werkzeug.wrappers.request import Request
 
 
 class _MockOdooRequestMixin:
@@ -94,7 +94,6 @@ def _make_environ(
 
     if routing_type == 'http' and data:
         environ['wsgi.input'] = _make_environ_form_data_stream(data)
-
     return environ
 
 
@@ -124,19 +123,22 @@ def _make_filesystem_session(env: Environment) -> Session:
 
 
 def _make_odoo_request(
-        werkzeug_request: Request, env: Environment, routing_type: str,
+        werkzeug_request: Request, env: Environment, routing_type: str
 ) -> Union[_MockOdooHttpRequest, _MockOdooJsonRequest]:
     """Make an Odoo request from the given werkzeug request."""
     odoo_request_cls = (
         _MockOdooJsonRequest if routing_type == 'json' else
         _MockOdooHttpRequest
     )
+    print("odoo_request_cls", type(odoo_request_cls))
+    print("werkzeug_request",type(werkzeug_request))
+
     odoo_request = odoo_request_cls(werkzeug_request)
     odoo_request._env = env
     odoo_request._cr = env.cr
     odoo_request._uid = env.uid
     odoo_request._context = env.context
-    return odoo_request
+    return werkzeug_request
 
 
 @contextmanager
