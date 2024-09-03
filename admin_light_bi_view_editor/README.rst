@@ -1,3 +1,4 @@
+==========================
 Admin Light BI View Editor
 ==========================
 This module restricts access to the menu entries of the bi_view_editor module to all users 

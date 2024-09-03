@@ -14,6 +14,7 @@ RUN gitoo install-all --conf_file /gitoo.yml --destination "${THIRD_PARTY_ADDONS
 USER odoo
 
 COPY admin_light_base /mnt/extra-addons/admin_light_base
+COPY admin_light_bi_view_editor /mnt/extra-addons/admin_light_bi_view_editor
 COPY admin_light_calendar /mnt/extra-addons/admin_light_calendar
 COPY admin_light_gamification /mnt/extra-addons/admin_light_gamification
 COPY attachment_minio /mnt/extra-addons/attachment_minio

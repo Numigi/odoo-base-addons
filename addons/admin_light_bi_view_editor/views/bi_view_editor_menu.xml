@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>        
-        <record model="ir.ui.menu" id="bi_view_editor.menu_bi_view_editor_custom_reports">
-            <field eval="[(6,0,[ref('admin_light_base.group_admin'),ref('base.group_system')])]" name="groups_id"/>
-        </record>
-        <record model="ir.ui.menu" id="bi_view_editor.menu_bi_view_editor_view">
-            <field eval="[(6,0,[ref('admin_light_base.group_admin'),ref('base.group_system')])]" name="groups_id"/>
-        </record>
-</odoo>
