@@ -2,12 +2,14 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import json
+from os import environ
+
 import werkzeug
 from contextlib import contextmanager
 from io import BytesIO
 from odoo.addons.http_routing.models.ir_http import url_for
 from odoo.api import Environment
-from odoo.http import HTTPRequest, JsonRPCDispatcher, _request_stack ,Session
+from odoo.http import HttpDispatcher, JsonRPCDispatcher, _request_stack ,Session
 from odoo.tools import config
 from typing import Optional, Union
 from odoo.http import FilesystemSessionStore
@@ -49,12 +51,19 @@ class _MockOdooRequestMixin:
         """
         _request_stack.pop()
 
+    def __enter__(self):
+        """Push the request to the request stack."""
+        _request_stack.push(self)
+        return self
 
-class _MockOdooHttpRequest(_MockOdooRequestMixin, HTTPRequest):
+
+
+
+class _MockOdooHttpRequest(_MockOdooRequestMixin, HttpDispatcher):
     pass
 
 
-class _MockOdooJsonRequest(_MockOdooRequestMixin, HTTPRequest):
+class _MockOdooJsonRequest(_MockOdooRequestMixin, JsonRPCDispatcher):
     pass
 
 
@@ -130,15 +139,12 @@ def _make_odoo_request(
         _MockOdooJsonRequest if routing_type == 'json' else
         _MockOdooHttpRequest
     )
-    print("odoo_request_cls", type(odoo_request_cls))
-    print("werkzeug_request",type(werkzeug_request))
-
     odoo_request = odoo_request_cls(werkzeug_request)
     odoo_request._env = env
     odoo_request._cr = env.cr
     odoo_request._uid = env.uid
     odoo_request._context = env.context
-    return werkzeug_request
+    return odoo_request
 
 
 @contextmanager
