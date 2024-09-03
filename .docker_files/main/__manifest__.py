@@ -17,6 +17,7 @@
         "attachment_minio",
         "lang_fr_activated",
         "mail_template_default",
+        "test_http_request",
     ],
     "installable": True,
 }
