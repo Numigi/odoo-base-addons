@@ -14,6 +14,7 @@
         "base",
         "admin_light_base",
         "admin_light_calendar",
+        "admin_light_gamification",
         "attachment_minio",
         "lang_fr_activated",
         "mail_template_default",
