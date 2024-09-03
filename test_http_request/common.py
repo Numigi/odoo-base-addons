@@ -2,18 +2,15 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import json
-from os import environ
-
 import werkzeug
 from contextlib import contextmanager
 from io import BytesIO
 from odoo.addons.http_routing.models.ir_http import url_for
 from odoo.api import Environment
-from odoo.http import HttpDispatcher, JsonRPCDispatcher, _request_stack ,Session
+from odoo.http import HttpDispatcher, JsonRPCDispatcher, _request_stack, Session
 from odoo.tools import config
 from typing import Optional, Union
 from odoo.http import FilesystemSessionStore
-#from odoo.tools._vendor.sessions import
 from werkzeug.datastructures import ImmutableOrderedMultiDict
 from werkzeug.test import EnvironBuilder
 from werkzeug.urls import url_encode
@@ -55,8 +52,6 @@ class _MockOdooRequestMixin:
         """Push the request to the request stack."""
         _request_stack.push(self)
         return self
-
-
 
 
 class _MockOdooHttpRequest(_MockOdooRequestMixin, HttpDispatcher):
