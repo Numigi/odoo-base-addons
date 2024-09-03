@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_google_application_user,access_google_application_user,model_google_application,base.group_user,1,0,0,0
-access_google_application_system,access_google_application_system,model_google_application,base.group_system,1,1,1,1
