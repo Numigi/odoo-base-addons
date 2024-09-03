@@ -7,7 +7,6 @@ A new group `Admin Light / Calendar` is added.
 
 This group has access to edit the following objects:
 
-* Alarms (calendar.alarm)
 * Event Types (calendar.event.type)
 * Working Schedules (ressource.calendar)
 
