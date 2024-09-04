@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem id="menu_admin" name="Administration" web_icon="base,static/description/settings.png" sequence="500" groups="group_admin" />
+
+    <menuitem id="menu_other" name="Other" parent="menu_admin" sequence="100" />
+
+    <menuitem id="menu_sequence" name="Sequences" parent="menu_other" groups="group_sequence" action="base.ir_sequence_form" sequence="10" />
+
+</odoo>

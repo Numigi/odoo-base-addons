@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    "name": "Admin Light",
+    "name": "Admin Light Base",
     "version": "16.0.1.0.0",
     "author": "Numigi",
     "maintainer": "Numigi",
@@ -11,9 +11,9 @@
     "summary": "Add an admin menu with restricted functionalities.",
     "depends": ["base"],
     "data": [
-        "data/base.xml",
-        "data/sequence.xml",
+        "security/res_groups.xml",
         "security/ir.model.access.csv",
+        "views/menus.xml"
     ],
     "installable": True,
     "application": True,

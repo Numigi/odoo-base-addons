@@ -13,6 +13,11 @@ Specific modules add the functionalities to the application.
 Functionalities are added on an `ad hoc` basis, based on the trainings completed by the client.
 Each functionnality is added by a specific user group.
 
+The group `Safe Administration / Base` is added by this module to grant access to the Administration application.
+This group requires developper mode to be displayed under the section `Extra Rights`.
+
+.. image:: static/description/safe_administration_group.png
+
 The section `Safe Administartion` requires developper mode to be displayed.
 
 .. image:: static/description/user_form.png
