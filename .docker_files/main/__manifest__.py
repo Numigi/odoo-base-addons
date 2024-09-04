@@ -17,6 +17,7 @@
         "admin_light_calendar",
         "admin_light_company",
         "admin_light_gamification",
+        "admin_light_mail",
         "attachment_minio",
         "lang_fr_activated",
         "mail_template_default",
