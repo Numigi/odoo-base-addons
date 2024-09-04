@@ -15,6 +15,7 @@
         "admin_light_base",
         "admin_light_bi_view_editor",
         "admin_light_calendar",
+        "admin_light_company",
         "admin_light_gamification",
         "attachment_minio",
         "lang_fr_activated",
