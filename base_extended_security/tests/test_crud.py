@@ -23,10 +23,10 @@ class TestControllers(ControllerCase):
 
     def _read(self, records):
         with mock_odoo_request(self.env):
-            return self.controller.call(
+            return self.controller.call_kw(
                 "res.partner",
                 "read",
-                [records.ids, ["name", "customer_rank", "supplier_rank"]],
+                [records.ids, ["name", "customer_rank", "supplier_rank"]], {}
             )
 
     def test_on_read_with_employee__access_error_raised(self):

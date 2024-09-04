@@ -9,7 +9,7 @@ class BaseWithExtendedSecurity(models.AbstractModel):
     _inherit = "base"
 
     def get_extended_security_domain(self):
-        """Get a search domain to apply to securize requests.
+        """Get a search domain to apply to secure requests.
 
         This method returns an empty domain.
 

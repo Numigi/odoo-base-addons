@@ -11,14 +11,16 @@ SEARCH_METHODS = [
     "search_count",
     "search_read",
     "read_group",
+    "web_search_read",
 ]
 
 
 DOMAIN_ARGUMENT_NAMES = {
     "name_search": "args",
-    "search": "args",
-    "search_count": "args",
+    "search": "domain",
+    "search_count": "domain",
     "search_read": "domain",
+    "web_search_read": "domain",
     "read_group": "domain",
 }
 
@@ -28,6 +30,7 @@ DOMAIN_ARGUMENT_INDEXES = {
     "search": 0,
     "search_count": 0,
     "search_read": 0,
+    "web_search_read": 0,
     "read_group": 0,
 }
 
