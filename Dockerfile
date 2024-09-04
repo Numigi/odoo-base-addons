@@ -16,6 +16,7 @@ USER odoo
 COPY admin_light_base /mnt/extra-addons/admin_light_base
 COPY admin_light_bi_view_editor /mnt/extra-addons/admin_light_bi_view_editor
 COPY admin_light_calendar /mnt/extra-addons/admin_light_calendar
+COPY admin_light_company /mnt/extra-addons/admin_light_company
 COPY admin_light_gamification /mnt/extra-addons/admin_light_gamification
 COPY attachment_minio /mnt/extra-addons/attachment_minio
 COPY lang_fr_activated /mnt/extra-addons/lang_fr_activated
