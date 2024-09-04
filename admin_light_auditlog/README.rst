@@ -1,3 +1,4 @@
+====================
 Admin Light AuditLog
 ====================
 This module adds Auditlog to the Admin Light application.

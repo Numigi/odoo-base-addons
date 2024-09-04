@@ -1,7 +1,7 @@
-# © 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# Copyright 2019 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import api, models
+from odoo import models
 
 
 class AuditRule(models.Model):
@@ -12,16 +12,16 @@ class AuditRule(models.Model):
     to access.
     """
 
-    _inherit = 'auditlog.rule'
+    _inherit = "auditlog.rule"
 
     def unsubscribe(self):
-        if self.env.user.has_group('admin_light_auditlog.group_auditlogs'):
+        if self.env.user.has_group("admin_light_auditlog.group_auditlogs"):
             self = self.sudo()
 
         return super(AuditRule, self).unsubscribe()
 
     def subscribe(self):
-        if self.env.user.has_group('admin_light_auditlog.group_auditlogs'):
+        if self.env.user.has_group("admin_light_auditlog.group_auditlogs"):
             self = self.sudo()
 
         return super(AuditRule, self).subscribe()
