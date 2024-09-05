@@ -122,7 +122,7 @@ class TestControllers(ControllerCase):
     def _search_count(self, domain, domain_kwarg):
         with mock_odoo_request(self.env):
             args = [] if domain_kwarg else [domain]
-            kwargs = {"args": domain} if domain_kwarg else {}
+            kwargs = {"domain": domain} if domain_kwarg else {}
             return self.controller.call_kw("res.partner", "search_count", args, kwargs)
 
     @data(True, False)
@@ -142,14 +142,17 @@ class TestControllers(ControllerCase):
                     "res.partner", fields=[], domain=domain
                 )
                 records = result["records"]
+                print("if ",domain)
             elif domain_kwarg:
                 records = self.controller.call_kw(
                     "res.partner", "search_read", [domain, []],{}
                 )
+                print("eif ", domain)
             else:
                 records = self.controller.call_kw(
                     "res.partner", "search_read", [], {"domain": domain}
                 )
+                print("else ", domain)
 
             return [r["id"] for r in records]
 
@@ -161,6 +164,7 @@ class TestControllers(ControllerCase):
     @unpack
     def test_search_read_with_empty_domain(self, use_search_read_route, domain_kwarg):
         ids = self._search_read([], use_search_read_route, domain_kwarg)
+        print("ids",ids)
         assert self.customer.id in ids
         assert self.supplier.id not in ids
         assert self.supplier_customer.id in ids

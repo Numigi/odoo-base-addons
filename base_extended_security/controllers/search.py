@@ -61,7 +61,7 @@ class DataSetWithExtendedSearchSecurity(DataSet):
             args, kwargs = _get_args_and_kwargs_with_new_domain(
                 method, args, kwargs, complete_domain
             )
-
+        print("_call_kw model : %s -  method %s - args :%s - kwargs :%s" % (model,method,args,kwargs))
         return super()._call_kw(model, method, args, kwargs)
 
 
