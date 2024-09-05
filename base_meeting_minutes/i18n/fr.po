@@ -414,4 +414,4 @@ msgstr ""
 #. module: base_meeting_minutes
 #: model_terms:ir.ui.view,arch_db:base_meeting_minutes.base_template_meeting_minutes
 msgid "to"
-msgstr "au"
+msgstr "à"

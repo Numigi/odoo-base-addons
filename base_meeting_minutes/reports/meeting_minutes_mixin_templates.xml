@@ -8,39 +8,38 @@
                 <t t-call="web.external_layout" t-lang="lang">
                     <div class="page">
                         <h1 class="font-weight-bold text-uppercase" style="color:#F7D060;">Meeting minutes</h1>
-                        <div name="info" class="row mb-4"
-                            style="background-color: #EEEEEE; margin: 1rem 0; padding: 1rem 0rem 0rem 0rem;">
+                        <div name="info" class="row mb-4" style="background-color: #EEEEEE; margin: 1rem 0; padding: 1rem 0rem 1rem 0rem;">
                             <div class="col-6" name="object_info">
                                 <div class="row mb-2">
-                                    <div class="col-6 text-start font-weight-bold text-uppercase">
+                                    <div class="col-3 text-start font-weight-bold text-uppercase">
                                         Object
                                     </div>
-                                    <div class="col-6 text-end">
+                                    <div class="col-9 text-end">
                                         <span t-field="o.name" />
                                     </div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-6 text-start font-weight-bold text-uppercase">
+                                    <div class="col-3 text-start font-weight-bold text-uppercase">
                                         Date
                                     </div>
-                                    <div class="col-6 text-end">
+                                    <div class="col-9 text-end">
                                         <t t-if="o.start_date">
-                                            <span t-esc="user_lang.datetime_formatter(o.start_date)" />
+                                            <t t-if="user_lang.code=='en_US'">
+                                                <span t-esc="o.start_date.strftime('%B %d, %Y')"/>
+                                            </t>
+                                            <t t-else="">
+                                                <span t-esc="o.start_date.strftime('%d-%m-%Y')"/>
+                                            </t>
                                             from <span t-esc="o.start_date.strftime('%H:%M')" />
                                         </t>
                                         <t t-if="o.end_date">
-                                             to <span
-                                                t-esc="o.end_date.strftime('%H:%M')" />
+                                            to <span t-esc="o.end_date.strftime('%H:%M')" />
                                         </t>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-6 text-start font-weight-bold text-uppercase">
-                                        Meeting channel
-                                    </div>
-                                    <div class="col-6 text-end">
-                                        <span t-field="o.meeting_channel_id.name" />
-                                    </div>
+                                    <p class="font-weight-bold text-uppercase pr-3 pl-3 mb-0">Meeting channel </p>
+                                    <span t-field="o.meeting_channel_id.name" />
                                 </div>
                                 <div>
                                     <p class="font-weight-bold text-uppercase mb-0"> Attendee(s) </p>
