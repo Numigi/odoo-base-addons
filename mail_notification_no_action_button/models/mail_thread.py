@@ -8,8 +8,12 @@ class MailThread(models.AbstractModel):
 
     _inherit = 'mail.thread'
 
-    def _notify_classify_recipients(self, *args, **kwargs):
-        res = super()._notify_classify_recipients(*args, **kwargs)
-        for data in res:
-            data['actions'] = []
+    def _notify_get_recipients_classify(
+        self, recipient_data, model_name, msg_vals=None
+    ):
+        res = super()._notify_get_recipients_classify(
+            recipient_data, model_name, msg_vals=None
+        )
+        for group_data in res:
+            group_data["actions"] = []
         return res
