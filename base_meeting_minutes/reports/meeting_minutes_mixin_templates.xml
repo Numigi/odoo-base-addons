@@ -4,11 +4,12 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-set="o" t-value="o.with_context(lang=env.user.lang)" />
-                <t t-set="user_lang" t-value="env['res.lang'].search([('code', '=', env.user.lang)])"/>
+                <t t-set="user_lang"
+                    t-value="env['res.lang'].search([('code', '=', env.user.lang)])" />
                 <t t-call="web.external_layout" t-lang="lang">
-                    <div class="page">
-                        <h1 class="font-weight-bold text-uppercase" style="color:#F7D060;">Meeting minutes</h1>
-                        <div name="info" class="row mb-4" style="background-color: #EEEEEE; margin: 1rem 0; padding: 1rem 0rem 1rem 0rem;">
+                    <div class="page report_meeting_minutes">
+                        <h1 class="font-weight-bold text-uppercase">Meeting minutes</h1>
+                        <div name="info" id="info" class="row mb-4">
                             <div class="col-6" name="object_info">
                                 <div class="row mb-2">
                                     <div class="col-3 text-start font-weight-bold text-uppercase">
@@ -25,15 +26,15 @@
                                     <div class="col-9 text-end">
                                         <t t-if="o.start_date">
                                             <t t-if="user_lang.code=='en_US'">
-                                                <span t-esc="o.start_date.strftime('%B %d, %Y')"/>
+                                                <span t-esc="o.start_date.strftime('%B %d, %Y')" />
                                             </t>
                                             <t t-else="">
-                                                <span t-esc="o.start_date.strftime('%d-%m-%Y')"/>
+                                                <span t-esc="o.start_date.strftime('%d-%m-%Y')" />
                                             </t>
                                             from <span t-esc="o.start_date.strftime('%H:%M')" />
                                         </t>
-                                        <t t-if="o.end_date">
-                                            to <span t-esc="o.end_date.strftime('%H:%M')" />
+                                        <t t-if="o.end_date"> to 
+                                            <span t-esc="o.end_date.strftime('%H:%M')" />
                                         </t>
                                     </div>
                                 </div>

@@ -13,6 +13,7 @@
     "summary": "Meeting Minutes base model",
     "data": [
         "security/ir.model.access.csv",
+        "reports/assets.xml",
         "reports/reports.xml",
         "reports/meeting_minutes_mixin_templates.xml",
         "views/meeting_channel_views.xml",
