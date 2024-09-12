@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div name="planned_points" class="mb-4">
-                            <h4 class="font-weight-bold text-uppercase">Planned Points</h4>
+                            <h3 class="font-weight-bold text-uppercase">Planned Points</h3>
                             <t t-if="env['ir.fields.converter'].text_from_html(o.planned_points)">
                                 <div t-field="o.planned_points" />
                             </t>
@@ -66,7 +66,7 @@
                             </t>
                         </div>
                         <div name="discussed_points" class="mb-4">
-                            <h4 class="font-weight-bold text-uppercase">Discussed opions</h4>
+                            <h3 class="font-weight-bold text-uppercase">Discussed points</h3>
                             <t t-if="env['ir.fields.converter'].text_from_html(o.discussed_points)">
                                 <div t-field="o.discussed_points" />
                             </t>
@@ -75,7 +75,7 @@
                             </t>
                         </div>
                         <div name="duties" class="mb-4">
-                            <h4 class="font-weight-bold text-uppercase">Duties</h4>
+                            <h3 class="font-weight-bold text-uppercase">Duties</h3>
                             <t t-if="env['ir.fields.converter'].text_from_html(o.duties)">
                                 <div t-field="o.duties" />
                             </t>
@@ -84,7 +84,7 @@
                             </t>
                         </div>
                         <div name="resources" class="mb-4">
-                            <h4 class="font-weight-bold text-uppercase">Resources</h4>
+                            <h3 class="font-weight-bold text-uppercase">Resources</h3>
                             <t t-if="env['ir.fields.converter'].text_from_html(o.resources)">
                                 <div t-field="o.resources" />
                             </t>
@@ -93,7 +93,7 @@
                             </t>
                         </div>
                         <div name="risks" class="mb-4">
-                            <h4 class="font-weight-bold text-uppercase">Risks</h4>
+                            <h3 class="font-weight-bold text-uppercase">Risks</h3>
                             <t t-if="env['ir.fields.converter'].text_from_html(o.risks)">
                                 <div t-field="o.risks" />
                             </t>

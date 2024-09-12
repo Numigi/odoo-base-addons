@@ -47,5 +47,5 @@ class MeetingMinutesMixin(models.Model):
     def _check_dates(self):
         if self.filtered(lambda c: c.end_date and c.start_date > c.end_date):
             raise ValidationError(
-                _("Meeting Minutes start date must be earlier than its end date.")
+                _("Meeting minutes start date must be earlier than its end date.")
             )

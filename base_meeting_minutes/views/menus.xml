@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <menuitem id="menu_meeting_minutes_root" name="Meeting Minutes" parent="contacts.menu_contacts" sequence="2" />
+    <menuitem id="menu_meeting_minutes_root" name="Meeting minutes" parent="contacts.menu_contacts" sequence="2" />
 
-    <menuitem id="menu_meeting_minutes" name="Meeting Minutes" parent="menu_meeting_minutes_root" action="meeting_minutes_action" sequence="1" />
+    <menuitem id="menu_meeting_minutes" name="Meeting minutes" parent="menu_meeting_minutes_root" action="meeting_minutes_action" sequence="1" />
 
-    <menuitem id="menu_meeting_channel" name="Meeting Channels" parent="menu_meeting_minutes_root" action="meeting_channel_action" sequence="2" />
+    <menuitem id="menu_meeting_channel" name="Meeting channels" parent="menu_meeting_minutes_root" action="meeting_channel_action" sequence="2" />
 
 </odoo>

@@ -101,7 +101,7 @@ msgstr "Points abordés"
 
 #. module: base_meeting_minutes
 #: model_terms:ir.ui.view,arch_db:base_meeting_minutes.base_template_meeting_minutes
-msgid "Discussed opions"
+msgid "Discussed points"
 msgstr "Points abordés"
 
 #. module: base_meeting_minutes
@@ -209,11 +209,11 @@ msgstr "Pièce jointe principale"
 #. module: base_meeting_minutes
 #: model_terms:ir.ui.view,arch_db:base_meeting_minutes.base_template_meeting_minutes
 msgid "Meeting minutes"
-msgstr "Compte Rendu"
+msgstr "Compte rendu"
 
 #. module: base_meeting_minutes
 #: model:ir.model,name:base_meeting_minutes.model_meeting_channel
-msgid "Meeting Channel"
+msgid "Meeting channel"
 msgstr "Moyen de communication"
 
 #. module: base_meeting_minutes
@@ -230,8 +230,8 @@ msgstr "Moyens de communication"
 #: model_terms:ir.ui.view,arch_db:base_meeting_minutes.meeting_minutes_mixin_view_search
 #: model_terms:ir.ui.view,arch_db:base_meeting_minutes.meeting_minutes_view_mixin_form
 #, python-format
-msgid "Meeting Minutes"
-msgstr "Comptes Rendus"
+msgid "Meeting minutes"
+msgstr "Comptes rendus"
 
 #. module: base_meeting_minutes
 #: model:ir.model,name:base_meeting_minutes.model_meeting_minutes_mixin
@@ -255,7 +255,7 @@ msgstr "Moyen de communication"
 #: model:ir.model.fields,field_description:base_meeting_minutes.field_res_users__meeting_minutes_count
 #: model_terms:ir.ui.view,arch_db:base_meeting_minutes.res_partner_meeting_minutes_form
 msgid "Meeting minutes"
-msgstr "Compte Rendu"
+msgstr "Compte rendu"
 
 #. module: base_meeting_minutes
 #: model:ir.model.fields,field_description:base_meeting_minutes.field_meeting_minutes_mixin__message_has_error

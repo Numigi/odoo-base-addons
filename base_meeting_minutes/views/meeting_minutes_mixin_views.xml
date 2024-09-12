@@ -33,7 +33,7 @@
                     </group>
 
                     <notebook>
-                        <page name="meeting_minutes" string="Meeting Minutes">
+                        <page name="meeting_minutes" string="Meeting minutes">
                             <h2>Planned Points</h2>
                             <group>
                                 <field name="planned_points" nolabel="1"/>
@@ -88,7 +88,7 @@
         <field name="name">meeting.minutes.mixin.search</field>
         <field name="model">meeting.minutes.mixin</field>
         <field name="arch" type="xml">
-            <search string="Meeting Minutes">
+            <search string="Meeting minutes">
                 <field name="name"/>
                 <field name="partner_ids"/>
                 <field name="res_model_id"/>
@@ -102,7 +102,7 @@
     </record>
 
     <record id="meeting_minutes_action" model="ir.actions.act_window">
-        <field name="name">Meeting Minutes</field>
+        <field name="name">Meeting minutes</field>
         <field name="res_model">meeting.minutes.mixin</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>

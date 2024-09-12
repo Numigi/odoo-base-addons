@@ -24,7 +24,7 @@ class ResPartner(models.Model):
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
-            "name": _("Meeting Minutes"),
+            "name": _("Meeting minutes"),
             "res_model": "meeting.minutes.mixin",
             "domain": [
                 ("partner_ids", "in", self.id),
