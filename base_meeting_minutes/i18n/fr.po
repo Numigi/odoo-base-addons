@@ -208,7 +208,7 @@ msgstr "Pièce jointe principale"
 
 #. module: base_meeting_minutes
 #: model_terms:ir.ui.view,arch_db:base_meeting_minutes.base_template_meeting_minutes
-msgid "Meeting minutes"
+msgid "Meeting Minutes"
 msgstr "Compte rendu"
 
 #. module: base_meeting_minutes
@@ -230,7 +230,7 @@ msgstr "Moyens de communication"
 #: model_terms:ir.ui.view,arch_db:base_meeting_minutes.meeting_minutes_mixin_view_search
 #: model_terms:ir.ui.view,arch_db:base_meeting_minutes.meeting_minutes_view_mixin_form
 #, python-format
-msgid "Meeting minutes"
+msgid "Meeting Minutes"
 msgstr "Comptes rendus"
 
 #. module: base_meeting_minutes
@@ -254,7 +254,7 @@ msgstr "Moyen de communication"
 #: model:ir.model.fields,field_description:base_meeting_minutes.field_res_partner__meeting_minutes_count
 #: model:ir.model.fields,field_description:base_meeting_minutes.field_res_users__meeting_minutes_count
 #: model_terms:ir.ui.view,arch_db:base_meeting_minutes.res_partner_meeting_minutes_form
-msgid "Meeting minutes"
+msgid "Meeting Minutes"
 msgstr "Compte rendu"
 
 #. module: base_meeting_minutes

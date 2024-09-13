@@ -8,7 +8,7 @@
                     t-value="env['res.lang'].search([('code', '=', env.user.lang)])" />
                 <t t-call="web.external_layout" t-lang="lang">
                     <div class="page report_meeting_minutes">
-                        <h1 class="font-weight-bold text-uppercase">Meeting minutes</h1>
+                        <h1 class="font-weight-bold text-uppercase">Meeting Minutes</h1>
                         <div name="info" id="info" class="row mb-4">
                             <div class="col-6" name="object_info">
                                 <div class="row mb-2">

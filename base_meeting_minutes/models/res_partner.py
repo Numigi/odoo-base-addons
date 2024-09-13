@@ -8,7 +8,7 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     meeting_minutes_count = fields.Integer(
-        string="Meeting minutes",
+        string="Meeting Minutes",
         compute="_compute_meeting_minutes_count",
     )
 
@@ -24,7 +24,7 @@ class ResPartner(models.Model):
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
-            "name": _("Meeting minutes"),
+            "name": _("Meeting Minutes"),
             "res_model": "meeting.minutes.mixin",
             "domain": [
                 ("partner_ids", "in", self.id),
