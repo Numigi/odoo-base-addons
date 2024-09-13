@@ -3,10 +3,12 @@
 
         <record model="ir.ui.menu" id="bi_view_editor.menu_bi_view_editor_custom_reports">
             <field eval="[(6,0,[ref('admin_light_base.group_admin'),ref('base.group_system')])]" name="groups_id" />
+            <field name="name">Custom Reports</field>
         </record>
-
+        
         <record model="ir.ui.menu" id="bi_view_editor.menu_bi_view_editor_view">
-            <field eval="[(6,0,[ref('admin_light_base.group_admin'),ref('base.group_system')])]" name="groups_id" />
+            <field name="groups_id" eval="[(6, 0, [ref('admin_light_base.group_admin'), ref('base.group_system')])]"/>
+            <field name="parent_id" ref="bi_view_editor.menu_bi_view_editor_custom_reports"/>
         </record>
 
 </odoo>
