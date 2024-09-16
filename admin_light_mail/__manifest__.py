@@ -15,11 +15,10 @@
     ],
     "data": [
         "views/common.xml",
-        "views/email_and_messages.xml",
+        "views/mail_mail.xml",
         "views/mail_message_subtype.xml",
         "views/mail_server.xml",
         "views/mail_template.xml",
-        "security/ir_rule_data.xml",
         "security/ir.model.access.csv",
     ],
     "installable": True,

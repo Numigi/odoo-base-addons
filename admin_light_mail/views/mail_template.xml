@@ -7,6 +7,13 @@
         <field name="implied_ids" eval="[(4, ref('admin_light_base.group_admin'))]" />
     </record>
 
+    <!-- By default, Odoo allows all users to edit mail templates, 
+    we don't want this after giving admin light access to mail template -->
+
+    <record id="base.group_user" model="res.groups">
+        <field name="implied_ids" eval="[(3, ref('mail.group_mail_template_editor'))]"/>
+    </record>
+
     <menuitem
         id="menu_email_template"
         name="Email Templates"
