@@ -31,6 +31,14 @@ A new group `Safe Administration / Mail Subtypes` is added.
 * View and edit the list of subtypes.
 
 
+
+Important Notes
+===============
+
+- Users in this group can **only access, modify, and unlink** the mail templates they have created.
+- All other mail templates are **only accessible by the administrator**.
+
+
 Contributors
 ------------
 * Numigi (tm) and all its contributors (https://bit.ly/numigiens)
