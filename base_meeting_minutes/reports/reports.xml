@@ -3,7 +3,7 @@
 
     <report
         id="action_report_meeting_minutes"
-        string="Meeting minutes"
+        string="Meeting Minutes"
         model="meeting.minutes.mixin"
         report_type="qweb-pdf"
         name="base_meeting_minutes.base_template_meeting_minutes"

@@ -8,7 +8,7 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     meeting_minutes_count = fields.Integer(
-        string="Meeting minutes",
+        string="Meeting Minutes",
         compute="_compute_meeting_minutes_count",
     )
 

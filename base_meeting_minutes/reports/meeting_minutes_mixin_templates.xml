@@ -4,43 +4,43 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-set="o" t-value="o.with_context(lang=env.user.lang)" />
-                <t t-set="user_lang" t-value="env['res.lang'].search([('code', '=', env.user.lang)])"/>
+                <t t-set="user_lang"
+                    t-value="env['res.lang'].search([('code', '=', env.user.lang)])" />
                 <t t-call="web.external_layout" t-lang="lang">
-                    <div class="page">
-                        <h1 class="font-weight-bold text-uppercase" style="color:#F7D060;">Meeting minutes</h1>
-                        <div name="info" class="row mb-4"
-                            style="background-color: #EEEEEE; margin: 1rem 0; padding: 1rem 0rem 0rem 0rem;">
+                    <div class="page report_meeting_minutes">
+                        <h1 class="font-weight-bold text-uppercase">Meeting Minutes</h1>
+                        <div name="info" id="info" class="row mb-4">
                             <div class="col-6" name="object_info">
                                 <div class="row mb-2">
-                                    <div class="col-6 text-start font-weight-bold text-uppercase">
+                                    <div class="col-3 text-start font-weight-bold text-uppercase">
                                         Object
                                     </div>
-                                    <div class="col-6 text-end">
+                                    <div class="col-9 text-end">
                                         <span t-field="o.name" />
                                     </div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-6 text-start font-weight-bold text-uppercase">
+                                    <div class="col-3 text-start font-weight-bold text-uppercase">
                                         Date
                                     </div>
-                                    <div class="col-6 text-end">
+                                    <div class="col-9 text-end">
                                         <t t-if="o.start_date">
-                                            <span t-esc="user_lang.datetime_formatter(o.start_date)" />
+                                            <t t-if="user_lang.code=='en_US'">
+                                                <span t-esc="o.start_date.strftime('%B %d, %Y')" />
+                                            </t>
+                                            <t t-else="">
+                                                <span t-esc="o.start_date.strftime('%d-%m-%Y')" />
+                                            </t>
                                             from <span t-esc="o.start_date.strftime('%H:%M')" />
                                         </t>
-                                        <t t-if="o.end_date">
-                                             to <span
-                                                t-esc="o.end_date.strftime('%H:%M')" />
+                                        <t t-if="o.end_date"> to 
+                                            <span t-esc="o.end_date.strftime('%H:%M')" />
                                         </t>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-6 text-start font-weight-bold text-uppercase">
-                                        Meeting channel
-                                    </div>
-                                    <div class="col-6 text-end">
-                                        <span t-field="o.meeting_channel_id.name" />
-                                    </div>
+                                    <p class="font-weight-bold text-uppercase pr-3 pl-3 mb-0">Meeting channel </p>
+                                    <span t-field="o.meeting_channel_id.name" />
                                 </div>
                                 <div>
                                     <p class="font-weight-bold text-uppercase mb-0"> Attendee(s) </p>
@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <div name="planned_points" class="mb-4">
-                            <h4 class="font-weight-bold text-uppercase">Planned Points</h4>
+                            <h3 class="font-weight-bold text-uppercase">Planned Points</h3>
                             <t t-if="env['ir.fields.converter'].text_from_html(o.planned_points)">
                                 <div t-field="o.planned_points" />
                             </t>
@@ -67,7 +67,7 @@
                             </t>
                         </div>
                         <div name="discussed_points" class="mb-4">
-                            <h4 class="font-weight-bold text-uppercase">Discussed opions</h4>
+                            <h3 class="font-weight-bold text-uppercase">Discussed points</h3>
                             <t t-if="env['ir.fields.converter'].text_from_html(o.discussed_points)">
                                 <div t-field="o.discussed_points" />
                             </t>
@@ -76,7 +76,7 @@
                             </t>
                         </div>
                         <div name="duties" class="mb-4">
-                            <h4 class="font-weight-bold text-uppercase">Duties</h4>
+                            <h3 class="font-weight-bold text-uppercase">Duties</h3>
                             <t t-if="env['ir.fields.converter'].text_from_html(o.duties)">
                                 <div t-field="o.duties" />
                             </t>
@@ -85,7 +85,7 @@
                             </t>
                         </div>
                         <div name="resources" class="mb-4">
-                            <h4 class="font-weight-bold text-uppercase">Resources</h4>
+                            <h3 class="font-weight-bold text-uppercase">Resources</h3>
                             <t t-if="env['ir.fields.converter'].text_from_html(o.resources)">
                                 <div t-field="o.resources" />
                             </t>
@@ -94,7 +94,7 @@
                             </t>
                         </div>
                         <div name="risks" class="mb-4">
-                            <h4 class="font-weight-bold text-uppercase">Risks</h4>
+                            <h3 class="font-weight-bold text-uppercase">Risks</h3>
                             <t t-if="env['ir.fields.converter'].text_from_html(o.risks)">
                                 <div t-field="o.risks" />
                             </t>
