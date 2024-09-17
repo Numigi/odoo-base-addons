@@ -1,14 +1,14 @@
 Admin Light Company
 ===================
-This module adds the management of companies to the Admin Light application.
+This module adds companies menu to the Admin Light application.
 
-A new group `Safe Administration / Company` is added.
+A new group `Safe Administration / Companies` is added.
 
-.. image:: static/description/company_group.png
+.. image:: static/description/safe_administration_companies_group.png
 
-This group can create and edit companies.
+This group can see and edit existing companies.
 
-.. image:: static/description/company_list.png
+.. image:: static/description/administration_companies_list.png
 
 Contributors
 ------------
