@@ -8,10 +8,10 @@
     "maintainer": "Numigi",
     "website": "https://bit.ly/numigi-com",
     "license": "AGPL-3",
-    'category': 'Other',
+    "category": "Other",
     "depends": ["admin_light_mail", "microsoft_outlook"],
     "summary": """Extends Administration Light/Mail Servers rights to handle
-    microsoft_outlook functionalities.""",
+    `Microsoft Outlook Server` configuration""",
     "data": [],
     "installable": True,
 }
