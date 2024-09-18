@@ -20,6 +20,7 @@ COPY admin_light_calendar /mnt/extra-addons/admin_light_calendar
 COPY admin_light_company /mnt/extra-addons/admin_light_company
 COPY admin_light_gamification /mnt/extra-addons/admin_light_gamification
 COPY admin_light_mail /mnt/extra-addons/admin_light_mail
+COPY admin_light_mail_outlook /mnt/extra-addons/admin_light_mail_outlook
 COPY attachment_minio /mnt/extra-addons/attachment_minio
 COPY lang_fr_activated /mnt/extra-addons/lang_fr_activated
 COPY mail_notification_no_action_button /mnt/extra-addons/mail_notification_no_action_button
