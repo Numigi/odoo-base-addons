@@ -3,6 +3,9 @@
 
 from lxml import etree
 from odoo import api, models
+from odoo.tests.common import  Form
+
+import xml.etree.ElementTree as ET
 
 
 class ViewWithButtonsHiden(models.Model):
@@ -16,10 +19,31 @@ class ViewWithButtonsHiden(models.Model):
         This method is called in Odoo when generating the final xml of a view.
         """
         arch, models = super().postprocess_and_fields(node, model, **options)
-        is_nested_view = bool(self._context.get("base_model_name"))
+
+        is_nested_view = bool(self.env.context.get("base_model_name"))
         if not is_nested_view and model:
-            arch = _hide_buttons_with_access_blocked(self.env, model, arch)
-            _hide_one2many_view_buttons_with_access_blocked(self.env, models, arch)
+           # arch = _hide_buttons_with_access_blocked(self.env, model, arch)
+            one2may_fields = get_one2many_fields(self.env,models)
+            view_arch= etree.fromstring(arch)
+
+            for field in one2may_fields :
+
+                field_node = view_arch.xpath("//field[@name='%s']"%field.name)[0]
+                #
+                if field_node:
+                    node = etree.tostring(field_node, encoding="unicode").replace('\t', '')
+                    print("111111111",field.name,field.model_id.model,type(node),node)
+                    tree_node =  ET.fromstring(node).find('tree')
+                    if tree_node is not None:
+                        tree_content = ET.tostring(tree_node, encoding='unicode',
+                        method='xml')
+                        print("222222-treee_conten",tree_content)
+                        _hide_buttons_with_access_blocked(self.env,field.model_id.model, tree_content)
+                    else:
+                        print("No <tree> element found")
+
+
+
 
         return arch, models
 
@@ -38,18 +62,21 @@ def _hide_buttons_with_access_blocked(env, model, arch):
 
     has_full_access = perm_write and perm_create and perm_unlink
     if has_full_access:
+        print("3333333333333333333")
         return arch
 
     tree = etree.fromstring(arch)
-
+    print("3333333333333",tree,arch)
     if not perm_write:
         tree.attrib["edit"] = "false"
         _remove_write_access_buttons(env, model, tree)
-
+        print("perm_write")
     if not perm_create:
+        print("perm_create")
         tree.attrib["create"] = "false"
 
     if not perm_unlink:
+        print("perm_unlink")
         tree.attrib["delete"] = "false"
 
     return etree.tostring(tree)
@@ -63,7 +90,7 @@ def _remove_write_access_buttons(env, model, tree):
             button.getparent().remove(button)
 
 
-def _hide_one2many_view_buttons_with_access_blocked(env, models, arch):
+def _hide_one2many_view_buttons_with_access_blocked(env, models):
     """Hide the buttons in nested one2many fields with access restricted.
 
     The view architectures are updated directly inside the field
@@ -72,18 +99,18 @@ def _hide_one2many_view_buttons_with_access_blocked(env, models, arch):
     :param env: the Odoo environment
     :param fields: the field definitions
     """
-    one2many_fields = get_one2many_fields(env,models,arch)
-    for rec in one2many_fields.items():
-        model = one2many_fields['field'].model_id.id
-        res = _hide_buttons_with_access_blocked(env, model, one2many_fields['arch'])
+    one2many_fields = get_one2many_fields(env,models)
+    for rec in one2many_fields:
+        model = rec.model_id.id
 
-def get_one2many_fields(env,models,arch):
-    res={}
+        #one2many_fields['arch'] = _hide_buttons_with_access_blocked(env, model, one2many_fields['arch'])
+
+def get_one2many_fields(env,models):
+    res=[]
     for key in models:
         for field in models[key]:
             field_id = env['ir.model.fields'].search([('name','=',field),
                                                       ('model','=',key)])
             if field_id.ttype == 'one2many':
-                res['field']= field_id
-                res['arch']= arch
+                res.append(field_id)
     return res

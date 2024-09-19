@@ -24,7 +24,6 @@ class ResPartner(models.Model):
         super().check_extended_security_all()
         for partner in self:
             if partner.employee:
-                print("heeere")
                 raise AccessError(EMPLOYEE_ACCESS_MESSAGE)
 
     def check_extended_security_read(self):

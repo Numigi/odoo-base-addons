@@ -142,19 +142,28 @@ class TestControllers(ControllerCase):
                     "res.partner", fields=[], domain=domain
                 )
                 records = result["records"]
-                print("if ",domain)
             elif domain_kwarg:
                 records = self.controller.call_kw(
                     "res.partner", "search_read", [domain, []],{}
                 )
-                print("eif ", domain)
             else:
                 records = self.controller.call_kw(
                     "res.partner", "search_read", [], {"domain": domain}
                 )
-                print("else ", domain)
 
             return [r["id"] for r in records]
+
+    @data(
+ (True, False),
+        (False, False),
+        (False, True),
+    )
+    @unpack
+    def test_search_read_with_empty_domain(self, use_search_read_route, domain_kwarg):
+        ids = self._search_read([], use_search_read_route, domain_kwarg)
+        assert self.customer.id in ids
+        assert self.supplier.id not in ids
+        assert self.supplier_customer.id in ids
 
     @data(
         (True, False),
@@ -162,25 +171,12 @@ class TestControllers(ControllerCase):
         (False, True),
     )
     @unpack
-    def test_search_read_with_empty_domain(self, use_search_read_route, domain_kwarg):
-        ids = self._search_read([], use_search_read_route, domain_kwarg)
-        print("ids",ids)
-        assert self.customer.id in ids
+    def test_search_read_with_supplier_domain(
+        self, use_search_read_route, domain_kwarg
+    ):
+        ids = self._search_read(
+            [("supplier_rank", ">", 0)], use_search_read_route, domain_kwarg
+        )
+        assert self.customer.id not in ids
         assert self.supplier.id not in ids
         assert self.supplier_customer.id in ids
-
-    # @data(
-    #     (True, False),
-    #     (False, False),
-    #     (False, True),
-    # )
-    # @unpack
-    # def test_search_read_with_supplier_domain(
-    #     self, use_search_read_route, domain_kwarg
-    # ):
-    #     ids = self._search_read(
-    #         [("supplier_rank", ">", 0)], use_search_read_route, domain_kwarg
-    #     )
-    #     assert self.customer.id not in ids
-    #     assert self.supplier.id not in ids
-    #     assert self.supplier_customer.id in ids

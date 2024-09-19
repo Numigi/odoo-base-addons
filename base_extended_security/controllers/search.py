@@ -38,13 +38,13 @@ DOMAIN_ARGUMENT_INDEXES = {
 class DataSetWithExtendedSearchSecurity(DataSet):
     """Add extra security domains to search operations."""
 
-    def do_search_read(
+    def search_read(
         self, model, fields=False, offset=0, limit=False, domain=None, sort=None
     ):
         search_domain = domain or []
         security_domain = _get_extended_security_domain(model)
         complete_domain = AND([search_domain, security_domain])
-        return super().do_search_read(
+        return super().search_read(
             model,
             fields=fields,
             offset=offset,
@@ -61,7 +61,6 @@ class DataSetWithExtendedSearchSecurity(DataSet):
             args, kwargs = _get_args_and_kwargs_with_new_domain(
                 method, args, kwargs, complete_domain
             )
-        print("_call_kw model : %s -  method %s - args :%s - kwargs :%s" % (model,method,args,kwargs))
         return super()._call_kw(model, method, args, kwargs)
 
 

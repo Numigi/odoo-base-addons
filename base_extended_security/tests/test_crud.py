@@ -42,7 +42,8 @@ class TestControllers(ControllerCase):
 
     def _write(self, records, values):
         with mock_odoo_request(self.env):
-            return self.controller.call("res.partner", "write", [records.ids, values])
+            return self.controller.call_kw(
+                "res.partner", "write", [records.ids, values],{})
 
     def test_on_write_with_employee__access_error_raised(self):
         with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
@@ -61,7 +62,7 @@ class TestControllers(ControllerCase):
 
     def _create(self, values):
         with mock_odoo_request(self.env):
-            return self.controller.call("res.partner", "create", [values])
+            return self.controller.call_kw("res.partner", "create", [values],{})
 
     def test_on_create_with_employee__access_error_raised(self):
         values = [
@@ -103,7 +104,7 @@ class TestControllers(ControllerCase):
 
     def _unlink(self, records):
         with mock_odoo_request(self.env):
-            return self.controller.call("res.partner", "unlink", [records.ids])
+            return self.controller.call_kw("res.partner", "unlink", [records.ids],{})
 
     def test_on_unlink_with_employee__access_error_raised(self):
         with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
@@ -183,7 +184,7 @@ class TestControllers(ControllerCase):
 
     def _name_create(self, name):
         with mock_odoo_request(self.env):
-            return self.controller.call("res.partner", "name_create", [name])
+            return self.controller.call_kw("res.partner", "name_create", [name],{})
 
     def _set_default_value(self, field, value):
         self.env["ir.default"].set("res.partner", field, value, user_id=self.env.uid)
@@ -211,7 +212,8 @@ class TestControllers(ControllerCase):
 
     def _read_many2many_tags(self, records, fields):
         with mock_odoo_request(self.env):
-            return self.controller.call("res.partner", "read", [records.ids, fields])
+            return self.controller.call_kw(
+                "res.partner", "read", [records.ids, fields],{})
 
     def _call_button(self, records, action_name):
         with mock_odoo_request(self.env):
