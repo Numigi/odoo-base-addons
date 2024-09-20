@@ -11,7 +11,7 @@
     'category': 'Other',
     "depends": ["admin_light_mail", "google_gmail"],
     "summary": """Extends Administration Light/Mail Servers rights to handle
-    google_gmail functionalities.""",
+    `Google Gmail` configuration.""",
     "data": [],
     "installable": True,
 }
