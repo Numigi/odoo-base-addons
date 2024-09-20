@@ -21,6 +21,7 @@
         "admin_light_gamification",
         "admin_light_mail",
         "admin_light_mail_gmail",
+        "admin_light_mail_outlook",
         "attachment_minio",
         "lang_fr_activated",
         "mail_notification_no_action_button",
