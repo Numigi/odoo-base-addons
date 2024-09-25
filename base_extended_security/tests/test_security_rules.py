@@ -221,24 +221,18 @@ class TestSecurityRules(TransactionCase):
         arch = self.env[model].get_view(view_id=view.id)["arch"]
         return etree.fromstring(arch)
 
-    # @data(
-    #     ("write", "edit"),
-    #     ("create", "create"),
-    #     ("unlink", "delete"),
-    # )
-    # @unpack
-    # def test_if_unauthorized__view_property_disabled(self, access_type, view_property):
-    #     self.rule["perm_{}".format(access_type)] = True
+    @data(
+        ("write", "edit"),
+        ("create", "create"),
+        ("unlink", "delete"),
+    )
+    @unpack
+    def test_if_unauthorized__view_property_disabled(self, access_type, view_property):
+        self.rule["perm_{}".format(access_type)] = True
 
-    #     list_view = self._get_product_list_view_arch()
-    #     assert list_view.attrib[view_property] == "false"
-
-    # def test_if_not_authorized__action_buttons_still_visible(self):
-    #     self.env.user.groups_id |= self.env.ref("product.group_product_variant")
-    #     form_view = self._get_product_form_view_arch()
-    #     action = self.env.ref("product.product_attribute_value_action")
-    #     assert form_view.xpath("//button[@name='{}']".format(action.id))
+        list_view = self._get_product_list_view_arch()
+        assert list_view.attrib[view_property] == "false"
 
     # def test_if_authorized__toggle_button_not_hidden(self):
     #     form_view = self._get_product_form_view_arch()
-    #     assert form_view.xpath("//button[@name='action_update_quantity_on_hand']")
+    #     assert form_view.xpath("//button[@name='Print Labels']")
