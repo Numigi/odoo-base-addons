@@ -2,19 +2,24 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    "name": "Admin Light Base",
+    "name": "Admin Light Email",
     "version": "16.0.1.0.0",
     "author": "Numigi",
     "maintainer": "Numigi",
     "license": "LGPL-3",
     "category": "Other",
-    "summary": "Add an admin menu with restricted functionalities.",
-    "depends": ["base"],
+    "summary": "Add email management to the Admin Light application.",
+    "depends": [
+        "admin_light_base",
+        "mail",
+    ],
     "data": [
-        "security/res_groups.xml",
+        "views/common.xml",
+        "views/mail_mail.xml",
+        "views/mail_message_subtype.xml",
+        "views/mail_server.xml",
+        "views/mail_template.xml",
         "security/ir.model.access.csv",
-        "views/menus.xml"
     ],
     "installable": True,
-    "application": True,
 }

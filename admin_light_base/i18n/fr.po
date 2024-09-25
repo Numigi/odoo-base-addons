@@ -4,23 +4,26 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0+e\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-24 16:38+0000\n"
-"PO-Revision-Date: 2024-06-24 11:39-0500\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2024-09-04 21:40+0000\n"
+"PO-Revision-Date: 2024-09-04 21:40+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.0.6\n"
 
 #. module: admin_light_base
 #: model:ir.ui.menu,name:admin_light_base.menu_admin
 msgid "Administration"
 msgstr "Administration"
+
+#. module: admin_light_base
+#: model:ir.ui.menu,name:admin_light_base.menu_other
+msgid "Other"
+msgstr "Autre"
 
 #. module: admin_light_base
 #: model:ir.module.category,name:admin_light_base.module_category_admin
@@ -31,11 +34,6 @@ msgstr "Administration sécurisée"
 #: model:res.groups,name:admin_light_base.group_admin
 msgid "Safe Administration / Base"
 msgstr "Administration sécurisée / Base"
-
-#. module: admin_light_base
-#: model:ir.ui.menu,name:admin_light_base.menu_other
-msgid "Other"
-msgstr "Autre"
 
 #. module: admin_light_base
 #: model:ir.ui.menu,name:admin_light_base.menu_sequence
