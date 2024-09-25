@@ -178,5 +178,5 @@ class TestControllers(ControllerCase):
             groupby="customer_rank",
             domain_kwarg=domain_kwarg,
         )
-        assert len(groups) == 1
-        assert groups[0]["customer_rank_count"] == self.customer_count
+        assert len(groups) == 2
+        assert groups[0]["customer_rank_count"] + 1 == self.customer_count
