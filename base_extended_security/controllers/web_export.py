@@ -22,7 +22,6 @@ class ExportFormatWithSecurityDomain(ExportFormat):
             security_domain = request.env[model].get_extended_security_domain()
             params["domain"] = AND((search_domain, security_domain))
             data = json.dumps(params)
-
         return super().base(data)
 
 

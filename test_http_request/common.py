@@ -7,7 +7,7 @@ from contextlib import contextmanager
 from io import BytesIO
 from odoo.addons.http_routing.models.ir_http import url_for
 from odoo.api import Environment
-from odoo.http import HttpDispatcher, JsonRPCDispatcher, _request_stack, Session
+from odoo.http import HttpDispatcher, JsonRPCDispatcher, _request_stack, Session, Response
 from odoo.tools import config
 from typing import Optional, Union
 from odoo.http import FilesystemSessionStore
@@ -15,7 +15,7 @@ from werkzeug.datastructures import ImmutableOrderedMultiDict
 from werkzeug.test import EnvironBuilder
 from werkzeug.urls import url_encode
 from werkzeug.wrappers.request import Request
-
+from unittest.mock import Mock
 
 class _MockOdooRequestMixin:
 
@@ -52,6 +52,17 @@ class _MockOdooRequestMixin:
         """Push the request to the request stack."""
         _request_stack.push(self)
         return self
+
+    def make_response(self, data, headers=None, cookies=None, status=200):
+        """
+        the same method used in the class Request
+        Otherwise the _export of the TestWebExport can not have the response
+        """
+        response = Response(data, status=status, headers=headers)
+        if cookies:
+            for k, v in cookies.items():
+                response.set_cookie(k, v)
+        return response
 
 
 class _MockOdooHttpRequest(_MockOdooRequestMixin, HttpDispatcher):

@@ -36,14 +36,16 @@ class TestWebExport(ControllerCase):
         with pytest.raises(AccessError):
             self._export(ids=[self.supplier.id], domain=[])
 
-    # def test_if_given_record_ids__and_has_access_to_record__data_returned(self):
-    #     ids = [self.customer.id, self.supplier_customer.id]
-    #     data_ = self._export(ids=ids, domain=[])
-    #     assert self.customer.name in data_
-    #     assert self.supplier_customer.name in data_
+    import unittest.mock as mock
 
-    # def test_if_given_domain__domain_filter_applied_to_data(self):
-    #     data_ = self._export(ids=[], domain=[])
-    #     assert self.customer.name in data_
-    #     assert self.supplier.name not in data_
-    #     assert self.supplier_customer.name in data_
+    def test_if_given_record_ids__and_has_access_to_record__data_returned(self):
+        ids = [self.customer.id, self.supplier_customer.id]
+        data_ = self._export(ids=ids, domain=[])
+        assert self.customer.name in data_
+        assert self.supplier_customer.name in data_
+
+    def test_if_given_domain__domain_filter_applied_to_data(self):
+        data_ = self._export(ids=[], domain=[])
+        assert self.customer.name in data_
+        assert self.supplier.name not in data_
+        assert self.supplier_customer.name in data_
