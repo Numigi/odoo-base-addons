@@ -170,13 +170,13 @@ class TestControllers(ControllerCase):
         assert self.supplier.id not in ids
         assert self.supplier_customer.id in ids
 
-    # @data(True, False)
-    # def test_read_group_with_empty_domain(self, domain_kwarg):
-    #     groups = self._read_group(
-    #         [],
-    #         fields=["customer_rank"],
-    #         groupby="customer_rank",
-    #         domain_kwarg=domain_kwarg,
-    #     )
-    #     assert len(groups) == 1
-    #     assert groups[0]["customer_rank_count"] == self.customer_count
+    @data(True, False)
+    def test_read_group_with_empty_domain(self, domain_kwarg):
+        groups = self._read_group(
+            [],
+            fields=["customer_rank"],
+            groupby="customer_rank",
+            domain_kwarg=domain_kwarg,
+        )
+        assert len(groups) == 1
+        assert groups[0]["customer_rank_count"] == self.customer_count
