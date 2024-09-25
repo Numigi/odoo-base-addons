@@ -208,6 +208,18 @@ class TestSecurityRules(TransactionCase):
         form_view = self._get_partner_form_view_arch()
         assert form_view.xpath("//button[@name='create_company']")
 
+    @data(
+        ("write", "edit"),
+        ("create", "create"),
+        ("unlink", "delete"),
+    )
+    @unpack
+    def test_if_unauthorized__view_property_disabled(self, access_type, view_property):
+        self.rule["perm_{}".format(access_type)] = True
+
+        list_view = self._get_product_list_view_arch()
+        assert list_view.attrib[view_property] == "false"
+
     def _get_product_form_view_arch(self):
         return self._get_form_view_arch(
             "product.product", "product.product_normal_form_view"
@@ -221,18 +233,6 @@ class TestSecurityRules(TransactionCase):
         arch = self.env[model].get_view(view_id=view.id)["arch"]
         return etree.fromstring(arch)
 
-    @data(
-        ("write", "edit"),
-        ("create", "create"),
-        ("unlink", "delete"),
-    )
-    @unpack
-    def test_if_unauthorized__view_property_disabled(self, access_type, view_property):
-        self.rule["perm_{}".format(access_type)] = True
-
-        list_view = self._get_product_list_view_arch()
-        assert list_view.attrib[view_property] == "false"
-
-    # def test_if_authorized__toggle_button_not_hidden(self):
-    #     form_view = self._get_product_form_view_arch()
-    #     assert form_view.xpath("//button[@name='Print Labels']")
+    def test_if_authorized__toggle_button_not_hidden(self):
+        form_view = self._get_product_form_view_arch()
+        assert form_view.xpath("//button[@name='action_open_label_layout']")
