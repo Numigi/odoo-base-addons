@@ -134,18 +134,6 @@ class TestSecurityRules(TransactionCase):
         arch = self.env["product.product"].get_view(view_id=view.id)["arch"]
         return etree.fromstring(arch)
 
-    # @data(
-    #     ("write", "edit"),
-    #     ("create", "create"),
-    #     ("unlink", "delete"),
-    # )
-    # @unpack
-    # def test_if_unauthorized__view_property_disabled(self, access_type, view_property):
-    #     self.rule["perm_{}".format(access_type)] = True
-
-    #     list_view = self._get_product_list_view_arch()
-    #     assert list_view.attrib[view_property] == "false"
-
     @data(
         ("write", "edit"),
         ("create", "create"),
@@ -209,20 +197,10 @@ class TestSecurityRules(TransactionCase):
         one2many_list = self._get_nested_ir_model_access_one2many_arch()
         assert view_property in one2many_list
 
-    # def test_if_authorized__toggle_button_not_hidden(self):
-    #     form_view = self._get_product_form_view_arch()
-    #     assert form_view.xpath("//button[@name='action_update_quantity_on_hand']")
-
     def test_if_not_authorized__toggle_button_hidden(self):
         self.rule.perm_write = True
         form_view = self._get_product_form_view_arch()
         assert not form_view.xpath("//button[@name='action_update_quantity_on_hand']")
-
-    # def test_if_not_authorized__action_buttons_still_visible(self):
-    #     self.env.user.groups_id |= self.env.ref("product.group_product_variant")
-    #     form_view = self._get_product_form_view_arch()
-    #     action = self.env.ref("product.product_attribute_value_action")
-    #     assert form_view.xpath("//button[@name='{}']".format(action.id))
 
     def test_read_access_action(self):
         self.rule.model_id = self.env.ref("base.model_res_partner")
@@ -242,3 +220,25 @@ class TestSecurityRules(TransactionCase):
         view = self.env.ref(view_ref)
         arch = self.env[model].get_view(view_id=view.id)["arch"]
         return etree.fromstring(arch)
+
+    # @data(
+    #     ("write", "edit"),
+    #     ("create", "create"),
+    #     ("unlink", "delete"),
+    # )
+    # @unpack
+    # def test_if_unauthorized__view_property_disabled(self, access_type, view_property):
+    #     self.rule["perm_{}".format(access_type)] = True
+
+    #     list_view = self._get_product_list_view_arch()
+    #     assert list_view.attrib[view_property] == "false"
+
+    # def test_if_not_authorized__action_buttons_still_visible(self):
+    #     self.env.user.groups_id |= self.env.ref("product.group_product_variant")
+    #     form_view = self._get_product_form_view_arch()
+    #     action = self.env.ref("product.product_attribute_value_action")
+    #     assert form_view.xpath("//button[@name='{}']".format(action.id))
+
+    # def test_if_authorized__toggle_button_not_hidden(self):
+    #     form_view = self._get_product_form_view_arch()
+    #     assert form_view.xpath("//button[@name='action_update_quantity_on_hand']")

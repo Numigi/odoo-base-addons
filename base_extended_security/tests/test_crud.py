@@ -157,14 +157,6 @@ class TestControllers(ControllerCase):
     def _x2many_create(self, parent, vals):
         self._write(parent, {"child_ids": [(0, 0, vals)]})
 
-    # def test_on_x2many_create_with_employee__access_error_raised(self):
-    #     with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
-    #         self._x2many_create(self.customer, {
-    #             'name': 'Some Contact',
-    #             'customer_rank': 1,
-    #             'supplier_rank': 1,
-    #         })
-
     def test_on_x2many_create_with_non_customer__access_error_raised(self):
         with pytest.raises(AccessError, match=NON_CUSTOMER_WRITE_MESSAGE):
             self._x2many_create(
@@ -230,3 +222,11 @@ class TestControllers(ControllerCase):
 
     def test_toggle_active_with_customer__access_error_not_raised(self):
         self._call_button(self.customer, "toggle_active")
+
+    # def test_on_x2many_create_with_employee__access_error_raised(self):
+    #     with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
+    #         self._x2many_create(self.customer, {
+    #             'name': 'Some Contact',
+    #             'customer_rank': 1,
+    #             'supplier_rank': 1,
+    #         })
