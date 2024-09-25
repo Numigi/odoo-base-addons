@@ -23,7 +23,7 @@ class TestMockHttpRequest(common.TransactionCase):
 
     def test_env_propagated_to_request(self):
         with mock_odoo_request(self.env, data=self.data):
-            assert request._env == self.env
+            assert request.env == self.env
 
     def test_method_propagated_to_request(self):
         method = 'PATCH'

@@ -12,6 +12,7 @@
     "summary": "Install all addons required for testing.",
     "depends": [
         "base",
+        "base_extended_security",
         "crm",  # module added for test purpose
         "admin_light_auditlog",
         "admin_light_base",
