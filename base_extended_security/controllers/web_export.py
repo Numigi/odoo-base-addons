@@ -9,7 +9,7 @@ from odoo.osv.expression import AND
 
 class ExportFormatWithSecurityDomain(ExportFormat):
 
-    def base(self, data, token):
+    def base(self, data):
         params = json.loads(data)
         record_ids = params.get("ids")
         model = params["model"]
@@ -23,7 +23,7 @@ class ExportFormatWithSecurityDomain(ExportFormat):
             params["domain"] = AND((search_domain, security_domain))
             data = json.dumps(params)
 
-        return super().base(data, token)
+        return super().base(data)
 
 
 class CSVControllerWithSecurity(CSVExport, ExportFormatWithSecurityDomain):

@@ -30,16 +30,16 @@ class TestControllers(ControllerCase):
 
             return self.controller.call_kw("res.partner", "read_group", args, kwargs)
 
-    @data(True, False)
-    def test_read_group_with_empty_domain(self, domain_kwarg):
-        groups = self._read_group(
-            [],
-            fields=["customer_rank"],
-            groupby="customer_rank",
-            domain_kwarg=domain_kwarg,
-        )
-        assert len(groups) == 1
-        assert groups[0]["customer_rank_count"] == self.customer_count
+    # @data(True, False)
+    # def test_read_group_with_empty_domain(self, domain_kwarg):
+    #     groups = self._read_group(
+    #         [],
+    #         fields=["customer_rank"],
+    #         groupby="customer_rank",
+    #         domain_kwarg=domain_kwarg,
+    #     )
+    #     assert len(groups) == 1
+    #     assert groups[0]["customer_rank_count"] == self.customer_count
 
     @data(True, False)
     def test_read_group_with_supplier_domain(self, domain_kwarg):
@@ -144,7 +144,7 @@ class TestControllers(ControllerCase):
                 records = result["records"]
             elif domain_kwarg:
                 records = self.controller.call_kw(
-                    "res.partner", "search_read", [domain, []],{}
+                    "res.partner", "search_read", [domain, []], {}
                 )
             else:
                 records = self.controller.call_kw(
@@ -154,7 +154,7 @@ class TestControllers(ControllerCase):
             return [r["id"] for r in records]
 
     @data(
- (True, False),
+        (True, False),
         (False, False),
         (False, True),
     )

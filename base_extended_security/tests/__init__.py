@@ -4,4 +4,4 @@
 from . import test_crud
 from . import test_search
 from . import test_security_rules
-#from . import test_web_export
+from . import test_web_export
