@@ -66,8 +66,9 @@ class ViewWithButtonsHiden(models.Model):
                 tree_node = field_node.find("tree")
                 if tree_node is not None:
                     tree_content = etree.tostring(tree_node, encoding="unicode")
-                    modified_content = self._hide_buttons_with_access_blocked(self.env,
-                        field.relation, tree_content)
+                    modified_content = self._hide_buttons_with_access_blocked(
+                        self.env, field.relation, tree_content
+                    )
                     field_node.remove(tree_node)
                     field_node.append(etree.fromstring(modified_content))
         return view_arch
@@ -79,9 +80,8 @@ class ViewWithButtonsHiden(models.Model):
 
         if not is_nested_view and model:
             arch = self._hide_buttons_with_access_blocked(self.env, model, arch)
-            view_arch = self._hide_one2many_view_buttons_with_access_blocked(models, arch)
+            view_arch = self._hide_one2many_view_buttons_with_access_blocked(
+                models, arch
+            )
             arch = etree.tostring(view_arch, encoding="unicode")
         return arch, models
-
-
-
