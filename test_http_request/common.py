@@ -15,7 +15,7 @@ from werkzeug.datastructures import ImmutableOrderedMultiDict
 from werkzeug.test import EnvironBuilder
 from werkzeug.urls import url_encode
 from werkzeug.wrappers.request import Request
-from unittest.mock import Mock
+
 
 class _MockOdooRequestMixin:
 
