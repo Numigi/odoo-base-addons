@@ -4,10 +4,9 @@
 from odoo import _
 from odoo.exceptions import AccessError, ValidationError
 from odoo.http import request
-from typing import Iterable, List
 
 
-def _get_related_model(model: str, relation: str):
+def _get_related_model(model, relation):
     model_cls = request.env[model]
 
     if relation not in model_cls._fields:
@@ -21,14 +20,14 @@ def _get_related_model(model: str, relation: str):
     return comodel_name
 
 
-def _raise_private_field_access_error(model: str, field: str):
+def _raise_private_field_access_error(model, field):
     raise AccessError(
         _('You do not have access to the field {field} of model {model}')
         .format(field=field, model=model)
     )
 
 
-def check_model_fields_access(model: str, fields: Iterable[str]):
+def check_model_fields_access(model, fields):
     env = request.env
     if env.user.has_private_data_access():
         return
@@ -48,6 +47,6 @@ def check_model_fields_access(model: str, fields: Iterable[str]):
             _raise_private_field_access_error(model, field)
 
 
-def extract_fields_from_domain(domain: List):
+def extract_fields_from_domain(domain):
     field_tuples = [e for e in domain if isinstance(e, (list, tuple))]
     return [t[0] for t in field_tuples]

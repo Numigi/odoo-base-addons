@@ -2,6 +2,12 @@
   branch: "16.0"
   includes: ["base_attachment_object_storage"]
 
+- url: https://github.com/Numigi/odoo-web-addons
+  branch: "16.0"
+  includes:
+    - web_custom_label
+    - web_search_date_range
+
 - url: https://github.com/OCA/helpdesk
   branch: "16.0"
   includes: ["helpdesk_mgmt"]
