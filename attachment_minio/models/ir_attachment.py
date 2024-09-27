@@ -37,7 +37,6 @@ class MinioAttachment(models.Model):
         )
         if not all((host, access_key, secret_key)):
             raise exceptions.UserError("Incorrect configuration of attachment_minio.")
-        print("hostttttttttt", host)
         return Minio(
             host,
             access_key=access_key,
