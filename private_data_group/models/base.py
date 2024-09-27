@@ -1,8 +1,5 @@
 # Copyright 2022-today Numigi and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-
-
-
 from odoo import models, api
 from odoo.http import request
 from typing import Iterable
@@ -78,7 +75,6 @@ def _extract_groupby_from_args_and_kwargs(args: list, kwargs: dict):
     return [f.split(':')[0] for f in groupby_fields]
 
 
-
 class BasePrivateDataGroup(models.AbstractModel):
 
     _inherit = "base"
@@ -106,11 +102,10 @@ class BasePrivateDataGroup(models.AbstractModel):
 
         if domain:
             fields_to_check.update(extract_fields_from_domain(domain))
-        model = self._context.get('active_model',False)
+        model = self._context.get('active_model', False)
         check_model_fields_access(model, fields_to_check)
-        res = super().web_search_read(domain=domain, fields=fields, offset=offset, limit=limit,
-            order=order, count_limit=count_limit )
-
+        res = super().web_search_read(
+            domain=domain, fields=fields, offset=offset,
+            limit=limit, order=order, count_limit=count_limit)
         res['records'] = _filter_unauthorized_fields(model, res['records'])
         return res
-

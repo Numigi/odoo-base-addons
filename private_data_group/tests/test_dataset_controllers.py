@@ -33,7 +33,7 @@ class TestControllers(TransactionCase):
     def test_private_field_removed_from_read_request(self):
         with mock_odoo_request(self.env):
             result = self.controller.call_kw(
-                "hr.employee", "read", [self.employee.ids, self.fields],{}
+                "hr.employee", "read", [self.employee.ids, self.fields], {}
             )
             assert "name" in result[0]
             assert "sinid" not in result[0]
@@ -69,8 +69,9 @@ class TestControllers(TransactionCase):
                 )
             else:
                 return self.controller.call_kw(
-                    "hr.employee", "search_read", [domain, fields, offset, limit, order]
-                ,{})
+                    "hr.employee", "search_read",
+                    [domain, fields, offset, limit, order], {}
+                )
 
     @data(True, False)
     def test_private_field_removed_from_search_result(self, use_search_read_route):
@@ -107,8 +108,9 @@ class TestControllers(TransactionCase):
         with mock_odoo_request(self.env):
             with pytest.raises(AccessError):
                 self._search_read(
-                    [("sinid", "!=", False)], self.fields, use_search_read_route
-               )
+                    [("sinid", "!=", False)],
+                    self.fields, use_search_read_route
+                )
 
     def _read_group(self, domain, fields, groupby, order=None, use_kwargs=False):
         offset = 0
@@ -190,7 +192,7 @@ class TestControllers(TransactionCase):
                 )
             else:
                 return self.controller.call_kw(
-                    model, "search", [domain, offset, limit, order],{}
+                    model, "search", [domain, offset, limit, order], {}
                 )
 
     @data(True, False)
