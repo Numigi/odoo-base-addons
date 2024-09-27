@@ -22,8 +22,6 @@ class TestViewRendering(TransactionCase):
         return etree.fromstring(arch)
 
     def test_if_not_authorized__private_field_not_in_view_arch(self):
-        #group_private_data=self.env.ref('private_data_group.group_private_data')
-        #group_private_data.sudo().write({'users': [(3, self.env.user.id)]})
         arch = self._get_rendered_view_arch()
         assert not arch.xpath("//field[@name='passport_id']")
 

@@ -87,8 +87,9 @@ class DataSetWithPrivateFields(DataSet):
     @http.route('/web/dataset/search_read', type='json', auth="user")
     def search_read(self, model, fields=False, offset=0, limit=False, domain=None,
                     sort=None):
-        return request.env[model].with_context(active_model=model).web_search_read(domain, fields, offset=offset,
-            limit=limit, order=sort)
+        return request.env[model].with_context(
+            active_model=model).web_search_read(
+            domain, fields, offset=offset, limit=limit, order=sort)
 
     def _call_kw(self, model, method, args, kwargs):
         fields_to_check = set()
