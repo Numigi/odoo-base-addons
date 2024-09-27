@@ -29,6 +29,7 @@
         "lang_fr_activated",
         "mail_notification_no_action_button",
         "mail_template_default",
+        "private_data_group",
         "test_http_request",
     ],
     "installable": True,

@@ -29,6 +29,7 @@ COPY attachment_minio /mnt/extra-addons/attachment_minio
 COPY lang_fr_activated /mnt/extra-addons/lang_fr_activated
 COPY mail_notification_no_action_button /mnt/extra-addons/mail_notification_no_action_button
 COPY mail_template_default /mnt/extra-addons/mail_template_default
+COPY private_data_group /mnt/extra-addons/private_data_group
 COPY test_http_request /mnt/extra-addons/test_http_request
 
 COPY .docker_files/main /mnt/extra-addons/main
