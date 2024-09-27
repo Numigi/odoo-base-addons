@@ -22,8 +22,8 @@ class TestWebExport(TransactionCase):
         self.controller = CSVControllerWithPrivateFields()
 
         self.env = self.env(user=self.env.ref("base.user_demo"))
-        # group = self.env.ref('private_data_group.group_private_data')
-        # group.sudo().write({'users': [(3, self.env.user.id)]})
+        group = self.env.ref('private_data_group.group_private_data')
+        group.sudo().write({'users': [(3, self.env.user.id)]})
 
     def _export(self, ids, domain, fields, model='hr.employee'):
         params = {
