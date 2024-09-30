@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem
+        id="menu_user_management"
+        name="Users"
+        parent="admin_light_base.menu_admin"
+        groups="group_user_management"
+        sequence="0" />
+
+    <menuitem
+        id="menu_users"
+        name="Users"
+        parent="menu_user_management"
+        action="base.action_res_users"
+        sequence="0" />
+
+    <menuitem
+        id="menu_groups"
+        name="Groups"
+        parent="menu_user_management"
+        action="base.action_res_groups"
+        sequence="1" />
+
+</odoo>

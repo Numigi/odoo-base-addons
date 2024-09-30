@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Enable Reset Password -->
+        <record id="base.change_password_wizard_action" model="ir.actions.act_window">
+            <field name="groups_id"
+                eval="[(4, ref('group_user_management')), (4, ref('base.group_erp_manager'))]" />
+        </record>
+
+        <record id="auth_signup.action_send_password_reset_instructions" model="ir.actions.server">
+            <field name="groups_id"
+                eval="[(4, ref('group_user_management')), (4, ref('base.group_erp_manager'))]" />
+        </record>
+
+        <!-- Move group allow export from hidden category for admin light user -->
+        <function model="res.groups" name="write">
+            <value eval="[ref('base.group_allow_export')]" />
+            <value eval="{'category_id': False}" />
+        </function>
+
+        <function model="ir.ui.view" name="write">
+            <value eval="[ref('base.user_groups_view')]" />
+            <value eval="{'groups_id': [(4, ref('base.group_erp_manager'))]}" />
+        </function>
+    </data>
+
+</odoo>?t4Qq7L%-k<fdDV
