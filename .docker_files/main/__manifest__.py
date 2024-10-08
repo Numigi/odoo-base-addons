@@ -24,6 +24,7 @@
         "admin_light_mail_gmail",
         "admin_light_mail_outlook",
         "admin_light_web",
+        "admin_light_filters",
         "attachment_minio",
         "lang_fr_activated",
         "mail_notification_no_action_button",
