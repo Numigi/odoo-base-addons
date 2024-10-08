@@ -26,20 +26,25 @@
                                     <div class="col-9 text-end">
                                         <t t-if="o.start_date">
                                             <t t-if="user_lang.code=='en_US'">
-                                                <span t-esc="o.start_date.strftime('%B %d, %Y')" />
+                                                <span
+                                                    t-esc="context_timestamp(o.start_date).strftime('%B %d, %Y')" />
                                             </t>
-                                            <t t-else="">
-                                                <span t-esc="o.start_date.strftime('%d-%m-%Y')" />
+                                            <t
+                                                t-else="">
+                                                <span
+                                                    t-esc="context_timestamp(o.start_date).strftime('%d-%m-%Y')" />
                                             </t>
-                                            from <span t-esc="o.start_date.strftime('%H:%M')" />
+                                            from <span
+                                                t-esc="context_timestamp(o.start_date).strftime('%H:%M')" />
                                         </t>
-                                        <t t-if="o.end_date"> to 
-                                            <span t-esc="o.end_date.strftime('%H:%M')" />
+                                        <t t-if="o.end_date"> to <span
+                                                t-esc="context_timestamp(o.end_date).strftime('%H:%M')" />
                                         </t>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
-                                    <p class="font-weight-bold text-uppercase pr-3 pl-3 mb-0">Meeting channel </p>
+                                    <p class="font-weight-bold text-uppercase pr-3 pl-3 mb-0">Meeting
+                                        channel </p>
                                     <span t-field="o.meeting_channel_id.name" />
                                 </div>
                                 <div>
