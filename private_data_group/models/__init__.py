@@ -5,5 +5,4 @@ from . import (
     ir_ui_view,
     res_partner,
     res_users,
-    base
 )

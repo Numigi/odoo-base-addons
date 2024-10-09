@@ -4,18 +4,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-25 19:18+0000\n"
-"PO-Revision-Date: 2022-09-25 15:22-0400\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2024-10-09 15:27+0000\n"
+"PO-Revision-Date: 2024-10-09 15:27+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: fr\n"
-"X-Generator: Poedit 2.0.6\n"
 
 #. module: private_data_group
 #: model:ir.model.fields,field_description:private_data_group.field_ir_private_field__active
@@ -28,6 +26,11 @@ msgid "Archived"
 msgstr "Archivé"
 
 #. module: private_data_group
+#: model:ir.model,name:private_data_group.model_base
+msgid "Base"
+msgstr ""
+
+#. module: private_data_group
 #: model:ir.model,name:private_data_group.model_res_partner
 msgid "Contact"
 msgstr ""
@@ -35,12 +38,12 @@ msgstr ""
 #. module: private_data_group
 #: model:ir.model.fields,field_description:private_data_group.field_ir_private_field__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Créé par"
 
 #. module: private_data_group
 #: model:ir.model.fields,field_description:private_data_group.field_ir_private_field__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Créé le"
 
 #. module: private_data_group
 #: model:ir.model.fields,field_description:private_data_group.field_ir_private_field__display_name
@@ -66,17 +69,17 @@ msgstr ""
 #. module: private_data_group
 #: model:ir.model.fields,field_description:private_data_group.field_ir_private_field____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: private_data_group
 #: model:ir.model.fields,field_description:private_data_group.field_ir_private_field__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Dernière mise à jour par"
 
 #. module: private_data_group
 #: model:ir.model.fields,field_description:private_data_group.field_ir_private_field__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Dernière mise à jour le"
 
 #. module: private_data_group
 #: model:res.groups,name:private_data_group.group_private_data
@@ -93,7 +96,7 @@ msgstr "Modèle"
 #. module: private_data_group
 #: model:ir.model.fields,field_description:private_data_group.field_ir_private_field__model_select_id
 msgid "Model Select"
-msgstr ""
+msgstr "Sélection du modèle"
 
 #. module: private_data_group
 #: model:ir.model,name:private_data_group.model_ir_private_field
@@ -111,26 +114,32 @@ msgstr "Champs privés"
 #. module: private_data_group
 #: model:ir.model.fields,help:private_data_group.field_ir_private_field__model_id
 msgid "The model this field belongs to"
-msgstr ""
+msgstr "Le modèle auquel ce champ appartient"
 
 #. module: private_data_group
 #: model:ir.model,name:private_data_group.model_res_users
-msgid "Users"
-msgstr ""
+msgid "User"
+msgstr "Utilisateur"
 
 #. module: private_data_group
 #: model:ir.model,name:private_data_group.model_ir_ui_view
 msgid "View"
-msgstr ""
+msgstr "Vue"
 
 #. module: private_data_group
-#: code:addons/private_data_group/models/res_partner.py:8
+#. odoo-python
+#: code:addons/private_data_group/models/res_partner.py:0
 #, python-format
-msgid "You are not authorized to access the partner id={} because it is a private address."
-msgstr "Vous n'êtes pas autorisé à accéder au partenaire id={} car il s'agit d'une adresse privée."
+msgid ""
+"You are not authorized to access the partner id={} because it is a private "
+"address."
+msgstr ""
+"Vous n'êtes pas autorisé à accéder au partenaire id={} car il s'agit d'une "
+"adresse privée."
 
 #. module: private_data_group
-#: code:addons/private_data_group/controllers/common.py:27
+#. odoo-python
+#: code:addons/private_data_group/controllers/common.py:0
 #, python-format
 msgid "You do not have access to the field {field} of model {model}"
 msgstr "Vous n'avez pas accès au champ {field} du modèle {model}."
