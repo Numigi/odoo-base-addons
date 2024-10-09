@@ -11,9 +11,6 @@
     "category": "Other",
     "summary": "Install all addons required for testing.",
     "depends": [
-        "base",
-        "base_extended_security",
-        "crm",  # module added for test purpose
         "admin_light_auditlog",
         "admin_light_base",
         "admin_light_bi_view_editor",
@@ -26,6 +23,9 @@
         "admin_light_web",
         "admin_light_filters",
         "attachment_minio",
+        "base_extended_security",
+        "crm",  # module added for test purpose
+        "database_bi_user",
         "lang_fr_activated",
         "mail_notification_no_action_button",
         "mail_template_default",
