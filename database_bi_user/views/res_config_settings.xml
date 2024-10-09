@@ -6,7 +6,7 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[@data-key='general_settings']" position="inside">
+            <xpath expr="//div[@id='invite_users']" position="after">
                 <div id="business_documents">
                     <h2>BI Database User</h2>
                     <div class="row mt16 o_settings_container">
@@ -28,7 +28,7 @@
                                 <field name="database_bi_user_disable_column_protection"/>
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="database_bi_user_disable_column_protection" string="Disable Sentive Data Protection"/>
+                                <label for="database_bi_user_disable_column_protection" string="Disable Sensitive Data Protection"/>
                                 <div class="text-muted">
                                     By default, columns related to private (sensitive) fields (SIN, gender, marital status, etc)
                                     are revoked from the BI User.
