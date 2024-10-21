@@ -12,4 +12,6 @@
             <field name="inherit_id" ref="base.view_users_form"/>
         </record>
 
+        <function name="update_admin_light_user_group_view" model="res.users" />
+
 </odoo>

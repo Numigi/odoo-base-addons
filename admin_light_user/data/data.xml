@@ -45,6 +45,4 @@
         <value eval="{'category_id': False}" />
     </function>
 
-    <function name="update_admin_light_user_group_view" model="res.users" />
-
 </odoo>
