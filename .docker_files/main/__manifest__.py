@@ -54,7 +54,7 @@
         # "numipack_stock",
         "portal_signature_auto",
         "private_data_group",
-        #"profile_hr",
+        # "profile_hr",
         "queue_job_auto_requeue",
         "test_http_request",
         "utm_archive",

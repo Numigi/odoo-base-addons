@@ -3,7 +3,7 @@
 
 {
     'name': 'Admin Light User',
-    'version': '1.0.4',
+    'version': '14.0.1.0.4',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
@@ -18,7 +18,6 @@
         # users by non-super-admin.
         # See TA#6395
         'auth_signup',
-
         'base_extended_security',
     ],
     'data': [
