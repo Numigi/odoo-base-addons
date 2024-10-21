@@ -10,11 +10,14 @@ class ResPartner(models.Model):
     See TA#6395 and module auth_signup from the odoo code base.
     """
 
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
     signup_token = fields.Char(
-        groups="admin_light_user.group_user_management,base.group_erp_manager")
+        groups="admin_light_user.group_user_management,base.group_erp_manager"
+    )
     signup_type = fields.Char(
-        groups="admin_light_user.group_user_management,base.group_erp_manager")
+        groups="admin_light_user.group_user_management,base.group_erp_manager"
+    )
     signup_expiration = fields.Datetime(
-        groups="admin_light_user.group_user_management,base.group_erp_manager")
+        groups="admin_light_user.group_user_management,base.group_erp_manager"
+    )
