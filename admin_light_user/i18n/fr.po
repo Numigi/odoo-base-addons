@@ -4,22 +4,25 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0+e\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-31 18:21+0000\n"
-"PO-Revision-Date: 2021-03-31 14:23-0400\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2024-10-22 16:35+0000\n"
+"PO-Revision-Date: 2024-10-22 16:35+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.0.6\n"
 
 #. module: admin_light_user
 #: model:ir.model,name:admin_light_user.model_res_groups
 msgid "Access Groups"
+msgstr ""
+
+#. module: admin_light_user
+#: model_terms:ir.ui.view,arch_db:admin_light_user.user_groups_view_without_admin_applications
+msgid "Accounting"
 msgstr ""
 
 #. module: admin_light_user
@@ -28,14 +31,43 @@ msgid "Contact"
 msgstr ""
 
 #. module: admin_light_user
+#: model:ir.model.fields,field_description:admin_light_user.field_ir_ui_view__display_name
+#: model:ir.model.fields,field_description:admin_light_user.field_res_groups__display_name
+#: model:ir.model.fields,field_description:admin_light_user.field_res_partner__display_name
+#: model:ir.model.fields,field_description:admin_light_user.field_res_users__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: admin_light_user
 #: model:ir.ui.menu,name:admin_light_user.menu_groups
 msgid "Groups"
-msgstr "Groupes"
+msgstr ""
+
+#. module: admin_light_user
+#: model:ir.model.fields,field_description:admin_light_user.field_ir_ui_view__id
+#: model:ir.model.fields,field_description:admin_light_user.field_res_groups__id
+#: model:ir.model.fields,field_description:admin_light_user.field_res_partner__id
+#: model:ir.model.fields,field_description:admin_light_user.field_res_users__id
+msgid "ID"
+msgstr ""
+
+#. module: admin_light_user
+#: model:ir.model.fields,field_description:admin_light_user.field_ir_ui_view____last_update
+#: model:ir.model.fields,field_description:admin_light_user.field_res_groups____last_update
+#: model:ir.model.fields,field_description:admin_light_user.field_res_partner____last_update
+#: model:ir.model.fields,field_description:admin_light_user.field_res_users____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: admin_light_user
 #: model_terms:ir.ui.view,arch_db:admin_light_user.user_groups_view_without_admin_applications
 msgid "Other"
-msgstr "Autres"
+msgstr "Autre"
+
+#. module: admin_light_user
+#: model_terms:ir.ui.view,arch_db:admin_light_user.user_groups_view_without_admin_applications
+msgid "Sales"
+msgstr "Ventes"
 
 #. module: admin_light_user
 #: model:ir.model.fields,field_description:admin_light_user.field_res_partner__signup_expiration
@@ -58,7 +90,7 @@ msgstr ""
 #. module: admin_light_user
 #: model_terms:ir.ui.view,arch_db:admin_light_user.user_groups_view_without_admin_applications
 msgid "User Type"
-msgstr ""
+msgstr "Type d'utilisateur"
 
 #. module: admin_light_user
 #: model:ir.model,name:admin_light_user.model_res_users
@@ -69,7 +101,12 @@ msgid "Users"
 msgstr "Utilisateurs"
 
 #. module: admin_light_user
-#: code:addons/admin_light_user/prevent_grand_admin_access.py:57
+#: model:ir.model,name:admin_light_user.model_ir_ui_view
+msgid "View"
+msgstr ""
+
+#. module: admin_light_user
+#: code:addons/admin_light_user/models/res_users.py:0
 #, python-format
 msgid ""
 "You are not authorized to archive or unarchive a user with super admin "
@@ -79,17 +116,10 @@ msgstr ""
 "droits super administrateur. Seulement le super administrateur peut."
 
 #. module: admin_light_user
-#: code:addons/admin_light_user/prevent_grand_admin_access.py:44
-#: code:addons/admin_light_user/prevent_grand_admin_access.py:46
+#: code:addons/admin_light_user/models/res_users.py:0
 #, python-format
 msgid ""
 "You are not authorized to grant admin priviledges. Only the super admin can."
 msgstr ""
 "Vous n'êtes pas autorisé à accorder des privilèges administrateurs. "
 "Seulement le super administrateur peut."
-
-#~ msgid "Application Accesses"
-#~ msgstr "Accès à l'application"
-
-#~ msgid "Other Extra Rights"
-#~ msgstr "Droits supplémentaires"
