@@ -18,11 +18,9 @@ class TestPreventGrandAdminAccess(common.SavepointCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.admin = cls.env.ref('base.user_demo')
-        cls.admin.groups_id = (
-            cls.env.ref('admin_light_user.group_user_management') |
-            cls.env.ref('base.group_user')
-        )
-
+        cls.admin.groups_id = cls.env.ref(
+            "admin_light_user.group_user_management"
+        ) | cls.env.ref("base.group_user")
         cls.user = cls.env['res.users'].create({
             'name': 'Basic User',
             'login': 'basic_user',
