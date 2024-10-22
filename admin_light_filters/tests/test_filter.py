@@ -17,9 +17,9 @@ class TestPermission(common.SavepointCase):
         cls.user_2 = cls._create_user("user_2", [cls.group_user])
 
     @classmethod
-    def _create_user(self, login, groups):
+    def _create_user(cls, login, groups):
         group_ids = [group.id for group in groups]
-        user = self.env["res.users"].create({
+        user = cls.env["res.users"].create({
             "name": "Test User",
             "login": login,
             "password": "Demo_12345",

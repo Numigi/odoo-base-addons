@@ -16,10 +16,10 @@
         'stock_account_visibility',
         'stock_move_origin_link',
         'stock_picking_show_address',
-        'stock_quant_by_category', # TA#58430
+        'stock_quant_by_category',  # TA#58430
 
         # oca/stock-logistics-workflow
-        'stock_valuation_layer_by_category', # TA#58430
+        'stock_valuation_layer_by_category',  # TA#58430
     ],
     'data': [
         'data/auditlog_rule.xml',

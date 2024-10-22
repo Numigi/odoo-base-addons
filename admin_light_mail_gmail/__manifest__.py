@@ -10,7 +10,7 @@
     "license": "AGPL-3",
     'category': 'Other',
     "depends": ["admin_light_mail", "fetchmail_gmail"],
-    "summary": """Extends Administration Light/Mail Servers rights to handle 
+    "summary": """Extends Administration Light/Mail Servers rights to handle
     fetchmail_gmail functionalities.""",
     "data": [],
     "installable": True,
