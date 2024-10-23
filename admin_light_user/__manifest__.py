@@ -3,7 +3,7 @@
 
 {
     'name': 'Admin Light User',
-    'version': '14.0.1.0.4',
+    'version': '14.0.1.0.5',
     'author': 'Numigi',
     'maintainer': 'Numigi',
     'license': 'LGPL-3',
@@ -21,11 +21,11 @@
         'base_extended_security',
     ],
     'data': [
-        'data.xml',
-        'mask_admin_groups.xml',
+        'data/data.xml',
         'security/ir.model.access.csv',
         'security/extended_security_rule.xml',
         'security/ir_rule.xml',
+        'views/res_users_views.xml'
     ],
     'installable': True,
 }
