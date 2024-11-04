@@ -20,6 +20,7 @@
         "admin_light_mail",
         "admin_light_mail_gmail",
         "admin_light_mail_outlook",
+        "admin_light_user",
         "admin_light_web",
         "admin_light_filters",
         "attachment_minio",
