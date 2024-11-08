@@ -1,6 +1,7 @@
 # Copyright 2024-today Numigi and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
+from odoo import http
 from odoo.addons.web.controllers.dataset import DataSet
 from odoo.http import request
 from odoo.osv.expression import AND
@@ -38,6 +39,7 @@ DOMAIN_ARGUMENT_INDEXES = {
 class DataSetWithExtendedSearchSecurity(DataSet):
     """Add extra security domains to search operations."""
 
+    @http.route('/web/dataset/search_read', type='json', auth="user")
     def search_read(
         self, model, fields=False, offset=0, limit=False, domain=None, sort=None
     ):
