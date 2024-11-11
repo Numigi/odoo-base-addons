@@ -18,9 +18,9 @@
         "views/mail_mail.xml",
         "views/mail_message_subtype.xml",
         "views/mail_server.xml",
-        "views/mail_template.xml",
         "security/ir.model.access.csv",
         "security/security.xml",
+        "views/mail_template.xml",
     ],
     "installable": True,
 }

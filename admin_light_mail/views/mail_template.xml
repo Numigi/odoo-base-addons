@@ -8,6 +8,6 @@
         groups="group_email_template"
         action="mail.action_email_template_tree_all"
         sequence="10"
-        />
+    />
 
 </odoo>
