@@ -8,7 +8,6 @@ from odoo.osv.expression import AND
 
 
 class ExportFormatWithSecurityDomain(ExportFormat):
-
     def base(self, data):
         params = json.loads(data)
         record_ids = params.get("ids")

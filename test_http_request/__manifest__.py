@@ -2,15 +2,15 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Test HTTP Request',
-    'version': '16.0.1.0.0',
-    'author': 'Numigi',
-    'maintainer': 'Numigi',
-    'license': 'LGPL-3',
-    'category': 'Other',
-    'summary': 'Technical module for testing http requests.',
-    'depends': [
-        'base',
+    "name": "Test HTTP Request",
+    "version": "16.0.1.0.0",
+    "author": "Numigi",
+    "maintainer": "Numigi",
+    "license": "LGPL-3",
+    "category": "Other",
+    "summary": "Technical module for testing http requests.",
+    "depends": [
+        "base",
     ],
-    'installable': True,
+    "installable": True,
 }

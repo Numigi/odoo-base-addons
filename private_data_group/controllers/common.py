@@ -10,20 +10,22 @@ def _get_related_model(model, relation):
     model_cls = request.env[model]
 
     if relation not in model_cls._fields:
-        raise ValidationError('Model {} has no field {}.'.format(model, relation))
+        raise ValidationError("Model {} has no field {}.".format(model, relation))
 
     comodel_name = model_cls._fields[relation].comodel_name
     if not comodel_name:
         raise ValidationError(
-            'Field {} of model {} is not a relational field.'.format(relation, model))
+            "Field {} of model {} is not a relational field.".format(relation, model)
+        )
 
     return comodel_name
 
 
 def _raise_private_field_access_error(model, field):
     raise AccessError(
-        _('You do not have access to the field {field} of model {model}')
-        .format(field=field, model=model)
+        _("You do not have access to the field {field} of model {model}").format(
+            field=field, model=model
+        )
     )
 
 
@@ -34,15 +36,15 @@ def check_model_fields_access(model, fields):
 
     fields = [f for f in fields if isinstance(f, str)]
 
-    related_model_fields = (f for f in fields if '.' in f)
+    related_model_fields = (f for f in fields if "." in f)
     for field in related_model_fields:
-        relation, dummy, remaining_field_parts = field.partition('.')
+        relation, dummy, remaining_field_parts = field.partition(".")
         related_model = _get_related_model(model, relation)
         check_model_fields_access(related_model, [remaining_field_parts])
 
-    private_fields = env['ir.private.field'].get_model_private_fields(model)
+    private_fields = env["ir.private.field"].get_model_private_fields(model)
     for field in fields:
-        column_name = field.split('.')[0].split(':')[0]
+        column_name = field.split(".")[0].split(":")[0]
         if column_name in private_fields:
             _raise_private_field_access_error(model, field)
 

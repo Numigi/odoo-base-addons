@@ -13,7 +13,7 @@
     "data": [
         "security/res_groups.xml",
         "security/ir.model.access.csv",
-        "views/menus.xml"
+        "views/menus.xml",
     ],
     "installable": True,
     "application": True,

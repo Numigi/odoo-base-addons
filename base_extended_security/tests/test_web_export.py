@@ -10,7 +10,6 @@ from ..controllers.web_export import CSVControllerWithSecurity
 
 
 class TestWebExport(ControllerCase):
-
     def setUp(self):
         super().setUp()
         self.controller = CSVControllerWithSecurity()

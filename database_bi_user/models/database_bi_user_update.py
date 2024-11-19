@@ -16,13 +16,13 @@ def _logged_query(cr, query, args=()):
 
 class DatabaseBIUserUpdate(models.TransientModel):
 
-    _name = 'database.bi.user.update'
-    _description = 'Update the BI Database User'
+    _name = "database.bi.user.update"
+    _description = "Update the BI Database User"
 
     @api.model
     def setup_role(self):
         if not self.env.user._is_admin():
-            raise AccessError('You are not allowed to update the BI user.')
+            raise AccessError("You are not allowed to update the BI user.")
 
         self._create_role_if_not_exists()
         self._allow_login()
@@ -33,9 +33,9 @@ class DatabaseBIUserUpdate(models.TransientModel):
         role_exists = bool(self._cr.fetchone())
 
         if role_exists:
-            _logger.info('The bi database role already exists')
+            _logger.info("The bi database role already exists")
         else:
-            _logger.info('Creating the bi database role')
+            _logger.info("Creating the bi database role")
             _logged_query(self._cr, "CREATE ROLE bi")
 
     def _allow_login(self):
@@ -47,10 +47,10 @@ class DatabaseBIUserUpdate(models.TransientModel):
     @api.model
     def set_password(self, password):
         if not self.env.user._is_admin():
-            raise AccessError('You are not allowed to change the BI user password.')
+            raise AccessError("You are not allowed to change the BI user password.")
 
-        _logger.info('Updating database bi user password')
-        _logged_query(self._cr, 'ALTER ROLE bi WITH ENCRYPTED PASSWORD %s', (password, ))
+        _logger.info("Updating database bi user password")
+        _logged_query(self._cr, "ALTER ROLE bi WITH ENCRYPTED PASSWORD %s", (password,))
 
 
 class DatabaseBIUserUpdateWithPrivateColumns(models.TransientModel):
@@ -69,7 +69,7 @@ class DatabaseBIUserUpdateWithPrivateColumns(models.TransientModel):
     https://www.postgresql.org/message-id/20060130044430.GA42463@rufus.net
     """
 
-    _inherit = 'database.bi.user.update'
+    _inherit = "database.bi.user.update"
 
     def disable_column_protection(self):
         self._set_disable_column_protection_param(True)
@@ -81,11 +81,13 @@ class DatabaseBIUserUpdateWithPrivateColumns(models.TransientModel):
 
     def _set_disable_column_protection_param(self, value):
         self.env["ir.config_parameter"].set_param(
-            "database_bi_user.disable_column_protection", value)
+            "database_bi_user.disable_column_protection", value
+        )
 
     def is_column_protection_disabled(self):
         value = self.env["ir.config_parameter"].get_param(
-            "database_bi_user.disable_column_protection", False)
+            "database_bi_user.disable_column_protection", False
+        )
         return value == "True"
 
     @api.model
@@ -97,9 +99,11 @@ class DatabaseBIUserUpdateWithPrivateColumns(models.TransientModel):
             self._revoke_select_on_private_columns()
 
     def _revoke_select_on_private_columns(self):
-        private_fields = self.env['ir.private.field'].search([])
+        private_fields = self.env["ir.private.field"].search([])
         private_columns = (
-            f.field_id for f in private_fields if _is_stored_column_field(self.env, f.field_id)
+            f.field_id
+            for f in private_fields
+            if _is_stored_column_field(self.env, f.field_id)
         )
         grouped_private_columns = groupby(
             private_columns, lambda c: _get_field_table_name(self.env, c)
@@ -117,8 +121,7 @@ class DatabaseBIUserUpdateWithPrivateColumns(models.TransientModel):
 
     def _revoke_select_on_table(self, table_name):
         _logged_query(
-            self._cr,
-            "REVOKE SELECT ON TABLE {table} FROM bi".format(table=table_name)
+            self._cr, "REVOKE SELECT ON TABLE {table} FROM bi".format(table=table_name)
         )
 
     def _grant_select_on_columns(self, table_name, columns):
@@ -126,16 +129,16 @@ class DatabaseBIUserUpdateWithPrivateColumns(models.TransientModel):
             self._cr,
             "GRANT SELECT ({columns}) ON TABLE {table} TO bi".format(
                 table=table_name,
-                columns=','.join(columns),
-            )
+                columns=",".join(columns),
+            ),
         )
 
 
-def _is_stored_column_field(env: api.Environment, field: 'ir.model.fields'):
+def _is_stored_column_field(env: api.Environment, field: "ir.model.fields"):
     model = env.get(field.model)
     return model is not None and tools.column_exists(env.cr, model._table, field.name)
 
 
-def _get_field_table_name(env: api.Environment, field: 'ir.model.fields'):
+def _get_field_table_name(env: api.Environment, field: "ir.model.fields"):
     model = env.get(field.model)
     return model._table

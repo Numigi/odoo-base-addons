@@ -6,14 +6,16 @@ from odoo import api, models
 
 
 def _get_arch_without_private_fields(env: api.Environment, model: str, arch: str):
-    private_fields = env['ir.private.field'].get_model_private_fields(model)
+    private_fields = env["ir.private.field"].get_model_private_fields(model)
     if not private_fields:
         return arch
 
     tree = etree.fromstring(arch)
 
     all_field_nodes = tree.xpath("//field")
-    private_field_nodes = (n for n in all_field_nodes if n.attrib.get('name') in private_fields)
+    private_field_nodes = (
+        n for n in all_field_nodes if n.attrib.get("name") in private_fields
+    )
 
     for node in private_field_nodes:
         parent_node = node.getparent()
@@ -25,7 +27,7 @@ def _get_arch_without_private_fields(env: api.Environment, model: str, arch: str
 class ViewWithPrivateFieldsRemoved(models.Model):
     """Remove private fields from views if user is unauthorized."""
 
-    _inherit = 'ir.ui.view'
+    _inherit = "ir.ui.view"
 
     @api.model
     def postprocess_and_fields(self, node, model=None, **options):

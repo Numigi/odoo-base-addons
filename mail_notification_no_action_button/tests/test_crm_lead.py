@@ -28,7 +28,7 @@ class TestCRMLead(SavepointCase):
             mail_auto_delete=False,
             send_after_commit=False,
             force_send=True,
-            subtype_id=self.subtype.id
+            subtype_id=self.subtype.id,
         )
         return self.env["mail.mail"].search(
             [("mail_message_id", "=", message.id)], limit=1

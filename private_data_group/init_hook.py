@@ -15,22 +15,25 @@ def _set_default_group_members(env):
 
     However, there is no requirement that HR / Manager have access to private data.
     """
-    manager_group_members = env.ref('hr.group_hr_manager').users
-    private_information_group = env.ref('private_data_group.group_private_data')
+    manager_group_members = env.ref("hr.group_hr_manager").users
+    private_information_group = env.ref("private_data_group.group_private_data")
 
     _logger.info(
-        'Setting users {} as members of the group Manage Private Information.'
-        .format(manager_group_members.mapped('login'))
+        "Setting users {} as members of the group Manage Private Information.".format(
+            manager_group_members.mapped("login")
+        )
     )
-    manager_group_members.write({
-        'groups_id': [(4, private_information_group.id)],
-    })
+    manager_group_members.write(
+        {
+            "groups_id": [(4, private_information_group.id)],
+        }
+    )
 
 
 def _deactivate_private_address_ir_rule(env):
-    _logger.info('Deactivating legacy access rules related to private addresses.')
-    env.ref('base.res_partner_rule_private_employee').active = False
-    env.ref('base.res_partner_rule_private_group').active = False
+    _logger.info("Deactivating legacy access rules related to private addresses.")
+    env.ref("base.res_partner_rule_private_employee").active = False
+    env.ref("base.res_partner_rule_private_group").active = False
 
 
 def post_init(cr, registry):

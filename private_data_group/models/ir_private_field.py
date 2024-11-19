@@ -8,18 +8,21 @@ from odoo.tools import ormcache
 
 class PrivateField(models.Model):
 
-    _name = 'ir.private.field'
-    _description = 'Private Field'
+    _name = "ir.private.field"
+    _description = "Private Field"
 
     model_id = fields.Many2one(
-        'ir.model', 'Model', related='field_id.model_id', store=True,
+        "ir.model",
+        "Model",
+        related="field_id.model_id",
+        store=True,
     )
     model_select_id = fields.Many2one(
-        'ir.model',
-        compute='_compute_model_select_id',
+        "ir.model",
+        compute="_compute_model_select_id",
         inverse=lambda self: None,
     )
-    field_id = fields.Many2one('ir.model.fields', required=True, ondelete='cascade')
+    field_id = fields.Many2one("ir.model.fields", required=True, ondelete="cascade")
     active = fields.Boolean(default=True)
 
     def _compute_model_select_id(self):
@@ -54,7 +57,7 @@ class PrivateField(models.Model):
     def get_model_private_fields(self, model):
         return set(self._get_all_items()[model])
 
-    @api.onchange('model_select_id')
+    @api.onchange("model_select_id")
     def _onchange_model_empty_field(self):
         if self.model_select_id != self.field_id.model_id:
             self.field_id = False

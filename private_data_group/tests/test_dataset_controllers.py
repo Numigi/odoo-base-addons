@@ -69,8 +69,10 @@ class TestControllers(TransactionCase):
                 )
             else:
                 return self.controller.call_kw(
-                    "hr.employee", "search_read",
-                    [domain, fields, offset, limit, order], {}
+                    "hr.employee",
+                    "search_read",
+                    [domain, fields, offset, limit, order],
+                    {},
                 )
 
     @data(True, False)
@@ -82,10 +84,12 @@ class TestControllers(TransactionCase):
 
     def test_domain_with_non_string_field(self):
         with mock_odoo_request(self.env):
-            assert self.controller.search_read("hr.employee", domain=[(1, '=', 1)])
+            assert self.controller.search_read("hr.employee", domain=[(1, "=", 1)])
 
     @data(
-        (True, False), (False, True), (False, False),
+        (True, False),
+        (False, True),
+        (False, False),
     )
     @unpack
     def test_if_private_field_used_to_order_search_read__raise_error(
@@ -108,8 +112,7 @@ class TestControllers(TransactionCase):
         with mock_odoo_request(self.env):
             with pytest.raises(AccessError):
                 self._search_read(
-                    [("sinid", "!=", False)],
-                    self.fields, use_search_read_route
+                    [("sinid", "!=", False)], self.fields, use_search_read_route
                 )
 
     def _read_group(self, domain, fields, groupby, order=None, use_kwargs=False):

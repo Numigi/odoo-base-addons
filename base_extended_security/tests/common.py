@@ -1,24 +1,23 @@
-
 from odoo import models, api
 from odoo.exceptions import AccessError
 from odoo.osv.expression import AND
 from odoo.tests.common import TransactionCase
 
 
-EMPLOYEE_ACCESS_MESSAGE = 'You are not authorized to access employees.'
-NON_CUSTOMER_READ_MESSAGE = 'You are not authorized to read non-customers.'
-NON_CUSTOMER_WRITE_MESSAGE = 'You are not authorized to edit non-customers.'
-NON_CUSTOMER_CREATE_MESSAGE = 'You are not authorized to create non-customers.'
-NON_CUSTOMER_UNLINK_MESSAGE = 'You are not authorized to delete non-customers.'
+EMPLOYEE_ACCESS_MESSAGE = "You are not authorized to access employees."
+NON_CUSTOMER_READ_MESSAGE = "You are not authorized to read non-customers."
+NON_CUSTOMER_WRITE_MESSAGE = "You are not authorized to edit non-customers."
+NON_CUSTOMER_CREATE_MESSAGE = "You are not authorized to create non-customers."
+NON_CUSTOMER_UNLINK_MESSAGE = "You are not authorized to delete non-customers."
 
 
 class ResPartner(models.Model):
 
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
     def get_extended_security_domain(self):
         domain = super().get_extended_security_domain()
-        return AND((domain, [('customer_rank', '>', 0)]))
+        return AND((domain, [("customer_rank", ">", 0)]))
 
     def check_extended_security_all(self):
         super().check_extended_security_all()
@@ -58,33 +57,46 @@ class ResPartner(models.Model):
 
 
 class ControllerCase(TransactionCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.customer = cls.env['res.partner'].create({
-            'name': 'My Partner Customer',
-            'supplier_rank': 0,
-            'customer_rank': 1,
-        })
-        cls.supplier = cls.env['res.partner'].create({
-            'name': 'My Partner Supplier',
-            'supplier_rank': 1,
-            'customer_rank': 0,
-        })
-        cls.supplier_customer = cls.env['res.partner'].create({
-            'name': 'My Partner Customer Supplier',
-            'supplier_rank': 1,
-            'customer_rank': 1,
-        })
-        cls.employee = cls.env['res.partner'].create({
-            'name': 'My Partner Customer Supplier',
-            'supplier_rank': 1,
-            'customer_rank': 1,
-            'employee': True,
-        })
+        cls.customer = cls.env["res.partner"].create(
+            {
+                "name": "My Partner Customer",
+                "supplier_rank": 0,
+                "customer_rank": 1,
+            }
+        )
+        cls.supplier = cls.env["res.partner"].create(
+            {
+                "name": "My Partner Supplier",
+                "supplier_rank": 1,
+                "customer_rank": 0,
+            }
+        )
+        cls.supplier_customer = cls.env["res.partner"].create(
+            {
+                "name": "My Partner Customer Supplier",
+                "supplier_rank": 1,
+                "customer_rank": 1,
+            }
+        )
+        cls.employee = cls.env["res.partner"].create(
+            {
+                "name": "My Partner Customer Supplier",
+                "supplier_rank": 1,
+                "customer_rank": 1,
+                "employee": True,
+            }
+        )
 
-        cls.customer_count = cls.env['res.partner'].search_count([('customer_rank', '>', 0)])
-        cls.supplier_customer_count = cls.env['res.partner'].search_count([
-            '&', ('customer_rank', '>', 0), ('supplier_rank', '>', 0),
-        ])
+        cls.customer_count = cls.env["res.partner"].search_count(
+            [("customer_rank", ">", 0)]
+        )
+        cls.supplier_customer_count = cls.env["res.partner"].search_count(
+            [
+                "&",
+                ("customer_rank", ">", 0),
+                ("supplier_rank", ">", 0),
+            ]
+        )

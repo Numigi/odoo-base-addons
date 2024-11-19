@@ -7,29 +7,32 @@ from odoo.exceptions import AccessError
 
 
 class TestResPartner(TransactionCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.private_address = cls.env['res.partner'].create({
-            'name': 'Private Address',
-            'type': 'private',
-            'supplier_rank': 1,
-            'customer_rank': 1,
-        })
+        cls.private_address = cls.env["res.partner"].create(
+            {
+                "name": "Private Address",
+                "type": "private",
+                "supplier_rank": 1,
+                "customer_rank": 1,
+            }
+        )
 
-        cls.contact = cls.env['res.partner'].create({
-            'name': 'Contact',
-            'type': 'contact',
-            'supplier_rank': 1,
-            'customer_rank': 1,
-        })
+        cls.contact = cls.env["res.partner"].create(
+            {
+                "name": "Contact",
+                "type": "contact",
+                "supplier_rank": 1,
+                "customer_rank": 1,
+            }
+        )
 
-        cls.user = cls.env.ref('base.user_demo')
-        cls.user.groups_id |= cls.env.ref('hr.group_hr_user')
+        cls.user = cls.env.ref("base.user_demo")
+        cls.user.groups_id |= cls.env.ref("hr.group_hr_user")
 
-        cls.group = cls.env.ref('private_data_group.group_private_data')
-        cls.group.sudo().write({'users': [(3, cls.user.id)]})
+        cls.group = cls.env.ref("private_data_group.group_private_data")
+        cls.group.sudo().write({"users": [(3, cls.user.id)]})
 
     def test_if_is_authorized__access_error_not_raised(self):
         self.user.groups_id |= self.group
@@ -37,17 +40,16 @@ class TestResPartner(TransactionCase):
 
     def test_if_not_authorized__access_error_raised(self):
         with pytest.raises(AccessError):
-            self.private_address.with_user(
-                self.user).check_extended_security_all()
+            self.private_address.with_user(self.user).check_extended_security_all()
 
     def _search_partners(self):
-        partner_pool = self.env['res.partner'].with_user(self.user)
+        partner_pool = self.env["res.partner"].with_user(self.user)
         domain = partner_pool.get_extended_security_domain()
         return partner_pool.search(domain)
 
     def test_if_is_authorized__private_address_searchable(self):
         self.user.groups_id |= self.group
-        partner_pool = self.env['res.partner'].with_user(self.user)
+        partner_pool = self.env["res.partner"].with_user(self.user)
         domain = partner_pool.get_extended_security_domain()
         assert self.private_address in partner_pool.search(domain)
 

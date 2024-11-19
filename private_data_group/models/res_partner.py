@@ -13,7 +13,7 @@ PARTNER_ERROR_MESSAGE = _(
 
 class Partner(models.Model):
 
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
     def check_extended_security_all(self):
         super().check_extended_security_all()
@@ -29,9 +29,9 @@ class Partner(models.Model):
         if self.env.user.has_private_data_access():
             return []
         else:
-            return [('type', '!=', 'private')]
+            return [("type", "!=", "private")]
 
     def check_private_address_access(self):
-        is_private_address = self.type == 'private'
+        is_private_address = self.type == "private"
         if is_private_address and not self.env.user.has_private_data_access():
             raise AccessError(_(PARTNER_ERROR_MESSAGE).format(self.id))
