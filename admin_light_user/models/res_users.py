@@ -132,14 +132,18 @@ class ResUsers(models.Model):
 
         if view_type == "form" and view_id == view_user_form_id:
             user = self.env.user
-            if user.has_group("base.group_erp_manager") :
+            if user.has_group("base.group_erp_manager"):
                 return res
-            elif user.has_group("admin_light_user.group_user_management") :
+            elif user.has_group("admin_light_user.group_user_management"):
                 arch = etree.XML(res["arch"])
                 _remove_admin_application_selection_fields(arch, self.env)
                 _remove_admin_application_checkbox_fields(arch, self.env)
                 _remove_separators_with_no_fields_below(arch)
-                res.update({
-                    "arch" : etree.tostring(arch, pretty_print=True, encoding="unicode")
-                })
+                res.update(
+                    {
+                        "arch": etree.tostring(
+                            arch, pretty_print=True, encoding="unicode"
+                        )
+                    }
+                )
         return res

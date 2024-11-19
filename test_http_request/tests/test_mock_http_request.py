@@ -13,26 +13,27 @@ from ..common import mock_odoo_request
 
 @ddt
 class TestMockHttpRequest(common.TransactionCase):
-
     def setUp(self):
         super().setUp()
-        self.data = OrderedDict([
-            ('firstname', 'John'),
-            ('lastname', 'Doe'),
-        ])
+        self.data = OrderedDict(
+            [
+                ("firstname", "John"),
+                ("lastname", "Doe"),
+            ]
+        )
 
     def test_env_propagated_to_request(self):
         with mock_odoo_request(self.env, data=self.data):
             assert request.env == self.env
 
     def test_method_propagated_to_request(self):
-        method = 'PATCH'
+        method = "PATCH"
         with mock_odoo_request(self.env, data=self.data, method=method):
             assert request.request.method == method
 
     def test_headers_propagated_to_request(self):
-        header_key = 'Some-Header'
-        header_value = 'some value'
+        header_key = "Some-Header"
+        header_value = "some value"
         headers = {
             header_key: header_value,
         }
@@ -40,8 +41,8 @@ class TestMockHttpRequest(common.TransactionCase):
             assert request.request.headers[header_key] == header_value
 
     @data(
-        ('http', 'application/x-www-form-urlencoded'),
-        ('json', 'application/json'),
+        ("http", "application/x-www-form-urlencoded"),
+        ("json", "application/json"),
     )
     @unpack
     def test_content_type(self, routing_type, content_type):
@@ -55,7 +56,7 @@ class TestMockHttpRequest(common.TransactionCase):
 
     def test_if_json_routing__data_contained_in_request_data(self):
         json_data = json.dumps(self.data).encode()
-        with mock_odoo_request(self.env, data=self.data, routing_type='json'):
+        with mock_odoo_request(self.env, data=self.data, routing_type="json"):
             assert not request.request.form
             assert request.request.data == json_data
 

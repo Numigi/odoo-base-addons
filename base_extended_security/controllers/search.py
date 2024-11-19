@@ -39,7 +39,7 @@ DOMAIN_ARGUMENT_INDEXES = {
 class DataSetWithExtendedSearchSecurity(DataSet):
     """Add extra security domains to search operations."""
 
-    @http.route('/web/dataset/search_read', type='json', auth="user")
+    @http.route("/web/dataset/search_read", type="json", auth="user")
     def search_read(
         self, model, fields=False, offset=0, limit=False, domain=None, sort=None
     ):

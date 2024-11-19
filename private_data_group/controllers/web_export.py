@@ -7,16 +7,15 @@ from .common import check_model_fields_access, extract_fields_from_domain
 
 
 class ExportFormatWithPrivateFields(ExportFormat):
-
     def base(self, data, token):
         params = json.loads(data)
-        fields_to_check = {f['name'].replace('/', '.') for f in params['fields']}
+        fields_to_check = {f["name"].replace("/", ".") for f in params["fields"]}
 
-        domain = params.get('domain')
+        domain = params.get("domain")
         if domain:
             fields_to_check.update(extract_fields_from_domain(domain))
 
-        model = params['model']
+        model = params["model"]
         check_model_fields_access(model, fields_to_check)
         return super().base(data, token)
 

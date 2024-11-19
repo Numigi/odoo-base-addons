@@ -7,7 +7,6 @@ from odoo.tests import common
 
 
 class TestAdminLightAccess(common.SavepointCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

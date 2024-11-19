@@ -6,7 +6,6 @@ from odoo.exceptions import AccessError
 
 
 class TestMailTemplateAccess(TransactionCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

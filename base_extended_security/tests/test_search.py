@@ -9,7 +9,6 @@ from ..controllers.search import DataSetWithExtendedSearchSecurity
 
 @ddt
 class TestControllers(ControllerCase):
-
     def setUp(self):
         super().setUp()
         self.controller = DataSetWithExtendedSearchSecurity()

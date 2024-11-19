@@ -5,13 +5,13 @@ from odoo import api, models
 
 
 def _update_bi_user(env):
-    env['database.bi.user.update'].setup_role()
+    env["database.bi.user.update"].setup_role()
 
 
 class PrivateField(models.Model):
     """Update the BI user when a change is made to private fields."""
 
-    _inherit = 'ir.private.field'
+    _inherit = "ir.private.field"
 
     @api.model_create_multi
     def create(self, vals_list):

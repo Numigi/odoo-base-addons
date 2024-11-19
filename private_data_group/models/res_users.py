@@ -6,7 +6,7 @@ from odoo import models
 
 class User(models.Model):
 
-    _inherit = 'res.users'
+    _inherit = "res.users"
 
     def has_private_data_access(self):
-        return self.has_group('private_data_group.group_private_data')
+        return self.has_group("private_data_group.group_private_data")

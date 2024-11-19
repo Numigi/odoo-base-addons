@@ -6,7 +6,7 @@ from odoo import models
 
 class MailThread(models.AbstractModel):
 
-    _inherit = 'mail.thread'
+    _inherit = "mail.thread"
 
     def _notify_get_recipients_classify(
         self, recipient_data, model_name, msg_vals=None

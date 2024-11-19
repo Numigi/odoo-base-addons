@@ -8,7 +8,7 @@
     "maintainer": "Numigi",
     "website": "https://bit.ly/numigi-com",
     "license": "AGPL-3",
-    'category': 'Other',
+    "category": "Other",
     "depends": ["admin_light_mail", "google_gmail"],
     "summary": """Extends Administration Light/Mail Servers rights to handle
     `Google Gmail` configuration.""",
