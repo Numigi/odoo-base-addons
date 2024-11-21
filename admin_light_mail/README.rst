@@ -2,6 +2,10 @@ Admin Light Mail
 ================
 This module adds email management to the Admin Light application.
 
+Mail Activity Type 
+------------------
+* View and edit the list of all activity type
+
 Emails & Messages
 -----------------
 A new group `Safe Administration / Messages` is added.
