@@ -11,7 +11,6 @@
     "summary": "Securize access to records",
     "depends": [
         "web",
-        "account",
     ],
     "data": [
         "security/ir.model.access.csv",
