@@ -9,10 +9,7 @@
     "license": "LGPL-3",
     "category": "Other",
     "summary": "Securize access to records",
-    "depends": [
-        "web",
-        "account",
-    ],
+    "depends": ["web"],
     "data": [
         "security/ir.model.access.csv",
         "views/extended_security_rule.xml",
