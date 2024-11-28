@@ -4,18 +4,21 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0+e\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-12 17:50+0000\n"
-"PO-Revision-Date: 2019-08-12 13:51-0400\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2024-11-21 12:52+0000\n"
+"PO-Revision-Date: 2024-11-21 12:52+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.0.6\n"
+
+#. module: admin_light_mail
+#: model:ir.model.fields,field_description:admin_light_mail.field_ir_mail_server__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
 
 #. module: admin_light_mail
 #: model:ir.ui.menu,name:admin_light_mail.menu_email
@@ -44,9 +47,29 @@ msgid "Emails and Messages"
 msgstr "Courriels et messages"
 
 #. module: admin_light_mail
+#: model:ir.model.fields,field_description:admin_light_mail.field_ir_mail_server__id
+msgid "ID"
+msgstr ""
+
+#. module: admin_light_mail
 #: model:ir.ui.menu,name:admin_light_mail.menu_incoming_mail_server
 msgid "Incoming Mail Servers"
 msgstr "Serveurs entrants"
+
+#. module: admin_light_mail
+#: model:ir.model.fields,field_description:admin_light_mail.field_ir_mail_server____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: admin_light_mail
+#: model:ir.ui.menu,name:admin_light_mail.menu_mail_activity_type
+msgid "Mail Activity Types"
+msgstr "Types d'activités"
+
+#. module: admin_light_mail
+#: model:ir.model,name:admin_light_mail.model_ir_mail_server
+msgid "Mail Server"
+msgstr "Serveur d'email"
 
 #. module: admin_light_mail
 #: model:res.groups,name:admin_light_mail.group_mail_subtype
@@ -56,7 +79,17 @@ msgstr "Sous-types de messages"
 #. module: admin_light_mail
 #: model:ir.ui.menu,name:admin_light_mail.menu_messages
 msgid "Messages"
-msgstr "Messages"
+msgstr ""
+
+#. module: admin_light_mail
+#: model:ir.model.fields,help:admin_light_mail.field_ir_mail_server__smtp_pass
+msgid "Optional password for SMTP authentication"
+msgstr "Mot de passe d'authentification SMTP (facultatif)"
+
+#. module: admin_light_mail
+#: model:ir.model.fields,help:admin_light_mail.field_ir_mail_server__smtp_user
+msgid "Optional username for SMTP authentication"
+msgstr "Nom d'utilisateur pour l'authentification SMTP (facultatif)"
 
 #. module: admin_light_mail
 #: model:ir.ui.menu,name:admin_light_mail.menu_outgoing_mail_server
@@ -64,6 +97,16 @@ msgid "Outgoing Mail Servers"
 msgstr "Serveurs sortants"
 
 #. module: admin_light_mail
+#: model:ir.model.fields,field_description:admin_light_mail.field_ir_mail_server__smtp_pass
+msgid "Password"
+msgstr "Mot de passe"
+
+#. module: admin_light_mail
 #: model:ir.ui.menu,name:admin_light_mail.menu_mail_subtype
 msgid "Subtypes"
 msgstr "Sous-types"
+
+#. module: admin_light_mail
+#: model:ir.model.fields,field_description:admin_light_mail.field_ir_mail_server__smtp_user
+msgid "Username"
+msgstr "Nom d'utilisateur"
