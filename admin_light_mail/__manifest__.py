@@ -3,7 +3,7 @@
 
 {
     "name": "Admin Light Email",
-    "version": "16.0.1.0.1",
+    "version": "16.0.1.1.0",
     "author": "Numigi",
     "maintainer": "Numigi",
     "license": "LGPL-3",
@@ -14,13 +14,14 @@
         "mail",
     ],
     "data": [
-        "views/common.xml",
-        "views/mail_mail.xml",
-        "views/mail_message_subtype.xml",
-        "views/mail_server.xml",
         "security/security.xml",
         "security/ir.model.access.csv",
-        "views/mail_template.xml",
+        "views/menu_item.xml",
+        "views/mail_message_views.xml",
+        "views/mail_message_subtype_views.xml",
+        "views/mail_server_views.xml",
+        "views/mail_template_views.xml",
+        "views/mail_activity_type_views.xml",
     ],
     "installable": True,
 }
