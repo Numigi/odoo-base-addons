@@ -156,6 +156,7 @@ def _make_odoo_request(
     odoo_request._cr = env.cr
     odoo_request._uid = env.uid
     odoo_request._context = env.context
+    odoo_request.httprequest = werkzeug_request
     return odoo_request
 
 
