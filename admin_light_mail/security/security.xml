@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <record id="mail.access_mail_template_editor" model="ir.model.access">
-        <field name="active" eval="False"/>
+    <record id="group_email_server" model="res.groups">
+        <field name="name">Email Servers</field>
+        <field name="category_id" ref="admin_light_base.module_category_admin" />
+        <field name="implied_ids" eval="[(4, ref('admin_light_base.group_admin'))]" />
+    </record>
+
+    <record id="group_email_messages" model="res.groups">
+        <field name="name">Emails</field>
+        <field name="category_id" ref="admin_light_base.module_category_admin" />
+        <field name="implied_ids" eval="[(4, ref('admin_light_base.group_admin'))]" />
     </record>
     
     <record id="group_email_template" model="res.groups">
         <field name="name">Email Templates</field>
         <field name="category_id" ref="admin_light_base.module_category_admin" />
         <field name="implied_ids" eval="[(4, ref('admin_light_base.group_admin'))]" />
+    </record>
+
+    <record id="group_mail_subtype" model="res.groups">
+        <field name="name">Mail Subtypes</field>
+        <field name="category_id" ref="admin_light_base.module_category_admin" />
+        <field name="implied_ids" eval="[(4, ref('admin_light_base.group_admin'))]" />
+    </record>
+
+    <record id="mail.mail_template_editor_rule" model="ir.rule">
+        <field name="groups" eval="[(3, ref('mail.group_mail_template_editor'))]"/>
     </record>
 
     <record id="rule_mail_template_edit_own" model="ir.rule">
@@ -22,14 +40,14 @@
         <field name="perm_unlink" eval="True"/>
     </record>
 
+    <record id="mail.access_mail_template_editor" model="ir.model.access">
+        <field name="active" eval="False"/>
+    </record>
     <function name="write" model="ir.model.data">
         <value model="ir.model.data" search="[('module', '=', 'mail'), ('name', '=', 'mail_template_editor_rule')]"/>
         <value eval="{'noupdate': False}"/>
     </function>
 
-    <record id="mail.mail_template_editor_rule" model="ir.rule">
-        <field name="groups" eval="[(3, ref('mail.group_mail_template_editor'))]"/>
-    </record>
 
     <function name="write" model="ir.model.data">
         <value model="ir.model.data" search="[('module', '=', 'mail'), ('name', '=', 'mail_template_editor_rule')]"/>

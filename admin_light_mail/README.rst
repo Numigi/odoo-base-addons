@@ -31,6 +31,9 @@ A new group `Safe Administration / Mail Subtypes` is added.
 
 * View and edit the list of subtypes.
 
+Mail Activity Type 
+------------------
+* View and edit the list of all activity type
 
 Contributors
 ------------
