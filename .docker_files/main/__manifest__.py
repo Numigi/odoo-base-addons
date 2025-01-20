@@ -30,7 +30,6 @@
         "auth_oauth_authentik",
         "automatic_activity_deadlines",
         "base_extended_security",
-        "base_extended_security_grid",
         "base_external_report_layout",
         "base_selection_label",
         "base_view_mode_restricted",
