@@ -27,6 +27,7 @@ COPY admin_light_user /mnt/extra-addons/admin_light_user
 COPY admin_light_web /mnt/extra-addons/admin_light_web
 COPY attachment_minio /mnt/extra-addons/attachment_minio
 COPY base_extended_security /mnt/extra-addons/base_extended_security
+COPY base_view_mode_restricted /mnt/extra-addons/base_view_mode_restricted
 COPY database_bi_user /mnt/extra-addons/database_bi_user
 COPY lang_fr_activated /mnt/extra-addons/lang_fr_activated
 COPY mail_notification_no_action_button /mnt/extra-addons/mail_notification_no_action_button

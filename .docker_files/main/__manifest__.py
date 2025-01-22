@@ -26,6 +26,7 @@
         "admin_light_filters",
         "attachment_minio",
         "base_extended_security",
+        "base_view_mode_restricted",
         "crm",  # module added for test purpose
         "database_bi_user",
         "lang_fr_activated",
