@@ -55,4 +55,4 @@ class TestViewModeRestrictions(common.TransactionCase):
         )
 
     def _get_authorized_view_modes(self):
-        return {v[1] for v in self.action.sudo(self.user).views}
+        return {v[1] for v in self.action.with_user(self.user).views}
