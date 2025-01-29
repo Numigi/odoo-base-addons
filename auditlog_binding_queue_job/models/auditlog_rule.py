@@ -29,7 +29,6 @@ class AuditlogRule(models.Model):
         http_request_model = self.env["auditlog.http.request"]
         current_request_id = None
 
-        # Handle potential concurrency issues with PostgreSQL
         try:
             current_request_id = http_request_model.current_http_request()
         except Exception as e:
