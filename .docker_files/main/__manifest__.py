@@ -27,6 +27,7 @@
         "admin_light_mail_outlook",
         "admin_light_user",
         "admin_light_web",
+        "auditlog_binding_queue_job",
         "auth_oauth_authentik",
         "automatic_activity_deadlines",
         "base_extended_security",
