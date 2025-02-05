@@ -27,6 +27,7 @@
         "attachment_minio",
         "base_extended_security",
         "crm",  # module added for test purpose
+        "currency_rate_update_boc",
         "database_bi_user",
         "lang_fr_activated",
         "mail_notification_no_action_button",
