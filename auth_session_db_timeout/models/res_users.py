@@ -17,7 +17,12 @@ class Users(models.Model):
 
     @api.model
     def _auth_timeout_check(self):
-        """Perform session timeout validation and expire if needed."""
+        """
+        !!! Important !!!
+        This is the function where we call
+        functions that retrieve
+        session data from the filestore.
+        """
 
         session_db_uri = os.environ.get("SESSION_DB_URI")
         custom_session_store = PGSessionStoreExtended(
