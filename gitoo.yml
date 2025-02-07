@@ -40,6 +40,7 @@
   branch: "14.0"
   includes:
     - auditlog  # TA#56928
+    - session_db
 
 - url: https://github.com/OCA/server-ux
   branch: "14.0"
@@ -57,3 +58,8 @@
   includes:
     - web_custom_label
     - web_search_date_range
+
+- url: https://github.com/OCA/server-auth
+  branch: "14.0"
+  includes: 
+    - auth_session_timeout
