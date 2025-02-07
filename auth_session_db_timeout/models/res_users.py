@@ -41,13 +41,12 @@ class Users(models.Model):
         # Check if past deadline
         expired = False
         if deadline is not False:
-
             try:
                 write_date = custom_session_store.get_write_date(session.sid)
                 expired = write_date.timestamp() < deadline
             except Exception as e:
                 _logger.exception(
-                    f"Exception session data modified time in database. {e}",
+                    f"Exception session data modified time in database table http_sessions {e}",
                 )
                 # Force expire the session. Will be resolved with new session.
                 expired = True
@@ -69,5 +68,5 @@ class Users(models.Model):
                 custom_session_store.save(session)
             except Exception as e:
                 _logger.exception(
-                    f"Exception updating session in database htt_sessions. {e}",
+                    f"Exception updating session in database table http_sessions : {e}",
                 )
