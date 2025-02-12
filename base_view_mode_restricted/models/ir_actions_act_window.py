@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from itertools import chain
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class IrActionsActWindow(models.Model):
@@ -14,6 +14,7 @@ class IrActionsActWindow(models.Model):
         "action_id",
     )
 
+    @api.depends("view_ids.view_mode", "view_mode", "view_id.type")
     def _compute_views(self):
         super()._compute_views()
         for action in self:

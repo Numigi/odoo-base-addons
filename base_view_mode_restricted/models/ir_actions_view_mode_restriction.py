@@ -12,11 +12,10 @@ class IrActionsViewModeRestriction(models.Model):
     action_id = fields.Many2one(
         "ir.actions.act_window",
         required=True,
+        ondelete="cascade",
         index=True,
     )
-
     view_modes = fields.Char(required=True)
-
     group_ids = fields.Many2many(
         "res.groups",
         "ir_actions_view_mode_restriction_group_rel",
