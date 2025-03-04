@@ -28,6 +28,7 @@ COPY admin_light_mail_outlook /mnt/extra-addons/admin_light_mail_outlook
 COPY admin_light_user /mnt/extra-addons/admin_light_user
 COPY admin_light_web /mnt/extra-addons/admin_light_web
 COPY auth_oauth_authentik /mnt/extra-addons/auth_oauth_authentik
+COPY auditlog_binding_queue_job /mnt/extra-addons/auditlog_binding_queue_job
 COPY automatic_activity_deadlines /mnt/extra-addons/automatic_activity_deadlines
 COPY base_extended_security /mnt/extra-addons/base_extended_security
 COPY base_extended_security_grid /mnt/extra-addons/base_extended_security_grid
