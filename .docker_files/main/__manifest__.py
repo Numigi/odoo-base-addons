@@ -58,6 +58,7 @@
         # "profile_hr",
         "queue_job_auto_requeue",
         "test_http_request",
+        "users_default_groups",
         "utm_archive",
         "web_email_field_new_tab",
         "dms_document_url",
