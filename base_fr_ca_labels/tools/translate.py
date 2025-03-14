@@ -19,6 +19,7 @@ to integrate updates from Odoo without losing any enhancements made in this modu
 
 import threading
 import psycopg2
+import json
 
 from odoo import api, SUPERUSER_ID, sql_db
 from odoo.tools.translate import TranslationImporter as BaseTranslationImporter
@@ -29,21 +30,35 @@ base_get_web_translations = BaseCodeTranslations.get_web_translations
 base_get_python_translations = BaseCodeTranslations.get_python_translations
 
 
-def replace_values(data_dict, mapping, lang="fr_FR"):
-    """
-    Replace strings in the given dictionary based on
-    the mapping provided for a specific language key.
-    """
+def get_fr_ca_labels_modules(env):
+    param_value = (
+        env["ir.config_parameter"].sudo().get_param("fr_ca_labels_modules", "[]")
+    )
+    return json.loads(param_value)
 
-    def recursive_replace(current_dict):
+
+def replace_values(environment, data_dict, mapping, lang="fr_FR"):
+    """
+    Recursively replace strings in the given dictionary based on a mapping for
+    a specified language. The replacement is performed if
+    any key in the path has a prefix present
+    in the modules list.
+    """
+    modules = get_fr_ca_labels_modules(environment)
+
+    def recursive_replace(current_dict, path=None):
+        if path is None:
+            path = []
         for key, value in current_dict.items():
+            new_path = path + [key]
             if isinstance(value, dict):
-                recursive_replace(value)
+                recursive_replace(value, new_path)
             elif key == lang and isinstance(value, str):
-                for old_term, new_term in mapping.items():
-                    if old_term in value:
-                        current_dict[key] = value.replace(old_term, new_term)
-                        break
+                if any(p.split(".")[0] in modules for p in new_path):
+                    for old_term, new_term in mapping.items():
+                        if old_term in value:
+                            current_dict[key] = value.replace(old_term, new_term)
+                            break
 
     recursive_replace(data_dict)
     return data_dict
@@ -68,7 +83,7 @@ def get_odoo_environment():
     return environment, db_cursor
 
 
-def get_translation_mapping(environment, module_name=False):
+def get_translation_mapping(environment):
     """
     Retrieve the translation mapping dictionary for French (fr) to Canadian French (fr_CA).
     If a module name is provided, only mappings related to that module will be returned.
@@ -76,11 +91,7 @@ def get_translation_mapping(environment, module_name=False):
     mapping_dict = {}
     if "translate.term.fr_ca" in environment.registry.models:
         try:
-            domain = []
-            # if module_name:
-            #     domain.append(("modules.name", "=", module_name))
-
-            records = environment["translate.term.fr_ca"].search(domain)
+            records = environment["translate.term.fr_ca"].search([])
             mapping_dict = {record.term_fr: record.term_ca for record in records}
 
         except psycopg2.errors.UndefinedTable:
@@ -103,10 +114,10 @@ class TranslationImporter(BaseTranslationImporter):
 
             if mapping_dict:
                 self.model_translations = replace_values(
-                    self.model_translations, mapping_dict
+                    self.env, self.model_translations, mapping_dict
                 )
                 self.model_terms_translations = replace_values(
-                    self.model_terms_translations, mapping_dict
+                    self.env, self.model_terms_translations, mapping_dict
                 )
 
 
@@ -114,19 +125,20 @@ class CodeTranslations(BaseCodeTranslations):
     def get_web_translations(self, module_name, lang):
         BaseCodeTranslations._load_web_translations(self, module_name, lang)
         translations = base_get_web_translations(self, module_name, lang)
-        if lang == "fr_FR":
-            environment, db_cursor = get_odoo_environment()
-            if environment:
-                mapping_dict = get_translation_mapping(environment, module_name)
+        environment, db_cursor = get_odoo_environment()
+        modules = get_fr_ca_labels_modules(environment) if environment else []
 
+        if lang == "fr_FR" and module_name in modules:
+            if environment:
+                mapping_dict = get_translation_mapping(environment)
                 for source, translated in translations.items():
                     for old_term, new_term in mapping_dict.items():
                         if old_term in translated:
                             translations[source] = translated.replace(
                                 old_term, new_term
                             )
-            if db_cursor:
-                db_cursor.close()
+        if db_cursor:
+            db_cursor.close()
 
         return translations
 
@@ -137,7 +149,7 @@ class CodeTranslations(BaseCodeTranslations):
         if lang == "fr_FR":
             environment, db_cursor = get_odoo_environment()
             if environment:
-                mapping_dict = get_translation_mapping(environment, module_name)
+                mapping_dict = get_translation_mapping(environment)
 
                 for source, translated in translations.items():
                     for old_term, new_term in mapping_dict.items():

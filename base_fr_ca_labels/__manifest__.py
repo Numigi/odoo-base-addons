@@ -13,6 +13,7 @@
     "depends": ["lang_fr_activated"],
     "data": [
         "data/translate.term.fr_ca.csv",
+        "data/ir_config_parameter_data.xml",
         "security/ir.model.access.csv",
         "views/translate_term_fr_ca.xml",
     ],
