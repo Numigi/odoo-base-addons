@@ -1,5 +1,5 @@
-# Copyright 2014 Numigi
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# Copyright 2025-today Numigi and all its contributors (https://bit.ly/numigiens)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from ddt import ddt, data
 from odoo.tests.common import TransactionCase

@@ -1,5 +1,5 @@
-# Copyright 2024-today Numigi
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# Copyright 2025-today Numigi and all its contributors (https://bit.ly/numigiens)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Canada French Labels",
@@ -7,7 +7,7 @@
     "author": "Numigi",
     "maintainer": "Numigi",
     "website": "https://www.numigi.com",
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "category": "Accounting",
     "summary": "Sanitize the accounting terms for Canada French",
     "depends": ["lang_fr_activated"],
