@@ -13,6 +13,8 @@ class ResUsers(models.Model):
             .sudo()
             .get_param("base_setup.default_user_rights")
         )
-        return super()._default_groups() if default_user_rights else []
+        if default_user_rights:
+            return super()._default_groups()
+        return [(6, 0, [self.env.ref("base.group_user").id])]
 
     groups_id = fields.Many2many(default=_default_groups)
