@@ -13,6 +13,9 @@ from ..controllers.dataset import DataSetWithPrivateFields
 class TestControllers(TransactionCase):
     def setUp(self):
         super().setUp()
+        self.env["ir.config_parameter"].set_param(
+            "base_setup.default_user_rights", True
+        )
         self.user = self.env["res.users"].create(
             {
                 "name": "Employee",
