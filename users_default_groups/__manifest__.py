@@ -11,5 +11,6 @@
     "depends": ["base_setup"],
     "data": [],
     "installable": True,
+    'post_init_hook': '_defaut_config_param',
     "auto_install": True,
 }
