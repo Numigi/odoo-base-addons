@@ -11,8 +11,12 @@ class ResUsers(models.Model):
         default_user_rights = (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("base_setup.default_user_rights")
+            .get_param("base_setup.default_user_rights", "0")
         )
+
+        # Convert 0 and 1 to boolean
+        default_user_rights = bool(int(default_user_rights))
+
         if default_user_rights:
             return super()._default_groups()
         return [(6, 0, [self.env.ref("base.group_user").id])]
