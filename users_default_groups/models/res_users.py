@@ -15,7 +15,7 @@ class ResUsers(models.Model):
         )
 
         # Convert 0 and 1 to boolean
-        default_user_rights = bool(int(default_user_rights))
+        default_user_rights = default_user_rights == "1"
 
         if default_user_rights:
             return super()._default_groups()

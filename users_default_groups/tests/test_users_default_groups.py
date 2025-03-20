@@ -14,7 +14,7 @@ class TestDefaultUserRights(common.SavepointCase):
         cls.default_user.write({"groups_id": [(4, cls.group.id)]})
 
     def test_default_user_rights_checked(self):
-        self.env["ir.config_parameter"].set_param("base_setup.default_user_rights", 1)
+        self.env["ir.config_parameter"].set_param("base_setup.default_user_rights", "0")
         self.user = self.env["res.users"].create(
             {
                 "name": "Numigi User",
@@ -27,7 +27,7 @@ class TestDefaultUserRights(common.SavepointCase):
 
     def test_default_user_rights_unchecked(self):
         self.env["ir.config_parameter"].sudo().set_param(
-            "base_setup.default_user_rights", 0
+            "base_setup.default_user_rights", "0"
         )
         self.user = self.env["res.users"].create(
             {
