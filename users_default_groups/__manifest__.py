@@ -4,12 +4,13 @@
 {
     "name": "Users Default Groups",
     "summary": "Fix default groups settings",
-    "version": "1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Base",
     "author": "Numigi",
     "license": "AGPL-3",
     "depends": ["base_setup"],
     "data": [],
     "installable": True,
+    "post_init_hook": "_defaut_config_param",
     "auto_install": True,
 }

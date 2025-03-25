@@ -4,19 +4,16 @@
 from odoo.tests import common
 
 
-class TestDefaultUserRights(common.SavepointCase):
-
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.default_user = cls.env.ref("base.default_user")
-        cls.group = cls.env.ref("base.group_user")
-        cls.default_user.write({"groups_id": [(4, cls.group.id)]})
+class TestDefaultUserRights(common.TransactionCase):
+    def setUp(self):
+        super(TestDefaultUserRights, self).setUp()
+        self.default_user = self.env.ref("base.default_user")
+        self.group_user = self.env.ref("base.group_user")
+        self.group_partner_manager = self.env.ref("base.group_partner_manager")
+        self.default_user.write({"groups_id": [(4, self.group_partner_manager.id)]})
 
     def test_default_user_rights_checked(self):
-        self.env["ir.config_parameter"].set_param(
-            "base_setup.default_user_rights", True
-        )
+        self.env["ir.config_parameter"].set_param("base_setup.default_user_rights", "1")
         self.user = self.env["res.users"].create(
             {
                 "name": "Numigi User",
@@ -25,11 +22,11 @@ class TestDefaultUserRights(common.SavepointCase):
             }
         )
         # Verify the user has the group like the default user
-        self.assertIn(self.group, self.user.groups_id)
+        self.assertIn(self.group_partner_manager, self.user.groups_id)
 
     def test_default_user_rights_unchecked(self):
         self.env["ir.config_parameter"].sudo().set_param(
-            "base_setup.default_user_rights", False
+            "base_setup.default_user_rights", "0"
         )
         self.user = self.env["res.users"].create(
             {
@@ -39,4 +36,5 @@ class TestDefaultUserRights(common.SavepointCase):
             }
         )
         # Verify the user doesn't have the group
-        not self.assertNotIn(self.group, self.user.groups_id)
+        self.assertNotIn(self.group_partner_manager, self.user.groups_id)
+        self.assertIn(self.group_user, self.user.groups_id)
