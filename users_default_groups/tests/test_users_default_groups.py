@@ -4,14 +4,13 @@
 from odoo.tests import common
 
 
-class TestDefaultUserRights(common.SavepointCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.default_user = cls.env.ref("base.default_user")
-        cls.group_user = cls.env.ref("base.group_user")
-        cls.group_partner_manager = cls.env.ref("base.group_partner_manager")
-        cls.default_user.write({"groups_id": [(4, cls.group_partner_manager.id)]})
+class TestDefaultUserRights(common.TransactionCase):
+    def setUp(self):
+        super(TestDefaultUserRights, self).setUp()
+        self.default_user = self.env.ref("base.default_user")
+        self.group_user = self.env.ref("base.group_user")
+        self.group_partner_manager = self.env.ref("base.group_partner_manager")
+        self.default_user.write({"groups_id": [(4, self.group_partner_manager.id)]})
 
     def test_default_user_rights_checked(self):
         self.env["ir.config_parameter"].set_param("base_setup.default_user_rights", "1")
