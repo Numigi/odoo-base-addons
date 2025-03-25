@@ -13,9 +13,6 @@ from ..controllers.dataset import DataSetWithPrivateFields
 class TestControllers(TransactionCase):
     def setUp(self):
         super().setUp()
-        self.env["ir.config_parameter"].set_param(
-            "base_setup.default_user_rights", True
-        )
         self.user = self.env["res.users"].create(
             {
                 "name": "Employee",
@@ -84,10 +81,12 @@ class TestControllers(TransactionCase):
 
     def test_domain_with_non_string_field(self):
         with mock_odoo_request(self.env):
-            assert self.controller.search_read("hr.employee", domain=[(1, '=', 1)])
+            assert self.controller.search_read("hr.employee", domain=[(1, "=", 1)])
 
     @data(
-        (True, False), (False, True), (False, False),
+        (True, False),
+        (False, True),
+        (False, False),
     )
     @unpack
     def test_if_private_field_used_to_order_search_read__raise_error(
