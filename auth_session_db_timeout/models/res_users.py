@@ -33,10 +33,8 @@ class Users(models.Model):
 
         session = http.request.session
 
-        # Calculate deadline
         deadline = self._auth_timeout_deadline_calculate()
 
-        # Check if past deadline
         expired = False
         if deadline is not False:
             try:
@@ -46,19 +44,16 @@ class Users(models.Model):
                 _logger.exception(
                     f"Exception session data modified time in database table http_sessions {e}",
                 )
-                # Force expire the session. Will be resolved with new session.
                 expired = True
 
-        # Try to terminate the session
         terminated = False
         if expired:
             terminated = self._auth_timeout_session_terminate(session)
 
-        # If session terminated, all done
         if terminated:
+            custom_session_store.delete(session)
             raise SessionExpiredException("Session expired")
 
-        # Else, conditionally update session modified and access times
         ignored_urls = self._auth_timeout_get_ignored_urls()
 
         if http.request.httprequest.path not in ignored_urls:
