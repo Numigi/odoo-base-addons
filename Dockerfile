@@ -26,6 +26,7 @@ COPY admin_light_filters /mnt/extra-addons/admin_light_filters
 COPY admin_light_user /mnt/extra-addons/admin_light_user
 COPY admin_light_web /mnt/extra-addons/admin_light_web
 COPY attachment_minio /mnt/extra-addons/attachment_minio
+COPY auth_session_db_timeout, /mnt/extra-addons/auth_session_db_timeout
 COPY base_extended_security /mnt/extra-addons/base_extended_security
 COPY base_fr_ca_labels /mnt/extra-addons/base_fr_ca_labels
 COPY base_view_mode_restricted /mnt/extra-addons/base_view_mode_restricted
