@@ -48,7 +48,6 @@ COPY mail_template_default /mnt/extra-addons/mail_template_default
 COPY note_no_default_stage /mnt/extra-addons/note_no_default_stage
 COPY numipack /mnt/extra-addons/numipack
 COPY numipack_account /mnt/extra-addons/numipack_account
-COPY numipack_account_enterprise /mnt/extra-addons/numipack_account_enterprise
 COPY numipack_project /mnt/extra-addons/numipack_project
 COPY numipack_purchase /mnt/extra-addons/numipack_purchase
 COPY numipack_sale /mnt/extra-addons/numipack_sale
