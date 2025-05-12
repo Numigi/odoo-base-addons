@@ -36,6 +36,7 @@
         "mail_template_default",
         "private_data_group",
         "test_http_request",
+        "users_access_token",
     ],
     "installable": True,
 }
