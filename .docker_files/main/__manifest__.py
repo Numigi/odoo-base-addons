@@ -27,6 +27,7 @@
         "disable_install_from_website",
         "dms_document_url",
         "document_page_approval_no_mail",
+        "document_url_chatter_list",
         "helpdesk_mgmt_no_mail",
         "helpdesk_ticket_phone",
         "ir_attachment_access_token_portal",
