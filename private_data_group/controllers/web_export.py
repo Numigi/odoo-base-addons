@@ -7,7 +7,7 @@ from .common import check_model_fields_access, extract_fields_from_domain
 
 
 class ExportFormatWithPrivateFields(ExportFormat):
-    def base(self, data, token):
+    def base(self, data):
         params = json.loads(data)
         fields_to_check = {f["name"].replace("/", ".") for f in params["fields"]}
 
@@ -17,7 +17,7 @@ class ExportFormatWithPrivateFields(ExportFormat):
 
         model = params["model"]
         check_model_fields_access(model, fields_to_check)
-        return super().base(data, token)
+        return super().base(data)
 
 
 class CSVControllerWithPrivateFields(CSVExport, ExportFormatWithPrivateFields):
