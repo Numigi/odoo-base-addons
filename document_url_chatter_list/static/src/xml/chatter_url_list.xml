@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="document_url_chatter_list.UrlAttachmentList">
+        <div class="o_attachments_url_list mt-3 pt-2 border-top">
+            <div class="o_attachments_url_title font-weight-bold mb-2"><t t-esc="'URL Documents'"/></div>
+            <table class="table table-sm table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th width="70%"><t t-esc="'Name'"/></th>
+                        <th width="30%"><t t-esc="'Creation Date'"/></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="attachments" t-as="attachment">
+                        <tr class="o_attachment_url_row">
+                            <td>
+                                <a class="o_attachment_url_link" 
+                                   t-att-href="attachment.url" 
+                                   target="_blank"
+                                   t-att-title="attachment.name">
+                                    <i class="fa fa-link mr-2 text-primary" role="img" aria-label="URL"/>
+                                    <t t-esc="attachment.name"/>
+                                </a>
+                            </td>
+                            <td><t t-esc="attachment.formatted_date"/></td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+    </t>
+</templates>
