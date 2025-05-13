@@ -1,0 +1,46 @@
+.o_attachments_url_list {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #ced4da;
+    
+    .o_attachments_url_title {
+        color: #2F3136;
+        margin-bottom: 10px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    
+    .table {
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+        background-color: white;
+        
+        thead {
+            background-color: #f8f9fa;
+            th {
+                border-top: none;
+                font-weight: 600;
+                color: #495057;
+            }
+        }
+        
+        .o_attachment_url_row {
+            &:hover {
+                background-color: #f8f9fa;
+            }
+            
+            .o_attachment_url_link {
+                color: #0D6EFD;
+                text-decoration: none;
+                
+                &:hover {
+                    text-decoration: underline;
+                }
+                
+                .fa-link {
+                    color: #0D6EFD;
+                }
+            }
+        }
+    }
+}
