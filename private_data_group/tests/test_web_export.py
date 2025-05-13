@@ -35,9 +35,8 @@ class TestWebExport(TransactionCase):
             "fields": fields,
         }
         data_ = json.dumps(params)
-        token = "test1234"
         with mock_odoo_request(self.env):
-            response = self.controller.base(data_, token)
+            response = self.controller.base(data_)
             return response.data.decode("utf-8")
 
     def test_if_private_field_in_fields_to_export__raise_error(self):
