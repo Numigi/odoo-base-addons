@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="document_url_chatter_list assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/document_url_chatter_list/static/src/js/chatter_url_list.js"/>
+            <link rel="stylesheet" type="text/scss" href="/document_url_chatter_list/static/src/scss/chatter_url_list.scss"/>
+        </xpath>
+    </template>
+</odoo>
