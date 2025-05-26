@@ -1,5 +1,5 @@
-/* Copyright 2025 Numigi
- * License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0.html).
+/* copyright 2025 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+ * License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
  */
 odoo.define("document_url_chatter_list.UrlAttachmentList", function (require) {
     "use strict";
@@ -54,14 +54,12 @@ odoo.define("document_url_chatter_list.UrlAttachmentList", function (require) {
             
             // Check if we're in a form view
             if (!this.renderer || !this.renderer.$el || !this.model || !this.model.localData) {
-                console.log("Not in a form view context");
                 return;
             }
             
             // Get the current record ID
             var handle = this.handle;
             if (!handle || !this.model.localData[handle]) {
-                console.log("No active record");
                 return;
             }
             
@@ -70,21 +68,15 @@ odoo.define("document_url_chatter_list.UrlAttachmentList", function (require) {
             var recordID = record.res_id;
             
             if (!recordID) {
-                console.log("No record ID (might be a new record)");
                 return;
             }
-            
-            console.log("Form detected:", modelName, "ID:", recordID);
             
             // Find the chatter with multiple possible selectors
             var $chatter = this.renderer.$el.find('.o_form_sheet_bg + .oe_chatter, .o_FormRenderer_chatterContainer, .oe_chatter');
             if (!$chatter.length) {
-                console.log("No chatter found on this form");
                 return;
             }
             
-            console.log("Chatter found (selector match: " + $chatter.attr('class') + "), searching for URL attachments");
-
             // Use RPC to fetch attachments with creation date
             this._rpc({
                 model: 'ir.attachment',
@@ -96,7 +88,6 @@ odoo.define("document_url_chatter_list.UrlAttachmentList", function (require) {
                 fields: ['id', 'name', 'url', 'mimetype', 'type', 'create_date'],
                 context: {active_test: false},
             }).then(function(allAttachments) {
-                console.log("All attachments found:", allAttachments);
                 
                 // Filter URL attachments manually
                 var urlAttachments = _.filter(allAttachments, function(attachment) {
@@ -104,8 +95,6 @@ odoo.define("document_url_chatter_list.UrlAttachmentList", function (require) {
                            attachment.type === 'url' ||
                            (attachment.url && attachment.url !== '');
                 });
-                
-                console.log("Filtered URL attachments:", urlAttachments);
                 
                 if (urlAttachments && urlAttachments.length > 0) {
                     try {
@@ -124,30 +113,24 @@ odoo.define("document_url_chatter_list.UrlAttachmentList", function (require) {
                             attachments: urlAttachments,
                         }));
                         
-                        console.log("URL section template rendered");
-                        
                         // Try multiple potential selectors for mail thread
                         var $mailThread = $chatter.find('.o_mail_thread, .o_Chatter_thread, .o_ThreadView');
                         
                         var insertionPoint;
                         if ($mailThread.length) {
-                            console.log("Mail thread found with selector:", $mailThread.attr('class'));
                             insertionPoint = $mailThread;
                         } else {
                             // Fallback options if no mail thread found
                             var $activity = $chatter.find('.o_mail_activity, .o_Activity');
                             if ($activity.length) {
-                                console.log("No mail thread, but found activity section");
                                 insertionPoint = $activity;
                             } else {
-                                console.log("No thread or activity, inserting at end of chatter");
                                 insertionPoint = $chatter;
                                 // Using append instead of before
                                 $chatter.find('.o_chatter_url_attachments').remove();
                                 var $urlContainer = $('<div class="o_chatter_url_attachments mb-3"></div>');
                                 $chatter.append($urlContainer);
                                 $urlContainer.append($urlSection);
-                                console.log("URL attachments appended to chatter");
                                 
                                 // Add click handler for URLs
                                 $urlContainer.find('.o_attachment_url_link').click(function(e) {
@@ -170,8 +153,6 @@ odoo.define("document_url_chatter_list.UrlAttachmentList", function (require) {
                         insertionPoint.before($urlContainer);
                         $urlContainer.append($urlSection);
                         
-                        console.log("URL attachments section added to DOM before", insertionPoint.attr('class'));
-                        
                         // Add click handler for URLs
                         $urlContainer.find('.o_attachment_url_link').click(function(e) {
                             var url = $(this).attr('href');
@@ -185,7 +166,6 @@ odoo.define("document_url_chatter_list.UrlAttachmentList", function (require) {
                         console.error("Error rendering URL attachments:", err);
                     }
                 } else {
-                    console.log("No URL attachments found for", modelName, recordID);
                     // Remove any existing URL container
                     $chatter.find('.o_chatter_url_attachments').remove();
                 }
@@ -194,7 +174,4 @@ odoo.define("document_url_chatter_list.UrlAttachmentList", function (require) {
             });
         },
     });
-
-    // Debug message to confirm script is loaded
-    console.log("Chatter URL List extension loaded with FormController integration");
 });
