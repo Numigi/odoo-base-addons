@@ -1,3 +1,2 @@
-# -*- coding: utf-8 -*-
-# Copyright 2023 Numigi
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0.html).
+# copyright 2025 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).

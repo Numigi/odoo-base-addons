@@ -1,5 +1,5 @@
-/* Copyright 2023 Numigi
- * License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0.html).
+/* copyright 2025 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+ * License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
  */
 odoo.define("document_url_chatter_list.UrlAttachmentList", function (require) {
     "use strict";
@@ -54,14 +54,12 @@ odoo.define("document_url_chatter_list.UrlAttachmentList", function (require) {
             
             // Check if we're in a form view
             if (!this.renderer || !this.renderer.$el || !this.model || !this.model.localData) {
-                console.log("Not in a form view context");
                 return;
             }
             
             // Get the current record ID
             var handle = this.handle;
             if (!handle || !this.model.localData[handle]) {
-                console.log("No active record");
                 return;
             }
             
@@ -70,14 +68,12 @@ odoo.define("document_url_chatter_list.UrlAttachmentList", function (require) {
             var recordID = record.res_id;
             
             if (!recordID) {
-                console.log("No record ID (might be a new record)");
                 return;
             }
             
             // Find the chatter
             var $chatter = this.renderer.$el.find('.o_form_sheet_bg + .oe_chatter, .oe_chatter');
             if (!$chatter.length) {
-                console.log("No chatter found on this form");
                 return;
             }
             
@@ -178,7 +174,4 @@ odoo.define("document_url_chatter_list.UrlAttachmentList", function (require) {
             });
         },
     });
-
-    // Debug message to confirm script is loaded
-    console.log("Chatter URL List extension loaded with FormController integration");
 });

@@ -29,9 +29,17 @@ Usage
 -----
 
 1. Navigate to any form view with a chatter (for example, a project task)
+
 2. Add a URL attachment using the "Attach URL" button provided by the document_url module
+
+.. image:: static/description/add_url_button.png
+
 3. The URL will appear both in the regular attachments section and in the dedicated URL section
+
+.. image:: static/description/url_documents_section.png
+
 4. Click on the URL in the dedicated section to open it in a new tab
+
 
 Contributors
 -----------
