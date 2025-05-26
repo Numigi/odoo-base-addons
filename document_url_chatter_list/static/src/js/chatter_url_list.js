@@ -18,6 +18,9 @@ odoo.define("document_url_chatter_list.UrlAttachmentList", function (require) {
          * @override
          */
         _onViewAttachmentAdded: function() {
+            // !TODO :  After adding an attachment , we should re-render the 
+            // all chatter sections to avoid issues with the new attachment not showing up
+            // or to avoid having to refresh the page.
             this._super.apply(this, arguments);
             this._updateUrlAttachments();
         },

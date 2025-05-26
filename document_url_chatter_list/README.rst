@@ -42,6 +42,16 @@ Usage
 
 4. Click on the URL in the dedicated section to open it in a new tab
 
+
+.. warning::
+
+   **Known Limitation**  
+   When switching records in the form view, the URL section does not refresh automatically.
+   You need to manually reload the page to see the correct URLs.
+
+   This module is still under development.
+
+
 Contributors
 -----------
 
