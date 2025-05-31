@@ -206,7 +206,7 @@ class TestSecurityRules(TransactionCase):
         self.rule.model_id = self.env.ref("base.model_res_partner")
         self.rule.perm_write = True
         form_view = self._get_partner_form_view_arch()
-        assert form_view.xpath("//button[@name='create_company']")
+        assert form_view.xpath("//field[@name='vat']")
 
     @data(
         ("write", "edit"),
