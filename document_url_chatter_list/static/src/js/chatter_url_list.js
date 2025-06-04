@@ -67,7 +67,7 @@ odoo.define("document_url_chatter_list.UrlAttachmentList", function (require) {
             var modelName = record.model;
             var recordID = record.res_id;
             
-            if (!recordID) {
+            if (!recordID || typeof recordID === 'string') {
                 return;
             }
             
