@@ -16,7 +16,7 @@
     "author": "Numigi",
     "website": "https://www.numigi.com",
     "category": "Discuss",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "depends": ["mail", "web", "document_url"],
     "data": [
         "views/templates.xml",
