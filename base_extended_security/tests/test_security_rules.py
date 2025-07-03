@@ -109,9 +109,7 @@ class TestSecurityRules(TransactionCase):
     def test_on_search__if_not_authorized__domain_is_empty(self):
         self.rule.perm_read = True
         domain = (
-            self.env["res.partner"]
-            .with_user(self.user)
-            .get_extended_security_domain()
+            self.env["res.partner"].with_user(self.user).get_extended_security_domain()
         )
         search_result = self.env["res.partner"].search(domain)
         assert self.partner not in search_result
@@ -121,9 +119,7 @@ class TestSecurityRules(TransactionCase):
         self.user.groups_id |= self.group
 
         domain = (
-            self.env["res.partner"]
-            .with_user(self.user)
-            .get_extended_security_domain()
+            self.env["res.partner"].with_user(self.user).get_extended_security_domain()
         )
         search_result = self.env["res.partner"].search(domain)
 
@@ -214,11 +210,6 @@ class TestSecurityRules(TransactionCase):
 
         list_view = self._get_partner_list_view_arch()
         assert list_view.attrib[view_property] == "false"
-
-    def _get_partner_form_view_arch(self):
-        return self._get_form_view_arch(
-            "res.partner", "base.view_partner_form"
-        )
 
     def _get_partner_form_view_arch(self):
         return self._get_form_view_arch("res.partner", "base.view_partner_form")
