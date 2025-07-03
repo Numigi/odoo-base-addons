@@ -4,7 +4,7 @@
 from odoo import models, api
 
 
-class BaseWithExtendedSecurity(models.AbstractModel):
+class Base(models.AbstractModel):
 
     _inherit = "base"
 
