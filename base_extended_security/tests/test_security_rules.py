@@ -29,6 +29,7 @@ class TestSecurityRules(TransactionCase):
             }
         )
 
+        # PARTNER
         cls.partner = cls.env["res.partner"].create(
             {
                 "name": "Partner 1",
@@ -38,6 +39,31 @@ class TestSecurityRules(TransactionCase):
         cls.rule = cls.env["extended.security.rule"].create(
             {
                 "model_id": cls.env.ref("base.model_res_partner").id,
+                "group_ids": [(4, cls.group.id)],
+                "perm_read": False,
+                "perm_write": False,
+                "perm_create": False,
+                "perm_unlink": False,
+            }
+        )
+
+        # IR ACTIONS SERVER
+        cls.res_partner_model = cls.env["ir.model"].search(
+            [("model", "=", "res.partner")]
+        )
+        cls.comment_html = "<p>MyComment</p>"
+        cls.action_1 = cls.env["ir.actions.server"].create(
+            {
+                "name": "TestAction",
+                "model_id": cls.res_partner_model.id,
+                "model_name": "res.partner",
+                "state": "code",
+                "code": 'record.write({"comment": "%s"})' % cls.comment_html,
+            }
+        )
+        cls.rule_1 = cls.env["extended.security.rule"].create(
+            {
+                "model_id": cls.env.ref("base.model_ir_actions_server").id,
                 "group_ids": [(4, cls.group.id)],
                 "perm_read": False,
                 "perm_write": False,
@@ -173,6 +199,15 @@ class TestSecurityRules(TransactionCase):
         tree_attrib = model_access_field["edition_view"]["tree"].attrib
         return tree_attrib
 
+    def test_if_not_authorized__toggle_button_hidden(self):
+        self.rule_1.perm_write = True
+        form_view = self._get_ir_actions_server_form_view_arch()
+        assert not form_view.xpath("//header/button[@name='create_action']")
+
+    def test_if_authorized__toggle_button_not_hidden(self):
+        form_view = self._get_ir_actions_server_form_view_arch()
+        assert form_view.xpath("//header/button[@name='create_action']")
+
     @data(
         ("write", "edit"),
         ("create", "create"),
@@ -213,6 +248,11 @@ class TestSecurityRules(TransactionCase):
 
     def _get_partner_form_view_arch(self):
         return self._get_form_view_arch("res.partner", "base.view_partner_form")
+
+    def _get_ir_actions_server_form_view_arch(self):
+        return self._get_form_view_arch(
+            "ir.actions.server", "base.view_server_action_form"
+        )
 
     def _get_form_view_arch(self, model, view_ref):
         view = self.env.ref(view_ref)
