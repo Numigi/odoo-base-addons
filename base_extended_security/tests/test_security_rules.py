@@ -259,6 +259,6 @@ class TestSecurityRules(TransactionCase):
         arch = self.env[model].get_view(view_id=view.id)["arch"]
         return etree.fromstring(arch)
 
-    def test_if_authorized__toggle_button_not_hidden(self):
+    def test_if_authorized__field_not_hidden(self):
         form_view = self._get_partner_form_view_arch()
         assert form_view.xpath("//field[@name='name']")
