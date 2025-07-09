@@ -25,6 +25,7 @@
         "admin_light_web",
         "admin_light_filters",
         "attachment_minio",
+        "auth_session_db_timeout",
         "base_extended_security",
         "base_fr_ca_labels",
         "base_view_mode_restricted",
