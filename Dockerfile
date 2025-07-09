@@ -37,6 +37,7 @@ COPY mail_notification_no_action_button /mnt/extra-addons/mail_notification_no_a
 COPY mail_template_default /mnt/extra-addons/mail_template_default
 COPY private_data_group /mnt/extra-addons/private_data_group
 COPY test_http_request /mnt/extra-addons/test_http_request
+COPY users_access_token /mnt/extra-addons/users_access_token
 
 COPY .docker_files/main /mnt/extra-addons/main
 COPY .docker_files/odoo.conf /etc/odoo

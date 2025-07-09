@@ -5,7 +5,7 @@ from lxml import etree
 from odoo import api, models
 
 
-class ViewWithButtonsHiden(models.Model):
+class IrUiView(models.Model):
     _inherit = "ir.ui.view"
 
     def _remove_write_access_buttons(self, env, model, tree):
