@@ -10,7 +10,7 @@
     'category': 'Other',
     'summary': 'Functional dependencies for all Odoo instances using accounting.',
     'depends': [
-        'numipack',
+        # 'numipack',
 
         # Numigi/odoo-base-addons
         'base_extended_security',
