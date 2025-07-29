@@ -21,4 +21,5 @@ After installing this module, the field  `external_report_layout_id` is not anym
 
 Contributors
 ------------
-* Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+
+The `Numigi <https://numigi.com/r/home>`_ team is the contributor to this project. We help Quebec companies implement Odoo and Konvergo ERP.
