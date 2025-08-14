@@ -4,7 +4,6 @@
 from odoo.addons.web.controllers.main import DataSet
 from odoo.http import request
 from odoo.osv.expression import AND
-from odoo import http
 
 SEARCH_METHODS = [
     'name_search',
@@ -33,7 +32,7 @@ DOMAIN_ARGUMENT_INDEXES = {
 }
 
 
-class DataSetWithExtendedSearchSecurity(DataSet , http.Controller):
+class DataSetWithExtendedSearchSecurity(DataSet):
     """Add extra security domains to search operations."""
 
     def do_search_read(

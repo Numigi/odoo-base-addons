@@ -6,10 +6,9 @@ from odoo.addons.web.controllers.main import DataSet
 from odoo.exceptions import ValidationError
 from odoo.http import request
 from odoo.tools.func import lazy_property
-from odoo import http
 
 
-class DataSetWithExtendedSecurity(DataSet , http.Controller):
+class DataSetWithExtendedSecurity(DataSet):
 
     def _call_kw(self, model, method, args, kwargs):
         verifier = _ExtendedSecurityVerifier(model, method, args, kwargs)
