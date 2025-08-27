@@ -11,7 +11,6 @@
     "category": "Other",
     "summary": "Install all addons required for testing.",
     "depends": [
-        "account",  # module added for unit testing (base_extended_security)
         "admin_light_base",
     ],
     "installable": True,
