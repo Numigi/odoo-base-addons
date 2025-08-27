@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-    <data >
-        <record id="ir_config_parameter_fr_ca_labels_modules" model="ir.config_parameter">
-            <field name="key">fr_ca_labels_modules</field>
-            <field name="value">["account"]</field>
-        </record>
-    </data>
-</odoo>

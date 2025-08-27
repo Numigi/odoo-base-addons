@@ -1,4 +1,4 @@
-FROM quay.io/numigi/odoo-public:16.latest
+FROM quay.io/numigi/odoo-public:18.latest
 LABEL maintainer="contact@numigi.com"
 
 USER root
@@ -13,31 +13,7 @@ RUN gitoo install-all --conf_file /gitoo.yml --destination "${THIRD_PARTY_ADDONS
 
 USER odoo
 
-COPY admin_light_auditlog /mnt/extra-addons/admin_light_auditlog
 COPY admin_light_base /mnt/extra-addons/admin_light_base
-COPY admin_light_bi_view_editor /mnt/extra-addons/admin_light_bi_view_editor
-COPY admin_light_calendar /mnt/extra-addons/admin_light_calendar
-COPY admin_light_company /mnt/extra-addons/admin_light_company
-COPY admin_light_gamification /mnt/extra-addons/admin_light_gamification
-COPY admin_light_mail /mnt/extra-addons/admin_light_mail
-COPY admin_light_mail_gmail /mnt/extra-addons/admin_light_mail_gmail
-COPY admin_light_mail_outlook /mnt/extra-addons/admin_light_mail_outlook
-COPY admin_light_filters /mnt/extra-addons/admin_light_filters
-COPY admin_light_user /mnt/extra-addons/admin_light_user
-COPY admin_light_web /mnt/extra-addons/admin_light_web
-COPY attachment_minio /mnt/extra-addons/attachment_minio
-COPY auth_session_db_timeout /mnt/extra-addons/auth_session_db_timeout
-COPY base_extended_security /mnt/extra-addons/base_extended_security
-COPY base_fr_ca_labels /mnt/extra-addons/base_fr_ca_labels
-COPY base_view_mode_restricted /mnt/extra-addons/base_view_mode_restricted
-COPY currency_rate_update_boc /mnt/extra-addons/currency_rate_update_boc
-COPY database_bi_user /mnt/extra-addons/database_bi_user
-COPY lang_fr_activated /mnt/extra-addons/lang_fr_activated
-COPY mail_notification_no_action_button /mnt/extra-addons/mail_notification_no_action_button
-COPY mail_template_default /mnt/extra-addons/mail_template_default
-COPY private_data_group /mnt/extra-addons/private_data_group
-COPY test_http_request /mnt/extra-addons/test_http_request
-COPY users_access_token /mnt/extra-addons/users_access_token
 
 COPY .docker_files/main /mnt/extra-addons/main
 COPY .docker_files/odoo.conf /etc/odoo

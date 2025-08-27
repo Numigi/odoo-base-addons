@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ir_actions_view_mode_restriction_manager,ir_actions_view_mode_restriction_manager,model_ir_actions_view_mode_restriction,base.group_erp_manager,1,1,1,1
-access_ir_actions_view_mode_restriction_user,ir_actions_view_mode_restriction_user,model_ir_actions_view_mode_restriction,,1,0,0,0
