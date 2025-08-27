@@ -59,6 +59,6 @@
     - web_drop_target
 
 - url: https://github.com/OCA/server-auth
-  branch: "14.0"
+  branch: "16.0"
   includes: 
     - auth_session_timeout
