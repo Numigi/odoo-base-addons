@@ -1,0 +1,3 @@
+- url: https://github.com/OCA/queue
+  branch: "18.0"
+  includes: ["queue_job"]
