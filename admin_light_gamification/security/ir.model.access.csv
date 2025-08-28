@@ -1,7 +1,0 @@
-id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-access_badge,Admin Light: gamification.badge,gamification.model_gamification_badge,group_gamification,1,1,1,1
-access_badge_user,Admin Light: gamification.badge.user,gamification.model_gamification_badge_user,group_gamification,1,1,1,1
-access_challenge,Admin Light: gamification.challenge,gamification.model_gamification_challenge,group_gamification,1,1,1,1
-access_challenge_line,Admin Light: gamification.line.challenge,gamification.model_gamification_challenge_line,group_gamification,1,1,1,1
-access_goal,Admin Light: gamification.goal,gamification.model_gamification_goal,group_gamification,1,1,1,1
-access_goal_definition,Admin Light: gamification.goal.definition,gamification.model_gamification_goal_definition,group_gamification,1,1,1,1
