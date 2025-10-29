@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <odoo>
-    <template id="base_template_meeting_minutes">
+  <template id="base_template_meeting_minutes">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-set="o" t-value="o.with_context(lang=env.user.lang)" />
-                <t t-set="user_lang"
-                    t-value="env['res.lang'].search([('code', '=', env.user.lang)])" />
+                <t t-set="o" t-value="o.with_context(lang=env.user.lang)"/>
+                <t t-set="user_lang" t-value="env['res.lang'].search([('code', '=', env.user.lang)])"/>
                 <t t-call="web.external_layout" t-lang="lang">
                     <div class="page report_meeting_minutes">
                         <h1 class="font-weight-bold text-uppercase">Meeting Minutes</h1>
@@ -16,7 +15,7 @@
                                         Object
                                     </div>
                                     <div class="col-9 text-end">
-                                        <span t-field="o.name" />
+                                        <span t-field="o.name"/>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -26,33 +25,28 @@
                                     <div class="col-9 text-end">
                                         <t t-if="o.start_date">
                                             <t t-if="user_lang.code=='en_US'">
-                                                <span
-                                                    t-esc="context_timestamp(o.start_date).strftime('%B %d, %Y')" />
+                                                <span t-esc="context_timestamp(o.start_date).strftime('%B %d, %Y')"/>
                                             </t>
-                                            <t
-                                                t-else="">
-                                                <span
-                                                    t-esc="context_timestamp(o.start_date).strftime('%d-%m-%Y')" />
+                                            <t t-else="">
+                                                <span t-esc="context_timestamp(o.start_date).strftime('%d-%m-%Y')"/>
                                             </t>
-                                            from <span
-                                                t-esc="context_timestamp(o.start_date).strftime('%H:%M')" />
+                                            from <span t-esc="context_timestamp(o.start_date).strftime('%H:%M')"/>
                                         </t>
-                                        <t t-if="o.end_date"> to <span
-                                                t-esc="context_timestamp(o.end_date).strftime('%H:%M')" />
+                                        <t t-if="o.end_date"> to <span t-esc="context_timestamp(o.end_date).strftime('%H:%M')"/>
                                         </t>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <p class="font-weight-bold text-uppercase pr-3 pl-3 mb-0">Meeting
                                         channel </p>
-                                    <span t-field="o.meeting_channel_id.name" />
+                                    <span t-field="o.meeting_channel_id.name"/>
                                 </div>
                                 <div>
                                     <p class="font-weight-bold text-uppercase mb-0"> Attendee(s) </p>
                                     <ul>
                                         <t t-foreach="o.partner_ids" t-as="partner_id">
                                             <li>
-                                                <div t-field="partner_id.display_name" />
+                                                <div t-field="partner_id.display_name"/>
                                             </li>
                                         </t>
                                     </ul>
@@ -63,49 +57,54 @@
                             </div>
                         </div>
                         <div name="planned_points" class="mb-4">
+                             <h3 class="font-weight-bold text-uppercase"/>
+                      <t t-if="env['ir.fields.converter'].text_from_html(o.planned_points)">
                             <h3 class="font-weight-bold text-uppercase">Planned Points</h3>
-                            <t t-if="env['ir.fields.converter'].text_from_html(o.planned_points)">
-                                <div t-field="o.planned_points" />
+                            
+                           
+                            
+                            
+                           
+                                <div t-field="o.planned_points"/>
                             </t>
-                            <t t-else="">
-                                <div>n/a</div>
-                            </t>
+                           
                         </div>
                         <div name="discussed_points" class="mb-4">
-                            <h3 class="font-weight-bold text-uppercase">Discussed points</h3>
+                          <h3 class="font-weight-bold text-uppercase"></h3>
                             <t t-if="env['ir.fields.converter'].text_from_html(o.discussed_points)">
-                                <div t-field="o.discussed_points" />
+                            <h3 class="font-weight-bold text-uppercase">Discussed points</h3>
+                          
+                                <div t-field="o.discussed_points"/>
                             </t>
-                            <t t-else="">
-                                <div>n/a</div>
-                            </t>
+                           
                         </div>
                         <div name="duties" class="mb-4">
-                            <h3 class="font-weight-bold text-uppercase">Duties</h3>
+                            <h3 class="font-weight-bold text-uppercase"></h3>
                             <t t-if="env['ir.fields.converter'].text_from_html(o.duties)">
-                                <div t-field="o.duties" />
+                            <h3 class="font-weight-bold text-uppercase">Duties</h3>
+                          
+                                <div t-field="o.duties"/>
                             </t>
-                            <t t-else="">
-                                <div>n/a</div>
-                            </t>
+                           
                         </div>
                         <div name="resources" class="mb-4">
-                            <h3 class="font-weight-bold text-uppercase">Resources</h3>
+                           <h3 class="font-weight-bold text-uppercase"></h3>
+                          
                             <t t-if="env['ir.fields.converter'].text_from_html(o.resources)">
-                                <div t-field="o.resources" />
+                            <h3 class="font-weight-bold text-uppercase">Resources</h3>
+                          
+                                <div t-field="o.resources"/>
                             </t>
-                            <t t-else="">
-                                <div>n/a</div>
-                            </t>
+                          
                         </div>
                         <div name="risks" class="mb-4">
+                            <h3 class="font-weight-bold text-uppercase"></h3>
+                           <t t-if="env['ir.fields.converter'].text_from_html(o.risks)">
                             <h3 class="font-weight-bold text-uppercase">Risks</h3>
-                            <t t-if="env['ir.fields.converter'].text_from_html(o.risks)">
-                                <div t-field="o.risks" />
+                           
+                                <div t-field="o.risks"/>
                             </t>
-                            <t t-else="">
-                                <div>n/a</div>
-                            </t>
+                         
                         </div>
                     </div>
                 </t>
