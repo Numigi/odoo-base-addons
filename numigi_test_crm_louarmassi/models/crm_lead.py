@@ -12,8 +12,11 @@ class Lead(models.Model):
     
     @api.model
     def _notify_members(self):
+        template = self.env.ref('numigi_test_crm_louarmassi.email_template_notify_members',
+                                 raise_if_not_found=False)
         new_leads = self._get_draft_leads_10days()
-        new_leads._send_member_email()
+        for lead in new_leads:
+            template.send_mail(lead.id, force_send=True)
     
     @api.model
     def _get_draft_leads_10days(self):
@@ -25,12 +28,6 @@ class Lead(models.Model):
                          ]
         new_leads = self.search(lead_domain)
         return new_leads
-    
-    def _send_member_email(self):
-        template = self.env.ref('numigi_test_crm_louarmassi.email_template_notify_members',
-                                 raise_if_not_found=False)
-        for lead in self:
-            template.send_mail(lead.id, force_send=True)
     
     def get_access_link(self):
         self.ensure_one()
