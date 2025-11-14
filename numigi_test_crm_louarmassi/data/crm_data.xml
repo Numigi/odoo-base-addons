@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+        <record id="crm_team_technical_support" model="crm.team">
+            <field name="name">Équipe Support Technique</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="crm_team_sales" model="crm.team">
+            <field name="name">Équipe ventes</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="use_leads" eval="True"/>
+            
+        </record>
+        <record id="crm_team_sav" model="crm.team">
+            <field name="name">Équipe SAV</field>
+            <field name="alias_contact">partners</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>  
+        
+        <record id="crm_generate_lead_from_alias" model="ir.config_parameter">
+        	<field name="key">crm.generate_lead_from_alias</field>
+        	<field name="value">True</field>
+    	</record>  
+    	
+    	<record id="website_crm_form_default_team" model="res.config.settings">
+            <field name="crm_default_team_id" ref="numigi_test_crm_louarmassi.crm_team_sales"/>
+        </record>             
+	</data>
+</odoo>
