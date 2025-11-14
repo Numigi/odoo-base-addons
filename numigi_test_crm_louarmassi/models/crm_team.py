@@ -15,8 +15,7 @@ class Team(models.Model):
             members_email = [member.email for member in team.member_ids if member.email]
             team.emails = ",".join(members_email)
 
-    @api.onchange('user_id')
+    @api.onchange("user_id")
     def onchange_user_id(self):
         if self.user_id:
             self.member_ids = [(4, self.user_id.id)]
-    

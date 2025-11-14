@@ -10,6 +10,6 @@ from odoo import api, fields, SUPERUSER_ID, _
 
 def crm_refresh_res_setting(cr, registry):
     env = api.Environment(cr, SUPERUSER_ID, {})
-    
-    # Recalculate computed fields of res.config.setting 
-    env['res.config.settings'].search([]).write({})
+
+    # Recalculate computed fields of res.config.setting
+    env["res.config.settings"].search([]).write({})

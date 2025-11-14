@@ -16,8 +16,8 @@
         "data/mail_data.xml",
         "data/service_cron.xml",
         "views/crm_team_views.xml",
-        "views/crm_lead_views.xml"
-        ],
+        "views/crm_lead_views.xml",
+    ],
     "installable": True,
-    'post_init_hook': 'crm_refresh_res_setting',
+    "post_init_hook": "crm_refresh_res_setting",
 }
