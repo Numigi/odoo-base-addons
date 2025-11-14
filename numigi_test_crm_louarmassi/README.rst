@@ -6,7 +6,7 @@ This module add custom features on CRM module
 
 Context
 -------
-Custom development specificully on crm and website_crm modules and team and lead views, no configuration will be required after the installation of this module
+Custom development on crm and website_crm modules, no configuration will be required after the installation of this module
 
 Overview
 --------
