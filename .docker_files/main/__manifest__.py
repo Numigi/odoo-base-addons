@@ -12,6 +12,7 @@
     "summary": "Install all addons required for testing.",
     "depends": [
         "admin_light_base",
+        "base_extended_security"
     ],
     "installable": True,
 }

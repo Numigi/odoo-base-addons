@@ -14,6 +14,7 @@ RUN gitoo install-all --conf_file /gitoo.yml --destination "${THIRD_PARTY_ADDONS
 USER odoo
 
 COPY admin_light_base /mnt/extra-addons/admin_light_base
+COPY base_extended_security /mnt/extra-addons/base_extended_security
 
 COPY .docker_files/main /mnt/extra-addons/main
 COPY .docker_files/odoo.conf /etc/odoo
