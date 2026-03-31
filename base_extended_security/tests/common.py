@@ -21,41 +21,43 @@ class ResPartner(models.Model):
     def get_extended_security_domain(self):
         """ Inject custom domain for security testing. """
         domain = super().get_extended_security_domain()
-        return AND((domain, [("customer_rank", ">", 0)]))
+        # Using 'color' instead of 'customer_rank' to avoid dependency on 'account'
+        return AND((domain, [("color", ">", 0)]))
 
     def check_extended_security_all(self):
         """ Restrict access to employee records. """
         super().check_extended_security_all()
         for partner in self:
-            if partner.employee:
+            # Using 'is_company' to simulate the 'employee' field restriction
+            if partner.is_company:
                 raise AccessError(EMPLOYEE_ACCESS_MESSAGE)
 
     def check_extended_security_read(self):
         """ Restrict read access to non-customer records. """
         super().check_extended_security_read()
         for partner in self:
-            if partner.customer_rank < 1:
+            if partner.color < 1:
                 raise AccessError(NON_CUSTOMER_READ_MESSAGE)
 
     def check_extended_security_write(self):
         """ Restrict write access to non-customer records. """
         super().check_extended_security_write()
         for partner in self:
-            if partner.customer_rank < 1:
+            if partner.color < 1:
                 raise AccessError(NON_CUSTOMER_WRITE_MESSAGE)
 
     def check_extended_security_create(self):
         """ Restrict create access to non-customer records. """
         super().check_extended_security_create()
         for partner in self:
-            if partner.customer_rank < 1:
+            if partner.color < 1:
                 raise AccessError(NON_CUSTOMER_CREATE_MESSAGE)
 
     def check_extended_security_unlink(self):
         """ Restrict unlink access to non-customer records. """
         super().check_extended_security_unlink()
         for partner in self:
-            if partner.customer_rank < 1:
+            if partner.color < 1:
                 raise AccessError(NON_CUSTOMER_UNLINK_MESSAGE)
 
     @api.model
@@ -74,34 +76,32 @@ class ControllerCase(TransactionCase):
         super().setUpClass()
         cls.customer = cls.env["res.partner"].create({
             "name": "My Partner Customer",
-            "supplier_rank": 0,
-            "customer_rank": 1,
+            "color": 1,  # Simulates customer_rank > 0
+            "is_company": False,
         })
         cls.supplier = cls.env["res.partner"].create({
             "name": "My Partner Supplier",
-            "supplier_rank": 1,
-            "customer_rank": 0,
+            "color": 0,  # Simulates customer_rank = 0
+            "is_company": False,
         })
         cls.supplier_customer = cls.env["res.partner"].create({
             "name": "My Partner Customer Supplier",
-            "supplier_rank": 1,
-            "customer_rank": 1,
+            "color": 2,
+            "is_company": False,
         })
         cls.employee = cls.env["res.partner"].create({
-            "name": "My Partner Customer Supplier",
-            "supplier_rank": 1,
-            "customer_rank": 1,
-            "employee": True,
+            "name": "My Employee Partner",
+            "color": 1,
+            "is_company": True, # Simulates the employee restriction
         })
 
-        cls.customer_count = cls.env["res.partner"].search_count([("customer_rank", ">", 0)])
+        cls.customer_count = cls.env["res.partner"].search_count([("color", ">", 0)])
         cls.supplier_customer_count = cls.env["res.partner"].search_count([
-            "&", ("customer_rank", ">", 0), ("supplier_rank", ">", 0),
+            "&", ("color", ">", 0), ("color", ">", 0),
         ])
 
     def setUp(self):
         super().setUp()
-        # Setup mock request globally for all controller tests
         self.mock_request = MagicMock()
         self.mock_request.env = self.env
         self.mock_request._cr = self.env.cr

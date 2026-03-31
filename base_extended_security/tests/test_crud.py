@@ -26,7 +26,7 @@ class TestControllers(ControllerCase):
             return self.controller._call_kw(
                 "res.partner",
                 "read",
-                [records.ids, ["name", "customer_rank", "supplier_rank"]],
+                [records.ids, ["name", "color", "is_company"]],
                 {}
             )
 
@@ -55,7 +55,7 @@ class TestControllers(ControllerCase):
 
     def test_on_write__if_not_authorized_after_write__access_error_raised(self):
         with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
-            self._write(self.customer, {"employee": True})
+            self._write(self.customer, {"is_company": True})
 
     def test_on_write_with_customer__access_error_not_raised(self):
         self._write(self.customer | self.supplier_customer, {"name": "My Customer"})
@@ -67,9 +67,8 @@ class TestControllers(ControllerCase):
     def test_on_create_with_employee__access_error_raised(self):
         values = [{
             "name": "My Employee",
-            "supplier_rank": 1,
-            "customer_rank": 1,
-            "employee": True,
+            "color": 1,
+            "is_company": True,
         }]
         with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
             self._create(values)
@@ -77,16 +76,16 @@ class TestControllers(ControllerCase):
     def test_on_create_with_non_customer__access_error_raised(self):
         values = [{
             "name": "My Supplier",
-            "customer_rank": 0,
-            "supplier_rank": 1,
+            "color": 0,
+            "is_company": False,
         }]
         with pytest.raises(AccessError, match=NON_CUSTOMER_CREATE_MESSAGE):
             self._create(values)
 
     def test_on_create_with_customer__access_error_not_raised(self):
         values = [
-            {"name": "My Customer", "customer_rank": 1, "supplier_rank": 0},
-            {"name": "My Supplier Customer", "customer_rank": 1, "supplier_rank": 1},
+            {"name": "My Customer", "color": 1, "is_company": False},
+            {"name": "My Supplier Customer", "color": 2, "is_company": False},
         ]
         self._create(values)
 
@@ -145,10 +144,10 @@ class TestControllers(ControllerCase):
 
     def test_on_x2many_create_with_non_customer__access_error_raised(self):
         with pytest.raises(AccessError, match=NON_CUSTOMER_WRITE_MESSAGE):
-            self._x2many_create(self.customer, {"name": "Some Contact", "customer_rank": 0})
+            self._x2many_create(self.customer, {"name": "Some Contact", "color": 0})
 
     def test_on_x2many_create_with_customer__access_error_not_raised(self):
-        self._x2many_create(self.customer, {"name": "Some Contact", "customer_rank": 1})
+        self._x2many_create(self.customer, {"name": "Some Contact", "color": 1})
 
     def _name_create(self, name):
         with patch("base_extended_security.controllers.crud.request", self.mock_request):
@@ -158,11 +157,11 @@ class TestControllers(ControllerCase):
         self.env["ir.default"].set("res.partner", field, value, user_id=self.env.uid)
 
     def test_on_name_create_with_customer__access_error_not_raised(self):
-        self._set_default_value("customer_rank", 1)
+        self._set_default_value("color", 1)
         self._name_create("My Partner")
 
     def test_on_name_create_with_non_customer__access_error_raised(self):
-        self._set_default_value("customer_rank", 0)
+        self._set_default_value("color", 0)
         with pytest.raises(AccessError, match=NON_CUSTOMER_CREATE_MESSAGE):
             self._name_create("My Partner")
 
@@ -184,7 +183,6 @@ class TestControllers(ControllerCase):
 
     def _call_button(self, records, action_name):
         with patch("base_extended_security.controllers.crud.request", self.mock_request):
-            # In modern Odoo, buttons usually trigger through _call_kw directly
             return self.controller._call_kw("res.partner", action_name, [records.ids], {})
 
     def test_toggle_active_with_employee__access_error_raised(self):

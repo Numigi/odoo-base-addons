@@ -21,11 +21,14 @@ class TestSecurityRules(TransactionCase):
                 "name": "test@example.com",
                 "login": "test@example.com",
                 "email": "test@example.com",
-                "groups_id": [(4, cls.env.ref("base.group_user").id)],
+                # Give native access to system models to test pure extended security behavior
+                "groups_id": [
+                    (4, cls.env.ref("base.group_user").id),
+                    (4, cls.env.ref("base.group_system").id),
+                ],
             }
         )
 
-        # PARTNER
         cls.partner = cls.env["res.partner"].create({"name": "Partner 1"})
 
         cls.rule = cls.env["extended.security.rule"].create(
@@ -39,7 +42,6 @@ class TestSecurityRules(TransactionCase):
             }
         )
 
-        # IR ACTIONS SERVER
         cls.res_partner_model = cls.env["ir.model"].search([("model", "=", "res.partner")])
         cls.comment_html = "<p>MyComment</p>"
         cls.action_1 = cls.env["ir.actions.server"].create(
@@ -134,7 +136,6 @@ class TestSecurityRules(TransactionCase):
 
     def _get_partner_list_view_arch(self):
         view = self.env.ref("base.view_partner_tree")
-        # Important: fetch view with user context to trigger postprocess_access_rights
         arch = self.env["res.partner"].with_user(self.user).get_view(view_id=view.id, view_type="list")["arch"]
         return etree.fromstring(arch)
 
@@ -184,8 +185,8 @@ class TestSecurityRules(TransactionCase):
         assert form_view.xpath("//header/button[@name='create_action']")
 
     @data(
-        ("write", "can_write"),
-        ("create", "can_create"),
+        ("write", "edit"),
+        ("create", "create"),
     )
     @unpack
     def test_in_nested_one2many_list__view_property_disabled(self, access_type, view_property):
@@ -198,7 +199,9 @@ class TestSecurityRules(TransactionCase):
             }
         )
         field_node = self._get_nested_field_node("res.groups", "base.view_groups_form", "model_access")
-        assert field_node.attrib.get(view_property) == "False"
+        # In Odoo 18, security attributes on O2M are set on the embedded list directly
+        list_node = field_node.xpath(".//list")[0]
+        assert list_node.attrib.get(view_property) == "false"
 
     def test_read_access_action(self):
         self.rule.model_id = self.env.ref("base.model_res_partner")
