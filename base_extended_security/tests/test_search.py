@@ -2,8 +2,8 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from ddt import ddt
-from odoo.tests.common import TransactionCase
-from odoo.addons.test_http_request.common import mock_odoo_request
+# Import de MockRequest nativement depuis Odoo
+from odoo.tests.common import TransactionCase, MockRequest
 from ..controllers.search import DataSetWithExtendedSearchSecurity
 
 
@@ -14,7 +14,8 @@ class TestControllers(TransactionCase):
         self.controller = DataSetWithExtendedSearchSecurity()
 
     def _read_group(self, domain, fields, groupby, domain_kwarg):
-        with mock_odoo_request(self.env):
+        # Utilisation de MockRequest à la place de mock_odoo_request
+        with MockRequest(self.env):
             if domain_kwarg:
                 args = []
                 kwargs = {
@@ -30,13 +31,13 @@ class TestControllers(TransactionCase):
             return self.controller._call_kw("res.partner", "read_group", args, kwargs)
 
     def _search(self, domain, domain_kwarg):
-        with mock_odoo_request(self.env):
+        with MockRequest(self.env):
             args = [] if domain_kwarg else [domain]
             kwargs = {"domain": domain} if domain_kwarg else {}
             return self.controller._call_kw("res.partner", "search", args, kwargs)
 
     def _name_search(self, name, domain, name_kwarg, domain_kwarg):
-        with mock_odoo_request(self.env):
+        with MockRequest(self.env):
             args = []
             kwargs = {}
 
@@ -54,15 +55,13 @@ class TestControllers(TransactionCase):
             return [r[0] for r in name_get]
 
     def _search_count(self, domain, domain_kwarg):
-        with mock_odoo_request(self.env):
+        with MockRequest(self.env):
             args = [] if domain_kwarg else [domain]
             kwargs = {"domain": domain} if domain_kwarg else {}
             return self.controller._call_kw("res.partner", "search_count", args, kwargs)
 
     def _search_read(self, domain, domain_kwarg):
-        with mock_odoo_request(self.env):
-            # In Odoo 18, the standalone 'search_read' route is gone.
-            # We strictly test RPC via _call_kw.
+        with MockRequest(self.env):
             if domain_kwarg:
                 records = self.controller._call_kw("res.partner", "search_read", [domain, []], {})
             else:
