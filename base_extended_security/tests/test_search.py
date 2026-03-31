@@ -27,13 +27,13 @@ class TestControllers(TransactionCase):
                 args = [domain, [], fields, groupby]
                 kwargs = {"orderby": groupby}
 
-            return self.controller.call_kw("res.partner", "read_group", args, kwargs)
+            return self.controller._call_kw("res.partner", "read_group", args, kwargs)
 
     def _search(self, domain, domain_kwarg):
         with mock_odoo_request(self.env):
             args = [] if domain_kwarg else [domain]
             kwargs = {"domain": domain} if domain_kwarg else {}
-            return self.controller.call_kw("res.partner", "search", args, kwargs)
+            return self.controller._call_kw("res.partner", "search", args, kwargs)
 
     def _name_search(self, name, domain, name_kwarg, domain_kwarg):
         with mock_odoo_request(self.env):
@@ -50,31 +50,22 @@ class TestControllers(TransactionCase):
             else:
                 args.append(domain)
 
-            name_get = self.controller.call_kw(
-                "res.partner", "name_search", args, kwargs
-            )
+            name_get = self.controller._call_kw("res.partner", "name_search", args, kwargs)
             return [r[0] for r in name_get]
 
     def _search_count(self, domain, domain_kwarg):
         with mock_odoo_request(self.env):
             args = [] if domain_kwarg else [domain]
             kwargs = {"domain": domain} if domain_kwarg else {}
-            return self.controller.call_kw("res.partner", "search_count", args, kwargs)
+            return self.controller._call_kw("res.partner", "search_count", args, kwargs)
 
-    def _search_read(self, domain, use_search_read_route, domain_kwarg):
+    def _search_read(self, domain, domain_kwarg):
         with mock_odoo_request(self.env):
-            if use_search_read_route:
-                result = self.controller.search_read(
-                    "res.partner", fields=[], domain=domain
-                )
-                records = result["records"]
-            elif domain_kwarg:
-                records = self.controller.call_kw(
-                    "res.partner", "search_read", [domain, []], {}
-                )
+            # In Odoo 18, the standalone 'search_read' route is gone.
+            # We strictly test RPC via _call_kw.
+            if domain_kwarg:
+                records = self.controller._call_kw("res.partner", "search_read", [domain, []], {})
             else:
-                records = self.controller.call_kw(
-                    "res.partner", "search_read", [], {"domain": domain}
-                )
+                records = self.controller._call_kw("res.partner", "search_read", [], {"domain": domain})
 
             return [r["id"] for r in records]
