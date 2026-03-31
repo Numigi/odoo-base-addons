@@ -6,6 +6,8 @@ from ddt import ddt
 from odoo.tests.common import TransactionCase
 from ..controllers.search import DataSetWithExtendedSearchSecurity
 
+MOCK_PATH = "odoo.addons.base_extended_security.controllers.search.request"
+
 
 @ddt
 class TestControllers(TransactionCase):
@@ -13,12 +15,11 @@ class TestControllers(TransactionCase):
         super().setUp()
         self.controller = DataSetWithExtendedSearchSecurity()
 
-        # Mock request object and inject test environment
         self.mock_request = MagicMock()
         self.mock_request.env = self.env
 
     def _read_group(self, domain, fields, groupby, domain_kwarg):
-        with patch("base_extended_security.controllers.search.request", self.mock_request):
+        with patch(MOCK_PATH, self.mock_request):
             if domain_kwarg:
                 args = []
                 kwargs = {
@@ -34,13 +35,13 @@ class TestControllers(TransactionCase):
             return self.controller._call_kw("res.partner", "read_group", args, kwargs)
 
     def _search(self, domain, domain_kwarg):
-        with patch("base_extended_security.controllers.search.request", self.mock_request):
+        with patch(MOCK_PATH, self.mock_request):
             args = [] if domain_kwarg else [domain]
             kwargs = {"domain": domain} if domain_kwarg else {}
             return self.controller._call_kw("res.partner", "search", args, kwargs)
 
     def _name_search(self, name, domain, name_kwarg, domain_kwarg):
-        with patch("base_extended_security.controllers.search.request", self.mock_request):
+        with patch(MOCK_PATH, self.mock_request):
             args = []
             kwargs = {}
 
@@ -58,13 +59,13 @@ class TestControllers(TransactionCase):
             return [r[0] for r in name_get]
 
     def _search_count(self, domain, domain_kwarg):
-        with patch("base_extended_security.controllers.search.request", self.mock_request):
+        with patch(MOCK_PATH, self.mock_request):
             args = [] if domain_kwarg else [domain]
             kwargs = {"domain": domain} if domain_kwarg else {}
             return self.controller._call_kw("res.partner", "search_count", args, kwargs)
 
     def _search_read(self, domain, domain_kwarg):
-        with patch("base_extended_security.controllers.search.request", self.mock_request):
+        with patch(MOCK_PATH, self.mock_request):
             if domain_kwarg:
                 records = self.controller._call_kw("res.partner", "search_read", [domain, []], {})
             else:

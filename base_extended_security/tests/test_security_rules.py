@@ -21,7 +21,6 @@ class TestSecurityRules(TransactionCase):
                 "name": "test@example.com",
                 "login": "test@example.com",
                 "email": "test@example.com",
-                # Give native access to system models to test pure extended security behavior
                 "groups_id": [
                     (4, cls.env.ref("base.group_user").id),
                     (4, cls.env.ref("base.group_system").id),
@@ -29,7 +28,8 @@ class TestSecurityRules(TransactionCase):
             }
         )
 
-        cls.partner = cls.env["res.partner"].create({"name": "Partner 1"})
+        # IMPORTANT: Setting color=1 to bypass the non-customer restriction from common.py
+        cls.partner = cls.env["res.partner"].create({"name": "Partner 1", "color": 1})
 
         cls.rule = cls.env["extended.security.rule"].create(
             {
@@ -199,7 +199,6 @@ class TestSecurityRules(TransactionCase):
             }
         )
         field_node = self._get_nested_field_node("res.groups", "base.view_groups_form", "model_access")
-        # In Odoo 18, security attributes on O2M are set on the embedded list directly
         list_node = field_node.xpath(".//list")[0]
         assert list_node.attrib.get(view_property) == "false"
 

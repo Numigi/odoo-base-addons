@@ -14,6 +14,9 @@ from .common import (
 )
 from ..controllers.crud import DataSetWithExtendedSecurity
 
+# Odoo 18 strict import path for mocking
+MOCK_PATH = "odoo.addons.base_extended_security.controllers.crud.request"
+
 
 class TestControllers(ControllerCase):
 
@@ -22,7 +25,7 @@ class TestControllers(ControllerCase):
         self.controller = DataSetWithExtendedSecurity()
 
     def _read(self, records):
-        with patch("base_extended_security.controllers.crud.request", self.mock_request):
+        with patch(MOCK_PATH, self.mock_request):
             return self.controller._call_kw(
                 "res.partner",
                 "read",
@@ -42,7 +45,7 @@ class TestControllers(ControllerCase):
         self._read(self.customer | self.supplier_customer)
 
     def _write(self, records, values):
-        with patch("base_extended_security.controllers.crud.request", self.mock_request):
+        with patch(MOCK_PATH, self.mock_request):
             return self.controller._call_kw("res.partner", "write", [records.ids, values], {})
 
     def test_on_write_with_employee__access_error_raised(self):
@@ -61,7 +64,7 @@ class TestControllers(ControllerCase):
         self._write(self.customer | self.supplier_customer, {"name": "My Customer"})
 
     def _create(self, values):
-        with patch("base_extended_security.controllers.crud.request", self.mock_request):
+        with patch(MOCK_PATH, self.mock_request):
             return self.controller._call_kw("res.partner", "create", [values], {})
 
     def test_on_create_with_employee__access_error_raised(self):
@@ -90,7 +93,7 @@ class TestControllers(ControllerCase):
         self._create(values)
 
     def _unlink(self, records):
-        with patch("base_extended_security.controllers.crud.request", self.mock_request):
+        with patch(MOCK_PATH, self.mock_request):
             return self.controller._call_kw("res.partner", "unlink", [records.ids], {})
 
     def test_on_unlink_with_employee__access_error_raised(self):
@@ -150,7 +153,7 @@ class TestControllers(ControllerCase):
         self._x2many_create(self.customer, {"name": "Some Contact", "color": 1})
 
     def _name_create(self, name):
-        with patch("base_extended_security.controllers.crud.request", self.mock_request):
+        with patch(MOCK_PATH, self.mock_request):
             return self.controller._call_kw("res.partner", "name_create", [name], {})
 
     def _set_default_value(self, field, value):
@@ -178,11 +181,11 @@ class TestControllers(ControllerCase):
             self._read_many2many_tags(self.employee, None)
 
     def _read_many2many_tags(self, records, fields):
-        with patch("base_extended_security.controllers.crud.request", self.mock_request):
+        with patch(MOCK_PATH, self.mock_request):
             return self.controller._call_kw("res.partner", "read", [records.ids, fields], {})
 
     def _call_button(self, records, action_name):
-        with patch("base_extended_security.controllers.crud.request", self.mock_request):
+        with patch(MOCK_PATH, self.mock_request):
             return self.controller._call_kw("res.partner", action_name, [records.ids], {})
 
     def test_toggle_active_with_employee__access_error_raised(self):

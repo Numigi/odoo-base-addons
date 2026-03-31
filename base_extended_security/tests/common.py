@@ -76,12 +76,12 @@ class ControllerCase(TransactionCase):
         super().setUpClass()
         cls.customer = cls.env["res.partner"].create({
             "name": "My Partner Customer",
-            "color": 1,  # Simulates customer_rank > 0
+            "color": 1,  # Simulates valid customer
             "is_company": False,
         })
         cls.supplier = cls.env["res.partner"].create({
             "name": "My Partner Supplier",
-            "color": 0,  # Simulates customer_rank = 0
+            "color": 0,  # Simulates invalid customer
             "is_company": False,
         })
         cls.supplier_customer = cls.env["res.partner"].create({

@@ -8,6 +8,8 @@ from odoo.exceptions import AccessError
 from .common import ControllerCase
 from ..controllers.web_export import CSVControllerWithSecurity
 
+MOCK_PATH = "odoo.addons.base_extended_security.controllers.web_export.request"
+
 
 class TestWebExport(ControllerCase):
 
@@ -25,10 +27,8 @@ class TestWebExport(ControllerCase):
         }
         data_ = json.dumps(params)
 
-        with patch("base_extended_security.controllers.web_export.request", self.mock_request):
-            # In Odoo 18, base method on export no longer requires a token argument
+        with patch(MOCK_PATH, self.mock_request):
             response = self.controller.base(data_)
-            # Depending on Werkzeug version, .data or .get_data(as_text=True) might be used
             return response.data.decode("utf-8")
 
     def test_if_given_domain__domain_filter_applied_to_data(self):
