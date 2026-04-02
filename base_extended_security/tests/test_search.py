@@ -32,13 +32,13 @@ class TestControllers(TransactionCase):
                 args = [domain, [], fields, groupby]
                 kwargs = {"orderby": groupby}
 
-            return self.controller._call_kw("res.partner", "read_group", args, kwargs)
+            return self.controller.call_kw("res.partner", "read_group", args, kwargs)
 
     def _search(self, domain, domain_kwarg):
         with patch(MOCK_PATH, self.mock_request):
             args = [] if domain_kwarg else [domain]
             kwargs = {"domain": domain} if domain_kwarg else {}
-            return self.controller._call_kw("res.partner", "search", args, kwargs)
+            return self.controller.call_kw("res.partner", "search", args, kwargs)
 
     def _name_search(self, name, domain, name_kwarg, domain_kwarg):
         with patch(MOCK_PATH, self.mock_request):
@@ -55,20 +55,20 @@ class TestControllers(TransactionCase):
             else:
                 args.append(domain)
 
-            name_get = self.controller._call_kw("res.partner", "name_search", args, kwargs)
+            name_get = self.controller.call_kw("res.partner", "name_search", args, kwargs)
             return [r[0] for r in name_get]
 
     def _search_count(self, domain, domain_kwarg):
         with patch(MOCK_PATH, self.mock_request):
             args = [] if domain_kwarg else [domain]
             kwargs = {"domain": domain} if domain_kwarg else {}
-            return self.controller._call_kw("res.partner", "search_count", args, kwargs)
+            return self.controller.call_kw("res.partner", "search_count", args, kwargs)
 
     def _search_read(self, domain, domain_kwarg):
         with patch(MOCK_PATH, self.mock_request):
             if domain_kwarg:
-                records = self.controller._call_kw("res.partner", "search_read", [domain, []], {})
+                records = self.controller.call_kw("res.partner", "search_read", [domain, []], {})
             else:
-                records = self.controller._call_kw("res.partner", "search_read", [], {"domain": domain})
+                records = self.controller.call_kw("res.partner", "search_read", [], {"domain": domain})
 
             return [r["id"] for r in records]

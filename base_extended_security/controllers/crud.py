@@ -9,10 +9,10 @@ from odoo.tools.func import lazy_property
 
 
 class DataSetWithExtendedSecurity(DataSet):
-    def _call_kw(self, model, method, args, kwargs):
+    def call_kw(self, model, method, args, kwargs):
         verifier = _ExtendedSecurityVerifier(model, method, args, kwargs)
         verifier.run_pre_request_checks()
-        result = super()._call_kw(model, method, args, kwargs)
+        result = super().call_kw(model, method, args, kwargs)
         verifier.set_request_result(result)
         verifier.run_post_request_checks()
         return result

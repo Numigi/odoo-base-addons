@@ -36,7 +36,7 @@ DOMAIN_ARGUMENT_INDEXES = {
 class DataSetWithExtendedSearchSecurity(DataSet):
     """ Add extra security domains to search operations intercepting RPC calls. """
 
-    def _call_kw(self, model, method, args, kwargs):
+    def call_kw(self, model, method, args, kwargs):
         """ Override standard call_kw to inject security domains on search methods. """
         if method in SEARCH_METHODS:
             security_domain = _get_extended_security_domain(model)
@@ -45,7 +45,7 @@ class DataSetWithExtendedSearchSecurity(DataSet):
             args, kwargs = _get_args_and_kwargs_with_new_domain(
                 method, args, kwargs, complete_domain
             )
-        return super()._call_kw(model, method, args, kwargs)
+        return super().call_kw(model, method, args, kwargs)
 
 
 def _get_extended_security_domain(model):
