@@ -116,10 +116,12 @@ def mock_request_env(env):
     mock_req._cr = env.cr
     mock_req.session = MagicMock()
 
+    # SOLUTION : Ajout strict de 'odoo.addons.' devant nos propres modules pour respecter
+    # le MetaModel loading constraint d'Odoo 18.
     patches = [
-        patch("base_extended_security.controllers.crud.request", mock_req),
-        patch("base_extended_security.controllers.search.request", mock_req),
-        patch("base_extended_security.controllers.web_export.request", mock_req),
+        patch("odoo.addons.base_extended_security.controllers.crud.request", mock_req),
+        patch("odoo.addons.base_extended_security.controllers.search.request", mock_req),
+        patch("odoo.addons.base_extended_security.controllers.web_export.request", mock_req),
         patch("odoo.addons.web.controllers.dataset.request", mock_req),
         patch("odoo.addons.web.controllers.export.request", mock_req),
     ]
