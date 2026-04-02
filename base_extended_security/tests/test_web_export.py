@@ -3,12 +3,9 @@
 
 import json
 import pytest
-from unittest.mock import patch
 from odoo.exceptions import AccessError
-from .common import ControllerCase
+from .common import ControllerCase, mock_request_env
 from ..controllers.web_export import CSVControllerWithSecurity
-
-MOCK_PATH = "odoo.addons.base_extended_security.controllers.web_export.request"
 
 
 class TestWebExport(ControllerCase):
@@ -27,7 +24,7 @@ class TestWebExport(ControllerCase):
         }
         data_ = json.dumps(params)
 
-        with patch(MOCK_PATH, self.mock_request):
+        with mock_request_env(self.env):
             response = self.controller.base(data_)
             return response.data.decode("utf-8")
 

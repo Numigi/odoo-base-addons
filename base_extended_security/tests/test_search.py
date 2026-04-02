@@ -1,12 +1,10 @@
 # Copyright 2024-today Numigi and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from unittest.mock import patch, MagicMock
 from ddt import ddt
 from odoo.tests.common import TransactionCase
+from .common import mock_request_env
 from ..controllers.search import DataSetWithExtendedSearchSecurity
-
-MOCK_PATH = "odoo.addons.base_extended_security.controllers.search.request"
 
 
 @ddt
@@ -15,11 +13,8 @@ class TestControllers(TransactionCase):
         super().setUp()
         self.controller = DataSetWithExtendedSearchSecurity()
 
-        self.mock_request = MagicMock()
-        self.mock_request.env = self.env
-
     def _read_group(self, domain, fields, groupby, domain_kwarg):
-        with patch(MOCK_PATH, self.mock_request):
+        with mock_request_env(self.env):
             if domain_kwarg:
                 args = []
                 kwargs = {
@@ -35,13 +30,13 @@ class TestControllers(TransactionCase):
             return self.controller.call_kw("res.partner", "read_group", args, kwargs)
 
     def _search(self, domain, domain_kwarg):
-        with patch(MOCK_PATH, self.mock_request):
+        with mock_request_env(self.env):
             args = [] if domain_kwarg else [domain]
             kwargs = {"domain": domain} if domain_kwarg else {}
             return self.controller.call_kw("res.partner", "search", args, kwargs)
 
     def _name_search(self, name, domain, name_kwarg, domain_kwarg):
-        with patch(MOCK_PATH, self.mock_request):
+        with mock_request_env(self.env):
             args = []
             kwargs = {}
 
@@ -59,13 +54,13 @@ class TestControllers(TransactionCase):
             return [r[0] for r in name_get]
 
     def _search_count(self, domain, domain_kwarg):
-        with patch(MOCK_PATH, self.mock_request):
+        with mock_request_env(self.env):
             args = [] if domain_kwarg else [domain]
             kwargs = {"domain": domain} if domain_kwarg else {}
             return self.controller.call_kw("res.partner", "search_count", args, kwargs)
 
     def _search_read(self, domain, domain_kwarg):
-        with patch(MOCK_PATH, self.mock_request):
+        with mock_request_env(self.env):
             if domain_kwarg:
                 records = self.controller.call_kw("res.partner", "search_read", [domain, []], {})
             else:
