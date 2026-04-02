@@ -1,12 +1,12 @@
 # Copyright 2024-today Numigi and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from unittest.mock import MagicMock
+import contextlib
+from unittest.mock import MagicMock, patch
 from odoo import models, api
 from odoo.exceptions import AccessError
 from odoo.osv.expression import AND
 from odoo.tests.common import TransactionCase
-
 
 EMPLOYEE_ACCESS_MESSAGE = "You are not authorized to access employees."
 NON_CUSTOMER_READ_MESSAGE = "You are not authorized to read non-customers."
@@ -21,14 +21,12 @@ class ResPartner(models.Model):
     def get_extended_security_domain(self):
         """ Inject custom domain for security testing. """
         domain = super().get_extended_security_domain()
-        # Using 'color' instead of 'customer_rank' to avoid dependency on 'account'
         return AND((domain, [("color", ">", 0)]))
 
     def check_extended_security_all(self):
         """ Restrict access to employee records. """
         super().check_extended_security_all()
         for partner in self:
-            # Using 'is_company' to simulate the 'employee' field restriction
             if partner.is_company:
                 raise AccessError(EMPLOYEE_ACCESS_MESSAGE)
 
@@ -76,12 +74,12 @@ class ControllerCase(TransactionCase):
         super().setUpClass()
         cls.customer = cls.env["res.partner"].create({
             "name": "My Partner Customer",
-            "color": 1,  # Simulates valid customer
+            "color": 1,
             "is_company": False,
         })
         cls.supplier = cls.env["res.partner"].create({
             "name": "My Partner Supplier",
-            "color": 0,  # Simulates invalid customer
+            "color": 0,
             "is_company": False,
         })
         cls.supplier_customer = cls.env["res.partner"].create({
@@ -92,7 +90,7 @@ class ControllerCase(TransactionCase):
         cls.employee = cls.env["res.partner"].create({
             "name": "My Employee Partner",
             "color": 1,
-            "is_company": True, # Simulates the employee restriction
+            "is_company": True,
         })
 
         cls.customer_count = cls.env["res.partner"].search_count([("color", ">", 0)])
@@ -105,3 +103,31 @@ class ControllerCase(TransactionCase):
         self.mock_request = MagicMock()
         self.mock_request.env = self.env
         self.mock_request._cr = self.env.cr
+
+
+@contextlib.contextmanager
+def mock_request_env(env):
+    """
+    Context manager to inject a mock request into BOTH our module and Odoo's native modules.
+    This prevents 'RuntimeError: object unbound' when calling super() in controllers.
+    """
+    mock_req = MagicMock()
+    mock_req.env = env
+    mock_req._cr = env.cr
+    mock_req.session = MagicMock()
+
+    patches = [
+        patch("base_extended_security.controllers.crud.request", mock_req),
+        patch("base_extended_security.controllers.search.request", mock_req),
+        patch("base_extended_security.controllers.web_export.request", mock_req),
+        patch("odoo.addons.web.controllers.dataset.request", mock_req),
+        patch("odoo.addons.web.controllers.export.request", mock_req),
+    ]
+
+    for p in patches:
+        p.start()
+    try:
+        yield mock_req
+    finally:
+        for p in patches:
+            p.stop()
