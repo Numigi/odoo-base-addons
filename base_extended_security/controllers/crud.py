@@ -9,10 +9,11 @@ from odoo.tools.func import lazy_property
 
 
 class DataSetWithExtendedSecurity(DataSet):
-    def call_kw(self, model, method, args, kwargs):
+    def call_kw(self, model, method, args, kwargs, **kw):
+        """Intercept RPC calls to validate Extended Security before and after execution."""
         verifier = _ExtendedSecurityVerifier(model, method, args, kwargs)
         verifier.run_pre_request_checks()
-        result = super().call_kw(model, method, args, kwargs)
+        result = super().call_kw(model, method, args, kwargs, **kw)
         verifier.set_request_result(result)
         verifier.run_post_request_checks()
         return result

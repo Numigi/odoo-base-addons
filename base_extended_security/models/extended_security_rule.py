@@ -45,7 +45,7 @@ class ExtendedSecurityRule(models.Model):
 
     @api.model
     def check_user_access(self, model, access_type):
-        """ Verify if the current user has access to the model for the given operation. """
+        """Verify if the current user has access to the model for the given operation."""
         for rule in self._iter_matching_rules(model, access_type):
             if not _rule_matches_user(rule, self.env.user):
                 raise AccessError(
@@ -57,32 +57,32 @@ class ExtendedSecurityRule(models.Model):
 
     @api.model
     def is_user_authorized(self, model, access_type):
-        """ Return True if the user is authorized by all matching rules. """
+        """Return True if the user is authorized by all matching rules."""
         matching_rules = self._iter_matching_rules(model, access_type)
         return all(_rule_matches_user(rule, self.env.user) for rule in matching_rules)
 
     @api.model
     def get_user_security_domain(self, model):
-        """ Return a security domain preventing access to records if unauthorized. """
+        """Return a security domain preventing access to records if unauthorized."""
         authorized = self.is_user_authorized(model, "read")
         return [] if authorized else [("id", "=", False)]
 
     def _iter_matching_rules(self, model, access_type):
-        """ Yield rules matching the model and the required access type. """
+        """Yield rules matching the model and the required access type."""
         rules = self._get_rules()
         return (r for r in rules.get(model, []) if r[access_type])
 
     @api.model
     @tools.ormcache()
     def _get_rules(self):
-        """ Fetch and cache all security rules grouped by model name. """
+        """Fetch and cache all security rules grouped by model name."""
         res = defaultdict(list)
         for record in self.sudo().search([]):
             res[record.model_id.model].append(record._make_rule_dict())
         return res
 
     def _make_rule_dict(self):
-        """ Convert rule record to a dictionary. """
+        """Convert rule record to a dictionary."""
         return {
             "group_ids": self.group_ids.ids,
             "read": self.perm_read,
@@ -93,6 +93,6 @@ class ExtendedSecurityRule(models.Model):
 
 
 def _rule_matches_user(rule, user):
-    """ Return True if the user belongs to at least one group defined in the rule. """
+    """Return True if the user belongs to at least one group defined in the rule."""
     user_group_ids = user.groups_id.ids
     return any(id_ in user_group_ids for id_ in rule["group_ids"])

@@ -50,7 +50,9 @@ class TestControllers(TransactionCase):
             else:
                 args.append(domain)
 
-            name_get = self.controller.call_kw("res.partner", "name_search", args, kwargs)
+            name_get = self.controller.call_kw(
+                "res.partner", "name_search", args, kwargs
+            )
             return [r[0] for r in name_get]
 
     def _search_count(self, domain, domain_kwarg):
@@ -62,8 +64,12 @@ class TestControllers(TransactionCase):
     def _search_read(self, domain, domain_kwarg):
         with mock_request_env(self.env):
             if domain_kwarg:
-                records = self.controller.call_kw("res.partner", "search_read", [domain, []], {})
+                records = self.controller.call_kw(
+                    "res.partner", "search_read", [domain, []], {}
+                )
             else:
-                records = self.controller.call_kw("res.partner", "search_read", [], {"domain": domain})
+                records = self.controller.call_kw(
+                    "res.partner", "search_read", [], {"domain": domain}
+                )
 
             return [r["id"] for r in records]

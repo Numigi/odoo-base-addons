@@ -9,7 +9,7 @@ from odoo.osv.expression import AND
 
 class ExportFormatWithSecurityDomain(ExportFormat):
     def base(self, data):
-        """ Override base export format to enforce security domain on data extraction. """
+        """Override base export format to enforce security domain on data extraction."""
         params = json.loads(data)
         record_ids = params.get("ids")
         model = params["model"]
