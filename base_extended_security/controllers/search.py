@@ -34,10 +34,11 @@ DOMAIN_ARGUMENT_INDEXES = {
 
 
 class DataSetWithExtendedSearchSecurity(DataSet):
-    """ Add extra security domains to search operations intercepting RPC calls. """
+    """Add extra security domains to search operations intercepting RPC calls."""
 
-    def call_kw(self, model, method, args, kwargs):
-        """ Override standard call_kw to inject security domains on search methods. """
+    # Accept **kw to support Odoo 18 new 'path' routing argument
+    def call_kw(self, model, method, args, kwargs, **kw):
+        """Override standard call_kw to inject security domains on search methods."""
         if method in SEARCH_METHODS:
             security_domain = _get_extended_security_domain(model)
             search_domain = get_domain_from_args_and_kwargs(method, args, kwargs)
@@ -45,11 +46,12 @@ class DataSetWithExtendedSearchSecurity(DataSet):
             args, kwargs = _get_args_and_kwargs_with_new_domain(
                 method, args, kwargs, complete_domain
             )
-        return super().call_kw(model, method, args, kwargs)
+        # Pass **kw to the super call to prevent Werkzeug routing errors
+        return super().call_kw(model, method, args, kwargs, **kw)
 
 
 def _get_extended_security_domain(model):
-    """ Get the security domain generated for the current model and user. """
+    """Get the security domain generated for the current model and user."""
     return request.env[model].get_extended_security_domain()
 
 

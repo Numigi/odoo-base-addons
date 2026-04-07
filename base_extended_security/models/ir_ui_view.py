@@ -36,15 +36,15 @@ class IrUiView(models.Model):
 
         # In Odoo 18, both the main view and nested subviews (e.g., inside one2many fields)
         # have the 'model_access_rights' attribute set prior to this method's super call.
-        for node in tree.xpath('//*[@model_access_rights]'):
-            model_name = node.get('model_access_rights')
+        for node in tree.xpath("//*[@model_access_rights]"):
+            model_name = node.get("model_access_rights")
 
             perm_write = rule_model.is_user_authorized(model_name, "write")
             perm_create = rule_model.is_user_authorized(model_name, "create")
             perm_unlink = rule_model.is_user_authorized(model_name, "unlink")
 
             # Handle relational field tags (e.g., Many2one, Many2many)
-            if node.tag == 'field':
+            if node.tag == "field":
                 if not perm_write:
                     node.set("can_write", "False")
                 if not perm_create:

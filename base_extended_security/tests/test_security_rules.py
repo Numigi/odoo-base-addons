@@ -42,7 +42,9 @@ class TestSecurityRules(TransactionCase):
             }
         )
 
-        cls.res_partner_model = cls.env["ir.model"].search([("model", "=", "res.partner")])
+        cls.res_partner_model = cls.env["ir.model"].search(
+            [("model", "=", "res.partner")]
+        )
         cls.comment_html = "<p>MyComment</p>"
         cls.action_1 = cls.env["ir.actions.server"].create(
             {
@@ -123,25 +125,37 @@ class TestSecurityRules(TransactionCase):
 
     def test_on_search__if_not_authorized__domain_is_empty(self):
         self.rule.perm_read = True
-        domain = self.env["res.partner"].with_user(self.user).get_extended_security_domain()
+        domain = (
+            self.env["res.partner"].with_user(self.user).get_extended_security_domain()
+        )
         search_result = self.env["res.partner"].search(domain)
         assert self.partner not in search_result
 
     def test_on_search__if_authorized__domain_not_empty(self):
         self.rule.perm_read = True
         self.user.groups_id |= self.group
-        domain = self.env["res.partner"].with_user(self.user).get_extended_security_domain()
+        domain = (
+            self.env["res.partner"].with_user(self.user).get_extended_security_domain()
+        )
         search_result = self.env["res.partner"].search(domain)
         assert self.partner in search_result
 
     def _get_partner_list_view_arch(self):
         view = self.env.ref("base.view_partner_tree")
-        arch = self.env["res.partner"].with_user(self.user).get_view(view_id=view.id, view_type="list")["arch"]
+        arch = (
+            self.env["res.partner"]
+            .with_user(self.user)
+            .get_view(view_id=view.id, view_type="list")["arch"]
+        )
         return etree.fromstring(arch)
 
     def _get_nested_field_node(self, model, view_ref, field_name):
         view = self.env.ref(view_ref)
-        arch = self.env[model].with_user(self.user).get_view(view_id=view.id, view_type="form")["arch"]
+        arch = (
+            self.env[model]
+            .with_user(self.user)
+            .get_view(view_id=view.id, view_type="form")["arch"]
+        )
         tree = etree.fromstring(arch)
         return tree.xpath(f"//field[@name='{field_name}']")[0]
 
@@ -151,7 +165,9 @@ class TestSecurityRules(TransactionCase):
         ("unlink", "delete"),
     )
     @unpack
-    def test_if_authorized__view_property_not_disabled(self, access_type, view_property):
+    def test_if_authorized__view_property_not_disabled(
+        self, access_type, view_property
+    ):
         self.user.groups_id |= self.group
         self.rule["perm_{}".format(access_type)] = True
         list_view = self._get_partner_list_view_arch()
@@ -162,7 +178,9 @@ class TestSecurityRules(TransactionCase):
         ("create", "can_create"),
     )
     @unpack
-    def test_in_nested_many2many_list__view_property_not_disabled(self, access_type, view_property):
+    def test_in_nested_many2many_list__view_property_not_disabled(
+        self, access_type, view_property
+    ):
         self.env["extended.security.rule"].create(
             {
                 "model_id": self.env.ref("base.model_ir_rule").id,
@@ -171,7 +189,9 @@ class TestSecurityRules(TransactionCase):
             }
         )
         self.user.groups_id |= self.group
-        field_node = self._get_nested_field_node("res.groups", "base.view_groups_form", "rule_groups")
+        field_node = self._get_nested_field_node(
+            "res.groups", "base.view_groups_form", "rule_groups"
+        )
         assert field_node.attrib.get(view_property) != "False"
 
     def test_if_not_authorized__toggle_button_hidden(self):
@@ -189,7 +209,9 @@ class TestSecurityRules(TransactionCase):
         ("create", "create"),
     )
     @unpack
-    def test_in_nested_one2many_list__view_property_disabled(self, access_type, view_property):
+    def test_in_nested_one2many_list__view_property_disabled(
+        self, access_type, view_property
+    ):
         self.env["extended.security.rule"].create(
             {
                 "model_id": self.env.ref("base.model_ir_model_access").id,
@@ -198,7 +220,9 @@ class TestSecurityRules(TransactionCase):
                 "active": True,
             }
         )
-        field_node = self._get_nested_field_node("res.groups", "base.view_groups_form", "model_access")
+        field_node = self._get_nested_field_node(
+            "res.groups", "base.view_groups_form", "model_access"
+        )
         list_node = field_node.xpath(".//list")[0]
         assert list_node.attrib.get(view_property) == "false"
 
@@ -223,11 +247,17 @@ class TestSecurityRules(TransactionCase):
         return self._get_form_view_arch("res.partner", "base.view_partner_form")
 
     def _get_ir_actions_server_form_view_arch(self):
-        return self._get_form_view_arch("ir.actions.server", "base.view_server_action_form")
+        return self._get_form_view_arch(
+            "ir.actions.server", "base.view_server_action_form"
+        )
 
     def _get_form_view_arch(self, model, view_ref):
         view = self.env.ref(view_ref)
-        arch = self.env[model].with_user(self.user).get_view(view_id=view.id, view_type="form")["arch"]
+        arch = (
+            self.env[model]
+            .with_user(self.user)
+            .get_view(view_id=view.id, view_type="form")["arch"]
+        )
         return etree.fromstring(arch)
 
     def test_if_authorized__field_not_hidden(self):

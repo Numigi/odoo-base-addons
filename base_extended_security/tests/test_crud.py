@@ -16,7 +16,6 @@ from ..controllers.crud import DataSetWithExtendedSecurity
 
 
 class TestControllers(ControllerCase):
-
     def setUp(self):
         super().setUp()
         self.controller = DataSetWithExtendedSecurity()
@@ -27,7 +26,7 @@ class TestControllers(ControllerCase):
                 "res.partner",
                 "read",
                 [records.ids, ["name", "color", "is_company"]],
-                {}
+                {},
             )
 
     def test_on_read_with_employee__access_error_raised(self):
@@ -43,7 +42,9 @@ class TestControllers(ControllerCase):
 
     def _write(self, records, values):
         with mock_request_env(self.env):
-            return self.controller.call_kw("res.partner", "write", [records.ids, values], {})
+            return self.controller.call_kw(
+                "res.partner", "write", [records.ids, values], {}
+            )
 
     def test_on_write_with_employee__access_error_raised(self):
         with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
@@ -65,20 +66,24 @@ class TestControllers(ControllerCase):
             return self.controller.call_kw("res.partner", "create", [values], {})
 
     def test_on_create_with_employee__access_error_raised(self):
-        values = [{
-            "name": "My Employee",
-            "color": 1,
-            "is_company": True,
-        }]
+        values = [
+            {
+                "name": "My Employee",
+                "color": 1,
+                "is_company": True,
+            }
+        ]
         with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):
             self._create(values)
 
     def test_on_create_with_non_customer__access_error_raised(self):
-        values = [{
-            "name": "My Supplier",
-            "color": 0,
-            "is_company": False,
-        }]
+        values = [
+            {
+                "name": "My Supplier",
+                "color": 0,
+                "is_company": False,
+            }
+        ]
         with pytest.raises(AccessError, match=NON_CUSTOMER_CREATE_MESSAGE):
             self._create(values)
 
@@ -179,11 +184,15 @@ class TestControllers(ControllerCase):
 
     def _read_many2many_tags(self, records, fields):
         with mock_request_env(self.env):
-            return self.controller.call_kw("res.partner", "read", [records.ids, fields], {})
+            return self.controller.call_kw(
+                "res.partner", "read", [records.ids, fields], {}
+            )
 
     def _call_button(self, records, action_name):
         with mock_request_env(self.env):
-            return self.controller.call_kw("res.partner", action_name, [records.ids], {})
+            return self.controller.call_kw(
+                "res.partner", action_name, [records.ids], {}
+            )
 
     def test_toggle_active_with_employee__access_error_raised(self):
         with pytest.raises(AccessError, match=EMPLOYEE_ACCESS_MESSAGE):

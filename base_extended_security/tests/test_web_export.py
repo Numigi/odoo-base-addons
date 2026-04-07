@@ -9,14 +9,13 @@ from ..controllers.web_export import CSVControllerWithSecurity
 
 
 class DummyResponse:
-    """ Faux objet de réponse pour capturer les données renvoyées par make_response """
+    """Faux objet de réponse pour capturer les données renvoyées par make_response"""
 
     def __init__(self, data):
         self.data = data
 
 
 class TestWebExport(ControllerCase):
-
     def setUp(self):
         super().setUp()
         self.controller = CSVControllerWithSecurity()
@@ -33,7 +32,9 @@ class TestWebExport(ControllerCase):
 
         with mock_request_env(self.env) as mock_req:
             # On configure le mock pour qu'il capture les données CSV générées
-            mock_req.make_response.side_effect = lambda data, *args, **kwargs: DummyResponse(data)
+            mock_req.make_response.side_effect = (
+                lambda data, *args, **kwargs: DummyResponse(data)
+            )
 
             response = self.controller.base(data_)
 
