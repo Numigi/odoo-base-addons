@@ -46,8 +46,10 @@ class ExtendedSecurityRule(models.Model):
     @api.model
     def check_user_access(self, model, access_type):
         """Verify if the current user has access to the model for the given operation."""
+        real_uid = self.env.context.get("extended_security_uid") or self.env.uid
+        user_to_check = self.env["res.users"].sudo().browse(real_uid)
         for rule in self._iter_matching_rules(model, access_type):
-            if not _rule_matches_user(rule, self.env.user):
+            if not _rule_matches_user(rule, user_to_check):
                 raise AccessError(
                     _(
                         "You are not authorized to access records of model {model} "
@@ -58,8 +60,10 @@ class ExtendedSecurityRule(models.Model):
     @api.model
     def is_user_authorized(self, model, access_type):
         """Return True if the user is authorized by all matching rules."""
+        real_uid = self.env.context.get("extended_security_uid") or self.env.uid
+        user_to_check = self.env["res.users"].sudo().browse(real_uid)
         matching_rules = self._iter_matching_rules(model, access_type)
-        return all(_rule_matches_user(rule, self.env.user) for rule in matching_rules)
+        return all(_rule_matches_user(rule, user_to_check) for rule in matching_rules)
 
     @api.model
     def get_user_security_domain(self, model):
