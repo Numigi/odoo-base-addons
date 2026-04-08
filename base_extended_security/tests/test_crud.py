@@ -148,7 +148,7 @@ class TestControllers(ControllerCase):
         self._write(parent, {"child_ids": [(0, 0, vals)]})
 
     def test_on_x2many_create_with_non_customer__access_error_raised(self):
-        with pytest.raises(AccessError, match=NON_CUSTOMER_WRITE_MESSAGE):
+        with pytest.raises(AccessError, match=NON_CUSTOMER_CREATE_MESSAGE):
             self._x2many_create(self.customer, {"name": "Some Contact", "color": 0})
 
     def test_on_x2many_create_with_customer__access_error_not_raised(self):

@@ -1,12 +1,33 @@
 # Copyright 2024-today Numigi and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
+import logging
 from odoo import models, api
+_logger = logging.getLogger(__name__)
 
 
 class Base(models.AbstractModel):
-
     _inherit = "base"
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super().create(vals_list)
+        if self.env.context.get("extended_security_enforcement"):
+            _logger.info("Extended Security: Intercepting CREATE on %s (sudo: %s)", self._name, self.env.su)
+            records.check_extended_security_create()
+        return records
+
+    def write(self, vals):
+        if self.env.context.get("extended_security_enforcement"):
+            _logger.info("Extended Security: Intercepting WRITE on %s (sudo: %s)", self._name, self.env.su)
+            self.check_extended_security_write()
+        return super().write(vals)
+
+    def unlink(self):
+        if self.env.context.get("extended_security_enforcement"):
+            _logger.info("Extended Security: Intercepting UNLINK on %s (sudo: %s)", self._name, self.env.su)
+            self.check_extended_security_unlink()
+        return super().unlink()
 
     def get_extended_security_domain(self):
         """Get a search domain to apply to secure requests.
