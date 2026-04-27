@@ -30,7 +30,6 @@ class _MockOdooRequest(OdooRequest):
         return self.env["website"].get_current_website()
 
     def __exit__(self, exc_type, exc_value, traceback):
-        # Odoo 18: On restaure la requête précédente via les contextvars
         odoo.http.request_ctx.reset(self._previous_request)
 
     def __enter__(self):
@@ -96,17 +95,8 @@ def _make_filesystem_session(env: Environment) -> Session:
 def _make_odoo_request(
         werkzeug_request: WerkzeugRequest, env: Environment, routing_type: str
 ) -> _MockOdooRequest:
-    # Plus besoin de if/else, Odoo 18 utilise la même classe pour tout !
     odoo_request = _MockOdooRequest(werkzeug_request)
-
-    try:
-        odoo_request.env = env
-    except AttributeError:
-        pass
-    odoo_request._env = env
-    odoo_request._cr = env.cr
-    odoo_request._uid = env.uid
-    odoo_request._context = env.context
+    odoo_request.env = env
     odoo_request.httprequest = werkzeug_request
     return odoo_request
 
