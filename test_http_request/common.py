@@ -5,10 +5,9 @@ import json
 import werkzeug
 from contextlib import contextmanager
 from io import BytesIO
-from urllib.parse import urlencode  # Odoo 18: Remplacement de werkzeug.urls
+from urllib.parse import urlencode
 
 import odoo.http
-from odoo.addons.http_routing.models.ir_http import url_for
 from odoo.api import Environment
 from odoo.http import (
     HttpRequest,
@@ -25,7 +24,7 @@ from werkzeug.wrappers.request import Request
 class _MockOdooRequestMixin:
     @staticmethod
     def redirect(url, code=302):
-        return werkzeug.utils.redirect(url_for(url), code)
+        return werkzeug.utils.redirect(url, code)
 
     @property
     def website(self):
