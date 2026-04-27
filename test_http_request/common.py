@@ -3,6 +3,7 @@
 
 import json
 import werkzeug
+import contextvars
 from contextlib import contextmanager
 from io import BytesIO
 from urllib.parse import urlencode
@@ -10,7 +11,7 @@ from urllib.parse import urlencode
 import odoo.http
 from odoo.api import Environment
 from odoo.http import (
-    Request as OdooRequest,  # Odoo 18: La classe unique qui remplace HttpRequest et JsonRequest
+    Request as OdooRequest,
     Session,
     Response,
 )
@@ -29,13 +30,34 @@ class _MockOdooRequest(OdooRequest):
     def website(self):
         return self.env["website"].get_current_website()
 
-    def __exit__(self, exc_type, exc_value, traceback):
-        odoo.http.request_ctx.reset(self._previous_request)
-
     def __enter__(self):
-        # Odoo 18: On pousse la requête courante via les contextvars
-        self._previous_request = odoo.http.request_ctx.set(self)
+        self._cv_obj = None
+        self._cv_token = None
+
+        # 1. Fallback pour les anciennes versions (Odoo <= 16)
+        if hasattr(odoo.http, '_request_stack') and hasattr(odoo.http._request_stack, 'push'):
+            odoo.http._request_stack.push(self)
+            return self
+
+        # 2. Odoo 17/18 avec Werkzeug 3.0 : on détecte le ContextVar dynamiquement
+        for name, obj in vars(odoo.http).items():
+            if isinstance(obj, contextvars.ContextVar) and 'request' in name.lower():
+                self._cv_obj = obj
+                self._cv_token = obj.set(self)
+                return self
+
+        # 3. Fallback ultime si la structure interne a encore changé
+        self._original_request = getattr(odoo.http, 'request', None)
+        odoo.http.request = self
         return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if hasattr(odoo.http, '_request_stack') and hasattr(odoo.http._request_stack, 'pop'):
+            odoo.http._request_stack.pop()
+        elif self._cv_obj and self._cv_token:
+            self._cv_obj.reset(self._cv_token)
+        elif hasattr(self, '_original_request'):
+            odoo.http.request = self._original_request
 
     def make_response(self, data, headers=None, cookies=None, status=200):
         response = Response(data, status=status, headers=headers)
@@ -96,8 +118,17 @@ def _make_odoo_request(
         werkzeug_request: WerkzeugRequest, env: Environment, routing_type: str
 ) -> _MockOdooRequest:
     odoo_request = _MockOdooRequest(werkzeug_request)
-    odoo_request.env = env
+
+    # Sécurisation contre le blocage de modification du curseur en V18
+    try:
+        odoo_request.env = env
+    except Exception:
+        pass
+
+    odoo_request._env = env
+    odoo_request.registry = env.registry
     odoo_request.httprequest = werkzeug_request
+
     return odoo_request
 
 
