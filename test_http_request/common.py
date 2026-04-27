@@ -10,18 +10,17 @@ from urllib.parse import urlencode
 import odoo.http
 from odoo.api import Environment
 from odoo.http import (
-    HttpRequest,
-    JsonRequest,
+    Request as OdooRequest,  # Odoo 18: La classe unique qui remplace HttpRequest et JsonRequest
     Session,
     Response,
 )
-from typing import Optional, Union
+from typing import Optional
 from werkzeug.datastructures import ImmutableMultiDict
 from werkzeug.test import EnvironBuilder
-from werkzeug.wrappers.request import Request
+from werkzeug.wrappers.request import Request as WerkzeugRequest
 
 
-class _MockOdooRequestMixin:
+class _MockOdooRequest(OdooRequest):
     @staticmethod
     def redirect(url, code=302):
         return werkzeug.utils.redirect(url, code)
@@ -45,14 +44,6 @@ class _MockOdooRequestMixin:
             for k, v in cookies.items():
                 response.set_cookie(k, v)
         return response
-
-
-class _MockOdooHttpRequest(_MockOdooRequestMixin, HttpRequest):
-    pass
-
-
-class _MockOdooJsonRequest(_MockOdooRequestMixin, JsonRequest):
-    pass
 
 
 def _make_environ_form_data_stream(data: dict) -> BytesIO:
@@ -84,19 +75,17 @@ def _make_environ(
     return environ
 
 
-def _set_request_storage_class(httprequest: Request):
-    # Odoo 18: ImmutableOrderedMultiDict n'existe plus dans Werkzeug 3.0
+def _set_request_storage_class(httprequest: WerkzeugRequest):
     httprequest.parameter_storage_class = ImmutableMultiDict
 
 
-def _make_werkzeug_request(environ: dict) -> Request:
-    httprequest = Request(environ)
+def _make_werkzeug_request(environ: dict) -> WerkzeugRequest:
+    httprequest = WerkzeugRequest(environ)
     _set_request_storage_class(httprequest)
     return httprequest
 
 
 def _make_filesystem_session(env: Environment) -> Session:
-    # Odoo 18: FilesystemSessionStore a été remplacé par une gestion unifiée
     session = Session()
     session.db = env.cr.dbname
     session.uid = env.uid
@@ -105,14 +94,11 @@ def _make_filesystem_session(env: Environment) -> Session:
 
 
 def _make_odoo_request(
-        werkzeug_request: Request, env: Environment, routing_type: str
-) -> Union[_MockOdooHttpRequest, _MockOdooJsonRequest]:
-    odoo_request_cls = (
-        _MockOdooJsonRequest if routing_type == "json" else _MockOdooHttpRequest
-    )
-    odoo_request = odoo_request_cls(werkzeug_request)
+        werkzeug_request: WerkzeugRequest, env: Environment, routing_type: str
+) -> _MockOdooRequest:
+    # Plus besoin de if/else, Odoo 18 utilise la même classe pour tout !
+    odoo_request = _MockOdooRequest(werkzeug_request)
 
-    # Assure la compatibilité avec la manière dont Odoo gère les propriétés d'environnement
     try:
         odoo_request.env = env
     except AttributeError:
