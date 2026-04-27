@@ -86,7 +86,7 @@ def _make_werkzeug_request(environ: dict) -> WerkzeugRequest:
 
 
 def _make_filesystem_session(env: Environment) -> Session:
-    session = Session()
+    session = Session({}, "mock_session_id")
     session.db = env.cr.dbname
     session.uid = env.uid
     session.context = env.context
