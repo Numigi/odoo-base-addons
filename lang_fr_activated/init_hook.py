@@ -3,10 +3,6 @@
 
 
 def post_init_hook(env):
-    """
-    Dans Odoo 18, le post_init_hook reçoit directement `env`
-    et s'exécute déjà en tant que Superuser par défaut.
-    """
     activate_fr_lang_if_inactive(env)
 
 
