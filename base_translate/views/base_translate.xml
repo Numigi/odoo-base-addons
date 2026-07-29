@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_journal_group_tree" model="ir.ui.view">
+            <field name="name">base.translate.tree</field>
+            <field name="model">base.translate</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <list editable="top">
+                    <!-- Header section to hold the action button -->
+                    <header>
+                        <button name="action_apply_translations"
+                                string="Appliquer les traductions"
+                                type="object"
+                                class="oe_highlight"/>
+                    </header>
+                    <field name="term_fr" />
+                    <field name="term_ca" />
+                     <button name="action_apply_translations"
+                                string="Apply translation"
+                                type="object"
+                               icon="fa-refresh"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="action_translate_term_fr_ca" model="ir.actions.act_window">
+            <field name="name">CA Accouting Terms</field>
+            <field name="res_model">base.translate</field>
+            <field name="view_mode">list</field>
+        </record>
+
+        <menuitem id="menu_translate_term_fr_ca"
+                  name="CA Accouting Terms"
+                  action="action_translate_term_fr_ca"
+                  parent="base.menu_translation"
+                  sequence="100"
+        />
+    </data>
+</odoo>
