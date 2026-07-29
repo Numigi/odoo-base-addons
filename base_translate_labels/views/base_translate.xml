@@ -14,8 +14,10 @@
                                 type="object"
                                 class="oe_highlight"/>
                     </header>
-                    <field name="term_fr" />
-                    <field name="term_ca" />
+                     <field name="lang_id" />
+                     <field name="model_id" />
+                    <field name="term" />
+                    <field name="new_term" />
                      <button name="action_apply_translations"
                                 string="Apply translation"
                                 type="object"
@@ -24,15 +26,15 @@
             </field>
         </record>
 
-        <record id="action_translate_term_fr_ca" model="ir.actions.act_window">
-            <field name="name">CA Accouting Terms</field>
+        <record id="action_translate_new_term" model="ir.actions.act_window">
+            <field name="name">Translate Terms</field>
             <field name="res_model">base.translate</field>
             <field name="view_mode">list</field>
         </record>
 
-        <menuitem id="menu_translate_term_fr_ca"
-                  name="CA Accouting Terms"
-                  action="action_translate_term_fr_ca"
+        <menuitem id="menu_translate_new_term"
+                  name="Mapping Terms"
+                  action="action_translate_new_term"
                   parent="base.menu_translation"
                   sequence="100"
         />

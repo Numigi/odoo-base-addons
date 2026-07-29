@@ -13,7 +13,7 @@
     "depends": ["base", "lang_fr_activated"],
     "data": [
         "security/ir.model.access.csv",
-        "data/base_translate.csv",
+      #  "data/base_translate.csv",
         "views/base_translate.xml",
     ],
     "installable": True,

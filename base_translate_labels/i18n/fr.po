@@ -26,52 +26,52 @@ msgid "Apply translation"
 msgstr "Appliquer la traduction"
 
 #. module: base_fr_ca_labels
-#: model:ir.actions.act_window,name:base_fr_ca_labels.action_translate_term_fr_ca
-#: model:ir.ui.menu,name:base_fr_ca_labels.menu_translate_term_fr_ca
+#: model:ir.actions.act_window,name:base_fr_ca_labels.action_translate_new_term
+#: model:ir.ui.menu,name:base_fr_ca_labels.menu_translate_new_term
 msgid "CA Accouting Terms"
 msgstr "Termes comptables CA"
 
 #. module: base_fr_ca_labels
-#: model:ir.model.fields,field_description:base_fr_ca_labels.field_translate_term_fr_ca__create_uid
+#: model:ir.model.fields,field_description:base_fr_ca_labels.field_translate_new_term__create_uid
 msgid "Created by"
 msgstr "Créé par"
 
 #. module: base_fr_ca_labels
-#: model:ir.model.fields,field_description:base_fr_ca_labels.field_translate_term_fr_ca__create_date
+#: model:ir.model.fields,field_description:base_fr_ca_labels.field_translate_new_term__create_date
 msgid "Created on"
 msgstr "Créé le"
 
 #. module: base_fr_ca_labels
-#: model:ir.model.fields,field_description:base_fr_ca_labels.field_translate_term_fr_ca__display_name
+#: model:ir.model.fields,field_description:base_fr_ca_labels.field_translate_new_term__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: base_fr_ca_labels
-#: model:ir.model.fields,field_description:base_fr_ca_labels.field_translate_term_fr_ca__id
+#: model:ir.model.fields,field_description:base_fr_ca_labels.field_translate_new_term__id
 msgid "ID"
 msgstr "ID"
 
 #. module: base_fr_ca_labels
-#: model:ir.model.fields,field_description:base_fr_ca_labels.field_translate_term_fr_ca__write_uid
+#: model:ir.model.fields,field_description:base_fr_ca_labels.field_translate_new_term__write_uid
 msgid "Last Updated by"
 msgstr "Dernière mise à jour par"
 
 #. module: base_fr_ca_labels
-#: model:ir.model.fields,field_description:base_fr_ca_labels.field_translate_term_fr_ca__write_date
+#: model:ir.model.fields,field_description:base_fr_ca_labels.field_translate_new_term__write_date
 msgid "Last Updated on"
 msgstr "Dernière modification le"
 
 #. module: base_fr_ca_labels
-#: model:ir.model.fields,field_description:base_fr_ca_labels.field_translate_term_fr_ca__term_ca
+#: model:ir.model.fields,field_description:base_fr_ca_labels.field_translate_new_term__new_term
 msgid "Term CA"
 msgstr "Terme CA"
 
 #. module: base_fr_ca_labels
-#: model:ir.model.fields,field_description:base_fr_ca_labels.field_translate_term_fr_ca__term_fr
+#: model:ir.model.fields,field_description:base_fr_ca_labels.field_translate_new_term__term
 msgid "Term Fr"
 msgstr "Terme Fr"
 
 #. module: base_fr_ca_labels
-#: model:ir.model,name:base_fr_ca_labels.model_translate_term_fr_ca
+#: model:ir.model,name:base_fr_ca_labels.model_translate_new_term
 msgid "Translation Terms (FR to CA)"
 msgstr "Termes de traduction (FR vers CA)"

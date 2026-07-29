@@ -15,7 +15,7 @@ USER odoo
 
 COPY admin_light_base /mnt/extra-addons/admin_light_base
 COPY base_extended_security /mnt/extra-addons/base_extended_security
-COPY base_translate /mnt/extra-addons/base_translate
+COPY base_translate_labels /mnt/extra-addons/base_translate_labels
 COPY lang_fr_activated /mnt/extra-addons/lang_fr_activated
 COPY test_http_request /mnt/extra-addons/test_http_request
 

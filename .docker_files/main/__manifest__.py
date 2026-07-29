@@ -13,7 +13,7 @@
     "depends": [
         "admin_light_base",
         "base_extended_security",
-        "base_translate",
+        "base_translate_labels",
         "lang_fr_activated",
         "test_http_request"
     ],

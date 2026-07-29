@@ -16,8 +16,8 @@ class TestTranslationFrCa(TransactionCase):
     def _create_test_terms(self):
         # Create global and model-specific translation mappings
         self.term_model.create({
-            "term_fr": "facture",
-            "term_ca": "facture canadienne",
+            "term": "facture",
+            "new_term": "facture canadienne",
         })
 
     def test_translation_applied_to_record_field(self):
