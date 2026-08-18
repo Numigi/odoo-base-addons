@@ -1,6 +1,6 @@
 # Copyright 2026 Numigi
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class BaseTranslate(models.Model):
@@ -46,3 +46,23 @@ class BaseTranslate(models.Model):
                 "sticky": False,
             },
         }
+
+    @api.model
+    def get_mapping_for_model(self, model_name):
+        """
+        Retrieve translation mapping for a specific model.
+        Fetches both global terms (model_id is False) and model-specific terms.
+        """
+        domain = [
+            "|",
+            ("model_id", "=", False),
+            ("model_id.model", "=", model_name),
+        ]
+        records = self.search(domain)
+        return self._format_mapping_dictionary(records)
+
+    def _format_mapping_dictionary(self, records):
+        """
+        Format the recordset into a dictionary mapping old terms to new terms.
+        """
+        return {record.term: record.new_term for record in records}
