@@ -9,7 +9,7 @@ class TestTranslationFrCa(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.term_model = cls.env["translate.fr_ca"]
+        cls.term_model = cls.env["base.translate"]
         cls.partner_model = cls.env["res.partner"]
         cls._create_test_terms()
 

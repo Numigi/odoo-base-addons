@@ -13,7 +13,7 @@ class BaseTranslationCA(models.AbstractModel):
         self._apply_ca_translations_to_records(translatable_fields, mapping_dict)
 
     def _get_ca_translation_mapping(self):
-        term_model = self.env["translate.fr_ca"]
+        term_model = self.env["base.translate"]
         return term_model.get_mapping_for_model(self._name)
 
     def _get_translatable_fields(self):

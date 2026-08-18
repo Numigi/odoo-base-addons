@@ -124,7 +124,7 @@ def _apply_mapping_to_dict_safely(data_dict, key, value, mapping):
 
 
 def get_translation_mapping(environment, lang_code):
-    term_model = "translate.fr_ca"
+    term_model = "base.translate"
     if environment and term_model in environment.registry.models:
         return _fetch_mapping_from_db(environment, term_model, lang_code)
     return {}

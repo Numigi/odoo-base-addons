@@ -5,7 +5,7 @@ from odoo import fields, models, api
 
 
 class BaseTranslate(models.Model):
-    _name = "translate.fr_ca"
+    _name = "base.translate"
     _description = "Database Translation Terms (FR to CA)"
 
     lang_id = fields.Many2one(
