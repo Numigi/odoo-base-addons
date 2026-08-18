@@ -9,9 +9,31 @@ class TestTranslationFrCa(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls._setup_test_languages()
         cls.term_model = cls.env["base.translate"]
         cls.category_model = cls.env["res.partner.category"]
         cls._create_test_terms()
+
+    @classmethod
+    def _setup_test_languages(cls):
+        cls._activate_language("fr_FR", "French")
+        cls._activate_language("fr_CA", "French (Canada)")
+
+    @classmethod
+    def _activate_language(cls, code, name):
+        lang = cls.env["res.lang"].with_context(active_test=False).search([("code", "=", code)])
+        if lang:
+            lang.write({"active": True})
+        else:
+            cls._create_language(code, name)
+
+    @classmethod
+    def _create_language(cls, code, name):
+        cls.env["res.lang"].create({
+            "name": name,
+            "code": code,
+            "url_code": code.replace("_", "-").lower(),
+        })
 
     @classmethod
     def _create_test_terms(cls):
