@@ -3,3 +3,4 @@
 
 
 from . import test_base_translate
+from . import test_data_translation_wizard
