@@ -3,6 +3,7 @@
 
 
 from . import models
+from . import wizard
 
 
 def _get_installed_modules(env):

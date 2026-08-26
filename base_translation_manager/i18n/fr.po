@@ -1,0 +1,266 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_translation_manager
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-26 14:44+0000\n"
+"PO-Revision-Date: 2026-08-26 14:44+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_translation_manager
+#: model:ir.model.fields.selection,name:base_translation_manager.selection__data_translation_wizard__fields_option__all
+msgid "All Fields"
+msgstr "Tous les champs"
+
+#. module: base_translation_manager
+#: model:ir.model.fields.selection,name:base_translation_manager.selection__data_translation_wizard__data_option__all
+msgid "All Records"
+msgstr "Tous les enregistrements"
+
+#. module: base_translation_manager
+#: model_terms:ir.ui.view,arch_db:base_translation_manager.view_account_journal_group_tree
+msgid "Appliquer les traductions"
+msgstr "Appliquer les traductions"
+
+#. module: base_translation_manager
+#: model_terms:ir.ui.view,arch_db:base_translation_manager.view_account_journal_group_tree
+msgid "Apply translation"
+msgstr "Appliquer la traduction"
+
+#. module: base_translation_manager
+#: model:ir.model,name:base_translation_manager.model_base
+msgid "Base"
+msgstr "Base"
+
+#. module: base_translation_manager
+#: model_terms:ir.ui.view,arch_db:base_translation_manager.translation_manager_wizard_view_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,help:base_translation_manager.field_data_translation_wizard__data_option
+msgid ""
+"Choose if you want to apply the operation on all records of the model or "
+"filter them using a domain."
+msgstr "Choisissez si vous souhaitez appliquer l'opération sur tous les enregistrements du modèle ou les filtrer à l'aide d'un domaine."
+
+#. module: base_translation_manager
+#: model:ir.model.fields,help:base_translation_manager.field_data_translation_wizard__fields_option
+msgid ""
+"Choose if you want to process all translatable fields of the model or only a"
+" specific selection."
+msgstr "Choisissez si vous souhaitez traiter tous les champs traduisibles du modèle ou seulement une sélection spécifique."
+
+#. module: base_translation_manager
+#: model:ir.model.fields,help:base_translation_manager.field_data_translation_wizard__operation
+msgid ""
+"Choose the action to perform: Copy translations between languages, Export "
+"them, or Import them."
+msgstr "Choisissez l'action à effectuer : Copier les traductions entre les langues, les Exporter ou les Importer."
+
+#. module: base_translation_manager
+#: model:ir.model.fields.selection,name:base_translation_manager.selection__data_translation_wizard__operation__copy
+msgid "Copy"
+msgstr "Copier"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_base_translate__create_uid
+#: model:ir.model.fields,field_description:base_translation_manager.field_data_translation_wizard__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_base_translate__create_date
+#: model:ir.model.fields,field_description:base_translation_manager.field_data_translation_wizard__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: base_translation_manager
+#: model_terms:ir.ui.view,arch_db:base_translation_manager.translation_manager_wizard_view_form
+msgid "Data Configuration"
+msgstr "Configuration des données"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_data_translation_wizard__data_option
+msgid "Data Processing"
+msgstr "Traitement des données"
+
+#. module: base_translation_manager
+#: model:ir.model,name:base_translation_manager.model_base_translate
+msgid "Database Translation Terms (FR to CA)"
+msgstr "Termes de traduction de la base de données (FR vers CA)"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,help:base_translation_manager.field_data_translation_wizard__record_domain
+msgid "Define the domain to filter the records that will be processed."
+msgstr "Définissez le domaine pour filtrer les enregistrements qui seront traités."
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_data_translation_wizard__dest_lang_id
+msgid "Destination Language"
+msgstr "Langue de destination"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_base_translate__display_name
+#: model:ir.model.fields,field_description:base_translation_manager.field_data_translation_wizard__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_data_translation_wizard__record_domain
+msgid "Domain Filter"
+msgstr "Filtre de domaine"
+
+#. module: base_translation_manager
+#: model_terms:ir.ui.view,arch_db:base_translation_manager.translation_manager_wizard_view_form
+msgid "Execute"
+msgstr "Exécuter"
+
+#. module: base_translation_manager
+#: model:ir.model.fields.selection,name:base_translation_manager.selection__data_translation_wizard__operation__export
+msgid "Export"
+msgstr "Exporter"
+
+#. module: base_translation_manager
+#: model_terms:ir.ui.view,arch_db:base_translation_manager.translation_manager_wizard_view_form
+msgid "Fields Configuration"
+msgstr "Configuration des champs"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_data_translation_wizard__fields_option
+msgid "Fields Processing"
+msgstr "Traitement des champs"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_base_translate__id
+#: model:ir.model.fields,field_description:base_translation_manager.field_data_translation_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_translation_manager
+#: model:ir.model.fields.selection,name:base_translation_manager.selection__data_translation_wizard__operation__import
+msgid "Import"
+msgstr "Importer"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_base_translate__term
+msgid "Label"
+msgstr "Libellé"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_base_translate__lang_id
+msgid "Language"
+msgstr "Langue"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_base_translate__write_uid
+#: model:ir.model.fields,field_description:base_translation_manager.field_data_translation_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_base_translate__write_date
+#: model:ir.model.fields,field_description:base_translation_manager.field_data_translation_wizard__write_date
+msgid "Last Updated on"
+msgstr "Dernière modification le"
+
+#. module: base_translation_manager
+#: model:ir.ui.menu,name:base_translation_manager.menu_translate_new_term
+msgid "Mapping Terms"
+msgstr "Mappage des termes"
+
+#. module: base_translation_manager
+#: model:ir.actions.act_window,name:base_translation_manager.action_translation_manager_wizard
+#: model:ir.model,name:base_translation_manager.model_data_translation_wizard
+#: model:ir.ui.menu,name:base_translation_manager.menu_translation_manager_wizard
+#: model_terms:ir.ui.view,arch_db:base_translation_manager.translation_manager_wizard_view_form
+msgid "Mass Translation Manager"
+msgstr "Gestionnaire de traductions en masse"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_base_translate__model_id
+msgid "Model"
+msgstr "Modèle"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_data_translation_wizard__model_name
+msgid "Model Name"
+msgstr "Nom du modèle"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_base_translate__new_term
+msgid "New Label"
+msgstr "Nouveau Libellé"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_data_translation_wizard__operation
+msgid "Operation"
+msgstr "Opération"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,help:base_translation_manager.field_base_translate__model_id
+msgid "Optional: Leave empty to apply globally (menus, forms, reports)."
+msgstr "Facultatif : Laissez vide pour appliquer globalement (menus, formulaires, rapports)."
+
+#. module: base_translation_manager
+#: model:ir.model.fields.selection,name:base_translation_manager.selection__data_translation_wizard__fields_option__selection
+msgid "Select Fields"
+msgstr "Sélectionner les champs"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,help:base_translation_manager.field_data_translation_wizard__model_id
+msgid "Select the Odoo model you want to process the translations for."
+msgstr "Sélectionnez le modèle Odoo pour lequel vous souhaitez traiter les traductions."
+
+#. module: base_translation_manager
+#: model:ir.model.fields,help:base_translation_manager.field_data_translation_wizard__source_lang_id
+msgid "Select the language from which the translations will be read."
+msgstr "Sélectionnez la langue à partir de laquelle les traductions seront lues."
+
+#. module: base_translation_manager
+#: model:ir.model.fields,help:base_translation_manager.field_data_translation_wizard__dest_lang_id
+msgid "Select the language to which the translations will be written."
+msgstr "Sélectionnez la langue dans laquelle les traductions seront écrites."
+
+#. module: base_translation_manager
+#: model:ir.model.fields,help:base_translation_manager.field_data_translation_wizard__field_ids
+msgid "Select the specific translatable fields to process."
+msgstr "Sélectionnez les champs traduisibles spécifiques à traiter."
+
+#. module: base_translation_manager
+#: model:ir.model.fields.selection,name:base_translation_manager.selection__data_translation_wizard__data_option__selection
+msgid "Selection"
+msgstr "Sélection"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_data_translation_wizard__source_lang_id
+msgid "Source Language"
+msgstr "Langue source"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_data_translation_wizard__model_id
+msgid "Target Model"
+msgstr "Modèle cible"
+
+#. module: base_translation_manager
+#: model:ir.model.fields,help:base_translation_manager.field_data_translation_wizard__model_name
+msgid "Technical name of the selected model."
+msgstr "Nom technique du modèle sélectionné."
+
+#. module: base_translation_manager
+#: model:ir.model.fields,field_description:base_translation_manager.field_data_translation_wizard__field_ids
+msgid "Translatable Fields"
+msgstr "Champs traduisibles"
+
+#. module: base_translation_manager
+#: model:ir.actions.act_window,name:base_translation_manager.action_translate_new_term
+msgid "Translate Terms"
+msgstr "Traduire les termes"
