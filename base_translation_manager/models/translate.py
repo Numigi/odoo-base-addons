@@ -4,6 +4,7 @@
 import logging
 import threading
 import psycopg2
+import re
 
 from odoo import api, SUPERUSER_ID, sql_db
 from odoo.tools.translate import TranslationImporter as BaseTranslationImporter
@@ -180,9 +181,30 @@ def _apply_mapping(value, mapping):
 
 
 def _replace_term_in_string(value, old_term, new_term):
-    if old_term and str(old_term) in value:
-        return value.replace(str(old_term), str(new_term))
-    return value
+    if not old_term:
+        return value
+    pattern = re.compile(re.escape(str(old_term)), re.IGNORECASE)
+    return pattern.sub(lambda match: _match_case_format(match.group(0), str(new_term)), value)
+
+
+def _match_case_format(original_text, new_text):
+    if original_text.isupper():
+        return new_text.upper()
+    if original_text.islower():
+        return new_text.lower()
+    return _match_capitalized(original_text, new_text)
+
+
+def _match_capitalized(original_text, new_text):
+    if original_text and original_text[0].isupper():
+        return _capitalize_first_letter(new_text)
+    return new_text
+
+
+def _capitalize_first_letter(text):
+    if not text:
+        return text
+    return text[0].upper() + text[1:]
 
 
 # Apply overrides on Odoo core classes

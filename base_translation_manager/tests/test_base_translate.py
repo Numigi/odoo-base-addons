@@ -38,19 +38,19 @@ class TestTranslationFrCa(TransactionCase):
     @classmethod
     def _create_test_terms(cls):
         cls.term_model.create({
-            "term": "facture",
-            "new_term": "facture canadienne",
+            "term": "devis",
+            "new_term": "soumission",
         })
 
-    def test_translation_applied_to_record_field(self):
-        category = self._create_test_category("Voici votre facture")
+    def test_translation_applied_with_dynamic_case_preservation(self):
+        category = self._create_test_category("Mon Devis est un devis DEVIS")
         category.action_translate_to_ca()
         ca_value = category.with_context(lang="fr_CA").name
-        self.assertEqual(ca_value, "Voici votre facture canadienne")
+        self.assertEqual(ca_value, "Mon Soumission est un soumission SOUMISSION")
 
     def test_global_mapping_retrieval(self):
         mapping = self.term_model.get_mapping_for_model("res.partner.category")
-        self.assertEqual(mapping.get("facture"), "facture canadienne")
+        self.assertEqual(mapping.get("devis"), "soumission")
 
     def _create_test_category(self, name_text):
         return self.category_model.with_context(lang="fr_FR").create({
