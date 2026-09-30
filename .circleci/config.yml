@@ -1,4 +1,4 @@
-version: 2.0
+version: 2.1
 
 jobs:
   tests:
@@ -52,7 +52,6 @@ jobs:
             ./nws circleci create-tag -t odoo-base
             
 workflows:
-  version: 2
   odoo:
     jobs:
       - tests:
