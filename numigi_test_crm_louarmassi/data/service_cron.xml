@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- Notify the sales team members if a lead still has draft state more than 10 days -->
+    <record id="ir_cron_auto_notify_lead_state" model="ir.cron">
+        <field name="name">Notify crm team members</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="code">model._notify_members()</field>
+        <field name="state">code</field>
+    </record>
+</odoo>
