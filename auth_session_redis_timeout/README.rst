@@ -14,6 +14,23 @@ The two system parameters of the module `Auth Session Timeout` are available:
 - inactive_session_time_out_delay: validity of a session in seconds (default = 2 Hours)
 - inactive_session_time_out_ignored_url: technical urls where the check does not occur
 
+Installation
+------------
+
+.. warning::
+
+   **Important – Installation Order Matters!**
+
+   This module depends on ``Auth Session Timeout``, but you **must install**
+   ``Auth Session Redis Timeout`` **first**.
+
+   ``Auth Session Redis Timeout`` will automatically install ``Auth Session Timeout`` as a dependency.
+
+   **Do NOT install** ``Auth Session Timeout`` separately before this module.
+
+   If you do, it will result in an **Internal Server Error** after installation,
+   due to a conflict in the inherited method ``_auth_timeout_check``.
+
 
 Contributors
 ------------
