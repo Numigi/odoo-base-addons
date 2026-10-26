@@ -5,7 +5,6 @@ from odoo.tests.common import TransactionCase
 
 
 class TestDataTranslationWizard(TransactionCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -30,8 +29,10 @@ class TestDataTranslationWizard(TransactionCase):
 
     @classmethod
     def _create_test_record(cls):
-        return cls.env["res.partner.category"].with_context(lang="fr_CA").create(
-            {"name": "Catégorie Québécoise"}
+        return (
+            cls.env["res.partner.category"]
+            .with_context(lang="fr_CA")
+            .create({"name": "Catégorie Québécoise"})
         )
 
     def _create_wizard_for_all_records(self):

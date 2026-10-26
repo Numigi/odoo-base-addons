@@ -5,7 +5,6 @@ from odoo.tests.common import TransactionCase
 
 
 class TestTranslationFrCa(TransactionCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -21,7 +20,11 @@ class TestTranslationFrCa(TransactionCase):
 
     @classmethod
     def _activate_language(cls, code, name):
-        lang = cls.env["res.lang"].with_context(active_test=False).search([("code", "=", code)])
+        lang = (
+            cls.env["res.lang"]
+            .with_context(active_test=False)
+            .search([("code", "=", code)])
+        )
         if lang:
             lang.write({"active": True})
         else:
@@ -29,18 +32,22 @@ class TestTranslationFrCa(TransactionCase):
 
     @classmethod
     def _create_language(cls, code, name):
-        cls.env["res.lang"].create({
-            "name": name,
-            "code": code,
-            "url_code": code.replace("_", "-").lower(),
-        })
+        cls.env["res.lang"].create(
+            {
+                "name": name,
+                "code": code,
+                "url_code": code.replace("_", "-").lower(),
+            }
+        )
 
     @classmethod
     def _create_test_terms(cls):
-        cls.term_model.create({
-            "term": "devis",
-            "new_term": "soumission",
-        })
+        cls.term_model.create(
+            {
+                "term": "devis",
+                "new_term": "soumission",
+            }
+        )
 
     def test_translation_applied_with_dynamic_case_preservation(self):
         category = self._create_test_category("Mon Devis est un devis DEVIS")
@@ -53,6 +60,8 @@ class TestTranslationFrCa(TransactionCase):
         self.assertEqual(mapping.get("devis"), "soumission")
 
     def _create_test_category(self, name_text):
-        return self.category_model.with_context(lang="fr_FR").create({
-            "name": name_text,
-        })
+        return self.category_model.with_context(lang="fr_FR").create(
+            {
+                "name": name_text,
+            }
+        )

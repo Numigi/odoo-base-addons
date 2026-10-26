@@ -10,12 +10,12 @@
     "license": "LGPL-3",
     "category": "Accounting",
     "summary": "This module provides a generic and robust toolset to manage translations across the entire "
-               "Odoo database.",
+    "Odoo database.",
     "depends": ["base", "lang_fr_activated"],
     "data": [
         "security/ir.model.access.csv",
         "views/base_translate.xml",
-        "wizard/data_tanslation_wizard.xml"
+        "wizard/data_tanslation_wizard.xml",
     ],
     "installable": True,
     "auto-install": True,
