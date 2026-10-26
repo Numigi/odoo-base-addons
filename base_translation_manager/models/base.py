@@ -53,8 +53,10 @@ class BaseTranslationCA(models.AbstractModel):
             return text_value
         pattern = re.compile(re.escape(str(old_term)), re.IGNORECASE)
         return pattern.sub(
-            lambda match: self._match_case_format(match.group(0), str(mapping_dict[old_term])),
-            text_value
+            lambda match: self._match_case_format(
+                match.group(0), str(mapping_dict[old_term])
+            ),
+            text_value,
         )
 
     def _match_case_format(self, original_text, new_text):

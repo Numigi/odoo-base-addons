@@ -3,6 +3,7 @@
 
 import logging
 from odoo import models, api
+
 _logger = logging.getLogger(__name__)
 
 
@@ -13,19 +14,31 @@ class Base(models.AbstractModel):
     def create(self, vals_list):
         records = super().create(vals_list)
         if self.env.context.get("extended_security_enforcement"):
-            _logger.info("Extended Security: Intercepting CREATE on %s (sudo: %s)", self._name, self.env.su)
+            _logger.info(
+                "Extended Security: Intercepting CREATE on %s (sudo: %s)",
+                self._name,
+                self.env.su,
+            )
             records.check_extended_security_create()
         return records
 
     def write(self, vals):
         if self.env.context.get("extended_security_enforcement"):
-            _logger.info("Extended Security: Intercepting WRITE on %s (sudo: %s)", self._name, self.env.su)
+            _logger.info(
+                "Extended Security: Intercepting WRITE on %s (sudo: %s)",
+                self._name,
+                self.env.su,
+            )
             self.check_extended_security_write()
         return super().write(vals)
 
     def unlink(self):
         if self.env.context.get("extended_security_enforcement"):
-            _logger.info("Extended Security: Intercepting UNLINK on %s (sudo: %s)", self._name, self.env.su)
+            _logger.info(
+                "Extended Security: Intercepting UNLINK on %s (sudo: %s)",
+                self._name,
+                self.env.su,
+            )
             self.check_extended_security_unlink()
         return super().unlink()
 

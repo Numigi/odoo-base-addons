@@ -35,28 +35,32 @@ class _MockOdooRequest(OdooRequest):
         self._cv_token = None
 
         # 1. Fallback pour les anciennes versions (Odoo <= 16)
-        if hasattr(odoo.http, '_request_stack') and hasattr(odoo.http._request_stack, 'push'):
+        if hasattr(odoo.http, "_request_stack") and hasattr(
+            odoo.http._request_stack, "push"
+        ):
             odoo.http._request_stack.push(self)
             return self
 
         # 2. Odoo 17/18 avec Werkzeug 3.0 : on détecte le ContextVar dynamiquement
         for name, obj in vars(odoo.http).items():
-            if isinstance(obj, contextvars.ContextVar) and 'request' in name.lower():
+            if isinstance(obj, contextvars.ContextVar) and "request" in name.lower():
                 self._cv_obj = obj
                 self._cv_token = obj.set(self)
                 return self
 
         # 3. Fallback ultime si la structure interne a encore changé
-        self._original_request = getattr(odoo.http, 'request', None)
+        self._original_request = getattr(odoo.http, "request", None)
         odoo.http.request = self
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        if hasattr(odoo.http, '_request_stack') and hasattr(odoo.http._request_stack, 'pop'):
+        if hasattr(odoo.http, "_request_stack") and hasattr(
+            odoo.http._request_stack, "pop"
+        ):
             odoo.http._request_stack.pop()
         elif self._cv_obj and self._cv_token:
             self._cv_obj.reset(self._cv_token)
-        elif hasattr(self, '_original_request'):
+        elif hasattr(self, "_original_request"):
             odoo.http.request = self._original_request
 
     def make_response(self, data, headers=None, cookies=None, status=200):
@@ -73,10 +77,10 @@ def _make_environ_form_data_stream(data: dict) -> BytesIO:
 
 
 def _make_environ(
-        method: str = "POST",
-        headers: Optional[dict] = None,
-        data: Optional[dict] = None,
-        routing_type: str = "http",
+    method: str = "POST",
+    headers: Optional[dict] = None,
+    data: Optional[dict] = None,
+    routing_type: str = "http",
 ):
     assert routing_type in ("http", "json")
     environ_builder = EnvironBuilder(
@@ -115,7 +119,7 @@ def _make_filesystem_session(env: Environment) -> Session:
 
 
 def _make_odoo_request(
-        werkzeug_request: WerkzeugRequest, env: Environment, routing_type: str
+    werkzeug_request: WerkzeugRequest, env: Environment, routing_type: str
 ) -> _MockOdooRequest:
     odoo_request = _MockOdooRequest(werkzeug_request)
 
@@ -134,11 +138,11 @@ def _make_odoo_request(
 
 @contextmanager
 def mock_odoo_request(
-        env: Environment,
-        method: str = "POST",
-        headers: Optional[dict] = None,
-        data: Optional[dict] = None,
-        routing_type: str = "http",
+    env: Environment,
+    method: str = "POST",
+    headers: Optional[dict] = None,
+    data: Optional[dict] = None,
+    routing_type: str = "http",
 ):
     environ = _make_environ(method, headers, data, routing_type)
     werkzeug_request = _make_werkzeug_request(environ)

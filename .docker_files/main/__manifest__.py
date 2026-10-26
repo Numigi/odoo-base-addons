@@ -14,8 +14,9 @@
         "admin_light_base",
         "base_extended_security",
         "base_translation_manager",
+        "currency_rate_update_boc",
         "lang_fr_activated",
-        "test_http_request"
+        "test_http_request",
     ],
     "installable": True,
 }

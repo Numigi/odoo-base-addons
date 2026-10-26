@@ -14,7 +14,8 @@ class ResCurrencyRateProvider(models.Model):
 
     service = fields.Selection(
         selection_add=[("bank_of_canada", "Bank of canada")],
-        ondelete={"bank_of_canada": 'set default'})
+        ondelete={"bank_of_canada": "set default"},
+    )
 
     def _get_supported_currencies(self):
         self.ensure_one()
@@ -41,8 +42,7 @@ class ResCurrencyRateProvider(models.Model):
     def _get_boc_url(self, base_currency, currencies, date_from, date_to):
         date_from = date_from.strftime("%Y-%m-%d")
         date_to = date_to.strftime("%Y-%m-%d")
-        exchanges = {s for s in self._iter_boc_series(
-            base_currency, currencies)}
+        exchanges = {s for s in self._iter_boc_series(base_currency, currencies)}
         date_filter = f"start_date={date_from}&end_date={date_to}"
         return f"{BASE_API_ADDRESS}{','.join(exchanges)}?{date_filter}"
 
@@ -60,9 +60,7 @@ class ResCurrencyRateProvider(models.Model):
             raise ValidationError(
                 _(
                     "The request to the Valet api of the Bank of Canada terminated"
-                    "with an error.\n\n{} : {}".format(
-                        response.text, url
-                    )
+                    "with an error.\n\n{} : {}".format(response.text, url)
                 )
             )
 
@@ -88,10 +86,8 @@ class ResCurrencyRateProvider(models.Model):
         else:
             first_series = f"FX{base_currency}CAD"
             second_series = f"FXCAD{currency}"
-            first_rate = self._get_rate_from_boc_series(
-                observation, first_series)
-            second_rate = self._get_rate_from_boc_series(
-                observation, second_series)
+            first_rate = self._get_rate_from_boc_series(observation, first_series)
+            second_rate = self._get_rate_from_boc_series(observation, second_series)
 
             return first_rate * second_rate
 

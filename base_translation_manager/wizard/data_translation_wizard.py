@@ -128,10 +128,14 @@ class TranslationManagerWizard(models.TransientModel):
     def _extract_update_values(self, source_record, target_record, fields_list):
         update_vals = {}
         for field in fields_list:
-            self._evaluate_field_for_update(field, source_record, target_record, update_vals)
+            self._evaluate_field_for_update(
+                field, source_record, target_record, update_vals
+            )
         return update_vals
 
-    def _evaluate_field_for_update(self, field, source_record, target_record, update_vals):
+    def _evaluate_field_for_update(
+        self, field, source_record, target_record, update_vals
+    ):
         source_val = source_record[field]
         target_val = target_record.with_context(lang=self.dest_lang_id.code)[field]
         if source_val and source_val != target_val:

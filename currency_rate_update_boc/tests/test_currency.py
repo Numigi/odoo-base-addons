@@ -44,8 +44,7 @@ class TestBocRateProvider(SavepointCase):
 
     @data("CAD", "USD", "EUR")
     def test_supported_currencies(self, currency_code):
-        supported_currencies = self.provider.available_currency_ids.mapped(
-            "name")
+        supported_currencies = self.provider.available_currency_ids.mapped("name")
         assert currency_code in supported_currencies
 
     def test_boc_response(self):
@@ -64,25 +63,21 @@ class TestBocRateProvider(SavepointCase):
                 self.provider._get_boc_response(self.dumb_test_boc_url)
 
     def test_rates_cad2x(self):
-        rates = self.provider._obtain_rates(
-            "CAD", ["USD", "EUR"], self.date, self.date)
+        rates = self.provider._obtain_rates("CAD", ["USD", "EUR"], self.date, self.date)
         assert rates[self.date_string]["USD"] == round(1 / 1.2279, 4)
         assert rates[self.date_string]["EUR"] == round(1 / 1.4808, 4)
 
     def test_rates_x2cad(self):
-        rates = self.provider._obtain_rates(
-            "USD", ["CAD"], self.date, self.date)
+        rates = self.provider._obtain_rates("USD", ["CAD"], self.date, self.date)
         assert rates[self.date_string]["CAD"] == 1.2279
 
     def test_rates_x2x(self):
-        rates = self.provider._obtain_rates(
-            "USD", ["EUR"], self.date, self.date)
+        rates = self.provider._obtain_rates("USD", ["EUR"], self.date, self.date)
         assert rates[self.date_string]["EUR"] == round(1.2279 * 1 / 1.4808, 4)
 
     def test_invalid_currency(self):
         with pytest.raises(ValidationError):
-            self.provider._obtain_rates(
-                "USD", ["ZZZZ"], self.date, self.date)
+            self.provider._obtain_rates("USD", ["ZZZZ"], self.date, self.date)
 
     def test_invalid_date(self):
         with pytest.raises(ValidationError):

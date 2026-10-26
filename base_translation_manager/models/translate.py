@@ -23,8 +23,12 @@ class TranslationImporter(BaseTranslationImporter):
         base_load_translation(self, reader, lang, xmlids)
         mapping_dict = get_translation_mapping(self.env, lang)
         if mapping_dict:
-            self.model_translations = replace_values(self.model_translations, mapping_dict, lang)
-            self.model_terms_translations = replace_values(self.model_terms_translations, mapping_dict, lang)
+            self.model_translations = replace_values(
+                self.model_translations, mapping_dict, lang
+            )
+            self.model_terms_translations = replace_values(
+                self.model_terms_translations, mapping_dict, lang
+            )
 
 
 class CodeTranslations(BaseCodeTranslations):
@@ -84,19 +88,16 @@ def _apply_web_translations_safely(instance, module_name, lang):
 def _update_web_translations(instance, module_name, lang, mapping_dict):
     orig = instance.web_translations.get((module_name, lang), {})
     new_messages = _build_new_web_messages(orig, mapping_dict)
-    instance.web_translations[(module_name, lang)] = ReadonlyDict({
-        "messages": new_messages
-    })
+    instance.web_translations[(module_name, lang)] = ReadonlyDict(
+        {"messages": new_messages}
+    )
 
 
 def _build_new_web_messages(orig, mapping_dict):
     new_messages = []
     for msg in orig.get("messages", ()):
         new_str = _apply_mapping(msg.get("string", ""), mapping_dict)
-        new_messages.append(ReadonlyDict({
-            "id": msg["id"],
-            "string": new_str
-        }))
+        new_messages.append(ReadonlyDict({"id": msg["id"], "string": new_str}))
     return tuple(new_messages)
 
 
@@ -184,7 +185,9 @@ def _replace_term_in_string(value, old_term, new_term):
     if not old_term:
         return value
     pattern = re.compile(re.escape(str(old_term)), re.IGNORECASE)
-    return pattern.sub(lambda match: _match_case_format(match.group(0), str(new_term)), value)
+    return pattern.sub(
+        lambda match: _match_case_format(match.group(0), str(new_term)), value
+    )
 
 
 def _match_case_format(original_text, new_text):
