@@ -46,6 +46,7 @@ class TestBocRateProvider(TransactionCase):
                                "https://www.bankofcanada.ca/valet/observations/"
                                "FXUSDCAD,FXEURCAD?start_date=%s&end_date=%s"
                            ) % (cls.date_string, cls.date_string)
+
         cls.dumb_test_boc_url = "https://www.bankofcanada.ca/valet/observations/"
 
     def _get_rates_json(self):
@@ -66,7 +67,6 @@ class TestBocRateProvider(TransactionCase):
         """Test proper JSON parsing of a successful API response."""
         json_data = self._get_rates_json()
 
-        # Configure the mock to return a 200 OK with the loaded JSON
         mock_response = MagicMock()
         mock_response.status_code = 200
         mock_response.json.return_value = json_data
@@ -81,7 +81,6 @@ class TestBocRateProvider(TransactionCase):
         """Ensure HTTP errors are properly caught and raised as ValidationError."""
         mock_response = MagicMock()
         mock_response.status_code = error_code
-        # Simulate the requests.exceptions.HTTPError being raised by raise_for_status()
         mock_response.raise_for_status.side_effect = requests.exceptions.HTTPError("API Error")
         mock_get.return_value = mock_response
 
@@ -91,49 +90,61 @@ class TestBocRateProvider(TransactionCase):
     @patch("odoo.addons.currency_rate_update_boc.models.res_currency_rate_provider.requests.get")
     def test_rates_cad2x(self, mock_get):
         """Test exchange rate calculation when the base currency is CAD."""
-        json_data = self._get_rates_json()
         mock_response = MagicMock()
         mock_response.status_code = 200
-        mock_response.json.return_value = json_data
+        mock_response.json.return_value = self._get_rates_json()
         mock_get.return_value = mock_response
 
         rates = self.provider._obtain_rates("CAD", ["USD", "EUR"], self.date, self.date)
 
-        # Ensure correct reciprocal math mapping to Odoo's internal exchange rate format
+        # 1 CAD = 1 / FXUSDCAD USD
         self.assertEqual(rates[self.date_string]["USD"], round(1 / 1.2279, 4))
         self.assertEqual(rates[self.date_string]["EUR"], round(1 / 1.4808, 4))
 
     @patch("odoo.addons.currency_rate_update_boc.models.res_currency_rate_provider.requests.get")
     def test_rates_x2cad(self, mock_get):
         """Test exchange rate calculation when the target currency is CAD."""
-        json_data = self._get_rates_json()
         mock_response = MagicMock()
         mock_response.status_code = 200
-        mock_response.json.return_value = json_data
+        mock_response.json.return_value = self._get_rates_json()
         mock_get.return_value = mock_response
 
         rates = self.provider._obtain_rates("USD", ["CAD"], self.date, self.date)
+
+        # 1 USD = FXUSDCAD CAD
         self.assertEqual(rates[self.date_string]["CAD"], 1.2279)
 
     @patch("odoo.addons.currency_rate_update_boc.models.res_currency_rate_provider.requests.get")
     def test_rates_x2x(self, mock_get):
         """Test exchange rate calculation crossing two non-CAD currencies."""
-        json_data = self._get_rates_json()
         mock_response = MagicMock()
         mock_response.status_code = 200
-        mock_response.json.return_value = json_data
+        mock_response.json.return_value = self._get_rates_json()
         mock_get.return_value = mock_response
 
         rates = self.provider._obtain_rates("USD", ["EUR"], self.date, self.date)
-        self.assertEqual(rates[self.date_string]["EUR"], round(1.2279 * 1 / 1.4808, 4))
 
-    def test_invalid_currency(self):
+        # 1 USD = FXUSDCAD CAD. 1 EUR = FXEURCAD CAD.
+        # So 1 USD = (FXUSDCAD / FXEURCAD) EUR
+        self.assertEqual(rates[self.date_string]["EUR"], round(1.2279 / 1.4808, 4))
+
+    @patch("odoo.addons.currency_rate_update_boc.models.res_currency_rate_provider.requests.get")
+    def test_invalid_currency(self, mock_get):
         """Verify the module blocks unknown or invalid currency formats."""
+        mock_response = MagicMock()
+        mock_response.raise_for_status.side_effect = requests.exceptions.HTTPError("Not Found")
+        mock_get.return_value = mock_response
+
         with self.assertRaises(ValidationError):
             self.provider._obtain_rates("USD", ["ZZZZ"], self.date, self.date)
 
-    def test_invalid_date(self):
+    @patch("odoo.addons.currency_rate_update_boc.models.res_currency_rate_provider.requests.get")
+    def test_invalid_date(self, mock_get):
         """Verify the module blocks inverted or invalid date ranges."""
+        mock_response = MagicMock()
+        mock_response.raise_for_status.side_effect = requests.exceptions.HTTPError("Bad Request")
+        mock_get.return_value = mock_response
+
         with self.assertRaises(ValidationError):
             self.provider._obtain_rates(
                 "USD", ["ZZZZ"], self.date, self.date - timedelta(days=5)
@@ -142,16 +153,16 @@ class TestBocRateProvider(TransactionCase):
     @patch("odoo.addons.currency_rate_update_boc.models.res_currency_rate_provider.requests.get")
     def test_cron_loads_rates_one_day_prior(self, mock_get):
         """Ensure the scheduled job successfully applies rates covering the correct date."""
-        json_data = self._get_rates_json()
         mock_response = MagicMock()
         mock_response.status_code = 200
-        mock_response.json.return_value = json_data
+        mock_response.json.return_value = self._get_rates_json()
         mock_get.return_value = mock_response
 
-        # Assuming OCA standard structure, we manually call the update execution
-        self.provider.update_rates()
+        self.provider.last_successful_run = self.date
+        self.provider.next_run = self.date + timedelta(days=1)
 
-        # Odoo native API for fetching the current exchange rate instance
+        # Using OCA's standard _scheduled_update trigger
+        self.env["res.currency.rate.provider"]._scheduled_update()
+
         rate = self.cad._get_rates(self.company, self.date)[self.cad.id]
-
         self.assertEqual(round(rate, 4), 1.2279)
