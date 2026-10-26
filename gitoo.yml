@@ -1,3 +1,8 @@
 - url: https://github.com/OCA/queue
   branch: "18.0"
   includes: ["queue_job"]
+
+- url: https://github.com/oca/currency
+  branch: "18.0"
+  includes:
+    - currency_rate_update
