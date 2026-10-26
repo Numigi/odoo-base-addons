@@ -6,14 +6,14 @@ import os
 import pytest
 from contextlib import contextmanager
 from datetime import date, timedelta
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 from ddt import ddt, data
 from odoo.exceptions import ValidationError
 from odoo.addons.website.tools import MockRequest
 
 
 @ddt
-class TestBocRateProvider(SavepointCase):
+class TestBocRateProvider(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
